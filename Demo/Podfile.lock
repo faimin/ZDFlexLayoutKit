@@ -1,0 +1,16 @@
+PODS:
+  - Yoga (1.14.0)
+
+DEPENDENCIES:
+  - Yoga (~> 1.14.0)
+
+SPEC REPOS:
+  trunk:
+    - Yoga
+
+SPEC CHECKSUMS:
+  Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+
+PODFILE CHECKSUM: f23f6731beb5e7156fde27216b4e556f053a82b7
+
+COCOAPODS: 1.8.0
