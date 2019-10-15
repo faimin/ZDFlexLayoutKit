@@ -1,13 +1,17 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '9.0'
 
 target 'Demo' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
 
   # Pods for Demo
-  pod 'Yoga', '~> 1.14.0'  
+  pod 'Yoga'
   #pod 'YogaKit', '~> 1.14.0'
+  pod 'YYModel'
+  pod 'ZDToolKit', :git => 'https://github.com/faimin/ZDToolKit', :branch => 'develop'
 
   target 'DemoTests' do
     inherit! :search_paths
@@ -19,3 +23,12 @@ target 'Demo' do
   end
 
 end
+
+
+#############################################################
+
+install! 'cocoapods',
+         :generate_multiple_pod_projects => true,
+         :incremental_installation => true
+
+############################################################

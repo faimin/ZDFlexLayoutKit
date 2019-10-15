@@ -1,0 +1,61 @@
+BUILD_CONFIGURATIONS:
+  Debug: :debug
+  Release: :release
+CACHE_KEYS:
+  libffi-core:
+    BUILD_SETTINGS_CHECKSUM:
+      libffi-core: f068a331eda1137d121206433e5963ee
+    CHECKSUM: c4049ed88381fee5c0a31d26c860fc427d3c301c
+    PROJECT_NAME: libffi-core
+    SPECS:
+      - libffi-core (1.2.0)
+  Pods-Demo:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 7df61fa6fbe48038a085e116a455962f
+      Release: 7df61fa6fbe48038a085e116a455962f
+  Pods-Demo-DemoUITests:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 7df61fa6fbe48038a085e116a455962f
+      Release: 7df61fa6fbe48038a085e116a455962f
+  Pods-DemoTests:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 23c89df0abab39e933a8bb1a2601b1bf
+      Release: 23c89df0abab39e933a8bb1a2601b1bf
+  Yoga:
+    BUILD_SETTINGS_CHECKSUM:
+      Yoga: dc1487e9816565f56f21c2ef64c5a611
+    CHECKSUM: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+    PROJECT_NAME: Yoga
+    SPECS:
+      - Yoga (1.14.0)
+  YYModel:
+    BUILD_SETTINGS_CHECKSUM:
+      YYModel: f3127127507fbca6fdcda377fc0fed01
+    CHECKSUM: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+    PROJECT_NAME: YYModel
+    SPECS:
+      - YYModel (1.0.4)
+  ZDToolKit:
+    BUILD_SETTINGS_CHECKSUM:
+      ZDToolKit: f43181b4a5eabb9ca4e96a54e8fae4a7
+    CHECKOUT_OPTIONS:
+      :commit: 2aeff358b85e70343afe14e2ba3c515195fd755b
+      :git: https://github.com/faimin/ZDToolKit
+    CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
+    PROJECT_NAME: ZDToolKit
+    SPECS:
+      - ZDToolKit (0.0.4)
+      - ZDToolKit/ZDAutoLayout (0.0.4)
+      - ZDToolKit/ZDCategory (0.0.4)
+      - ZDToolKit/ZDCategory/Foundation (0.0.4)
+      - ZDToolKit/ZDCategory/UIKit (0.0.4)
+      - ZDToolKit/ZDDebug (0.0.4)
+      - ZDToolKit/ZDMacros (0.0.4)
+      - ZDToolKit/ZDMRC (0.0.4)
+      - ZDToolKit/ZDRuntime (0.0.4)
+      - ZDToolKit/ZDSubclass (0.0.4)
+      - ZDToolKit/ZDTools (0.0.4)
+      - ZDToolKit/ZDTools/ProtocolKit (0.0.4)
+      - ZDToolKit/ZDTools/ZDPromise (0.0.4)
+      - ZDToolKit/ZDTools/ZDProxy (0.0.4)
+OBJECT_VERSION: 50

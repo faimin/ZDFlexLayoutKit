@@ -10,6 +10,12 @@
 		26CCC65FE314F0EDD62FF02D /* libPods-DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFBCB4E5F3893625B17DD41 /* libPods-DemoTests.a */; };
 		34201149682DA70EA244433F /* libPods-Demo-DemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91228A0700FA67EAEED34D41 /* libPods-Demo-DemoUITests.a */; };
 		6A2003A27B833FA6653ED2FF /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD9D32B874AB86F07AD005C /* libPods-Demo.a */; };
+		FA1A54D02355E37C00C80712 /* YogaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54CE2355E37B00C80712 /* YogaCell.m */; };
+		FA1A54D32355E3A400C80712 /* YogaKitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */; };
+		FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */; };
+		FA1A54E22355ED3500C80712 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FA1A54E12355ED3500C80712 /* data.json */; };
+		FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E42355ED8100C80712 /* TextureModel.m */; };
+		FA1A54E82355EDC700C80712 /* ZDTemplateCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */; };
 		FA843027234F4231000F7E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843026234F4231000F7E35 /* AppDelegate.m */; };
 		FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843029234F4231000F7E35 /* SceneDelegate.m */; };
 		FA84302D234F4231000F7E35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84302C234F4231000F7E35 /* ViewController.m */; };
@@ -52,6 +58,17 @@
 		A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		DEFBCB4E5F3893625B17DD41 /* libPods-DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1A54CE2355E37B00C80712 /* YogaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaCell.m; sourceTree = "<group>"; };
+		FA1A54CF2355E37B00C80712 /* YogaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaCell.h; sourceTree = "<group>"; };
+		FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKitListViewController.h; sourceTree = "<group>"; };
+		FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaKitListViewController.m; sourceTree = "<group>"; };
+		FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaKitListViewModel.m; sourceTree = "<group>"; };
+		FA1A54DE2355ECE300C80712 /* YogaKitListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKitListViewModel.h; sourceTree = "<group>"; };
+		FA1A54E12355ED3500C80712 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		FA1A54E32355ED8100C80712 /* TextureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureModel.h; sourceTree = "<group>"; };
+		FA1A54E42355ED8100C80712 /* TextureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureModel.m; sourceTree = "<group>"; };
+		FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTemplateCellHandler.m; sourceTree = "<group>"; };
+		FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTemplateCellHandler.h; sourceTree = "<group>"; };
 		FA843022234F4231000F7E35 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA843025234F4231000F7E35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FA843026234F4231000F7E35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -134,6 +151,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA1A54CD2355E36000C80712 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */,
+				FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */,
+				FA1A54CF2355E37B00C80712 /* YogaCell.h */,
+				FA1A54CE2355E37B00C80712 /* YogaCell.m */,
+				FA1A54DE2355ECE300C80712 /* YogaKitListViewModel.h */,
+				FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */,
+				FA1A54E32355ED8100C80712 /* TextureModel.h */,
+				FA1A54E42355ED8100C80712 /* TextureModel.m */,
+				FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */,
+				FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */,
+			);
+			path = Sample;
+			sourceTree = "<group>";
+		};
+		FA1A54E02355ECFE00C80712 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FA1A54E12355ED3500C80712 /* data.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		FA843019234F4231000F7E35 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +208,8 @@
 				FA843029234F4231000F7E35 /* SceneDelegate.m */,
 				FA84302B234F4231000F7E35 /* ViewController.h */,
 				FA84302C234F4231000F7E35 /* ViewController.m */,
+				FA1A54CD2355E36000C80712 /* Sample */,
+				FA1A54E02355ECFE00C80712 /* Resource */,
 				FA84302E234F4231000F7E35 /* Main.storyboard */,
 				FA843031234F4234000F7E35 /* Assets.xcassets */,
 				FA843033234F4234000F7E35 /* LaunchScreen.storyboard */,
@@ -318,6 +362,7 @@
 				FA843035234F4234000F7E35 /* LaunchScreen.storyboard in Resources */,
 				FA843032234F4234000F7E35 /* Assets.xcassets in Resources */,
 				FA843030234F4231000F7E35 /* Main.storyboard in Resources */,
+				FA1A54E22355ED3500C80712 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +459,14 @@
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
 				FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
+				FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */,
 				FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */,
 				FA843038234F4234000F7E35 /* main.m in Sources */,
+				FA1A54D32355E3A400C80712 /* YogaKitListViewController.m in Sources */,
+				FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */,
+				FA1A54D02355E37C00C80712 /* YogaCell.m in Sources */,
 				FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */,
+				FA1A54E82355EDC700C80712 /* ZDTemplateCellHandler.m in Sources */,
 				FA843060234F48E5000F7E35 /* YGLayoutM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
