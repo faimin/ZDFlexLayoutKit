@@ -7,24 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YGLayoutM.h"
+#import "ZDFlexLayout.h"
+#import "ZDFlexLayoutDiv.h"
 #import "ZDFlexLayoutDivProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZDFlexLayout) <ZDFlexLayoutDivProtocol>
-
-/**
- Indicates whether or not Yoga is enabled
- */
-@property (nonatomic, readonly, assign) BOOL isYogaEnabled;
-
-/**
- In ObjC land, every time you access `view.yoga.*` you are adding another `objc_msgSend`
- to your code. If you plan on making multiple changes to YGLayout, it's more performant
- to use this method, which uses a single objc_msgSend call.
- */
-- (void)configureLayoutWithBlock:(void(^)(YGLayoutM *layout))block;
 
 @end
 

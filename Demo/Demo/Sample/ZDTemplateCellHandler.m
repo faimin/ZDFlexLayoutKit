@@ -26,7 +26,6 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         self.templateCellCache[cellId] = cell;
     }
-    [cell prepareForReuse];
     return cell;
 }
 
@@ -54,10 +53,10 @@
         // 下面2种方式皆可
         CGSize size = cell.contentView.frame.size;
         //CGSize intrinsicSize = [cell.contentView.yoga intrinsicSize];
-        //NSLog(@"%s, intrinsicSize = %@, size = %@", __PRETTY_FUNCTION__, NSStringFromCGSize(intrinsicSize), NSStringFromCGSize(size));
-        CGFloat cellHeight = ceil(size.height);
-        self.cellHeightCache[indexPath] = @(cellHeight);
-        cellHeight = cellHeight;
+        CGFloat realHeight = ceil(size.height);
+        NSLog(@"%s, cell Height = %f", __PRETTY_FUNCTION__, realHeight);
+        self.cellHeightCache[indexPath] = @(realHeight);
+        cellHeight = realHeight;
     }
     
     return cellHeight;

@@ -3,13 +3,36 @@ source 'https://cdn.cocoapods.org/'
 
 platform :ios, '9.0'
 
+#############################################################
+
+install! 'cocoapods',
+         :generate_multiple_pod_projects => true,
+         :incremental_installation => true
+
+############################################################
+
+$static_framework = ['ZDToolKit']
+pre_install do |installer|
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+  installer.pod_targets.each do |pod|
+     if $static_framework.include?(pod.name)
+       def pod.build_type;
+          Pod::Target::BuildType.static_library
+       end
+     end
+  end
+end
+
+############################################################
+
 target 'Demo' do
   # Comment the next line if you don't want to use dynamic frameworks
-  #use_frameworks!
-
+  use_frameworks!
+#  supports_swift_versions '>= 4.0', '<= 5.1'
+  
   # Pods for Demo
   pod 'Yoga'
-  #pod 'YogaKit', '~> 1.14.0'
+  pod 'YogaKit'
   pod 'YYModel'
   pod 'ZDToolKit', :git => 'https://github.com/faimin/ZDToolKit', :branch => 'develop'
 
@@ -24,11 +47,3 @@ target 'Demo' do
 
 end
 
-
-#############################################################
-
-install! 'cocoapods',
-         :generate_multiple_pod_projects => true,
-         :incremental_installation => true
-
-############################################################

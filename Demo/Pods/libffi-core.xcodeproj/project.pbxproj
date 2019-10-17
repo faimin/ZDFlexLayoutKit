@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -106,7 +106,7 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = D68E069E1B55263EA5C2231A60BD9E60 /* Build configuration list for PBXProject "libffi-core" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

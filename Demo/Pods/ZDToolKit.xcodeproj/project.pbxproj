@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -751,7 +751,7 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = B4FC1B577ACD17B180FB1A5FBEE7223A /* Build configuration list for PBXProject "ZDToolKit" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

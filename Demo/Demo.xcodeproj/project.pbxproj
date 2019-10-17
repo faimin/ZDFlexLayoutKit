@@ -3,19 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26CCC65FE314F0EDD62FF02D /* libPods-DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFBCB4E5F3893625B17DD41 /* libPods-DemoTests.a */; };
-		34201149682DA70EA244433F /* libPods-Demo-DemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91228A0700FA67EAEED34D41 /* libPods-Demo-DemoUITests.a */; };
-		6A2003A27B833FA6653ED2FF /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD9D32B874AB86F07AD005C /* libPods-Demo.a */; };
+		A79FD794A1F3B8FEEB9BB1D0 /* Pods_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F84AD77E23D6230C1AB0C20 /* Pods_DemoTests.framework */; };
+		CC150030688A52AC7854C480 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA3DD75A2E39CBDE98C25A1 /* Pods_Demo.framework */; };
+		D7E90880FB4231C5A8ABCFC1 /* Pods_Demo_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCA7270FE74D1E149BD5C60 /* Pods_Demo_DemoUITests.framework */; };
 		FA1A54D02355E37C00C80712 /* YogaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54CE2355E37B00C80712 /* YogaCell.m */; };
 		FA1A54D32355E3A400C80712 /* YogaKitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */; };
 		FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */; };
 		FA1A54E22355ED3500C80712 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FA1A54E12355ED3500C80712 /* data.json */; };
 		FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E42355ED8100C80712 /* TextureModel.m */; };
 		FA1A54E82355EDC700C80712 /* ZDTemplateCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */; };
+		FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA617C0B23572AA100477C31 /* ZDFlexCell.m */; };
 		FA843027234F4231000F7E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843026234F4231000F7E35 /* AppDelegate.m */; };
 		FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843029234F4231000F7E35 /* SceneDelegate.m */; };
 		FA84302D234F4231000F7E35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84302C234F4231000F7E35 /* ViewController.m */; };
@@ -25,7 +26,7 @@
 		FA843038234F4234000F7E35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843037234F4234000F7E35 /* main.m */; };
 		FA843042234F4234000F7E35 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843041234F4234000F7E35 /* DemoTests.m */; };
 		FA84304D234F4234000F7E35 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84304C234F4234000F7E35 /* DemoUITests.m */; };
-		FA843060234F48E5000F7E35 /* YGLayoutM.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84305E234F48E5000F7E35 /* YGLayoutM.m */; };
+		FA843060234F48E5000F7E35 /* ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */; };
 		FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */; };
 		FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEF095123502497004094B1 /* ZDFlexLayoutDiv.m */; };
 		FAEF09F72350611C004094B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEF09F62350611C004094B1 /* libc++.tbd */; };
@@ -50,14 +51,14 @@
 
 /* Begin PBXFileReference section */
 		0289ACDC0CCA00EC5ED4088A /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		4FCA7270FE74D1E149BD5C60 /* Pods_Demo_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58ADF0759809E42F4183EFA7 /* Pods-Demo-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5F84AD77E23D6230C1AB0C20 /* Pods_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6042CC5A8A78852D60A515D4 /* Pods-DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoTests.debug.xcconfig"; path = "Target Support Files/Pods-DemoTests/Pods-DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		69C429D0F4F254DA2244BCA9 /* Pods-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoTests.release.xcconfig"; path = "Target Support Files/Pods-DemoTests/Pods-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		6FD9D32B874AB86F07AD005C /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91228A0700FA67EAEED34D41 /* libPods-Demo-DemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo-DemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DA3DD75A2E39CBDE98C25A1 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		DEFBCB4E5F3893625B17DD41 /* libPods-DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1A54CE2355E37B00C80712 /* YogaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaCell.m; sourceTree = "<group>"; };
 		FA1A54CF2355E37B00C80712 /* YogaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaCell.h; sourceTree = "<group>"; };
 		FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKitListViewController.h; sourceTree = "<group>"; };
@@ -69,6 +70,8 @@
 		FA1A54E42355ED8100C80712 /* TextureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureModel.m; sourceTree = "<group>"; };
 		FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTemplateCellHandler.m; sourceTree = "<group>"; };
 		FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTemplateCellHandler.h; sourceTree = "<group>"; };
+		FA617C0A23572AA100477C31 /* ZDFlexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexCell.h; sourceTree = "<group>"; };
+		FA617C0B23572AA100477C31 /* ZDFlexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexCell.m; sourceTree = "<group>"; };
 		FA843022234F4231000F7E35 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA843025234F4231000F7E35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FA843026234F4231000F7E35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,9 +90,9 @@
 		FA843048234F4234000F7E35 /* DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA84304C234F4234000F7E35 /* DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoUITests.m; sourceTree = "<group>"; };
 		FA84304E234F4234000F7E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA84305E234F48E5000F7E35 /* YGLayoutM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGLayoutM.m; sourceTree = "<group>"; };
-		FA84305F234F48E5000F7E35 /* YGLayoutM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLayoutM.h; sourceTree = "<group>"; };
-		FA843061234F4926000F7E35 /* YGLayoutM+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YGLayoutM+Private.h"; sourceTree = "<group>"; };
+		FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayout.m; sourceTree = "<group>"; };
+		FA84305F234F48E5000F7E35 /* ZDFlexLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayout.h; sourceTree = "<group>"; };
+		FA843061234F4926000F7E35 /* ZDFlexLayout+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayout+Private.h"; sourceTree = "<group>"; };
 		FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
 		FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDFlexLayout.m"; sourceTree = "<group>"; };
 		FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
@@ -104,7 +107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEF09F72350611C004094B1 /* libc++.tbd in Frameworks */,
-				6A2003A27B833FA6653ED2FF /* libPods-Demo.a in Frameworks */,
+				CC150030688A52AC7854C480 /* Pods_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26CCC65FE314F0EDD62FF02D /* libPods-DemoTests.a in Frameworks */,
+				A79FD794A1F3B8FEEB9BB1D0 /* Pods_DemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34201149682DA70EA244433F /* libPods-Demo-DemoUITests.a in Frameworks */,
+				D7E90880FB4231C5A8ABCFC1 /* Pods_Demo_DemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,9 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				FAEF09F62350611C004094B1 /* libc++.tbd */,
-				6FD9D32B874AB86F07AD005C /* libPods-Demo.a */,
-				91228A0700FA67EAEED34D41 /* libPods-Demo-DemoUITests.a */,
-				DEFBCB4E5F3893625B17DD41 /* libPods-DemoTests.a */,
+				8DA3DD75A2E39CBDE98C25A1 /* Pods_Demo.framework */,
+				4FCA7270FE74D1E149BD5C60 /* Pods_Demo_DemoUITests.framework */,
+				5F84AD77E23D6230C1AB0C20 /* Pods_DemoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +161,8 @@
 				FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */,
 				FA1A54CF2355E37B00C80712 /* YogaCell.h */,
 				FA1A54CE2355E37B00C80712 /* YogaCell.m */,
+				FA617C0A23572AA100477C31 /* ZDFlexCell.h */,
+				FA617C0B23572AA100477C31 /* ZDFlexCell.m */,
 				FA1A54DE2355ECE300C80712 /* YogaKitListViewModel.h */,
 				FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */,
 				FA1A54E32355ED8100C80712 /* TextureModel.h */,
@@ -240,9 +245,9 @@
 		FA84305A234F465D000F7E35 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				FA843061234F4926000F7E35 /* YGLayoutM+Private.h */,
-				FA84305F234F48E5000F7E35 /* YGLayoutM.h */,
-				FA84305E234F48E5000F7E35 /* YGLayoutM.m */,
+				FA843061234F4926000F7E35 /* ZDFlexLayout+Private.h */,
+				FA84305F234F48E5000F7E35 /* ZDFlexLayout.h */,
+				FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */,
 				FAEF09F523505F9C004094B1 /* ZDFlexLayoutDivProtocol.h */,
 				FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */,
 				FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */,
@@ -264,6 +269,7 @@
 				FA84301E234F4231000F7E35 /* Sources */,
 				FA84301F234F4231000F7E35 /* Frameworks */,
 				FA843020234F4231000F7E35 /* Resources */,
+				DF75F29BAD0B1147F6EA936C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,6 +307,7 @@
 				FA843044234F4234000F7E35 /* Sources */,
 				FA843045234F4234000F7E35 /* Frameworks */,
 				FA843046234F4234000F7E35 /* Resources */,
+				A0B9BBE5465327CD69560322 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,6 +456,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A0B9BBE5465327CD69560322 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF75F29BAD0B1147F6EA936C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -459,6 +500,7 @@
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
 				FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
+				FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */,
 				FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */,
 				FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */,
 				FA843038234F4234000F7E35 /* main.m in Sources */,
@@ -467,7 +509,7 @@
 				FA1A54D02355E37C00C80712 /* YogaCell.m in Sources */,
 				FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */,
 				FA1A54E82355EDC700C80712 /* ZDTemplateCellHandler.m in Sources */,
-				FA843060234F48E5000F7E35 /* YGLayoutM.m in Sources */,
+				FA843060234F48E5000F7E35 /* ZDFlexLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

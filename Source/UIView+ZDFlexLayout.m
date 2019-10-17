@@ -8,35 +8,37 @@
 
 #import "UIView+ZDFlexLayout.h"
 #import <objc/runtime.h>
-#import "YGLayoutM+Private.h"
+#import "ZDFlexLayout+Private.h"
 
 @implementation UIView (ZDFlexLayout)
 
-- (BOOL)isYogaEnabled {
-    return objc_getAssociatedObject(self, @selector(yoga)) != nil;
-}
-
-- (void)configureLayoutWithBlock:(void (^)(YGLayoutM * _Nonnull))block {
-    if (block) {
-        block(self.yoga);
-    }
-}
-
 #pragma mark - ZDFlexLayoutNodeProtocol
 
-- (YGLayoutM *)yoga {
-    YGLayoutM *yoga = objc_getAssociatedObject(self, _cmd);
-    if (!yoga) {
-        yoga = [[YGLayoutM alloc] initWithView:self];
-        yoga.isEnabled = YES;
-        objc_setAssociatedObject(self, _cmd, yoga, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (BOOL)isFlexLayoutEnabled {
+    return objc_getAssociatedObject(self, @selector(flexLayout)) != nil;
+}
+
+- (void)configureFlexLayoutWithBlock:(void (^)(ZDFlexLayout * _Nonnull))block {
+    if (block) {
+        block(self.flexLayout);
     }
-    return yoga;
+}
+
+- (ZDFlexLayout *)flexLayout {
+    ZDFlexLayout *layout = objc_getAssociatedObject(self, _cmd);
+    if (!layout) {
+        layout = [[ZDFlexLayout alloc] initWithView:self];
+        layout.isEnabled = YES;
+        objc_setAssociatedObject(self, _cmd, layout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return layout;
 }
 
 - (void)addChild:(ZDFlexLayoutView)child {
     if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
+        [self.children removeObjectIdenticalTo:child];
         [self.children addObject:child];
+        child.owningView = self;
     }
     else {
         NSCAssert1(NO, @"不支持此类型：%@", child);
@@ -44,8 +46,9 @@
 }
 
 - (void)removeChild:(ZDFlexLayoutView)child {
-    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)] && [self.children containsObject:child]) {
-        [self.children removeObject:child];
+    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
+        [self.children removeObjectIdenticalTo:child];
+        child.owningView = nil;
     }
 }
 
@@ -54,10 +57,10 @@
     objc_setAssociatedObject(self, @selector(children), children, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableOrderedSet<ZDFlexLayoutView> *)children {
-    NSMutableOrderedSet<ZDFlexLayoutView> *tempChildren = objc_getAssociatedObject(self, _cmd);
+- (NSMutableArray<ZDFlexLayoutView> *)children {
+    NSMutableArray<ZDFlexLayoutView> *tempChildren = objc_getAssociatedObject(self, _cmd);
     if (!tempChildren) {
-        tempChildren = [NSMutableOrderedSet orderedSet];
+        tempChildren = @[].mutableCopy;
         objc_setAssociatedObject(self, _cmd, tempChildren, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return tempChildren;
@@ -79,6 +82,31 @@
     return view;
 }
 
+- (void)setOwningView:(UIView *)owningView {
+    __weak typeof(owningView) weakTarget = owningView;
+    objc_setAssociatedObject(self, @selector(owningView), ^{
+        return weakTarget;
+    }, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIView *)owningView {
+    UIView *(^block)(void) = objc_getAssociatedObject(self, _cmd);
+    UIView *view = nil;
+    if (block) {
+        view = block();
+    }
+    return view;
+}
+
+- (void)setLayoutFrame:(CGRect)layoutFrame {
+    self.frame = YG_UpdateViewFrameIfSuperIsDiv(self, layoutFrame);
+    NSLog(@"%@'s frame = %@", NSStringFromClass(self.class), NSStringFromCGRect(self.frame));
+}
+
+- (CGRect)layoutFrame {
+    return self.frame;
+}
+
 static CGRect YG_UpdateViewFrameIfSuperIsDiv(ZDFlexLayoutView div, CGRect originFrame) {
     // 如果parent是虚拟视图就遍历计算出当前view的真实frame
     if (div.parent && ![div.parent isKindOfClass:UIView.class]) {
@@ -88,15 +116,5 @@ static CGRect YG_UpdateViewFrameIfSuperIsDiv(ZDFlexLayoutView div, CGRect origin
     }
     return originFrame;
 }
-
-- (void)setLayoutFrame:(CGRect)layoutFrame {
-    self.frame = YG_UpdateViewFrameIfSuperIsDiv(self, layoutFrame);
-}
-
-- (CGRect)layoutFrame {
-    return self.frame;
-}
-
-#pragma mark - 
 
 @end

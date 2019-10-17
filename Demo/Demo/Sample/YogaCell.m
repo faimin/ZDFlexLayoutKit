@@ -7,10 +7,9 @@
 //
 
 #import "YogaCell.h"
-//#import <YogaKit/UIView+Yoga.h>
-#import "UIView+ZDFlexLayout.h"
-#import "TextureModel.h"
+#import <YogaKit/UIView+Yoga.h>
 #import <ZDToolKit/ZDFunction.h>
+#import "TextureModel.h"
 
 @interface YogaCell ()
 @property (nonatomic, strong) UILabel *titleLabel;    ///< 标题
@@ -29,18 +28,13 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 - (void)setup {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self setupUI];
 }
 
 - (void)setupUI {
-    self.contentView.backgroundColor = [UIColor redColor];//ZD_RandomColor();
+    self.contentView.backgroundColor = ZD_RandomColor();
     
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.contentLabel];
@@ -51,18 +45,19 @@
     [bottomContainerView addSubview:self.timeLabel];
     [self.contentView addSubview:bottomContainerView];
     
+    self.titleLabel.yoga.isEnabled = YES;
     
-    [self.contentLabel configureLayoutWithBlock:^(YGLayoutM * _Nonnull layout) {
+    [self.contentLabel configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.marginTop = YGPointValue(10);
     }];
     
-    [self.aImageView configureLayoutWithBlock:^(YGLayoutM * _Nonnull layout) {
+    [self.aImageView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.marginTop = YGPointValue(10);
     }];
     
-    [bottomContainerView configureLayoutWithBlock:^(YGLayoutM * _Nonnull layout) {
+    [bottomContainerView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
@@ -70,7 +65,7 @@
         layout.marginTop = YGPointValue(10);
     }];
     
-    [self.contentView configureLayoutWithBlock:^(YGLayoutM * _Nonnull layout) {
+    [self.contentView configureLayoutWithBlock:^(YGLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
         layout.justifyContent = YGJustifyFlexStart;
@@ -82,6 +77,7 @@
 
 - (void)setModel:(TextureModel *)model {
     if (!model) return;
+    _model = model;
     
     self.titleLabel.text = model.title;
     self.contentLabel.text = model.content;
@@ -158,9 +154,3 @@
 }
 
 @end
-
-
-
-
-
-
