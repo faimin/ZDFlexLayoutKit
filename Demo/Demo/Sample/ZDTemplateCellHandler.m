@@ -54,7 +54,7 @@
         CGSize size = cell.contentView.frame.size;
         //CGSize intrinsicSize = [cell.contentView.yoga intrinsicSize];
         CGFloat realHeight = ceil(size.height);
-        NSLog(@"%s, cell Height = %f", __PRETTY_FUNCTION__, realHeight);
+        //NSLog(@"%s, cell Height = %f", __PRETTY_FUNCTION__, realHeight);
         self.cellHeightCache[indexPath] = @(realHeight);
         cellHeight = realHeight;
     }

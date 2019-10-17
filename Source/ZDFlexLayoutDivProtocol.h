@@ -32,8 +32,8 @@ typedef id<ZDFlexLayoutDivProtocol> ZDFlexLayoutView;
 - (CGSize)sizeThatFits:(CGSize)size;
 
 /**
-In ObjC land, every time you access `view.yoga.*` you are adding another `objc_msgSend`
-to your code. If you plan on making multiple changes to YGLayout, it's more performant
+In ObjC land, every time you access `view.flexLayout.*` you are adding another `objc_msgSend`
+to your code. If you plan on making multiple changes to ZDFlexLayout, it's more performant
 to use this method, which uses a single objc_msgSend call.
 */
 - (void)configureFlexLayoutWithBlock:(void(^)(ZDFlexLayout *layout))block;

@@ -21,6 +21,7 @@
 - (void)configureFlexLayoutWithBlock:(void (^)(ZDFlexLayout * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
+        [self.flexLayout addSubviewsBaseOnViewHierachy];
     }
 }
 
@@ -38,16 +39,39 @@
     if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
         [self.children removeObjectIdenticalTo:child];
         [self.children addObject:child];
+        child.parent = self;
         child.owningView = self;
+        
+        if ([child isKindOfClass:UIView.class]) {
+            [self addSubview:(UIView *)child];
+        }
+        else {
+            for (ZDFlexLayoutView childChild in child.children) {
+                if ([childChild isKindOfClass:UIView.class]) {
+                    [self addSubview:(UIView *)childChild];
+                }
+            }
+        }
     }
     else {
-        NSCAssert1(NO, @"不支持此类型：%@", child);
+        NSCAssert1(NO, @"don't support the type：%@", child);
     }
 }
 
 - (void)removeChild:(ZDFlexLayoutView)child {
     if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
         [self.children removeObjectIdenticalTo:child];
+        
+        if ([child isKindOfClass:UIView.class]) {
+            [(UIView *)child removeFromSuperview];
+        }
+        else {
+            [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [child removeChild:obj];
+            }];
+        }
+        
+        child.parent = nil;
         child.owningView = nil;
     }
 }
@@ -60,7 +84,7 @@
 - (NSMutableArray<ZDFlexLayoutView> *)children {
     NSMutableArray<ZDFlexLayoutView> *tempChildren = objc_getAssociatedObject(self, _cmd);
     if (!tempChildren) {
-        tempChildren = @[].mutableCopy;
+        tempChildren = [[NSMutableArray<ZDFlexLayoutView> alloc] init];
         objc_setAssociatedObject(self, _cmd, tempChildren, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return tempChildren;
@@ -98,23 +122,22 @@
     return view;
 }
 
-- (void)setLayoutFrame:(CGRect)layoutFrame {
-    self.frame = YG_UpdateViewFrameIfSuperIsDiv(self, layoutFrame);
-    NSLog(@"%@'s frame = %@", NSStringFromClass(self.class), NSStringFromCGRect(self.frame));
-}
-
-- (CGRect)layoutFrame {
-    return self.frame;
-}
-
-static CGRect YG_UpdateViewFrameIfSuperIsDiv(ZDFlexLayoutView div, CGRect originFrame) {
+static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect originFrame) {
     // 如果parent是虚拟视图就遍历计算出当前view的真实frame
     if (div.parent && ![div.parent isKindOfClass:UIView.class]) {
         originFrame.origin.x += div.parent.layoutFrame.origin.x;
         originFrame.origin.y += div.parent.layoutFrame.origin.y;
-        return YG_UpdateViewFrameIfSuperIsDiv(div.parent, originFrame);
+        return ZD_UpdateFrameIfSuperViewIsDiv(div.parent, originFrame);
     }
     return originFrame;
+}
+
+- (void)setLayoutFrame:(CGRect)layoutFrame {
+    self.frame = ZD_UpdateFrameIfSuperViewIsDiv(self, layoutFrame);
+}
+
+- (CGRect)layoutFrame {
+    return self.frame;
 }
 
 @end

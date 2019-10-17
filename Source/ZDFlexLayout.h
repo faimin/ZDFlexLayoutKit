@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the LICENSE
  * file in the root directory of this source tree.
  */
-// 修改自YGLayout，为了防止命名冲突才改的类名和函数名
+// 修改自YGLayout，为了避免命名冲突才改的类名和全局函数名
 
 #import <UIKit/UIKit.h>
 #import <yoga/YGEnums.h>
@@ -13,10 +13,8 @@
 
 YG_EXTERN_C_BEGIN
 
-extern YGValue ZDPointValue(CGFloat value)
-    NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead");
-extern YGValue ZDPercentValue(CGFloat value)
-    NS_SWIFT_UNAVAILABLE("Use the swift Int and FloatingPoint extensions instead");
+extern YGValue ZDPointValue(CGFloat value);
+extern YGValue ZDPercentValue(CGFloat value);
 
 YG_EXTERN_C_END
 
@@ -26,20 +24,6 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
 };
 
 @interface ZDFlexLayout : NSObject
-
-/**
- Make default init unavailable, as it will not initialise YGNode which is
- required for the setters and getters of YGLayout's properties to work properly.
-*/
-- (instancetype)init
-    __attribute__((unavailable("you are not meant to initialise YGLayout")));
-
-/**
- Make default init unavailable, as it will not initialise YGNode which is
- required for the setters and getters of YGLayout's properties to work properly.
- */
-+ (instancetype)new
-    __attribute__((unavailable("you are not meant to initialise YGLayout")));
 
 /**
   The property that decides if we should include this view when calculating
@@ -123,16 +107,14 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
  Perform a layout calculation and update the frames of the views in the hierarchy with the results.
  If the origin is not preserved, the root view's layout results will applied from {0,0}.
  */
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
-    NS_SWIFT_NAME(applyLayout(preservingOrigin:));
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin;
 
 /**
  Perform a layout calculation and update the frames of the views in the hierarchy with the results.
  If the origin is not preserved, the root view's layout results will applied from {0,0}.
  */
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
-               dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
-    NS_SWIFT_NAME(applyLayout(preservingOrigin:dimensionFlexibility:));
+               dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
 /**
  Returns the size of the view if no constraints were given. This could equivalent to calling [self
@@ -143,8 +125,7 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
 /**
   Returns the size of the view based on provided constraints. Pass NaN for an unconstrained dimension.
  */
-- (CGSize)calculateLayoutWithSize:(CGSize)size
-    NS_SWIFT_NAME(calculateLayout(with:));
+- (CGSize)calculateLayoutWithSize:(CGSize)size;
 
 /**
  Returns the number of children that are using Flexbox.
@@ -168,6 +149,15 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
  */
 - (void)markDirty;
 
-- (void)applyViewHierachy;
+/**
+ Add sub views based on view hierarchy
+ */
+- (void)addSubviewsBaseOnViewHierachy;
+
+
+#pragma mark - Unavailable
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end

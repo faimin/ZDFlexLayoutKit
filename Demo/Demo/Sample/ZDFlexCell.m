@@ -34,16 +34,16 @@
 }
 
 - (void)setupUI {
-    self.contentView.backgroundColor = ZD_RandomColor();
+    self.contentView.backgroundColor = UIColor.whiteColor;//ZD_RandomColor();
     
     [self.contentView addChild:self.titleLabel];
     [self.contentView addChild:self.contentLabel];
     [self.contentView addChild:self.aImageView];
     
-    UIView *bottomContainerView = [[UIView alloc] init];
-    [bottomContainerView addChild:self.nickNameLabel];
-    [bottomContainerView addChild:self.timeLabel];
-    [self.contentView addChild:bottomContainerView];
+    ZDFlexLayoutDiv *bottomContainerDiv = [[ZDFlexLayoutDiv alloc] init];
+    [bottomContainerDiv addChild:self.nickNameLabel];
+    [bottomContainerDiv addChild:self.timeLabel];
+    [self.contentView addChild:bottomContainerDiv];
     
     self.titleLabel.flexLayout.isEnabled = YES;
     
@@ -57,7 +57,7 @@
         layout.marginTop = ZDPointValue(10);
     }];
     
-    [bottomContainerView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [bottomContainerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
@@ -72,8 +72,6 @@
         layout.paddingHorizontal = ZDPointValue(15);
         layout.paddingVertical = ZDPointValue(10);
         layout.width = ZDPointValue(UIScreen.mainScreen.bounds.size.width);
-        
-        [layout applyViewHierachy];
     }];
 }
 
@@ -113,7 +111,7 @@
     if (!_titleLabel) {
         UILabel *node = [[UILabel alloc] init];
         node.font = [UIFont systemFontOfSize:18.0];
-        node.textColor = [UIColor yellowColor];
+        node.textColor = ZD_RandomColor();
         _titleLabel = node;
     }
     return _titleLabel;
@@ -124,7 +122,7 @@
         UILabel *node = [UILabel new];
         node.numberOfLines = 0;
         node.font = [UIFont systemFontOfSize:16.0];
-        node.textColor = [UIColor yellowColor];
+        node.textColor = ZD_RandomColor();
         _contentLabel = node;
     }
     return _contentLabel;

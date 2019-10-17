@@ -6,6 +6,7 @@
  */
 
 #import "ZDFlexLayout+Private.h"
+#import <objc/runtime.h>
 #import "UIView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
@@ -207,9 +208,12 @@ static YGConfigRef globalConfig;
   return YES;
 }
 
-- (void)applyViewHierachy
+- (void)addSubviewsBaseOnViewHierachy
 {
-    YGAddViewFromDivHierachy(self.view);
+    if (!objc_getAssociatedObject(self, _cmd)) {
+        YGAddViewFromDivHierachy(self.view);
+        objc_setAssociatedObject(self, _cmd, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 }
 
 #pragma mark - Style
@@ -347,7 +351,6 @@ static YGSize YGMeasureView(
   // UIKit returns the existing size.
   //
   // See https://github.com/facebook/yoga/issues/606 for more information.
-    //FIXME: 视图尺寸计算
   if (!view.flexLayout.isUIView || [view.children count] > 0) {
     sizeThatFits = [view sizeThatFits:(CGSize){
                                           .width = constrainedWidth,
@@ -499,6 +502,7 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
        return;
     }
     
+    // add self.view to superview if self.view.superview is nil
     UIView *subParentView = nil;
     if ([view isKindOfClass:UIView.class]) {
         subParentView = (UIView *)view;
@@ -509,7 +513,7 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
     }
     else {
         subParentView = view.owningView;
-        NSCAssert(subParentView, @"owningView 不应该为nil");
+        NSCAssert(subParentView, @"owningView should't be nil");
     }
     
     for (ZDFlexLayoutView childView in view.children) {
@@ -519,8 +523,8 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
             [subParentView addSubview:subView];
         }
         
-        // 递归添加
-        YGAddViewFromDivHierachy(childView);
+        // recursive addSubview
+        //YGAddViewFromDivHierachy(childView);
     }
 }
 
