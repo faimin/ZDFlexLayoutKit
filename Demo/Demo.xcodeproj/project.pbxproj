@@ -93,6 +93,7 @@
 		FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayout.m; sourceTree = "<group>"; };
 		FA84305F234F48E5000F7E35 /* ZDFlexLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayout.h; sourceTree = "<group>"; };
 		FA843061234F4926000F7E35 /* ZDFlexLayout+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayout+Private.h"; sourceTree = "<group>"; };
+		FAB93E342359F0420080E8FD /* ZDFlexLayoutKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutKit.h; sourceTree = "<group>"; };
 		FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
 		FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDFlexLayout.m"; sourceTree = "<group>"; };
 		FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 		FA84305A234F465D000F7E35 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				FAB93E342359F0420080E8FD /* ZDFlexLayoutKit.h */,
 				FA843061234F4926000F7E35 /* ZDFlexLayout+Private.h */,
 				FA84305F234F48E5000F7E35 /* ZDFlexLayout.h */,
 				FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */,

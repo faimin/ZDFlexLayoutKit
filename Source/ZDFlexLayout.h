@@ -10,6 +10,7 @@
 #import <yoga/YGEnums.h>
 #import <yoga/Yoga.h>
 #import <yoga/YGMacros.h>
+#import <pthread/pthread.h>
 
 YG_EXTERN_C_BEGIN
 
@@ -154,10 +155,18 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
  */
 - (void)addSubviewsBaseOnViewHierachy;
 
-
 #pragma mark - Unavailable
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
 @end
+
+
+static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
+    if (pthread_main_np() != 0) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
