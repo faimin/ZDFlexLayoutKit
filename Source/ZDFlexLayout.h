@@ -12,17 +12,23 @@
 #import <yoga/YGMacros.h>
 #import <pthread/pthread.h>
 
+#define INCLUDE_UIVIEW_YOGA (__has_include(<UIView+Yoga.h>) || __has_include("UIView+Yoga.h"))
+
 YG_EXTERN_C_BEGIN
 
-extern YGValue ZDPointValue(CGFloat value);
-extern YGValue ZDPercentValue(CGFloat value);
+extern YGValue YGPointValue(CGFloat value);
+extern YGValue YGPercentValue(CGFloat value);
 
 YG_EXTERN_C_END
 
-typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
-  ZDDimensionFlexibilityFlexibleWidth = 1 << 0,
-  ZDDimensionFlexibilityFlexibleHeight = 1 << 1,
+#if INCLUDE_UIVIEW_YOGA
+#import <UIView+Yoga.h>
+#else
+typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
+  YGDimensionFlexibilityFlexibleWidth = 1 << 0,
+  YGDimensionFlexibilityFlexibleHeight = 1 << 1,
 };
+#endif
 
 @interface ZDFlexLayout : NSObject
 
@@ -115,7 +121,7 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
  If the origin is not preserved, the root view's layout results will applied from {0,0}.
  */
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
-               dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
+               dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
 
 /**
  Returns the size of the view if no constraints were given. This could equivalent to calling [self
@@ -162,11 +168,3 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
 
 @end
 
-
-static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
-    if (pthread_main_np() != 0) {
-        block();
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
-}

@@ -49,12 +49,12 @@
     
     [self.contentLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = YES;
-        layout.marginTop = ZDPointValue(10);
+        layout.marginTop = YGPointValue(10);
     }];
     
     [self.aImageView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = YES;
-        layout.marginTop = ZDPointValue(10);
+        layout.marginTop = YGPointValue(10);
     }];
     
     [bottomContainerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
@@ -62,16 +62,16 @@
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
         layout.alignContent = YGAlignCenter;
-        layout.marginTop = ZDPointValue(10);
+        layout.marginTop = YGPointValue(10);
     }];
     
     [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
         layout.justifyContent = YGJustifyFlexStart;
-        layout.paddingHorizontal = ZDPointValue(15);
-        layout.paddingVertical = ZDPointValue(10);
-        layout.width = ZDPointValue(UIScreen.mainScreen.bounds.size.width);
+        layout.paddingHorizontal = YGPointValue(15);
+        layout.paddingVertical = YGPointValue(10);
+        layout.width = YGPointValue(UIScreen.mainScreen.bounds.size.width);
     }];
 }
 
@@ -86,11 +86,11 @@
     self.timeLabel.text = model.time;
     
     // 根据数据改变layout
-    self.contentLabel.flexLayout.marginTop = ZDPointValue((model.title.length == 0 || model.content.length == 0) ? 0 : 10);
-    self.aImageView.flexLayout.marginTop = ZDPointValue(model.imageName.length == 0 ? 0 : 10);
+    self.contentLabel.flexLayout.marginTop = YGPointValue((model.title.length == 0 || model.content.length == 0) ? 0 : 10);
+    self.aImageView.flexLayout.marginTop = YGPointValue(model.imageName.length == 0 ? 0 : 10);
     
     // 计算layout
-    [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+    [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)prepareForReuse {

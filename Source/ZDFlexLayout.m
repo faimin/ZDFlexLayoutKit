@@ -115,15 +115,17 @@ YG_VALUE_EDGE_PROPERTY(lowercased_name##Horizontal, capitalized_name##Horizontal
 YG_VALUE_EDGE_PROPERTY(lowercased_name##Vertical, capitalized_name##Vertical, capitalized_name, YGEdgeVertical)       \
 YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-YGValue ZDPointValue(CGFloat value)
+#if !INCLUDE_UIVIEW_YOGA
+YGValue YGPointValue(CGFloat value)
 {
   return (YGValue) { .value = value, .unit = YGUnitPoint };
 }
 
-YGValue ZDPercentValue(CGFloat value)
+YGValue YGPercentValue(CGFloat value)
 {
   return (YGValue) { .value = value, .unit = YGUnitPercent };
 }
+#endif
 
 static YGConfigRef globalConfig;
 
@@ -287,13 +289,13 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
   YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
 {
   CGSize size = self.view.layoutFrame.size;
-  if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
+  if (dimensionFlexibility & YGDimensionFlexibilityFlexibleWidth) {
     size.width = YGUndefined;
   }
-  if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
+  if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
     size.height = YGUndefined;
   }
   [self calculateLayoutWithSize:size];
@@ -525,6 +527,26 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
         
         // recursive addSubview
         //YGAddViewFromDivHierachy(childView);
+    }
+}
+
+OS_OVERLOADABLE static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
+    if (pthread_main_np() != 0) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
+OS_OVERLOADABLE static void YG_Dispatch_sync_on_main_queue(ZDFlexLayoutView view, dispatch_block_t block) {
+    if ([view isKindOfClass:objc_getClass("UIView")]) {
+        if (pthread_main_np() != 0) {
+            block();
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), block);
+        }
+    } else {
+        block();
     }
 }
 
