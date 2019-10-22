@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the LICENSE
  * file in the root directory of this source tree.
  */
-// 修改自YGLayout，为了避免命名冲突才改的类名和全局函数名
+// 修改自YGLayout
 
 #import <UIKit/UIKit.h>
 #import <yoga/YGEnums.h>

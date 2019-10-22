@@ -1,8 +1,6 @@
 PODS:
   - libffi-core (1.2.0)
   - Yoga (1.14.0)
-  - YogaKit (1.14.0):
-    - Yoga (~> 1.14)
   - YYModel (1.0.4)
   - ZDToolKit (0.0.4):
     - ZDToolKit/ZDAutoLayout (= 0.0.4)
@@ -40,7 +38,6 @@ PODS:
 
 DEPENDENCIES:
   - Yoga
-  - YogaKit
   - YYModel
   - ZDToolKit (from `https://github.com/faimin/ZDToolKit`, branch `develop`)
 
@@ -48,7 +45,6 @@ SPEC REPOS:
   trunk:
     - libffi-core
     - Yoga
-    - YogaKit
     - YYModel
 
 EXTERNAL SOURCES:
@@ -64,10 +60,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   libffi-core: c4049ed88381fee5c0a31d26c860fc427d3c301c
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
-  YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   ZDToolKit: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
 
-PODFILE CHECKSUM: 078c97fb1d7ceb108f489ea5de3c4f3ac339cdf0
+PODFILE CHECKSUM: e39b710c5a031028a3677662ebba34ff6d10ea09
 
 COCOAPODS: 1.8.3

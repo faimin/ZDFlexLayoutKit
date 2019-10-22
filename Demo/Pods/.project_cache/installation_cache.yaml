@@ -11,16 +11,16 @@ CACHE_KEYS:
       - libffi-core (1.2.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 782e7bcd0d890a1a9c13e872b6e59f70
-      Release: 782e7bcd0d890a1a9c13e872b6e59f70
+      Debug: bd08129a5af7820292f5036d7065628f
+      Release: bd08129a5af7820292f5036d7065628f
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 782e7bcd0d890a1a9c13e872b6e59f70
-      Release: 782e7bcd0d890a1a9c13e872b6e59f70
+      Debug: bd08129a5af7820292f5036d7065628f
+      Release: bd08129a5af7820292f5036d7065628f
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 2c39afdfdb5f91c1d516f376d38c248d
-      Release: 2c39afdfdb5f91c1d516f376d38c248d
+      Debug: 89ed7d2aa2f67124d4fcf3e6727574a6
+      Release: 89ed7d2aa2f67124d4fcf3e6727574a6
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga: 8e6f91e66940c2d4c98f65701bedd999
@@ -28,13 +28,6 @@ CACHE_KEYS:
     PROJECT_NAME: Yoga
     SPECS:
       - Yoga (1.14.0)
-  YogaKit:
-    BUILD_SETTINGS_CHECKSUM:
-      YogaKit: 6382083b5454dcbe98843d443fcf1147
-    CHECKSUM: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
-    PROJECT_NAME: YogaKit
-    SPECS:
-      - YogaKit (1.14.0)
   YYModel:
     BUILD_SETTINGS_CHECKSUM:
       YYModel: 3fd76c6f26e790b726c60f7945ec41c3

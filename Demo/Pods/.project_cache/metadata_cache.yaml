@@ -1,3 +1,7 @@
+GDPerformanceView:
+  LABEL: GDPerformanceView
+  PROJECT_PATH: GDPerformanceView.xcodeproj
+  UUID: C43C09050575BD770FE7B06A65C88FAF
 libffi-core:
   LABEL: libffi-core
   PROJECT_PATH: libffi-core.xcodeproj

@@ -32,7 +32,6 @@ target 'Demo' do
   
   # Pods for Demo
   pod 'Yoga'
-  pod 'YogaKit'
   pod 'YYModel'
   pod 'ZDToolKit', :git => 'https://github.com/faimin/ZDToolKit', :branch => 'develop'
 

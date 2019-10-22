@@ -8,20 +8,24 @@
 
 #import "YogaKitListViewController.h"
 #import "YogaKitListViewModel.h"
-#import "YogaCell.h"
 #import "ZDFlexCell.h"
 #import "ZDTemplateCellHandler.h"
 #import <ZDToolKit/NSObject+ZDUtility.h>
 
-#define USE_ZDFlex (1)
+FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
 
 @interface YogaKitListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) ZDTemplateCellHandler *cellHandler;
+@property (nonatomic, strong) id token;
 @end
 
 @implementation YogaKitListViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.token];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,21 +34,20 @@
 }
 
 - (void)setup {
+    __weak typeof(self) weakTarget = self;
+    self.token = [[NSNotificationCenter defaultCenter] addObserverForName:ZDCalculateFinishedNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        __unused __strong typeof(weakTarget) self = weakTarget;
+        //[self.tableView reloadData];
+    }];
+    
     [self setupUI];
     [self setupData];
 }
 
 - (void)setupUI {
-    self.navigationItem.title = @"YogaKitListDemo";
+    self.navigationItem.title = @"FlexLayoutListDemo";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    /** Test Yoga constraint
-    YogaCell *cell = [[YogaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.frame = CGRectMake(0, 100, CGRectGetWidth(self.view.frame), 100);
-    cell.contentView.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:cell];
-    cell.model = [TextureViewModel textureModels].firstObject;
-    */
     [self.view addSubview:self.tableView];
 }
 
@@ -60,7 +63,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YogaCell *cell = [tableView dequeueReusableCellWithIdentifier:[self reuseIdentifier] forIndexPath:indexPath];
+    ZDFlexCell *cell = [tableView dequeueReusableCellWithIdentifier:[self reuseIdentifier] forIndexPath:indexPath];
     TextureModel *model = self.dataSource[indexPath.row];
     cell.model = model;
     return cell;
@@ -69,11 +72,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
         TextureModel *model = self.dataSource[indexPath.row];
-#if USE_ZDFlex
         [ZDFlexCell zd_cast:templateCell].model = model;
-#else
-        [YogaCell zd_cast:templateCell].model = model;
-#endif
     }];
     
     return height;
@@ -86,12 +85,7 @@
 #pragma mark -
 
 - (NSString *)reuseIdentifier {
-    NSString *reuseId = nil;
-#if USE_ZDFlex
-    reuseId = NSStringFromClass(ZDFlexCell.class);
-#else
-    reuseId = NSStringFromClass(YogaCell.class);
-#endif
+    NSString *reuseId = NSStringFromClass(ZDFlexCell.class);
     return reuseId;
 }
 
@@ -105,7 +99,6 @@
         tableView.delegate = self;
         tableView.estimatedRowHeight = 0.f; // 禁用预估高度
         tableView.tableFooterView = [UIView new];
-        [tableView registerClass:[YogaCell class] forCellReuseIdentifier:NSStringFromClass([YogaCell class])];
         [tableView registerClass:[ZDFlexCell class] forCellReuseIdentifier:NSStringFromClass([ZDFlexCell class])];
         _tableView = tableView;
     }
