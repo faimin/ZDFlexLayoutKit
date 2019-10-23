@@ -10,7 +10,6 @@
 #import <yoga/YGEnums.h>
 #import <yoga/Yoga.h>
 #import <yoga/YGMacros.h>
-#import <pthread/pthread.h>
 
 #define INCLUDE_UIVIEW_YOGA (__has_include(<UIView+Yoga.h>) || __has_include("UIView+Yoga.h"))
 
@@ -159,7 +158,7 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 /**
  Add sub views based on view hierarchy
  */
-- (void)addSubviewsBaseOnViewHierachy;
+//- (void)addSubviewsBaseOnViewHierachy;
 
 #pragma mark - Unavailable
 

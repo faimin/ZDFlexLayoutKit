@@ -22,50 +22,40 @@
 - (void)configureFlexLayoutWithBlock:(void (^)(ZDFlexLayout * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
-        [self.flexLayout addSubviewsBaseOnViewHierachy];
     }
 }
 
 - (void)addChild:(ZDFlexLayoutView)child {
-    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
-        [self.children removeObjectIdenticalTo:child];
-        [self.children addObject:child];
-        child.parent = self;
-        
-        if ([child isKindOfClass:UIView.class]) {
-            [self.owningView addSubview:(UIView *)child];
-        }
-        else {
-            for (ZDFlexLayoutView childChild in child.children) {
-                if ([childChild isKindOfClass:UIView.class]) {
-                    [self.owningView addSubview:(UIView *)childChild];
-                }
-            }
-        }
-    }
-    else {
+    if (![child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
         NSCAssert1(NO, @"don't support the type：%@", child);
+        return;
     }
+    
+    [self.children removeObjectIdenticalTo:child];
+    [self.children addObject:child];
+    child.parent = self;
+    
+    [self addChildSubviews:child];
 }
 
 - (void)removeChild:(ZDFlexLayoutView)child {
-    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
-        [self.children removeObjectIdenticalTo:child];
-        
-        if ([child isKindOfClass:UIView.class]) {
-            [(UIView *)child removeFromSuperview];
-        }
-        else {
-            [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [child removeChild:obj];
-            }];
-        }
-        
-        child.parent = nil;
+    if (![child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
+        NSCAssert1(NO, @"不支持移除此类型：%@", child);
+        return;
+    }
+    
+    [self.children removeObjectIdenticalTo:child];
+    
+    if ([child isKindOfClass:UIView.class]) {
+        [(UIView *)child removeFromSuperview];
     }
     else {
-        NSCAssert1(NO, @"不支持移除此类型：%@", child);
+        [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [child removeChild:obj];
+        }];
     }
+    
+    child.parent = nil;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -73,6 +63,19 @@
 }
 
 //MARK: Property
+- (void)setOwningView:(UIView *)owningView {
+    if (_owningView != owningView) {
+        _owningView = owningView;
+        
+        if (!owningView) {
+            return;
+        }
+        for (ZDFlexLayoutView child in self.children) {
+            [self addChildSubviews:child];
+        }
+    }
+}
+
 - (ZDFlexLayout *)flexLayout {
     if (!_flexLayout) {
         _flexLayout = [[ZDFlexLayout alloc] initWithView:self];
@@ -86,6 +89,28 @@
         _children = @[].mutableCopy;
     }
     return _children;
+}
+
+#pragma mark - Private Method
+
+- (void)addChildSubviews:(ZDFlexLayoutView)child {
+    if (!child || !_owningView) {
+        return;
+    }
+    
+    child.owningView = _owningView;
+    
+    if ([child isKindOfClass:UIView.class]) {
+        [_owningView addSubview:(UIView *)child];
+    }
+    else {
+        for (ZDFlexLayoutView childChild in child.children) {
+            childChild.owningView = child.owningView;
+            if ([childChild isKindOfClass:UIView.class]) {
+                [_owningView addSubview:(UIView *)childChild];
+            }
+        }
+    }
 }
 
 @end

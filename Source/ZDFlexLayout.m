@@ -530,24 +530,4 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
     }
 }
 
-OS_OVERLOADABLE static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
-    if (pthread_main_np() != 0) {
-        block();
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
-}
-
-OS_OVERLOADABLE static void YG_Dispatch_sync_on_main_queue(ZDFlexLayoutView view, dispatch_block_t block) {
-    if ([view isKindOfClass:objc_getClass("UIView")]) {
-        if (pthread_main_np() != 0) {
-            block();
-        } else {
-            dispatch_sync(dispatch_get_main_queue(), block);
-        }
-    } else {
-        block();
-    }
-}
-
 @end

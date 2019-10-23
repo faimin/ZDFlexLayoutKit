@@ -21,7 +21,6 @@
 - (void)configureFlexLayoutWithBlock:(void (^)(ZDFlexLayout * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
-        [self.flexLayout addSubviewsBaseOnViewHierachy];
     }
 }
 
@@ -36,44 +35,48 @@
 }
 
 - (void)addChild:(ZDFlexLayoutView)child {
-    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
-        [self.children removeObjectIdenticalTo:child];
-        [self.children addObject:child];
-        child.parent = self;
-        child.owningView = self;
-        
-        if ([child isKindOfClass:UIView.class]) {
-            [self addSubview:(UIView *)child];
-        }
-        else {
-            for (ZDFlexLayoutView childChild in child.children) {
-                if ([childChild isKindOfClass:UIView.class]) {
-                    [self addSubview:(UIView *)childChild];
-                }
-            }
-        }
+    if (![child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
+        NSCAssert1(NO, @"don't support the type：%@", child);
+        return;
+    }
+    
+    [self.children removeObjectIdenticalTo:child];
+    [self.children addObject:child];
+    child.parent = self;
+    child.owningView = self;
+    
+    if ([child isKindOfClass:UIView.class]) {
+        [self addSubview:(UIView *)child];
     }
     else {
-        NSCAssert1(NO, @"don't support the type：%@", child);
+        for (ZDFlexLayoutView childChild in child.children) {
+            childChild.owningView = self;
+            if ([childChild isKindOfClass:UIView.class]) {
+                [self addSubview:(UIView *)childChild];
+            }
+        }
     }
 }
 
 - (void)removeChild:(ZDFlexLayoutView)child {
-    if ([child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
-        [self.children removeObjectIdenticalTo:child];
-        
-        if ([child isKindOfClass:UIView.class]) {
-            [(UIView *)child removeFromSuperview];
-        }
-        else {
-            [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [child removeChild:obj];
-            }];
-        }
-        
-        child.parent = nil;
-        child.owningView = nil;
+    if (![child conformsToProtocol:@protocol(ZDFlexLayoutDivProtocol)]) {
+        NSCAssert1(NO, @"don't support the type：%@", child);
+        return;
     }
+    
+    [self.children removeObjectIdenticalTo:child];
+    
+    if ([child isKindOfClass:UIView.class]) {
+        [(UIView *)child removeFromSuperview];
+    }
+    else {
+        [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [child removeChild:obj];
+        }];
+    }
+    
+    child.parent = nil;
+    child.owningView = nil;
 }
 
 //MARK: Property
