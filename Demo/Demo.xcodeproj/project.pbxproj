@@ -28,6 +28,11 @@
 		FA843060234F48E5000F7E35 /* ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */; };
 		FAB93E3A235D529D0080E8FD /* ZDCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB93E39235D529D0080E8FD /* ZDCalculateHelper.m */; };
 		FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */; };
+		FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEA4A0E235F0F6000422C35 /* same_city_users.json */; };
+		FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */; };
+		FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A15235F0FF600422C35 /* SameCityUserListViewModel.m */; };
+		FAEA4A19235F104A00422C35 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A18235F104A00422C35 /* UserModel.m */; };
+		FAEA4A1C235F12BD00422C35 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A1B235F12BD00422C35 /* UserTableViewCell.m */; };
 		FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEF095123502497004094B1 /* ZDFlexLayoutDiv.m */; };
 		FAEF09F72350611C004094B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEF09F62350611C004094B1 /* libc++.tbd */; };
 /* End PBXBuildFile section */
@@ -96,6 +101,15 @@
 		FAB93E39235D529D0080E8FD /* ZDCalculateHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
 		FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
 		FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDFlexLayout.m"; sourceTree = "<group>"; };
+		FAEA4A0E235F0F6000422C35 /* same_city_users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = same_city_users.json; sourceTree = "<group>"; };
+		FAEA4A11235F0FD400422C35 /* SameCityUserListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameCityUserListController.h; sourceTree = "<group>"; };
+		FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SameCityUserListController.m; sourceTree = "<group>"; };
+		FAEA4A14235F0FF600422C35 /* SameCityUserListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameCityUserListViewModel.h; sourceTree = "<group>"; };
+		FAEA4A15235F0FF600422C35 /* SameCityUserListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SameCityUserListViewModel.m; sourceTree = "<group>"; };
+		FAEA4A17235F104A00422C35 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		FAEA4A18235F104A00422C35 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		FAEA4A1A235F12BD00422C35 /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		FAEA4A1B235F12BD00422C35 /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
 		FAEF095123502497004094B1 /* ZDFlexLayoutDiv.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutDiv.m; sourceTree = "<group>"; };
 		FAEF09F523505F9C004094B1 /* ZDFlexLayoutDivProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDivProtocol.h; sourceTree = "<group>"; };
@@ -158,16 +172,10 @@
 		FA1A54CD2355E36000C80712 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */,
-				FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */,
-				FA617C0A23572AA100477C31 /* ZDFlexCell.h */,
-				FA617C0B23572AA100477C31 /* ZDFlexCell.m */,
-				FA1A54DE2355ECE300C80712 /* YogaKitListViewModel.h */,
-				FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */,
-				FA1A54E32355ED8100C80712 /* TextureModel.h */,
-				FA1A54E42355ED8100C80712 /* TextureModel.m */,
 				FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */,
 				FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */,
+				FAEA4A1D235F363B00422C35 /* FlexList */,
+				FAEA4A10235F0FA100422C35 /* SameCityUserList */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -175,6 +183,7 @@
 		FA1A54E02355ECFE00C80712 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				FAEA4A0E235F0F6000422C35 /* same_city_users.json */,
 				FA1A54E12355ED3500C80712 /* data.json */,
 			);
 			path = Resource;
@@ -258,6 +267,36 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		FAEA4A10235F0FA100422C35 /* SameCityUserList */ = {
+			isa = PBXGroup;
+			children = (
+				FAEA4A11235F0FD400422C35 /* SameCityUserListController.h */,
+				FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */,
+				FAEA4A1A235F12BD00422C35 /* UserTableViewCell.h */,
+				FAEA4A1B235F12BD00422C35 /* UserTableViewCell.m */,
+				FAEA4A14235F0FF600422C35 /* SameCityUserListViewModel.h */,
+				FAEA4A15235F0FF600422C35 /* SameCityUserListViewModel.m */,
+				FAEA4A17235F104A00422C35 /* UserModel.h */,
+				FAEA4A18235F104A00422C35 /* UserModel.m */,
+			);
+			path = SameCityUserList;
+			sourceTree = "<group>";
+		};
+		FAEA4A1D235F363B00422C35 /* FlexList */ = {
+			isa = PBXGroup;
+			children = (
+				FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */,
+				FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */,
+				FA617C0A23572AA100477C31 /* ZDFlexCell.h */,
+				FA617C0B23572AA100477C31 /* ZDFlexCell.m */,
+				FA1A54DE2355ECE300C80712 /* YogaKitListViewModel.h */,
+				FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */,
+				FA1A54E32355ED8100C80712 /* TextureModel.h */,
+				FA1A54E42355ED8100C80712 /* TextureModel.m */,
+			);
+			path = FlexList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +411,7 @@
 				FA843032234F4234000F7E35 /* Assets.xcassets in Resources */,
 				FA843030234F4231000F7E35 /* Main.storyboard in Resources */,
 				FA1A54E22355ED3500C80712 /* data.json in Resources */,
+				FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +542,10 @@
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
 				FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
+				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
+				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
 				FAB93E3A235D529D0080E8FD /* ZDCalculateHelper.m in Sources */,
+				FAEA4A19235F104A00422C35 /* UserModel.m in Sources */,
 				FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */,
 				FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */,
 				FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */,
@@ -512,6 +555,7 @@
 				FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */,
 				FA1A54E82355EDC700C80712 /* ZDTemplateCellHandler.m in Sources */,
 				FA843060234F48E5000F7E35 /* ZDFlexLayout.m in Sources */,
+				FAEA4A1C235F12BD00422C35 /* UserTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

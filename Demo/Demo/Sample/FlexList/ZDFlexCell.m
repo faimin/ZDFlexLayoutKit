@@ -87,7 +87,7 @@
     
     // 根据数据改变layout
     self.contentLabel.flexLayout.marginTop = YGPointValue((model.title.length == 0 || model.content.length == 0) ? 0 : 10);
-    self.aImageView.flexLayout.marginTop = YGPointValue(model.imageName.length == 0 ? 0 : 10);
+    self.aImageView.flexLayout.isIncludedInLayout = model.imageName.length > 0;
     
     // 计算layout
     [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];

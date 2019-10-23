@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 
 @end
@@ -24,7 +25,7 @@
 }
 
 - (void)yogaDemo {
-    self.view.backgroundColor = UIColor.grayColor;
+    self.view.backgroundColor = UIColor.magentaColor;
     
     self.button.flexLayout.isIncludedInLayout = NO;
     
@@ -34,20 +35,20 @@
         layout.justifyContent = YGJustifySpaceAround;
     }];
     
-    UIView *contentView = ({
+    self.contentView = ({
         UIView *view = UIView.new;
         view.backgroundColor = UIColor.yellowColor;
         view;
     });
-    [contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = true;
         layout.height = YGPointValue(300);
         layout.width = YGPointValue(self.view.bounds.size.width);
         layout.flexDirection = YGFlexDirectionRow;
-        layout.justifyContent = YGJustifyCenter;
+        layout.justifyContent = YGJustifyFlexStart;
         layout.paddingHorizontal = YGPointValue(25);
     }];
-    [self.view addChild:contentView];
+    [self.view addChild:self.contentView];
     
     UIView *redView = ({
         UIView *view = UIView.new;
@@ -57,9 +58,9 @@
     [redView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = true;
         layout.flexGrow = 1;
-        layout.flexShrink = 1;
+        //layout.flexShrink = 1;
     }];
-    [contentView addChild:redView];
+    [self.contentView addChild:redView];
     
     UIView *blueView = ({
         UIView *view = UIView.new;
@@ -68,10 +69,20 @@
     });
     [blueView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = true;
-        layout.flexGrow = 1;
+        layout.flexGrow = 2;
     }];
-    [contentView addChild:blueView];
+    [self.contentView addChild:blueView];
     
+    [self.view.flexLayout applyLayoutPreservingOrigin:NO];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.contentView.flexLayout.width = YGPointValue(self.view.bounds.size.width);
+    for (UIView *view in self.contentView.subviews) {
+        [view.flexLayout markDirty];
+    }
     [self.view.flexLayout applyLayoutPreservingOrigin:NO];
 }
 
