@@ -15,4 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface UIScrollView (ZDFlexLayout)
+
+@property (nonatomic, strong, readonly) ZDFlexLayoutView zd_contentView;
+
+@end
+
 NS_ASSUME_NONNULL_END

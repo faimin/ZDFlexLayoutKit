@@ -21,7 +21,66 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    [self test];
     [self yogaDemo];
+}
+
+- (void)test {
+    [self.view configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.flexDirection = YGFlexDirectionColumn;
+    }];
+    
+    UIScrollView *scrollview = [[UIScrollView alloc] init];
+    scrollview.backgroundColor = UIColor.whiteColor;
+    scrollview.alwaysBounceVertical = YES;
+    [self.view addChild:scrollview];
+    [scrollview configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPercentValue(100);
+        layout.flexDirection = YGFlexDirectionColumn;
+        layout.overflow = YGOverflowScroll; // 需要设置
+    }];
+    ZDFlexLayoutDiv *containerDiv = scrollview.zd_contentView;
+    
+    UIView *view1 = [[UIView alloc] init];
+    [view1 setBackgroundColor:[UIColor redColor]];
+    [containerDiv addChild:view1];
+    [view1 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPointValue(300);
+    }];
+
+    UIView *view2 = [[UIView alloc] init];
+    [view2 setBackgroundColor:[UIColor yellowColor]];
+    [containerDiv addChild:view2];
+    [view2 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPointValue(200);
+    }];
+
+    UIView *view3 = [[UIView alloc] init];
+    [view3 setBackgroundColor:[UIColor purpleColor]];
+    [containerDiv addChild:view3];
+    [view3 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPointValue(400);
+    }];
+
+    UIView *view4 = [[UIView alloc] init];
+    [view4 setBackgroundColor:[UIColor cyanColor]];
+    [containerDiv addChild:view4];
+    [view4 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        layout.isEnabled = YES;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPointValue(200);
+    }];
+
+    [self.view.flexLayout applyLayoutPreservingOrigin:NO];
 }
 
 - (void)yogaDemo {
