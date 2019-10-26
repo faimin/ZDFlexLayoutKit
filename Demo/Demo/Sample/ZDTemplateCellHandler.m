@@ -52,7 +52,6 @@
         
         // 下面2种方式皆可
         CGSize size = cell.contentView.frame.size;
-        //CGSize intrinsicSize = [cell.contentView.yoga intrinsicSize];
         CGFloat realHeight = ceil(size.height);
         //NSLog(@"%s, cell Height = %f", __PRETTY_FUNCTION__, realHeight);
         self.cellHeightCache[indexPath] = @(realHeight);
@@ -71,7 +70,7 @@
     return _templateCellCache;
 }
 
-- (NSMutableDictionary<NSIndexPath *,NSNumber *> *)cellHeightCache {
+- (NSMutableDictionary<NSIndexPath *, NSNumber *> *)cellHeightCache {
     if (!_cellHeightCache) {
         _cellHeightCache = @{}.mutableCopy;
     }

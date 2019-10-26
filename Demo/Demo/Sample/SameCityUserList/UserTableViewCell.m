@@ -69,7 +69,7 @@
     // 第一行
     ZDFlexLayoutDiv *firstLineDiv = ZDFlexLayoutDiv.new;
     [firstLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionRowReverse;
+        layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
         layout.alignItems = YGAlignCenter;
     }];
@@ -92,8 +92,8 @@
     }];
     [nameTagDiv addChild:self.nickNameLabel];
     [nameTagDiv addChild:self.tagLabel];
-    [firstLineDiv addChild:self.locationLabel];
     [firstLineDiv addChild:nameTagDiv];
+    [firstLineDiv addChild:self.locationLabel];
     
     // 第二行
     [self.infoLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {

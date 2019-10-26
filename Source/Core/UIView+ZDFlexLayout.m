@@ -144,3 +144,22 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 }
 
 @end
+
+#pragma mark - Override (UILabel)
+
+@implementation UILabel (ZDFlexLayout)
+
+// Fix the accuracy problem (精度缺失导致label中的文字截断问题)
+- (void)setLayoutFrame:(CGRect)layoutFrame {
+    CGRect tmpFrame = layoutFrame;
+#if CGFLOAT_IS_DOUBLE
+    tmpFrame.size.width = ceil(CGRectGetWidth(layoutFrame));
+    tmpFrame.size.height = ceil(CGRectGetHeight(layoutFrame));
+#else
+    tmpFrame.size.width = ceilf(CGRectGetWidth(layoutFrame));
+    tmpFrame.size.height = ceilf(CGRectGetHeight(layoutFrame));
+#endif
+    [super setLayoutFrame:tmpFrame];
+}
+
+@end
