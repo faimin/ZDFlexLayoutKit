@@ -14,4 +14,6 @@
 #import "UIView+ZDFlexLayout.h"
 #import "UIScrollView+ZDFlexLayout.h"
 
+#import "ZDFlexLayoutChain.h"
+
 #endif /* ZDFlexLayoutKit_h */
