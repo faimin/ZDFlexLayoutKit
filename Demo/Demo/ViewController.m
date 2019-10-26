@@ -21,69 +21,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self test];
-    [self yogaDemo];
+    [self scrollViewLayout];
+    //[self normalLayout];
 }
 
-- (void)test {
+- (void)scrollViewLayout {
     [self.view configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
+        layout.justifyContent = YGJustifyCenter;
     }];
     
     UIScrollView *scrollview = [[UIScrollView alloc] init];
-    scrollview.backgroundColor = UIColor.whiteColor;
-    scrollview.alwaysBounceVertical = YES;
-    [self.view addChild:scrollview];
+    scrollview.backgroundColor = UIColor.blueColor;
+    scrollview.alwaysBounceHorizontal = YES;
     [scrollview configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPercentValue(100);
-        layout.height = YGPercentValue(100);
         layout.flexDirection = YGFlexDirectionColumn;
+        layout.width = YGPercentValue(100);
+        layout.height = YGPercentValue(50);
         layout.overflow = YGOverflowScroll; // 需要设置
     }];
+    [self.view addChild:scrollview];
+    
     ZDFlexLayoutDiv *containerDiv = scrollview.zd_contentView;
+    [containerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+        layout.flexDirection = YGFlexDirectionRow;
+        layout.justifyContent = YGJustifyFlexStart;
+        layout.height = YGPercentValue(100);
+    }];
+    
+    //==================================================
     
     UIView *view1 = [[UIView alloc] init];
     [view1 setBackgroundColor:[UIColor redColor]];
-    [containerDiv addChild:view1];
     [view1 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPercentValue(100);
-        layout.height = YGPointValue(300);
+        layout.height = YGPercentValue(100);
+        layout.width = YGPointValue(300);
     }];
+    [containerDiv addChild:view1];
 
     UIView *view2 = [[UIView alloc] init];
     [view2 setBackgroundColor:[UIColor yellowColor]];
-    [containerDiv addChild:view2];
     [view2 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPercentValue(100);
-        layout.height = YGPointValue(200);
+        layout.height = YGPercentValue(100);
+        layout.width = YGPointValue(200);
     }];
+    [containerDiv addChild:view2];
 
     UIView *view3 = [[UIView alloc] init];
     [view3 setBackgroundColor:[UIColor purpleColor]];
-    [containerDiv addChild:view3];
     [view3 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPercentValue(100);
-        layout.height = YGPointValue(400);
+        layout.height = YGPercentValue(100);
+        layout.width = YGPointValue(400);
     }];
+    [containerDiv addChild:view3];
 
     UIView *view4 = [[UIView alloc] init];
     [view4 setBackgroundColor:[UIColor cyanColor]];
-    [containerDiv addChild:view4];
     [view4 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.width = YGPercentValue(100);
-        layout.height = YGPointValue(200);
+        layout.height = YGPercentValue(100);
+        layout.width = YGPointValue(200);
     }];
+    [containerDiv addChild:view4];
 
-    [self.view.flexLayout applyLayoutPreservingOrigin:NO];
+    [self.view.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
 }
 
-- (void)yogaDemo {
+- (void)normalLayout {
     self.view.backgroundColor = UIColor.magentaColor;
     
     self.button.flexLayout.isIncludedInLayout = NO;
@@ -117,7 +126,6 @@
     [redView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.isEnabled = true;
         layout.flexGrow = 1;
-        //layout.flexShrink = 1;
     }];
     [self.contentView addChild:redView];
     

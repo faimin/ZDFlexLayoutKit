@@ -9,7 +9,6 @@
 #import "UIView+ZDFlexLayout.h"
 #import <objc/runtime.h>
 #import "ZDFlexLayout+Private.h"
-#import "ZDFlexLayoutDiv.h"
 
 @implementation UIView (ZDFlexLayout)
 
@@ -142,28 +141,6 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 - (CGRect)layoutFrame {
     return self.frame;
-}
-
-@end
-
-
-@implementation UIScrollView (ZDFlexLayout)
-
-- (void)setLayoutFrame:(CGRect)layoutFrame {
-    if (objc_getAssociatedObject(self, @selector(zd_contentView))) {
-        self.contentSize = self.zd_contentView.layoutFrame.size;
-    }
-    [super setLayoutFrame:layoutFrame];
-}
-
-- (ZDFlexLayoutView)zd_contentView {
-    ZDFlexLayoutDiv *contentDiv = objc_getAssociatedObject(self, @selector(zd_contentView));
-    if (!contentDiv) {
-        contentDiv = ZDFlexLayoutDiv.new;
-        objc_setAssociatedObject(self, @selector(zd_contentView), contentDiv, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [self addChild:contentDiv];
-    }
-    return contentDiv;
 }
 
 @end
