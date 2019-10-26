@@ -12,6 +12,18 @@
 
 @implementation UIView (ZDFlexLayout)
 
+- (void)markDirty {
+    [self.flexLayout markDirty];
+}
+
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin {
+    [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+}
+
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+    [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+}
+
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {
@@ -77,6 +89,18 @@
     
     child.parent = nil;
     child.owningView = nil;
+}
+
+- (void)addChildren:(NSArray<ZDFlexLayoutView> *)children {
+    for (ZDFlexLayoutView view in children) {
+        [self addChild:view];
+    }
+}
+
+- (void)removeChildren:(NSArray<ZDFlexLayoutView> *)children {
+    for (ZDFlexLayoutView view in children) {
+        [self removeChild:view];
+    }
 }
 
 //MARK: Property
@@ -147,18 +171,19 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 #pragma mark - Override (UILabel)
 
+#if CGFLOAT_IS_DOUBLE
+    #define ZDCEIL ceil
+#else
+    #define ZDCEIL ceilf
+#endif
+
 @implementation UILabel (ZDFlexLayout)
 
 // Fix the accuracy problem (精度缺失导致label中的文字截断问题)
 - (void)setLayoutFrame:(CGRect)layoutFrame {
     CGRect tmpFrame = layoutFrame;
-#if CGFLOAT_IS_DOUBLE
-    tmpFrame.size.width = ceil(CGRectGetWidth(layoutFrame));
-    tmpFrame.size.height = ceil(CGRectGetHeight(layoutFrame));
-#else
-    tmpFrame.size.width = ceilf(CGRectGetWidth(layoutFrame));
-    tmpFrame.size.height = ceilf(CGRectGetHeight(layoutFrame));
-#endif
+    tmpFrame.size.width = ZDCEIL(CGRectGetWidth(layoutFrame));
+    tmpFrame.size.height = ZDCEIL(CGRectGetHeight(layoutFrame));
     [super setLayoutFrame:tmpFrame];
 }
 

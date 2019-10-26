@@ -39,92 +39,53 @@
 - (void)setupUI {
     self.contentView.backgroundColor = ZD_RGB(255, 193, 222);
     
-    [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.paddingHorizontal = YGPointValue(15);
-        layout.paddingVertical = YGPointValue(5);
+    [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.paddingHorizontal(YGPointValue(15)).paddingVertical(YGPointValue(5));
     }];
     
-    [self.containerView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionRow;
-        layout.padding = YGPointValue(10);
-        layout.alignItems = YGAlignCenter;
-    }];
-    [self.contentView addChild:self.containerView];
+    [self.contentView addChild:[self.containerView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {  make.flexDirection(YGFlexDirectionRow).padding(YGPointValue(10)).alignItems(YGAlignCenter);
+    }]];
     
+    [self.containerView addChild:[self.avatarImgView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.width(YGPointValue(80)).height(YGPointValue(80));
+    }]];
     
-    [self.avatarImgView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.width = YGPointValue(80);
-        layout.height = YGPointValue(80);
-    }];
-    [self.containerView addChild:self.avatarImgView];
-    
-    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv new];
-    [rightContaienrDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionColumn;
-        layout.marginLeft = YGPointValue(10);
-        layout.width = YGPointValue(ZD_ScreenWidth() - 115 - 25);
+    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginLeft(YGPointValue(10)).width(YGPointValue(ZD_ScreenWidth() - 115 - 25));
     }];
     [self.containerView addChild:rightContaienrDiv];
     
     // 第一行
-    ZDFlexLayoutDiv *firstLineDiv = ZDFlexLayoutDiv.new;
-    [firstLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionRow;
-        layout.justifyContent = YGJustifySpaceBetween;
-        layout.alignItems = YGAlignCenter;
+    ZDFlexLayoutDiv *firstLineDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {       make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifySpaceBetween).alignItems(YGAlignCenter);
     }];
-    [self.nickNameLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexShrink = 1;
+    self.nickNameLabel.flexLayout.flexShrink = 1;
+    [self.tagLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.paddingHorizontal(YGPointValue(5)).paddingVertical(YGPointValue(2.5)).marginLeft(YGPointValue(3));
     }];
-    [self.tagLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.paddingHorizontal = YGPointValue(5);
-        layout.paddingVertical = YGPointValue(2.5);
-        layout.marginLeft = YGPointValue(3);
+    ZDFlexLayoutDiv *nameTagDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.flexDirection(YGFlexDirectionRow).alignItems(YGAlignCenter).flexShrink(1);
     }];
-    ZDFlexLayoutDiv *nameTagDiv = ZDFlexLayoutDiv.new;
-    [nameTagDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionRow;
-        layout.alignItems = YGAlignCenter;
-        layout.flexShrink = 1;
-    }];
-    [self.locationLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.marginLeft = YGPointValue(5);
-    }];
-    [nameTagDiv addChild:self.nickNameLabel];
-    [nameTagDiv addChild:self.tagLabel];
-    [firstLineDiv addChild:nameTagDiv];
-    [firstLineDiv addChild:self.locationLabel];
+    self.locationLabel.flexLayout.marginLeft = YGPointValue(5);
+    [nameTagDiv addChildren:@[self.nickNameLabel, self.tagLabel]];
+    [firstLineDiv addChildren:@[nameTagDiv, self.locationLabel]];
     
     // 第二行
-    [self.infoLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.marginTop = YGPointValue(7);
-    }];
+    self.infoLabel.flexLayout.marginTop = YGPointValue(7);
     
     // 第三行
-    ZDFlexLayoutDiv *thirdLineDiv = ZDFlexLayoutDiv.new;
-    [thirdLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexDirection = YGFlexDirectionRow;
-        layout.justifyContent = YGJustifySpaceBetween;
-        layout.alignItems = YGAlignCenter;
-        layout.marginTop = YGPointValue(5);
+    ZDFlexLayoutDiv *thirdLineDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifySpaceBetween).alignItems(YGAlignCenter).marginTop(YGPointValue(5));
     }];
-    [self.noticeLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.flexShrink = 1;
+    self.noticeLabel.flexLayout.flexShrink = 1;
+    [self.chatBtn zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.width(YGPointValue(19)).height(YGPointValue(18));
     }];
-    [self.chatBtn configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
-        layout.width = YGPointValue(19);
-        layout.height = YGPointValue(18);
-    }];
-    [thirdLineDiv addChild:self.noticeLabel];
-    [thirdLineDiv addChild:self.chatBtn];
+    [thirdLineDiv addChildren:@[self.noticeLabel, self.chatBtn]];
     
-    [rightContaienrDiv addChild:firstLineDiv];
-    [rightContaienrDiv addChild:self.infoLabel];
-    [rightContaienrDiv addChild:thirdLineDiv];
+    [rightContaienrDiv addChildren:@[firstLineDiv, self.infoLabel, thirdLineDiv]];
 }
 
 - (void)setModel:(UserModel *)model {
-    if (!model) return;
+    if (_model == model) return;
     _model = model;
     
     self.tagLabel.text = model.is_match_maker == 1 ? @"认证红娘" : nil;
@@ -137,14 +98,14 @@
     self.noticeLabel.text = model.marry_declare;
     
     // 子节点置为markDirty状态，否则yoga会使用缓存高度，不会重新计算
-    [self.nickNameLabel.flexLayout markDirty];
-    [self.tagLabel.flexLayout markDirty];
-    [self.locationLabel.flexLayout markDirty];
-    [self.infoLabel.flexLayout markDirty];
-    [self.noticeLabel.flexLayout markDirty];
+    [self.nickNameLabel markDirty];
+    [self.tagLabel markDirty];
+    [self.locationLabel markDirty];
+    [self.infoLabel markDirty];
+    [self.noticeLabel markDirty];
     
     // 计算layout
-    [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.contentView applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 #pragma mark - Property
@@ -238,3 +199,92 @@
 }
 
 @end
+
+/*
+ - (void)setupUI2 {
+     self.contentView.backgroundColor = ZD_RGB(255, 193, 222);
+     
+     [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.paddingHorizontal = YGPointValue(15);
+         layout.paddingVertical = YGPointValue(5);
+     }];
+     
+     [self.containerView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexDirection = YGFlexDirectionRow;
+         layout.padding = YGPointValue(10);
+         layout.alignItems = YGAlignCenter;
+     }];
+     [self.contentView addChild:self.containerView];
+     
+     
+     [self.avatarImgView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.width = YGPointValue(80);
+         layout.height = YGPointValue(80);
+     }];
+     [self.containerView addChild:self.avatarImgView];
+     
+     ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv new];
+     [rightContaienrDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexDirection = YGFlexDirectionColumn;
+         layout.marginLeft = YGPointValue(10);
+         layout.width = YGPointValue(ZD_ScreenWidth() - 115 - 25);
+     }];
+     [self.containerView addChild:rightContaienrDiv];
+     
+     // 第一行
+     ZDFlexLayoutDiv *firstLineDiv = ZDFlexLayoutDiv.new;
+     [firstLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexDirection = YGFlexDirectionRow;
+         layout.justifyContent = YGJustifySpaceBetween;
+         layout.alignItems = YGAlignCenter;
+     }];
+     [self.nickNameLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexShrink = 1;
+     }];
+     [self.tagLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.paddingHorizontal = YGPointValue(5);
+         layout.paddingVertical = YGPointValue(2.5);
+         layout.marginLeft = YGPointValue(3);
+     }];
+     ZDFlexLayoutDiv *nameTagDiv = ZDFlexLayoutDiv.new;
+     [nameTagDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexDirection = YGFlexDirectionRow;
+         layout.alignItems = YGAlignCenter;
+         layout.flexShrink = 1;
+     }];
+     [self.locationLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.marginLeft = YGPointValue(5);
+     }];
+     [nameTagDiv addChild:self.nickNameLabel];
+     [nameTagDiv addChild:self.tagLabel];
+     [firstLineDiv addChild:nameTagDiv];
+     [firstLineDiv addChild:self.locationLabel];
+     
+     // 第二行
+     [self.infoLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.marginTop = YGPointValue(7);
+     }];
+     
+     // 第三行
+     ZDFlexLayoutDiv *thirdLineDiv = ZDFlexLayoutDiv.new;
+     [thirdLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexDirection = YGFlexDirectionRow;
+         layout.justifyContent = YGJustifySpaceBetween;
+         layout.alignItems = YGAlignCenter;
+         layout.marginTop = YGPointValue(5);
+     }];
+     [self.noticeLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.flexShrink = 1;
+     }];
+     [self.chatBtn configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+         layout.width = YGPointValue(19);
+         layout.height = YGPointValue(18);
+     }];
+     [thirdLineDiv addChild:self.noticeLabel];
+     [thirdLineDiv addChild:self.chatBtn];
+     
+     [rightContaienrDiv addChild:firstLineDiv];
+     [rightContaienrDiv addChild:self.infoLabel];
+     [rightContaienrDiv addChild:thirdLineDiv];
+ }
+ */

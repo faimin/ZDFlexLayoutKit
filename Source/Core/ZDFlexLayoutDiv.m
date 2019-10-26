@@ -58,6 +58,18 @@
     child.parent = nil;
 }
 
+- (void)addChildren:(NSArray<ZDFlexLayoutView> *)children {
+    for (ZDFlexLayoutView view in children) {
+        [self addChild:view];
+    }
+}
+
+- (void)removeChildren:(NSArray<ZDFlexLayoutView> *)children {
+    for (ZDFlexLayoutView view in children) {
+        [self removeChild:view];
+    }
+}
+
 - (CGSize)sizeThatFits:(CGSize)size {
     return size;
 }

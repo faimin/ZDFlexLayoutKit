@@ -82,9 +82,12 @@ ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxHeight)
 
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, aspectRatio)
 
-@property (nonatomic, readonly, assign) YGDirection resolvedDirection;
+- (ZDFlexLayoutMaker *(^)(void))markDirty;
 
+#pragma mark - Unavailable
 
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

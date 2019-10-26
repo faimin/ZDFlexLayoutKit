@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDFlexLayoutDiv (ZDFlexLayoutChain) <ZDFlexLayoutChainProtocol>
 
-+ (instancetype)zd_makeFlexLayout:(void (NS_NOESCAPE ^)(ZDFlexLayoutMaker *))block;
++ (instancetype)zd_makeFlexLayout:(void (NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block;
 
 @end
 

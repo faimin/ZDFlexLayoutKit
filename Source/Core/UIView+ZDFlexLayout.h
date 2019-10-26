@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ZDFlexLayoutDivProtocol.h"
+#import "ZDFlexLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZDFlexLayout) <ZDFlexLayoutDivProtocol>
+
+- (void)markDirty;
+
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin;
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
 
 @end
 

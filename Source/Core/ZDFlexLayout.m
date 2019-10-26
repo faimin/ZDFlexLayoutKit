@@ -7,7 +7,6 @@
 
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
-#import "UIView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -279,14 +278,12 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (void)applyLayout
 {
-  [self calculateLayoutWithSize:self.view.layoutFrame.size];
-  YGApplyLayoutToViewHierarchy(self.view, NO);
+  [self applyLayoutPreservingOrigin:NO];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
 {
-  [self calculateLayoutWithSize:self.view.layoutFrame.size];
-  YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+  [self applyLayoutPreservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
@@ -298,10 +295,14 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
   if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
     size.height = YGUndefined;
   }
+  [self applyLayoutPreservingOrigin:preserveOrigin constraintSize:size];
+}
+
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
+{
   [self calculateLayoutWithSize:size];
   YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 }
-
 
 - (CGSize)intrinsicSize
 {

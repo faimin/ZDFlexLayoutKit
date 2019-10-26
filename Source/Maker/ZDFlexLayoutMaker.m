@@ -92,4 +92,11 @@ ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, maxHeight)
 
 ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, aspectRatio)
 
+- (ZDFlexLayoutMaker *(^)(void))markDirty {
+    return ^ZDFlexLayoutMaker *(void) {
+        [self.flexLayout markDirty];
+        return self;
+    };
+}
+
 @end
