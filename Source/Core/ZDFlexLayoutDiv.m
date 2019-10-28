@@ -71,7 +71,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return size;
+    return CGSizeZero;
 }
 
 //MARK: Property

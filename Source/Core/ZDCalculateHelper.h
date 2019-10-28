@@ -14,7 +14,7 @@ FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
 
 @interface ZDCalculateHelper : NSObject
 
-+ (void)addCalculateTask:(dispatch_block_t)calculateTask;
++ (void)async:(BOOL)isAsync addCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t _Nullable)onComplete;
 
 @end
 

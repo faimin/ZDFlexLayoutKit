@@ -7,6 +7,7 @@
 
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
+#import "ZDCalculateHelper.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -315,10 +316,12 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (CGSize)calculateLayoutWithSize:(CGSize)size
 {
-  NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
+  //NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
   NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 
-  YGAttachNodesFromViewHierachy(self.view);
+  YG_Dispatch_sync_on_main_queue(^{
+    YGAttachNodesFromViewHierachy(self.view);
+  });
 
   const YGNodeRef node = self.node;
   YGNodeCalculateLayout(
@@ -345,8 +348,7 @@ static YGSize YGMeasureView(
   const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
   const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX: height;
 
-  ZDFlexLayoutView view = (__bridge ZDFlexLayoutView) YGNodeGetContext(node);
-  CGSize sizeThatFits = CGSizeZero;
+  __block CGSize sizeThatFits = CGSizeZero;
 
   // The default implementation of sizeThatFits: returns the existing size of
   // the view. That means that if we want to layout an empty UIView, which
@@ -354,12 +356,15 @@ static YGSize YGMeasureView(
   // UIKit returns the existing size.
   //
   // See https://github.com/facebook/yoga/issues/606 for more information.
-  if (!view.flexLayout.isUIView || [view.children count] > 0) {
-    sizeThatFits = [view sizeThatFits:(CGSize){
-                                          .width = constrainedWidth,
-                                          .height = constrainedHeight,
-                                      }];
-  }
+    YG_Dispatch_sync_on_main_queue(^{
+        ZDFlexLayoutView view = (__bridge ZDFlexLayoutView) YGNodeGetContext(node);
+        if (!view.flexLayout.isUIView || [view.children count] > 0) {
+          sizeThatFits = [view sizeThatFits:(CGSize){
+                                                .width = constrainedWidth,
+                                                .height = constrainedHeight,
+                                            }];
+        }
+    });
 
   return (YGSize) {
     .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
@@ -528,6 +533,15 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
         
         // recursive addSubview
         //YGAddViewFromDivHierachy(childView);
+    }
+}
+
+static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
+    if (NSThread.isMainThread) {
+        block();
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue(), block);
     }
 }
 

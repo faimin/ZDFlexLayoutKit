@@ -33,7 +33,7 @@
     }];
     
     UIScrollView *scrollview = [[UIScrollView alloc] init];
-    scrollview.backgroundColor = UIColor.blueColor;
+    scrollview.backgroundColor = UIColor.whiteColor;
     scrollview.alwaysBounceHorizontal = YES;
     [scrollview configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
@@ -44,7 +44,7 @@
     }];
     [self.view addChild:scrollview];
     
-    ZDFlexLayoutDiv *containerDiv = scrollview.zd_contentView;
+    ZDFlexLayoutView containerDiv = scrollview.zd_contentView;
     [containerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifyFlexStart;

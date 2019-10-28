@@ -31,6 +31,12 @@ FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
+    
+    __weak typeof(self) weakTarget = self;
+    self.token = [[NSNotificationCenter defaultCenter] addObserverForName:ZDCalculateFinishedNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        __strong typeof(weakTarget) self = weakTarget;
+        //[self.tableView reloadData];
+    }];
 }
 
 - (void)setup {
