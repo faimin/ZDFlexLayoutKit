@@ -92,7 +92,10 @@
     }];
     [containerDiv addChild:view4];
 
-    [self.view.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
+    [self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view.flexLayout applyLayoutPreservingOrigin:YES];
+    });
 }
 
 - (void)normalLayout {
@@ -143,16 +146,6 @@
     }];
     [self.contentView addChild:blueView];
     
-    [self.view.flexLayout applyLayoutPreservingOrigin:NO];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-    self.contentView.flexLayout.width = YGPointValue(self.view.bounds.size.width);
-    for (UIView *view in self.contentView.subviews) {
-        [view.flexLayout markDirty];
-    }
     [self.view.flexLayout applyLayoutPreservingOrigin:NO];
 }
 

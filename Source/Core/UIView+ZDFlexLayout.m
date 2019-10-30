@@ -40,6 +40,7 @@
     ZDFlexLayout *layout = objc_getAssociatedObject(self, _cmd);
     if (!layout) {
         layout = [[ZDFlexLayout alloc] initWithView:self];
+        layout.isEnabled = YES;
         objc_setAssociatedObject(self, _cmd, layout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return layout;

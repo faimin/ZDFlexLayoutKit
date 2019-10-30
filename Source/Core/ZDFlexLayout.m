@@ -8,7 +8,6 @@
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
 #import "ZDCalculateHelper.h"
-#import "UIScrollView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -494,12 +493,6 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     for (NSUInteger i = 0; i < view.children.count; i++) {
       YGApplyLayoutToViewHierarchy(view.children[i], NO);
     }
-//    if ([view isKindOfClass:UIScrollView.class]) {
-//      if (objc_getAssociatedObject(view, @selector(zd_contentView))) {
-//          UIScrollView *tmpView = (UIScrollView *)view;
-//          tmpView.contentSize = tmpView.zd_contentView.layoutFrame.size;
-//      }
-//    }
   }
 }
 

@@ -91,6 +91,7 @@
 - (ZDFlexLayout *)flexLayout {
     if (!_flexLayout) {
         _flexLayout = [[ZDFlexLayout alloc] initWithView:self];
+        _flexLayout.isEnabled = YES;
     }
     return _flexLayout;
 }

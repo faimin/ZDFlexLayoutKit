@@ -61,13 +61,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
-//        UserModel *model = self.dataSource[indexPath.row];
-//        [UserTableViewCell zd_cast:templateCell].model = model;
-//    }];
-//
-//    return height;
-    return 110;
+    CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
+        UserModel *model = self.dataSource[indexPath.row];
+        [UserTableViewCell zd_cast:templateCell].model = model;
+    }];
+
+    return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
