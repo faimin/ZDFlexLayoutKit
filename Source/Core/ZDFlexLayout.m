@@ -8,6 +8,7 @@
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
 #import "ZDCalculateHelper.h"
+#import "UIScrollView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -210,14 +211,6 @@ static YGConfigRef globalConfig;
   return YES;
 }
 
-- (void)addSubviewsBaseOnViewHierachy
-{
-    if (!objc_getAssociatedObject(self, _cmd)) {
-        YGAddViewFromDivHierachy(self.view);
-        objc_setAssociatedObject(self, _cmd, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
-
 #pragma mark - Style
 
 - (YGPositionType)position
@@ -301,8 +294,16 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
 {
-  [self calculateLayoutWithSize:size];
-  YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+    if (self.asyncCalculate) {
+        [ZDCalculateHelper asyncCalculateTask:^{
+            [self calculateLayoutWithSize:size];
+        } onComplete:^{
+            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+        }];
+    } else {
+        [self calculateLayoutWithSize:size];
+        YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+    }
 }
 
 - (CGSize)intrinsicSize
@@ -356,15 +357,15 @@ static YGSize YGMeasureView(
   // UIKit returns the existing size.
   //
   // See https://github.com/facebook/yoga/issues/606 for more information.
-    YG_Dispatch_sync_on_main_queue(^{
-        ZDFlexLayoutView view = (__bridge ZDFlexLayoutView) YGNodeGetContext(node);
-        if (!view.flexLayout.isUIView || [view.children count] > 0) {
-          sizeThatFits = [view sizeThatFits:(CGSize){
+  YG_Dispatch_sync_on_main_queue(^{
+    ZDFlexLayoutView view = (__bridge ZDFlexLayoutView) YGNodeGetContext(node);
+    if (!view.flexLayout.isUIView || [view.children count] > 0) {
+        sizeThatFits = [view sizeThatFits:(CGSize){
                                                 .width = constrainedWidth,
                                                 .height = constrainedHeight,
                                             }];
-        }
-    });
+    }
+  });
 
   return (YGSize) {
     .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
@@ -493,9 +494,16 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     for (NSUInteger i = 0; i < view.children.count; i++) {
       YGApplyLayoutToViewHierarchy(view.children[i], NO);
     }
+//    if ([view isKindOfClass:UIScrollView.class]) {
+//      if (objc_getAssociatedObject(view, @selector(zd_contentView))) {
+//          UIScrollView *tmpView = (UIScrollView *)view;
+//          tmpView.contentSize = tmpView.zd_contentView.layoutFrame.size;
+//      }
+//    }
   }
 }
 
+/*
 static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
 {
     NSCAssert([NSThread isMainThread], @"addSubview: should only be done on the main thread.");
@@ -535,6 +543,7 @@ static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
         //YGAddViewFromDivHierachy(childView);
     }
 }
+*/
 
 static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
     if (NSThread.isMainThread) {

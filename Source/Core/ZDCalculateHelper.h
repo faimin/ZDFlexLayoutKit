@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
-
 @interface ZDCalculateHelper : NSObject
 
-+ (void)async:(BOOL)isAsync addCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t _Nullable)onComplete;
++ (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t _Nullable)onComplete;
 
 @end
 

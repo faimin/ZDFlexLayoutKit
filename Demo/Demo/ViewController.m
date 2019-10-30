@@ -27,6 +27,7 @@
 
 - (void)scrollViewLayout {
     [self.view configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
+        //layout.asyncCalculate = YES;
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
         layout.justifyContent = YGJustifyCenter;
@@ -46,9 +47,11 @@
     
     ZDFlexLayoutView containerDiv = scrollview.zd_contentView;
     [containerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+        layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifyFlexStart;
         layout.height = YGPercentValue(100);
+        layout.width = YGValueAuto;
     }];
     
     //==================================================

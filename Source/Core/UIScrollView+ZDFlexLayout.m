@@ -14,10 +14,10 @@
 @implementation UIScrollView (ZDFlexLayout)
 
 - (void)setLayoutFrame:(CGRect)layoutFrame {
+    [super setLayoutFrame:layoutFrame];
     if (objc_getAssociatedObject(self, @selector(zd_contentView))) {
         self.contentSize = self.zd_contentView.layoutFrame.size;
     }
-    [super setLayoutFrame:layoutFrame];
 }
 
 - (ZDFlexLayoutView)zd_contentView {

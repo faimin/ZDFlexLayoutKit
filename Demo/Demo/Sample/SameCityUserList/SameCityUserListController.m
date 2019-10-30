@@ -12,31 +12,22 @@
 #import "SameCityUserListViewModel.h"
 #import "UserTableViewCell.h"
 
-FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
-
 @interface SameCityUserListController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<UserModel *> *dataSource;
 @property (nonatomic, strong) ZDTemplateCellHandler *cellHandler;
-@property (nonatomic, strong) id token;
 @end
 
 @implementation SameCityUserListController
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self.token];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
-    
-    __weak typeof(self) weakTarget = self;
-    self.token = [[NSNotificationCenter defaultCenter] addObserverForName:ZDCalculateFinishedNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
-        __strong typeof(weakTarget) self = weakTarget;
-        //[self.tableView reloadData];
-    }];
 }
 
 - (void)setup {
@@ -70,12 +61,13 @@ FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
-        UserModel *model = self.dataSource[indexPath.row];
-        [UserTableViewCell zd_cast:templateCell].model = model;
-    }];
-    
-    return height;
+//    CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
+//        UserModel *model = self.dataSource[indexPath.row];
+//        [UserTableViewCell zd_cast:templateCell].model = model;
+//    }];
+//
+//    return height;
+    return 110;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

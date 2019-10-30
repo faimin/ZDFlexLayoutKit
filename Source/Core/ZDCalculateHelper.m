@@ -9,8 +9,6 @@
 #import "ZDCalculateHelper.h"
 #import <os/lock.h>
 
-NSString *const ZDCalculateFinishedNotification = @"ZDCalculateFinishedNotification";
-
 static NSMutableArray<NSMutableArray<dispatch_block_t> *> *_syncTaskQueue = nil;
 static NSMutableArray<dispatch_block_t> *_asyncTaskQueue = nil;
 static CFRunLoopSourceRef _runloopSource = NULL;
@@ -39,7 +37,7 @@ static dispatch_queue_t zd_calculate_queue() {
     static dispatch_queue_t calculateQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        calculateQueue = dispatch_queue_create("queue.calculate.flexlayout.zd", DISPATCH_QUEUE_SERIAL);
+        calculateQueue = dispatch_queue_create("queue.calculate.flexlayout.zd", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INTERACTIVE, 0));
     });
     return calculateQueue;
 }
@@ -53,41 +51,6 @@ static dispatch_queue_t zd_calculate_queue() {
 //    return queue;
 //}
 
-static void zd_addSyncTaskBlockWithCompleteCallback(dispatch_block_t task, dispatch_block_t complete) {
-    if (task == nil) return;
-
-    _syncTaskQueue = [[NSMutableArray alloc] init];
-
-    zd_lock(^{
-        NSMutableArray *taskAndComplteArray = @[].mutableCopy;
-        [taskAndComplteArray addObject:task];
-        if (complete) {
-            [taskAndComplteArray addObject:complete];
-        }
-        [_syncTaskQueue addObject:taskAndComplteArray];
-        CFRunLoopSourceSignal(_runloopSource);
-        CFRunLoopWakeUp(CFRunLoopGetMain());
-    });
-}
-
-static void zd_executeSyncTasks() {
-    zd_lock(^{
-        for (NSMutableArray *tasks in _syncTaskQueue) {
-            // task block
-            dispatch_block_t task = tasks.firstObject;
-            task();
-            if (tasks.count >= 2) {
-                // onComplete block
-                dispatch_block_t onComplete = tasks[2];
-                onComplete();
-            }
-        }
-        [_syncTaskQueue removeAllObjects];
-    });
-
-    //[[NSNotificationCenter defaultCenter] postNotificationName:ZDCalculateFinishedNotification object:nil userInfo:nil];
-}
-
 static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, dispatch_block_t complete) {
     if (task == nil) return;
     
@@ -97,6 +60,8 @@ static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, disp
         task();
         zd_lock(^{
             [_asyncTaskQueue addObject:complete];
+            CFRunLoopSourceSignal(_runloopSource);
+            CFRunLoopWakeUp(CFRunLoopGetMain());
         });
     });
 }
@@ -109,12 +74,10 @@ static void zd_executeAsyncTasks() {
         }
         [_asyncTaskQueue removeAllObjects];
     });
-    
-    //[[NSNotificationCenter defaultCenter] postNotificationName:ZDCalculateFinishedNotification object:nil userInfo:nil];
 }
 
 static void zd_sourceContextCallBackLog(void *info) {
-  NSLog(@"applay FlexBox layout");
+  NSLog(@"will calculate flexBox layout");
 }
 
 #pragma mark -
@@ -128,7 +91,6 @@ static void zd_sourceContextCallBackLog(void *info) {
 + (void)setupRunloop {
     CFRunLoopRef runloop = CFRunLoopGetMain();
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, INT_MAX, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-        zd_executeSyncTasks();
         zd_executeAsyncTasks();
     });
     CFRunLoopAddObserver(runloop, observer, kCFRunLoopCommonModes);
@@ -140,14 +102,9 @@ static void zd_sourceContextCallBackLog(void *info) {
     CFRunLoopAddSource(runloop, _runloopSource, kCFRunLoopCommonModes);
 }
 
-+ (void)async:(BOOL)isAsync addCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t)onComplete {
++ (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t)onComplete {
     NSCAssert(calculateTask, @"params can't be nil");
-    if (isAsync) {
-        zd_addAsyncTaskBlockWithCompleteCallback(calculateTask, onComplete);
-    }
-    else {
-        zd_addSyncTaskBlockWithCompleteCallback(calculateTask, onComplete);
-    }
+    zd_addAsyncTaskBlockWithCompleteCallback(calculateTask, onComplete);
 }
 
 @end

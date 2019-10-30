@@ -12,19 +12,16 @@
 #import "ZDTemplateCellHandler.h"
 #import <ZDToolKit/NSObject+ZDUtility.h>
 
-FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
-
 @interface YogaKitListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) ZDTemplateCellHandler *cellHandler;
-@property (nonatomic, strong) id token;
 @end
 
 @implementation YogaKitListViewController
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self.token];
+    
 }
 
 - (void)viewDidLoad {
@@ -34,12 +31,6 @@ FOUNDATION_EXPORT NSString *const ZDCalculateFinishedNotification;
 }
 
 - (void)setup {
-    __weak typeof(self) weakTarget = self;
-    self.token = [[NSNotificationCenter defaultCenter] addObserverForName:ZDCalculateFinishedNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
-        __unused __strong typeof(weakTarget) self = weakTarget;
-        //[self.tableView reloadData];
-    }];
-    
     [self setupUI];
     [self setupData];
 }
