@@ -38,10 +38,10 @@
     scrollview.alwaysBounceHorizontal = YES;
     [scrollview configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
         layout.isEnabled = YES;
-        layout.flexDirection = YGFlexDirectionColumn;
+        layout.flexDirection = YGFlexDirectionRow;
         layout.width = YGPercentValue(100);
         layout.height = YGPercentValue(50);
-        layout.overflow = YGOverflowScroll; // 需要设置
+        //layout.overflow = YGOverflowScroll;
     }];
     [self.view addChild:scrollview];
     
@@ -92,10 +92,7 @@
     }];
     [containerDiv addChild:view4];
 
-    [self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view.flexLayout applyLayoutPreservingOrigin:YES];
-    });
+    //[self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
 }
 
 - (void)normalLayout {
@@ -147,6 +144,13 @@
     [self.contentView addChild:blueView];
     
     [self.view.flexLayout applyLayoutPreservingOrigin:NO];
+}
+
+#pragma mark -
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self.view.flexLayout applyLayoutPreservingOrigin:YES];
 }
 
 @end

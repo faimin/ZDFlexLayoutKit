@@ -8,6 +8,7 @@
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
 #import "ZDCalculateHelper.h"
+#import "UIScrollView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -492,6 +493,27 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
   if (!yoga.isLeaf) {
     for (NSUInteger i = 0; i < view.children.count; i++) {
       YGApplyLayoutToViewHierarchy(view.children[i], NO);
+    }
+      
+    // TODO:
+    if ([view isKindOfClass:UIScrollView.class] && objc_getAssociatedObject(view, @selector(zd_contentView))) {
+          UIScrollView *scrollView = (UIScrollView *)view;
+          scrollView.contentSize = scrollView.zd_contentView.layoutFrame.size;
+          
+          CGFloat owningViewWidth = CGRectGetWidth(view.owningView.frame);
+          CGFloat owningViewHeight = CGRectGetHeight(view.owningView.frame);
+          
+          CGRect tmpFrame = scrollView.frame;
+          CGFloat scrollViewWidth = CGRectGetWidth(tmpFrame);
+          CGFloat scrollViewHeight = CGRectGetHeight(tmpFrame);
+          
+          if (scrollViewWidth > owningViewWidth) {
+              tmpFrame.size.width = owningViewWidth;
+          }
+          if (scrollViewHeight > owningViewHeight) {
+              tmpFrame.size.height = owningViewHeight;
+          }
+          view.layoutFrame = tmpFrame;
     }
   }
 }

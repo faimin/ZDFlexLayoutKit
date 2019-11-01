@@ -13,13 +13,6 @@
 
 @implementation UIScrollView (ZDFlexLayout)
 
-- (void)setLayoutFrame:(CGRect)layoutFrame {
-    [super setLayoutFrame:layoutFrame];
-    if (objc_getAssociatedObject(self, @selector(zd_contentView))) {
-        self.contentSize = self.zd_contentView.layoutFrame.size;
-    }
-}
-
 - (ZDFlexLayoutView)zd_contentView {
     ZDFlexLayoutDiv *contentDiv = objc_getAssociatedObject(self, @selector(zd_contentView));
     if (!contentDiv) {
@@ -28,6 +21,10 @@
         [self addChild:contentDiv];
     }
     return contentDiv;
+}
+
+- (BOOL)zd_initedContentView {
+    return objc_getAssociatedObject(self, @selector(zd_contentView)) != nil;
 }
 
 @end
