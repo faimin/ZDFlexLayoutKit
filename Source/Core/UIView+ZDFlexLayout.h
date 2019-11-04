@@ -31,10 +31,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIView (ZDFlexLayoutHook)
-
-@property (nonatomic, assign) BOOL needRelayout;
-
-@end
-
 NS_ASSUME_NONNULL_END

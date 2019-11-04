@@ -457,6 +457,7 @@ static CGFloat YGRoundPixelValue(CGFloat value)
   return roundf(value * scale) / scale;
 }
 
+static const void *ZDFlexNeedRelayout = &ZDFlexNeedRelayout;
 static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin)
 {
   NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
@@ -498,7 +499,14 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     if ([view isKindOfClass:UIScrollView.class] && ((UIScrollView *)view).zd_initedContentView) {
         UIScrollView *scrollView = (UIScrollView *)view;
         scrollView.contentSize = scrollView.zd_contentView.layoutFrame.size;
-        view.owningView.needRelayout = YES;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!objc_getAssociatedObject(view.owningView, ZDFlexNeedRelayout)) {
+                objc_setAssociatedObject(view.owningView, ZDFlexNeedRelayout, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                [view.owningView layoutIfNeeded];
+                [view.owningView.flexLayout applyLayoutPreservingOrigin:YES];
+            }
+        });
     }
   }
 }
