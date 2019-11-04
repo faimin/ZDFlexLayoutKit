@@ -10,7 +10,6 @@
 		A79FD794A1F3B8FEEB9BB1D0 /* Pods_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F84AD77E23D6230C1AB0C20 /* Pods_DemoTests.framework */; };
 		CC150030688A52AC7854C480 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA3DD75A2E39CBDE98C25A1 /* Pods_Demo.framework */; };
 		D7E90880FB4231C5A8ABCFC1 /* Pods_Demo_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FCA7270FE74D1E149BD5C60 /* Pods_Demo_DemoUITests.framework */; };
-		FA0F13202363FCA600B833A3 /* UIScrollView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0F131F2363FCA600B833A3 /* UIScrollView+ZDFlexLayout.m */; };
 		FA0F132323641D9200B833A3 /* ZDFlexLayoutMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0F132223641D9200B833A3 /* ZDFlexLayoutMaker.m */; };
 		FA1A54D32355E3A400C80712 /* YogaKitListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */; };
 		FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */; };
@@ -67,8 +66,6 @@
 		8DA3DD75A2E39CBDE98C25A1 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		FA0F131E2363FCA600B833A3 /* UIScrollView+ZDFlexLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZDFlexLayout.h"; sourceTree = "<group>"; };
-		FA0F131F2363FCA600B833A3 /* UIScrollView+ZDFlexLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZDFlexLayout.m"; sourceTree = "<group>"; };
 		FA0F132123641D9200B833A3 /* ZDFlexLayoutMaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutMaker.h; sourceTree = "<group>"; };
 		FA0F132223641D9200B833A3 /* ZDFlexLayoutMaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutMaker.m; sourceTree = "<group>"; };
 		FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKitListViewController.h; sourceTree = "<group>"; };
@@ -218,8 +215,6 @@
 				FAEF09F523505F9C004094B1 /* ZDFlexLayoutDivProtocol.h */,
 				FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */,
 				FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */,
-				FA0F131E2363FCA600B833A3 /* UIScrollView+ZDFlexLayout.h */,
-				FA0F131F2363FCA600B833A3 /* UIScrollView+ZDFlexLayout.m */,
 				FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */,
 				FAEF095123502497004094B1 /* ZDFlexLayoutDiv.m */,
 				FAB93E38235D529D0080E8FD /* ZDCalculateHelper.h */,
@@ -577,7 +572,6 @@
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
 				FAB93E3A235D529D0080E8FD /* ZDCalculateHelper.m in Sources */,
-				FA0F13202363FCA600B833A3 /* UIScrollView+ZDFlexLayout.m in Sources */,
 				FAEA4A19235F104A00422C35 /* UserModel.m in Sources */,
 				FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */,
 				FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */,

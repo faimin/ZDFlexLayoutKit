@@ -21,4 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma mark - UIScrollView
+
+@interface UIScrollView (ZDFlexLayout)
+
+@property (nonatomic, strong, readonly) ZDFlexLayoutView zd_contentView;
+
+- (BOOL)zd_initedContentView;
+
+@end
+
+@interface UIView (ZDFlexLayoutHook)
+
+@property (nonatomic, assign) BOOL needRelayout;
+
+@end
+
 NS_ASSUME_NONNULL_END

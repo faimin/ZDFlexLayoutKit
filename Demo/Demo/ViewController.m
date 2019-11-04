@@ -92,7 +92,7 @@
     }];
     [containerDiv addChild:view4];
 
-    //[self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
+    [self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
 }
 
 - (void)normalLayout {
@@ -144,13 +144,6 @@
     [self.contentView addChild:blueView];
     
     [self.view.flexLayout applyLayoutPreservingOrigin:NO];
-}
-
-#pragma mark -
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self.view.flexLayout applyLayoutPreservingOrigin:YES];
 }
 
 @end
