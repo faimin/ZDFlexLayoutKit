@@ -8,7 +8,6 @@
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
 #import "ZDCalculateHelper.h"
-#import "UIView+ZDFlexLayout.h"
 
 #define YG_PROPERTY(type, lowercased_name, capitalized_name)    \
 - (type)lowercased_name                                         \
@@ -457,7 +456,6 @@ static CGFloat YGRoundPixelValue(CGFloat value)
   return roundf(value * scale) / scale;
 }
 
-static const void *ZDFlexNeedRelayout = &ZDFlexNeedRelayout;
 static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin)
 {
   NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
@@ -496,62 +494,11 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
       YGApplyLayoutToViewHierarchy(view.children[i], NO);
     }
     
-    if ([view isKindOfClass:UIScrollView.class] && ((UIScrollView *)view).zd_initedContentView) {
-        UIScrollView *scrollView = (UIScrollView *)view;
-        scrollView.contentSize = scrollView.zd_contentView.layoutFrame.size;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!objc_getAssociatedObject(view.owningView, ZDFlexNeedRelayout)) {
-                objc_setAssociatedObject(view.owningView, ZDFlexNeedRelayout, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                [view.owningView layoutIfNeeded];
-                [view.owningView.flexLayout applyLayoutPreservingOrigin:YES];
-            }
-        });
+    if ([view respondsToSelector:@selector(needReApplyLayoutAtNextRunloop)]) {
+        [view needReApplyLayoutAtNextRunloop];
     }
   }
 }
-
-/*
-static void YGAddViewFromDivHierachy(ZDFlexLayoutView view)
-{
-    NSCAssert([NSThread isMainThread], @"addSubview: should only be done on the main thread.");
-    
-    if (view == nil) {
-        return;
-    }
-    
-    const ZDFlexLayout *yoga = view.flexLayout;
-    
-    if (yoga.isLeaf) {
-       return;
-    }
-    
-    // add self.view to superview if self.view.superview is nil
-    UIView *subParentView = nil;
-    if ([view isKindOfClass:UIView.class]) {
-        subParentView = (UIView *)view;
-        
-        if ( !((UIView *)view).superview ) {
-            [view.owningView addSubview:(UIView *)view];
-        }
-    }
-    else {
-        subParentView = view.owningView;
-        NSCAssert(subParentView, @"owningView should't be nil");
-    }
-    
-    for (ZDFlexLayoutView childView in view.children) {
-        if ([childView isKindOfClass:UIView.class]) {
-            UIView *subView = (UIView *)childView;
-            [subView removeFromSuperview];
-            [subParentView addSubview:subView];
-        }
-        
-        // recursive addSubview
-        //YGAddViewFromDivHierachy(childView);
-    }
-}
-*/
 
 static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block) {
     if (NSThread.isMainThread) {

@@ -65,6 +65,7 @@
     }];
     [containerDiv addChild:view1];
 
+#if 1
     UIView *view2 = [[UIView alloc] init];
     [view2 setBackgroundColor:[UIColor yellowColor]];
     [view2 configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
@@ -91,6 +92,7 @@
         layout.width = YGPointValue(200);
     }];
     [containerDiv addChild:view4];
+#endif
 
     [self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
 }

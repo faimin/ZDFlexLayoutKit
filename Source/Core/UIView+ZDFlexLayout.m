@@ -192,7 +192,38 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 #pragma mark - UIScrollView ZDFlexLayout
 
+@interface UIScrollView ()
+
+@property (nonatomic, assign) BOOL zd_needRelayout;
+
+@end
+
 @implementation UIScrollView (ZDFlexLayout)
+
+- (BOOL)zd_initedContentView {
+    return objc_getAssociatedObject(self, @selector(zd_contentView)) != nil;
+}
+
+- (void)zd_setNeedReLayoutAtNextRunloop:(BOOL)relayout {
+    self.zd_needRelayout = relayout;
+}
+
+- (void)needReApplyLayoutAtNextRunloop {
+    if (!self.zd_initedContentView) {
+        return;
+    }
+    
+    self.contentSize = self.zd_contentView.layoutFrame.size;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!objc_getAssociatedObject(self, @selector(zd_needRelayout)) || self.zd_needRelayout) {
+            self.zd_needRelayout = NO;
+            [self.owningView layoutIfNeeded];
+            [self.owningView.flexLayout applyLayoutPreservingOrigin:YES];
+        }
+    });
+}
+
+#pragma mark - Property
 
 - (ZDFlexLayoutView)zd_contentView {
     ZDFlexLayoutDiv *contentDiv = objc_getAssociatedObject(self, @selector(zd_contentView));
@@ -204,8 +235,12 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
     return contentDiv;
 }
 
-- (BOOL)zd_initedContentView {
-    return objc_getAssociatedObject(self, @selector(zd_contentView)) != nil;
+- (void)setZd_needRelayout:(BOOL)zd_needRelayout {
+    objc_setAssociatedObject(self, @selector(zd_needRelayout), @(zd_needRelayout), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)zd_needRelayout {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 @end

@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)zd_initedContentView;
 
+- (void)zd_setNeedReLayoutAtNextRunloop:(BOOL)relayout;
+
 @end
 
 NS_ASSUME_NONNULL_END

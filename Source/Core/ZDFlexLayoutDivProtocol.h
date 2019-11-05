@@ -41,6 +41,9 @@ to use this method, which uses a single objc_msgSend call.
 */
 - (void)configureFlexLayoutWithBlock:(void(^)(ZDFlexLayout *layout))block;
 
+@optional
+- (void)needReApplyLayoutAtNextRunloop;
+
 @end
 
 NS_ASSUME_NONNULL_END
