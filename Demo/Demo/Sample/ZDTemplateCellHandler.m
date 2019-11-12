@@ -45,18 +45,8 @@
         [cell prepareForReuse];
         if (configurationBlock) configurationBlock(cell);
         
-        // Perform layout calculation
-        // 一旦在布局代码完成之后，就要在 根视图 的属性 yoga 对象上调用这个方法，应用布局到 根视图 和 子视图
-        // 为什么在cell里执行计算没问题，而在这里计算会有问题？？？？
-        //[cell.contentView.yoga applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeigth];
-        
-        // 下面2种方式皆可
-        CGSize size = cell.contentView.frame.size;
-        CGFloat realHeight = ceil(size.height);
-        //NSLog(@"%s, cell Height = %f", __PRETTY_FUNCTION__, realHeight);
-        if (realHeight > 0) {
-            self.cellHeightCache[indexPath] = @(realHeight);
-        }
+        CGFloat realHeight = ceil(CGRectGetHeight(cell.contentView.frame));
+        self.cellHeightCache[indexPath] = @(realHeight);
         cellHeight = realHeight;
     }
     

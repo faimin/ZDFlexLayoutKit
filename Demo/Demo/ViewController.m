@@ -27,7 +27,6 @@
 
 - (void)scrollViewLayout {
     [self.view configureFlexLayoutWithBlock:^(ZDFlexLayout *_Nonnull layout) {
-        //layout.asyncCalculate = YES;
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
         layout.justifyContent = YGJustifyCenter;
