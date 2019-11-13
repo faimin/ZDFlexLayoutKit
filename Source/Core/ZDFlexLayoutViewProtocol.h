@@ -1,23 +1,23 @@
 //
-//  ZDFlexLayoutDivProtocol.h
+//  ZDFlexLayoutViewProtocol.h
 //  Demo
 //
 //  Created by Zero.D.Saber on 2019/10/11.
 //  Copyright © 2019 Zero.D.Saber. All rights reserved.
 //
 
-#ifndef ZDFlexLayoutDivProtocol_h
-#define ZDFlexLayoutDivProtocol_h
+#ifndef ZDFlexLayoutViewProtocol_h
+#define ZDFlexLayoutViewProtocol_h
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ZDFlexLayoutDivProtocol;
-typedef id<ZDFlexLayoutDivProtocol> ZDFlexLayoutView;
+@protocol ZDFlexLayoutViewProtocol;
+typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 
 @class ZDFlexLayout;
-@protocol ZDFlexLayoutDivProtocol <NSObject>
+@protocol ZDFlexLayoutViewProtocol <NSObject>
 
 @property (nonatomic, assign, readonly) BOOL isFlexLayoutEnabled;
 @property (nonatomic, strong, readonly) ZDFlexLayout *flexLayout;
@@ -48,4 +48,4 @@ to use this method, which uses a single objc_msgSend call.
 
 NS_ASSUME_NONNULL_END
 
-#endif /* ZDFlexLayoutDivProtocol_h */
+#endif /* ZDFlexLayoutViewProtocol_h */

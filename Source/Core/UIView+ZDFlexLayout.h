@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZDFlexLayoutDivProtocol.h"
+#import "ZDFlexLayoutViewProtocol.h"
 #import "ZDFlexLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (ZDFlexLayout) <ZDFlexLayoutDivProtocol>
+@interface UIView (ZDFlexLayout) <ZDFlexLayoutViewProtocol>
 
 - (void)markDirty;
 

@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZDFlexLayoutDivProtocol.h"
+#import "ZDFlexLayoutViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDFlexLayoutDiv : NSObject <ZDFlexLayoutDivProtocol>
+@interface ZDFlexLayoutDiv : NSObject <ZDFlexLayoutViewProtocol>
 
 @end
 

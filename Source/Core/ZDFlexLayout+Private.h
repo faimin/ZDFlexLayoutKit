@@ -6,7 +6,7 @@
  */
 #import "ZDFlexLayout.h"
 #import <yoga/Yoga.h>
-#import "ZDFlexLayoutDivProtocol.h"
+#import "ZDFlexLayoutViewProtocol.h"
 
 @interface ZDFlexLayout ()
 

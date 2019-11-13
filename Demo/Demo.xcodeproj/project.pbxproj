@@ -118,7 +118,7 @@
 		FAEA4A1B235F12BD00422C35 /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
 		FAEF095123502497004094B1 /* ZDFlexLayoutDiv.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutDiv.m; sourceTree = "<group>"; };
-		FAEF09F523505F9C004094B1 /* ZDFlexLayoutDivProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDivProtocol.h; sourceTree = "<group>"; };
+		FAEF09F523505F9C004094B1 /* ZDFlexLayoutViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutViewProtocol.h; sourceTree = "<group>"; };
 		FAEF09F62350611C004094B1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -212,7 +212,7 @@
 				FA843061234F4926000F7E35 /* ZDFlexLayout+Private.h */,
 				FA84305F234F48E5000F7E35 /* ZDFlexLayout.h */,
 				FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */,
-				FAEF09F523505F9C004094B1 /* ZDFlexLayoutDivProtocol.h */,
+				FAEF09F523505F9C004094B1 /* ZDFlexLayoutViewProtocol.h */,
 				FAD09080234F4C5A0096EAC2 /* UIView+ZDFlexLayout.h */,
 				FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */,
 				FAEF095023502497004094B1 /* ZDFlexLayoutDiv.h */,
