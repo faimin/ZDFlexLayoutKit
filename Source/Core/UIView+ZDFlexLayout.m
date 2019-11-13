@@ -31,7 +31,7 @@
     return objc_getAssociatedObject(self, @selector(flexLayout)) != nil;
 }
 
-- (void)configureFlexLayoutWithBlock:(void (^)(ZDFlexLayout * _Nonnull))block {
+- (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayout * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
     }

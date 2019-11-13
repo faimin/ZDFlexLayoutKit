@@ -34,12 +34,7 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 
 - (CGSize)sizeThatFits:(CGSize)size;
 
-/**
-In ObjC land, every time you access `view.flexLayout.*` you are adding another `objc_msgSend`
-to your code. If you plan on making multiple changes to ZDFlexLayout, it's more performant
-to use this method, which uses a single objc_msgSend call.
-*/
-- (void)configureFlexLayoutWithBlock:(void(^)(ZDFlexLayout *layout))block;
+- (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayout *layout))block;
 
 @optional
 - (void)needReApplyLayoutAtNextRunloop;

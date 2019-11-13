@@ -9,7 +9,6 @@
 #import "ZDCalculateHelper.h"
 #import <os/lock.h>
 
-static NSMutableArray<NSMutableArray<dispatch_block_t> *> *_syncTaskQueue = nil;
 static NSMutableArray<dispatch_block_t> *_asyncTaskQueue = nil;
 static CFRunLoopSourceRef _runloopSource = NULL;
 
@@ -41,15 +40,6 @@ static dispatch_queue_t zd_calculate_queue() {
     });
     return calculateQueue;
 }
-
-//static dispatch_queue_t zd_display_queue() {
-//    static dispatch_queue_t queue = NULL;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        queue = dispatch_queue_create("queue.display.flexlayout.zd", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_USER_INITIATED, 0));
-//    });
-//    return queue;
-//}
 
 static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, dispatch_block_t complete) {
     if (task == nil) return;
