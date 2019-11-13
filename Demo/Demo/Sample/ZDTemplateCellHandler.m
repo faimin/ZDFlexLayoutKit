@@ -9,9 +9,16 @@
 #import "ZDTemplateCellHandler.h"
 #import "UIView+ZDFlexLayout.h"
 
+static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
+    NSUInteger section = indexPath.section;
+    NSUInteger row = indexPath.item;
+    NSString *ret = [NSString stringWithFormat:@"%zd+%zd", section, row];
+    return ret;
+}
+
 @interface ZDTemplateCellHandler()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, UITableViewCell *> *templateCellCache;
-@property (nonatomic, strong) NSMutableDictionary<NSIndexPath *, NSNumber *> *cellHeightCache;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *cellHeightCache;
 @end
 
 @implementation ZDTemplateCellHandler
@@ -38,15 +45,16 @@
     if (!(tableView && reuseCellId && indexPath)) return 0.f;
     
     CGFloat cellHeight = 0.f;
-    if (self.cellHeightCache[indexPath]) {
-        cellHeight = self.cellHeightCache[indexPath].floatValue;
+    NSString *indexPathKey = ZD_IndexPathKey(indexPath);
+    if (self.cellHeightCache[indexPathKey]) {
+        cellHeight = self.cellHeightCache[indexPathKey].floatValue;
     } else {
         UITableViewCell *cell = [self templateCellWithTableView:tableView reuseIdentifier:reuseCellId];
         [cell prepareForReuse];
         if (configurationBlock) configurationBlock(cell);
         
         CGFloat realHeight = ceil(CGRectGetHeight(cell.contentView.frame));
-        self.cellHeightCache[indexPath] = @(realHeight);
+        self.cellHeightCache[indexPathKey] = @(realHeight);
         cellHeight = realHeight;
     }
     
