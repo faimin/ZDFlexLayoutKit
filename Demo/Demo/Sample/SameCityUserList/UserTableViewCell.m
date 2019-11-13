@@ -105,7 +105,7 @@
     [self.noticeLabel markDirty];
     
     // 计算layout
-    [self.contentView applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.contentView calculateLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 #pragma mark - Property

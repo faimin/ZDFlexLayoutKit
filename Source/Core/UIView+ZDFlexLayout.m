@@ -17,11 +17,11 @@
     [self.flexLayout markDirty];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin {
+- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 

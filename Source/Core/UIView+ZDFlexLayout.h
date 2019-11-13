@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)markDirty;
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin;
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin;
+- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
 
 @end
 

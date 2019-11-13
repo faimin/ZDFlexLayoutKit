@@ -348,7 +348,7 @@ static YGSize YGMeasureView(
   YGMeasureMode heightMode)
 {
   const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
-  const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX: height;
+  const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
   __block CGSize sizeThatFits = CGSizeZero;
 

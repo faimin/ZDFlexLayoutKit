@@ -93,7 +93,7 @@
     [containerDiv addChild:view4];
 #endif
 
-    [self.view applyLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
+    [self.view calculateLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleWidth];
 }
 
 - (void)normalLayout {
