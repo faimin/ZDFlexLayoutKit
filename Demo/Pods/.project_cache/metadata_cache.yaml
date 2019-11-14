@@ -6,6 +6,10 @@ libffi-core:
   LABEL: libffi-core
   PROJECT_PATH: libffi-core.xcodeproj
   UUID: 5D86507D6D536364E65896648629885F
+LookinServer:
+  LABEL: LookinServer
+  PROJECT_PATH: LookinServer.xcodeproj
+  UUID: 648108237631EEA52299D347ABDCA30C
 Pods-Demo:
   LABEL: Pods-Demo
   PROJECT_PATH: Pods.xcodeproj

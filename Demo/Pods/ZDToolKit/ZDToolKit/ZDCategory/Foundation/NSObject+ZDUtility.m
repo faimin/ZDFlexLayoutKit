@@ -366,7 +366,7 @@ return @(ret); \
         };
             
         case '@': { // id
-            __autoreleasing id ret; //void *ret;
+            __unsafe_unretained id ret; //void *ret;
             [inv getReturnValue:&ret];
             return ret; //(__bridge id)ret;
         };

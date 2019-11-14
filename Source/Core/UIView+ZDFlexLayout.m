@@ -25,6 +25,14 @@
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
+- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
+    [self.flexLayout asyncApplyLayoutPreservingOrigin:preserveOrigin];
+}
+
+- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+    [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+}
+
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {
@@ -225,11 +233,11 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 #pragma mark - Property
 
-- (ZDFlexLayoutView)zd_contentView {
-    ZDFlexLayoutDiv *contentDiv = objc_getAssociatedObject(self, @selector(zd_contentView));
+- (ZDFlexLayoutDiv *)zd_contentView {
+    ZDFlexLayoutDiv *contentDiv = objc_getAssociatedObject(self, _cmd);
     if (!contentDiv) {
         contentDiv = ZDFlexLayoutDiv.new;
-        objc_setAssociatedObject(self, @selector(zd_contentView), contentDiv, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, _cmd, contentDiv, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [self addChild:contentDiv];
     }
     return contentDiv;

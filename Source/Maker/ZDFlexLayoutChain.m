@@ -13,7 +13,9 @@
 
 - (instancetype)zd_makeFlexLayout:(void (NS_NOESCAPE ^)(ZDFlexLayoutMaker * _Nonnull))block {
     ZDFlexLayoutMaker *maker = [[ZDFlexLayoutMaker alloc] initWithFlexLayout:self.flexLayout];
-    block(maker);
+    if (block) {
+        block(maker);
+    }
     return self;
 }
 

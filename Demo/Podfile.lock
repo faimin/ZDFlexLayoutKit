@@ -1,5 +1,6 @@
 PODS:
   - libffi-core (1.2.0)
+  - LookinServer (1.0.0)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
   - ZDToolKit (0.0.4):
@@ -37,6 +38,7 @@ PODS:
   - ZDToolKit/ZDTools/ZDProxy (0.0.4)
 
 DEPENDENCIES:
+  - LookinServer
   - Yoga
   - YYModel
   - ZDToolKit (from `https://github.com/faimin/ZDToolKit`, branch `develop`)
@@ -44,6 +46,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - libffi-core
+    - LookinServer
     - Yoga
     - YYModel
 
@@ -54,15 +57,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ZDToolKit:
-    :commit: 2aeff358b85e70343afe14e2ba3c515195fd755b
+    :commit: a4510bbf5f0d83761d0ed33a6b4afd67f283111f
     :git: https://github.com/faimin/ZDToolKit
 
 SPEC CHECKSUMS:
   libffi-core: c4049ed88381fee5c0a31d26c860fc427d3c301c
+  LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   ZDToolKit: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
 
-PODFILE CHECKSUM: e39b710c5a031028a3677662ebba34ff6d10ea09
+PODFILE CHECKSUM: fc0d52f2a7a8fb014ab93aa01ec8130e365731f5
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

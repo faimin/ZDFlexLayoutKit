@@ -67,7 +67,7 @@ static void zd_executeAsyncTasks() {
 }
 
 static void zd_sourceContextCallBackLog(void *info) {
-  NSLog(@"will calculate flexBox layout");
+    NSLog(@"function name : (%s) ==> will calculate flex layout", __PRETTY_FUNCTION__);
 }
 
 #pragma mark -

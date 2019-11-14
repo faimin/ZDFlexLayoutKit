@@ -9,17 +9,24 @@ CACHE_KEYS:
     PROJECT_NAME: libffi-core
     SPECS:
       - libffi-core (1.2.0)
+  LookinServer:
+    BUILD_SETTINGS_CHECKSUM:
+      LookinServer: 73179ce01803f635f5d62db2f62fb73e
+    CHECKSUM: 0002891cd3cec5e082a910e897dfe71b4f06b89e
+    PROJECT_NAME: LookinServer
+    SPECS:
+      - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: bd08129a5af7820292f5036d7065628f
+      Debug: 08cdd1d2ea5e0aa7dc7f5b54aefb4d84
       Release: bd08129a5af7820292f5036d7065628f
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: bd08129a5af7820292f5036d7065628f
+      Debug: 08cdd1d2ea5e0aa7dc7f5b54aefb4d84
       Release: bd08129a5af7820292f5036d7065628f
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 89ed7d2aa2f67124d4fcf3e6727574a6
+      Debug: 8254245b8c171bc873eb0dc564ca8689
       Release: 89ed7d2aa2f67124d4fcf3e6727574a6
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
@@ -39,7 +46,7 @@ CACHE_KEYS:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit: f43181b4a5eabb9ca4e96a54e8fae4a7
     CHECKOUT_OPTIONS:
-      :commit: 2aeff358b85e70343afe14e2ba3c515195fd755b
+      :commit: a4510bbf5f0d83761d0ed33a6b4afd67f283111f
       :git: https://github.com/faimin/ZDToolKit
     CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
     PROJECT_NAME: ZDToolKit

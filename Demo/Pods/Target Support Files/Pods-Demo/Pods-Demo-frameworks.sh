@@ -161,6 +161,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${PODS_ROOT}/LookinServer/LookinServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
 fi

@@ -1,9 +1,10 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+//
+//  ZDFlexLayout.h
+//  Demo
+//
+//  Created by Zero.D.Saber on 2019/10/10.
+//  Copyright © 2019 Zero.D.Saber. All rights reserved.
+//
 
 #import "ZDFlexLayout+Private.h"
 #import <objc/runtime.h>
@@ -133,8 +134,6 @@ static YGConfigRef globalConfig;
 
 @property (nonatomic, weak, readonly) ZDFlexLayoutView view;
 @property (nonatomic, assign, readonly) BOOL isUIView;
-
-@property (nonatomic, readwrite, assign) BOOL asyncCalculate;
 
 @end
 
@@ -268,34 +267,48 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (YGDirection)resolvedDirection
 {
-  return YGNodeLayoutGetDirection(self.node);
+    return YGNodeLayoutGetDirection(self.node);
 }
+
+#pragma mark - Sync
 
 - (void)applyLayout
 {
-  [self applyLayoutPreservingOrigin:NO];
+    [self applyLayoutPreservingOrigin:NO];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
 {
-  [self applyLayoutPreservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
+    [self asyncApplyLayout:NO preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
 {
-  CGSize size = self.view.layoutFrame.size;
-  if (dimensionFlexibility & YGDimensionFlexibilityFlexibleWidth) {
-    size.width = YGUndefined;
-  }
-  if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
-    size.height = YGUndefined;
-  }
-  [self applyLayoutPreservingOrigin:preserveOrigin constraintSize:size];
+    [self asyncApplyLayout:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
+#pragma mark - Async
+
+- (void)asyncApplyLayoutPreservingOrigin:(BOOL)preserveOrigin
 {
-    if (self.asyncCalculate) {
+    [self asyncApplyLayout:YES preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
+}
+
+- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
+{
+    CGSize size = self.view.layoutFrame.size;
+    if (dimensionFlexibility & YGDimensionFlexibilityFlexibleWidth) {
+      size.width = YGUndefined;
+    }
+    if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
+      size.height = YGUndefined;
+    }
+    [self asyncApplyLayout:async preservingOrigin:preserveOrigin constraintSize:size];
+}
+
+- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
+{
+    if (async) {
         [ZDCalculateHelper asyncCalculateTask:^{
             [self calculateLayoutWithSize:size];
         } onComplete:^{
@@ -306,6 +319,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
         YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
     }
 }
+
+#pragma mark -
 
 - (CGSize)intrinsicSize
 {

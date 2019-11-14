@@ -70,7 +70,7 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
     return _templateCellCache;
 }
 
-- (NSMutableDictionary<NSIndexPath *, NSNumber *> *)cellHeightCache {
+- (NSMutableDictionary<NSString *, NSNumber *> *)cellHeightCache {
     if (!_cellHeightCache) {
         _cellHeightCache = @{}.mutableCopy;
     }

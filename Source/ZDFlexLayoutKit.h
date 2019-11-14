@@ -9,9 +9,9 @@
 #ifndef ZDFlexLayoutKit_h
 #define ZDFlexLayoutKit_h
 
-#import "ZDFlexLayout.h"
-#import "ZDFlexLayoutDiv.h"
+#import "ZDFlexLayoutViewProtocol.h"
 #import "UIView+ZDFlexLayout.h"
+#import "ZDFlexLayoutDiv.h"
 #import "ZDFlexLayoutChain.h"
 
 #endif /* ZDFlexLayoutKit_h */

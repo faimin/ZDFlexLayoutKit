@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZDFlexLayoutMaker.h"
 #import "ZDFlexLayoutDiv.h"
+#import "ZDFlexLayoutViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

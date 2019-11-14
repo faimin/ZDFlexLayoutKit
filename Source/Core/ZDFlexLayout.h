@@ -1,10 +1,11 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the LICENSE
- * file in the root directory of this source tree.
- */
-// Modify YGLayout
+//
+//  ZDFlexLayout.h
+//  Demo
+//
+//  Created by Zero.D.Saber on 2019/10/10.
+//  Copyright © 2019 Zero.D.Saber. All rights reserved.
+//
+//  Modify YGLayout
 
 #import <UIKit/UIKit.h>
 #import <yoga/YGEnums.h>
@@ -110,6 +111,29 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 @property (nonatomic, readonly, assign) YGDirection resolvedDirection;
 
 /**
+ Returns the size of the view if no constraints were given. This could equivalent to calling [self
+ sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+ */
+@property (nonatomic, readonly, assign) CGSize intrinsicSize;
+
+/**
+ Returns the number of children that are using Flexbox.
+ */
+@property (nonatomic, readonly, assign) NSUInteger numberOfChildren;
+
+/**
+ Return a BOOL indiciating whether or not we this node contains any subviews that are included in
+ Yoga's layout.
+ */
+@property (nonatomic, readonly, assign) BOOL isLeaf;
+
+/**
+ Return's a BOOL indicating if a view is dirty. When a node is dirty
+ it usually indicates that it will be remeasured on the next layout pass.
+ */
+@property (nonatomic, readonly, assign) BOOL isDirty;
+
+/**
  The property that decides if we should at other thread async calculate
  layout. Defaults to NO.
  */
@@ -128,33 +152,20 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
                dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
 
-/**
- Returns the size of the view if no constraints were given. This could equivalent to calling [self
- sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
- */
-@property (nonatomic, readonly, assign) CGSize intrinsicSize;
+- (void)asyncApplyLayoutPreservingOrigin:(BOOL)preserveOrigin;
+
+- (void)asyncApplyLayout:(BOOL)async
+        preservingOrigin:(BOOL)preserveOrigin
+    dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+
+- (void)asyncApplyLayout:(BOOL)async
+        preservingOrigin:(BOOL)preserveOrigin
+          constraintSize:(CGSize)size;
 
 /**
   Returns the size of the view based on provided constraints. Pass NaN for an unconstrained dimension.
  */
 - (CGSize)calculateLayoutWithSize:(CGSize)size;
-
-/**
- Returns the number of children that are using Flexbox.
- */
-@property (nonatomic, readonly, assign) NSUInteger numberOfChildren;
-
-/**
- Return a BOOL indiciating whether or not we this node contains any subviews that are included in
- Yoga's layout.
- */
-@property (nonatomic, readonly, assign) BOOL isLeaf;
-
-/**
- Return's a BOOL indicating if a view is dirty. When a node is dirty
- it usually indicates that it will be remeasured on the next layout pass.
- */
-@property (nonatomic, readonly, assign) BOOL isDirty;
 
 /**
  Mark that a view's layout needs to be recalculated. Only works for leaf views.
