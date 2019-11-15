@@ -134,12 +134,6 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
 @property (nonatomic, readonly, assign) BOOL isDirty;
 
 /**
- The property that decides if we should at other thread async calculate
- layout. Defaults to NO.
- */
-//@property (nonatomic, readwrite, assign) BOOL asyncCalculate;
-
-/**
  Perform a layout calculation and update the frames of the views in the hierarchy with the results.
  If the origin is not preserved, the root view's layout results will applied from {0,0}.
  */
