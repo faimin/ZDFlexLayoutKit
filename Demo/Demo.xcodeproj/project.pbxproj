@@ -264,11 +264,8 @@
 				FA84302C234F4231000F7E35 /* ViewController.m */,
 				FA1A54CD2355E36000C80712 /* Sample */,
 				FA1A54E02355ECFE00C80712 /* Resource */,
-				FA84302E234F4231000F7E35 /* Main.storyboard */,
-				FA843031234F4234000F7E35 /* Assets.xcassets */,
-				FA843033234F4234000F7E35 /* LaunchScreen.storyboard */,
+				FAD3AA0F237E810600EDEA13 /* Others */,
 				FA843036234F4234000F7E35 /* Info.plist */,
-				FA843037234F4234000F7E35 /* main.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -311,6 +308,17 @@
 				FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */,
 			);
 			path = LayoutDemo;
+			sourceTree = "<group>";
+		};
+		FAD3AA0F237E810600EDEA13 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				FA84302E234F4231000F7E35 /* Main.storyboard */,
+				FA843031234F4234000F7E35 /* Assets.xcassets */,
+				FA843033234F4234000F7E35 /* LaunchScreen.storyboard */,
+				FA843037234F4234000F7E35 /* main.m */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		FAEA4A10235F0FA100422C35 /* SameCityUserList */ = {
