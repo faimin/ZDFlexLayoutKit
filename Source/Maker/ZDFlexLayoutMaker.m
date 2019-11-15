@@ -24,6 +24,7 @@
 
 - (instancetype)initWithFlexLayout:(ZDFlexLayout *)flexLayout {
     if (self = [super init]) {
+        flexLayout.isEnabled = YES;
         _flexLayout = flexLayout;
     }
     return self;

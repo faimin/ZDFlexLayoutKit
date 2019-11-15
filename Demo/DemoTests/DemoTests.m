@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ZDFlexLayoutKit.h"
 
 @interface DemoTests : XCTestCase
 
@@ -32,6 +33,30 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+- (void)testLayoutWithDisableYoga {
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 75)];
+
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    [view zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.isEnabled(YES);
+        make.flexBasis(YGValueZero).flexGrow(1);
+    }];
+    [container addChild:view];
+
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(10, 20, 30, 40)];
+    [container addChild:view2];
+
+    [container calculateLayoutPreservingOrigin:YES];
+
+    XCTAssertEqual(50, view.frame.size.width);
+    XCTAssertEqual(75, view.frame.size.height);
+
+    XCTAssertEqual(10, view2.frame.origin.x);
+    XCTAssertEqual(20, view2.frame.origin.y);
+    XCTAssertEqual(30, view2.frame.size.width);
+    XCTAssertEqual(40, view2.frame.size.height);
 }
 
 @end

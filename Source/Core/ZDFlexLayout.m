@@ -308,6 +308,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
 {
+    self.isEnabled = YES;
     if (async) {
         [ZDCalculateHelper asyncCalculateTask:^{
             [self calculateLayoutWithSize:size];
@@ -479,7 +480,7 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
 
   const ZDFlexLayout *yoga = view.flexLayout;
 
-  if (!yoga.isIncludedInLayout) {
+  if (!yoga.isEnabled || !yoga.isIncludedInLayout) {
      return;
   }
 
