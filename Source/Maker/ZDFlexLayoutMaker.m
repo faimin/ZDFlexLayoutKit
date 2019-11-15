@@ -16,6 +16,10 @@
     };                                                      \
 }
 
+@interface ZDFlexLayout ()
+@property (nonatomic, weak, readonly) ZDFlexLayoutView view;
+@end
+
 @interface ZDFlexLayoutMaker ()
 @property (nonatomic, weak) ZDFlexLayout *flexLayout;
 @end
@@ -30,8 +34,8 @@
     return self;
 }
 
-ZD_CHAIN_NORMAL_PROPERTY_IMP(BOOL, isIncludedInLayout)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(BOOL, isEnabled)
+ZD_CHAIN_NORMAL_PROPERTY_IMP(BOOL, isIncludedInLayout)
 
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGDirection, direction)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGFlexDirection, flexDirection)
@@ -96,6 +100,15 @@ ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, aspectRatio)
 - (ZDFlexLayoutMaker *(^)(void))markDirty {
     return ^ZDFlexLayoutMaker *(void) {
         [self.flexLayout markDirty];
+        return self;
+    };
+}
+
+- (ZDFlexLayoutMaker *(^)(NSArray<ZDFlexLayoutView> *))addChildren {
+    return ^ZDFlexLayoutMaker *(NSArray<ZDFlexLayoutView> *children) {
+        if (children.count > 0) {
+            [self.flexLayout.view addChildren:children];
+        }
         return self;
     };
 }

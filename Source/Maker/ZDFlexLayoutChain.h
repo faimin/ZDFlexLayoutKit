@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 
 @protocol ZDFlexLayoutChainProtocol <NSObject>
+/// `flexlayout.isEnabled` will change to `true`
 - (instancetype)zd_makeFlexLayout:(void(NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block;
 @end
 

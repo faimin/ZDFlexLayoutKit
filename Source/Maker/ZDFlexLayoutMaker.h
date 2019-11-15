@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZDFlexLayout.h"
+#import "ZDFlexLayoutViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFlexLayout:(ZDFlexLayout *)flexLayout;
 
-ZD_CHAIN_NORMAL_PROPERTY(BOOL, isIncludedInLayout)
-
 ZD_CHAIN_NORMAL_PROPERTY(BOOL, isEnabled)
+
+ZD_CHAIN_NORMAL_PROPERTY(BOOL, isIncludedInLayout)
 
 ZD_CHAIN_NORMAL_PROPERTY(YGDirection, direction)
 ZD_CHAIN_NORMAL_PROPERTY(YGFlexDirection, flexDirection)
@@ -83,6 +84,8 @@ ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxHeight)
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, aspectRatio)
 
 - (ZDFlexLayoutMaker *(^)(void))markDirty;
+
+- (ZDFlexLayoutMaker *(^)(NSArray<ZDFlexLayoutView> *))addChildren;
 
 #pragma mark - Unavailable
 
