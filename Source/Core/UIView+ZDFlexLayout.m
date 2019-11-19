@@ -11,6 +11,10 @@
 #import "ZDFlexLayout+Private.h"
 #import "ZDFlexLayoutDiv.h"
 
+// add this, so we don't have to use `-all_load` or `-force_load` to load object files from static libraries that only contain categories and no classes.
+@interface UIView_ZDFlexLayout : NSObject @end
+@implementation UIView_ZDFlexLayout @end
+
 @implementation UIView (ZDFlexLayout)
 
 - (void)markDirty {
