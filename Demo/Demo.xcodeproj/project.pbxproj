@@ -30,6 +30,7 @@
 		FA843060234F48E5000F7E35 /* ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84305E234F48E5000F7E35 /* ZDFlexLayout.m */; };
 		FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */; };
 		FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */; };
+		FAAD2B1C23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAD2B1B23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.m */; };
 		FAB93E3A235D529D0080E8FD /* ZDCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB93E39235D529D0080E8FD /* ZDCalculateHelper.m */; };
 		FAD09082234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD09081234F4C5A0096EAC2 /* UIView+ZDFlexLayout.m */; };
 		FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEA4A0E235F0F6000422C35 /* same_city_users.json */; };
@@ -108,6 +109,8 @@
 		FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalLayoutController.m; sourceTree = "<group>"; };
 		FA90B084237D4D3E00DBDB77 /* ScrollViewLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewLayoutController.h; sourceTree = "<group>"; };
 		FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewLayoutController.m; sourceTree = "<group>"; };
+		FAAD2B1A23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDFlexLayoutFrameCache.h"; sourceTree = "<group>"; };
+		FAAD2B1B23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDFlexLayoutFrameCache.m"; sourceTree = "<group>"; };
 		FAB93E342359F0420080E8FD /* ZDFlexLayoutKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutKit.h; sourceTree = "<group>"; };
 		FAB93E38235D529D0080E8FD /* ZDCalculateHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDCalculateHelper.h; sourceTree = "<group>"; };
 		FAB93E39235D529D0080E8FD /* ZDCalculateHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
@@ -184,8 +187,6 @@
 		FA1A54CD2355E36000C80712 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */,
-				FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */,
 				FAEA4A1D235F363B00422C35 /* FlexList */,
 				FAEA4A10235F0FA100422C35 /* SameCityUserList */,
 				FA90B080237D4CED00DBDB77 /* LayoutDemo */,
@@ -294,6 +295,7 @@
 				FAB93E342359F0420080E8FD /* ZDFlexLayoutKit.h */,
 				FA4F85AE236431BD00893455 /* Core */,
 				FA4F85AD236431B300893455 /* Maker */,
+				FAAD2B1923838DE7004347F2 /* Helper */,
 			);
 			name = Source;
 			path = ../Source;
@@ -308,6 +310,17 @@
 				FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */,
 			);
 			path = LayoutDemo;
+			sourceTree = "<group>";
+		};
+		FAAD2B1923838DE7004347F2 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FA1A54E72355EDC700C80712 /* ZDTemplateCellHandler.h */,
+				FA1A54E62355EDC700C80712 /* ZDTemplateCellHandler.m */,
+				FAAD2B1A23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.h */,
+				FAAD2B1B23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.m */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		FAD3AA0F237E810600EDEA13 /* Others */ = {
@@ -596,6 +609,7 @@
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
 				FAEF095223502497004094B1 /* ZDFlexLayoutDiv.m in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
+				FAAD2B1C23838E56004347F2 /* NSObject+ZDFlexLayoutFrameCache.m in Sources */,
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
 				FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */,

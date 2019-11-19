@@ -12,7 +12,7 @@
 static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
     NSUInteger section = indexPath.section;
     NSUInteger row = indexPath.item;
-    NSString *ret = [NSString stringWithFormat:@"%zd+%zd", section, row];
+    NSString *ret = [NSString stringWithFormat:@"%zd_%zd", section, row];
     return ret;
 }
 
