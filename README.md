@@ -1,6 +1,8 @@
 # ZDFlexLayout
 
-增加`FlexLayout`对虚拟视图的支持
+#### 简介：
+
+扩展`YGLayout`，增加对虚拟视图，异步计算、`UIScrollView`自适应的支持，修复了计算`UILabel`尺寸精度缺失导致文字截断问题。
 
 #### 特色：
 
@@ -10,12 +12,16 @@
 
 + 支持异步计算布局
 
++ 支持`UIScrollView`
+
++ UITableViewCell高度缓存（beta）
+
 #### 资料：
 
-[Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
++ [Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
 
-#### 参考：
++ [LayoutPlayground](https://yogalayout.com/playground)
 
-[https://github.com/ONECATYU/FlexKit](https://github.com/ONECATYU/FlexKit)
++ [Flex布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
-[https://github.com/carlSQ/FlexBoxLayout](https://github.com/carlSQ/FlexBoxLayout)
+
