@@ -1,11 +1,10 @@
-//
-//  ZDFlexLayout.h
-//  Demo
-//
-//  Created by Zero.D.Saber on 2019/10/10.
-//  Copyright © 2019 Zero.D.Saber. All rights reserved.
-//
-//  Modify YGLayout
+/*
+* Copyright (c) Facebook, Inc. and its affiliates.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+// PS: Modify YGLayout
 
 #import <UIKit/UIKit.h>
 #import <yoga/YGEnums.h>
@@ -25,8 +24,8 @@ YG_EXTERN_C_END
 #import <UIView+Yoga.h>
 #else
 typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
-  YGDimensionFlexibilityFlexibleWidth = 1 << 0,
-  YGDimensionFlexibilityFlexibleHeight = 1 << 1,
+    YGDimensionFlexibilityFlexibleWidth = 1 << 0,
+    YGDimensionFlexibilityFlexibleHeight = 1 << 1,
 };
 #endif
 
