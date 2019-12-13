@@ -164,10 +164,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/LookinServer/LookinServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZDFlexLayout/ZDFlexLayout.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZDFlexLayout/ZDFlexLayout.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

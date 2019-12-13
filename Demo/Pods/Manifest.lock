@@ -3,6 +3,16 @@ PODS:
   - LookinServer (1.0.0)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
+  - ZDFlexLayout (0.0.1):
+    - ZDFlexLayout/Core (= 0.0.1)
+    - ZDFlexLayout/Helper (= 0.0.1)
+    - ZDFlexLayout/Maker (= 0.0.1)
+  - ZDFlexLayout/Core (0.0.1):
+    - Yoga
+  - ZDFlexLayout/Helper (0.0.1):
+    - ZDFlexLayout/Core
+  - ZDFlexLayout/Maker (0.0.1):
+    - ZDFlexLayout/Core
   - ZDToolKit (0.0.4):
     - ZDToolKit/ZDAutoLayout (= 0.0.4)
     - ZDToolKit/ZDCategory (= 0.0.4)
@@ -41,6 +51,7 @@ DEPENDENCIES:
   - LookinServer
   - Yoga
   - YYModel
+  - ZDFlexLayout (from `../ZDFlexLayout.podspec`)
   - ZDToolKit (from `https://github.com/faimin/ZDToolKit`, branch `develop`)
 
 SPEC REPOS:
@@ -51,13 +62,15 @@ SPEC REPOS:
     - YYModel
 
 EXTERNAL SOURCES:
+  ZDFlexLayout:
+    :path: "../ZDFlexLayout.podspec"
   ZDToolKit:
     :branch: develop
     :git: https://github.com/faimin/ZDToolKit
 
 CHECKOUT OPTIONS:
   ZDToolKit:
-    :commit: a4510bbf5f0d83761d0ed33a6b4afd67f283111f
+    :commit: 52aaa819d4d2d2465ec911b17093eee4ad125498
     :git: https://github.com/faimin/ZDToolKit
 
 SPEC CHECKSUMS:
@@ -65,8 +78,9 @@ SPEC CHECKSUMS:
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  ZDFlexLayout: 9085ddd85832a2114c27a1c33e646850684542b9
   ZDToolKit: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
 
-PODFILE CHECKSUM: fc0d52f2a7a8fb014ab93aa01ec8130e365731f5
+PODFILE CHECKSUM: 77f6ec248e3816e86860de22b61c8a1e3e543678
 
 COCOAPODS: 1.8.4

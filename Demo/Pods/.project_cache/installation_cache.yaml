@@ -18,16 +18,16 @@ CACHE_KEYS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 08cdd1d2ea5e0aa7dc7f5b54aefb4d84
-      Release: bd08129a5af7820292f5036d7065628f
+      Debug: 5beb4e753879c43c7b9fcd8475ce808b
+      Release: a2921361bb2761fb6373ca8506513a41
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 08cdd1d2ea5e0aa7dc7f5b54aefb4d84
-      Release: bd08129a5af7820292f5036d7065628f
+      Debug: 5beb4e753879c43c7b9fcd8475ce808b
+      Release: a2921361bb2761fb6373ca8506513a41
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 8254245b8c171bc873eb0dc564ca8689
-      Release: 89ed7d2aa2f67124d4fcf3e6727574a6
+      Debug: 42e66277a74f8c681027aa2756c71079
+      Release: 76cb44a7ca3a7d18aef360dcf282455d
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga: 8e6f91e66940c2d4c98f65701bedd999
@@ -42,11 +42,42 @@ CACHE_KEYS:
     PROJECT_NAME: YYModel
     SPECS:
       - YYModel (1.0.4)
+  ZDFlexLayout:
+    BUILD_SETTINGS_CHECKSUM:
+      ZDFlexLayout: 5ab2fe56f47a54f92d0700d8ab4fb2a8
+    CHECKSUM: 9085ddd85832a2114c27a1c33e646850684542b9
+    FILES:
+      - "../../LICENSE"
+      - "../../README.md"
+      - "../../Source/Core/UIView+ZDFlexLayout.h"
+      - "../../Source/Core/UIView+ZDFlexLayout.m"
+      - "../../Source/Core/ZDCalculateHelper.h"
+      - "../../Source/Core/ZDCalculateHelper.m"
+      - "../../Source/Core/ZDFlexLayout+Private.h"
+      - "../../Source/Core/ZDFlexLayout.h"
+      - "../../Source/Core/ZDFlexLayout.m"
+      - "../../Source/Core/ZDFlexLayoutDiv.h"
+      - "../../Source/Core/ZDFlexLayoutDiv.m"
+      - "../../Source/Core/ZDFlexLayoutViewProtocol.h"
+      - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.h"
+      - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.m"
+      - "../../Source/Helper/ZDTemplateCellHandler.h"
+      - "../../Source/Helper/ZDTemplateCellHandler.m"
+      - "../../Source/Maker/ZDFlexLayoutChain.h"
+      - "../../Source/Maker/ZDFlexLayoutChain.m"
+      - "../../Source/Maker/ZDFlexLayoutMaker.h"
+      - "../../Source/Maker/ZDFlexLayoutMaker.m"
+    PROJECT_NAME: ZDFlexLayout
+    SPECS:
+      - ZDFlexLayout (0.0.1)
+      - ZDFlexLayout/Core (0.0.1)
+      - ZDFlexLayout/Helper (0.0.1)
+      - ZDFlexLayout/Maker (0.0.1)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit: f43181b4a5eabb9ca4e96a54e8fae4a7
     CHECKOUT_OPTIONS:
-      :commit: a4510bbf5f0d83761d0ed33a6b4afd67f283111f
+      :commit: 52aaa819d4d2d2465ec911b17093eee4ad125498
       :git: https://github.com/faimin/ZDToolKit
     CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
     PROJECT_NAME: ZDToolKit

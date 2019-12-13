@@ -35,6 +35,7 @@ target 'Demo' do
   pod 'YYModel'
   pod 'ZDToolKit', :git => 'https://github.com/faimin/ZDToolKit', :branch => 'develop'
   pod 'LookinServer', :configurations => ['Debug']
+  pod 'ZDFlexLayout', :path => '../ZDFlexLayout.podspec'
 
   target 'DemoTests' do
     inherit! :search_paths

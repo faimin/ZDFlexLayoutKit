@@ -495,13 +495,12 @@ static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
     NSUInteger argCount = signature.numberOfArguments; // 第一个参数是block自己，第二个参数才是我们看到的参数
     //ffi_type **args = alloca(sizeof(ffi_type *) * argCount); // 栈上开辟内存
     ffi_type **args = calloc(argCount, sizeof(ffi_type *)); // 堆上开辟内存
-    int tempInt = 0;
-    for (int i = tempInt; i < argCount; ++i) {
+    for (int i = 0; i < argCount; ++i) {
         const char *realArgType = [signature getArgumentTypeAtIndex:i];
         const char *reducedArgType = ZD_ReduceBlockSignatureCodingType(realArgType).UTF8String;
         ffi_type *arg_ffi_type = ZD_ffiTypeWithTypeEncoding(reducedArgType);
         NSCAssert(arg_ffi_type, @"can't find a ffi_type ==> %s", realArgType);
-        args[i-tempInt] = arg_ffi_type;
+        args[i] = arg_ffi_type;
     }
     self->_blockArgs = args;
     
