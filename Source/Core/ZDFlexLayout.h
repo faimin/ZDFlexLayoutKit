@@ -18,6 +18,11 @@ YG_EXTERN_C_BEGIN
 extern YGValue YGPointValue(CGFloat value);
 extern YGValue YGPercentValue(CGFloat value);
 
+extern CGFloat ZDScreenScale(void);
+extern CGFloat ZDRoundPixelValue(CGFloat value);
+extern CGFloat ZDCeilPixelValue(CGFloat value);
+extern CGFloat ZDFloorPixelValue(CGFloat f);
+
 YG_EXTERN_C_END
 
 #if INCLUDE_UIVIEW_YOGA

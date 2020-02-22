@@ -337,7 +337,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     //NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
     NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 
-    YG_Dispatch_sync_on_main_queue(^{
+    ZD_Dispatch_sync_on_main_queue(^{
         YGAttachNodesFromViewHierachy(self.view);
     });
 
@@ -374,7 +374,7 @@ static YGSize YGMeasureView(
     // UIKit returns the existing size.
     //
     // See https://github.com/facebook/yoga/issues/606 for more information.
-    YG_Dispatch_sync_on_main_queue(^{
+    ZD_Dispatch_sync_on_main_queue(^{
         ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
         if (!view.flexLayout.isUIView || [view.children count] > 0) {
             sizeThatFits = [view sizeThatFits:(CGSize) {
@@ -463,17 +463,6 @@ static void YGRemoveAllChildren(const YGNodeRef node)
     YGNodeRemoveAllChildren(node);
 }
 
-static CGFloat YGRoundPixelValue(CGFloat value)
-{
-    static CGFloat scale;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^() {
-        scale = [UIScreen mainScreen].scale;
-    });
-
-    return roundf(value * scale) / scale;
-}
-
 static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin)
 {
     NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
@@ -498,12 +487,12 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     const CGPoint origin = preserveOrigin ? view.layoutFrame.origin : CGPointZero;
     view.layoutFrame = (CGRect) {
         .origin = {
-            .x = YGRoundPixelValue(topLeft.x + origin.x),
-            .y = YGRoundPixelValue(topLeft.y + origin.y),
+            .x = ZDRoundPixelValue(topLeft.x + origin.x),
+            .y = ZDRoundPixelValue(topLeft.y + origin.y),
         },
         .size = {
-            .width  = YGRoundPixelValue(bottomRight.x) - YGRoundPixelValue(topLeft.x),
-            .height = YGRoundPixelValue(bottomRight.y) - YGRoundPixelValue(topLeft.y),
+            .width  = ZDRoundPixelValue(bottomRight.x) - ZDRoundPixelValue(topLeft.x),
+            .height = ZDRoundPixelValue(bottomRight.y) - ZDRoundPixelValue(topLeft.y),
         },
     };
 
@@ -518,7 +507,7 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     }
 }
 
-static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block)
+static void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block)
 {
     if (NSThread.isMainThread) {
         block();
@@ -528,3 +517,36 @@ static void YG_Dispatch_sync_on_main_queue(dispatch_block_t block)
 }
 
 @end
+
+//-------------------------- Function ------------------------
+#pragma mark -
+
+CGFloat ZDScreenScale(void)
+{
+    static CGFloat scale = 0.0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), YES, 0);
+        scale = CGContextGetCTM(UIGraphicsGetCurrentContext()).a;
+        UIGraphicsEndImageContext();
+    });
+    return scale;
+}
+
+CGFloat ZDRoundPixelValue(CGFloat value)
+{
+    CGFloat scale = ZDScreenScale();
+    return roundf(value * scale) / scale;
+}
+
+CGFloat ZDCeilPixelValue(CGFloat value)
+{
+    CGFloat scale = ZDScreenScale();
+    return ceil((value - FLT_EPSILON) * scale) / scale;
+}
+
+CGFloat ZDFloorPixelValue(CGFloat f)
+{
+    CGFloat scale = ZDScreenScale();
+    return floor((f + FLT_EPSILON) * scale) / scale;
+}
