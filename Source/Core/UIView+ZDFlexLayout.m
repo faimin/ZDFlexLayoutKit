@@ -229,6 +229,7 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!objc_getAssociatedObject(self, @selector(zd_needRelayout)) || self.zd_needRelayout) {
             self.zd_needRelayout = NO;
+            [self.owningView setNeedsLayout];
             [self.owningView layoutIfNeeded];
             [self.owningView.flexLayout applyLayoutPreservingOrigin:YES];
         }
