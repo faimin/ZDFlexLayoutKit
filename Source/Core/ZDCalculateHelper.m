@@ -13,6 +13,10 @@ static NSMutableArray<dispatch_block_t> *_asyncTaskQueue = nil;
 static CFRunLoopSourceRef _runloopSource = NULL;
 
 static void zd_lock(dispatch_block_t callback) {
+    if (!callback) {
+        return;
+    }
+    
     if (@available(iOS 10.0, *)) {
         static os_unfair_lock lock = OS_UNFAIR_LOCK_INIT;
         os_unfair_lock_lock(&lock);
@@ -48,6 +52,11 @@ static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, disp
     
     dispatch_async(zd_calculate_queue(), ^{
         task();
+        
+        if (complete == nil) {
+            return;
+        }
+        
         zd_lock(^{
             [_asyncTaskQueue addObject:complete];
             CFRunLoopSourceSignal(_runloopSource);
@@ -94,6 +103,9 @@ static void zd_sourceContextCallBackLog(void *info) {
 
 + (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t)onComplete {
     NSCAssert(calculateTask, @"params can't be nil");
+    if (!calculateTask) {
+        return;
+    }
     zd_addAsyncTaskBlockWithCompleteCallback(calculateTask, onComplete);
 }
 

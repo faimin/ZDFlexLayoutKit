@@ -40,7 +40,7 @@
 
 - (void)removeChild:(ZDFlexLayoutView)child {
     if (![child conformsToProtocol:@protocol(ZDFlexLayoutViewProtocol)]) {
-        NSCAssert1(NO, @"不支持移除此类型：%@", child);
+        NSCAssert1(NO, @"don't support the type：%@", child);
         return;
     }
     
