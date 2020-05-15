@@ -32,7 +32,7 @@
 - (void)normalLayout {
     self.view.backgroundColor = UIColor.magentaColor;
     
-    self.button.flexLayout.isIncludedInLayout = NO;
+//    self.button.flexLayout.isIncludedInLayout = NO;
     
     [self.view zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
