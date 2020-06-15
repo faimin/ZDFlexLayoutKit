@@ -13,12 +13,12 @@ Pod::Spec.new do |spec|
   spec.description  = <<-DESC
     flex layout in Objective-C base on yoga
                    DESC
-  spec.homepage     = "https://github.com/faimin/ZDFlexLayout"
+  spec.homepage     = "https://github.com/faimin/ZDFlexLayoutKit"
   spec.license      = "MIT"
   spec.author       = { "faimin" => "fuxianchao@gmail.com" }
   spec.requires_arc = true
   spec.platform     = :ios, "8.0"
-  spec.source       = { :git => "https://github.com/faimin/ZDFlexLayout.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/faimin/ZDFlexLayoutKit.git", :tag => "#{spec.version}" }
   spec.source_files  = "Source/**/*.{h,m}"
   spec.public_header_files = "Source/ZDFlexLayoutKit.h"
 
