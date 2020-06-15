@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -19,22 +19,33 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXFileReference section */
-		23D768B6C78FD1BDC809C57222937557 /* libffi.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libffi.a; path = "libffi-core/libffi.a"; sourceTree = "<group>"; };
-		393B56A53A93FD0C8B498D543DF0B274 /* libffi-core.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libffi-core.xcconfig"; sourceTree = "<group>"; };
-		61FC6E0B62A3C554CD06D19D2C0E741B /* ffitarget_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_arm.h; path = "libffi-core/ffitarget_arm.h"; sourceTree = "<group>"; };
-		795A6716CF5B23741B8DD2E286336F9C /* ffitarget_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_x86_64.h; path = "libffi-core/ffitarget_x86_64.h"; sourceTree = "<group>"; };
-		7F7519724E9702E2CA7375E241D7BFC9 /* ffi_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_arm64.h; path = "libffi-core/ffi_arm64.h"; sourceTree = "<group>"; };
-		7FF5AED357A3BC586B0A9856B357F4CA /* ffitarget_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_i386.h; path = "libffi-core/ffitarget_i386.h"; sourceTree = "<group>"; };
-		855BBB184745B4FB75AB6AB1CB0A3896 /* ffi_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_arm.h; path = "libffi-core/ffi_arm.h"; sourceTree = "<group>"; };
-		91496E97282435CA3862DF80C299F89B /* ffitarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget.h; path = "libffi-core/ffitarget.h"; sourceTree = "<group>"; };
-		944C13403F7C94168F1935FFC3ECBEAF /* ffi_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_i386.h; path = "libffi-core/ffi_i386.h"; sourceTree = "<group>"; };
-		A63D5B7D22A834243EB2D15441F4B0BC /* ffi_common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_common.h; path = "libffi-core/ffi_common.h"; sourceTree = "<group>"; };
-		E895512E31CAE500211BA8F904BD3F42 /* ffi_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_x86_64.h; path = "libffi-core/ffi_x86_64.h"; sourceTree = "<group>"; };
-		F02D6E0A2A849043C9AE8C3717C1450F /* ffi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi.h; path = "libffi-core/ffi.h"; sourceTree = "<group>"; };
-		F60A602D5E08A2E42E02A3CCB737AF40 /* ffitarget_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_arm64.h; path = "libffi-core/ffitarget_arm64.h"; sourceTree = "<group>"; };
+		025B13598F67BFD406A56B051793CCA3 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_x86_64.h; path = "libffi-core/ffitarget_x86_64.h"; sourceTree = "<group>"; };
+		039A147CAD631333FD0E0E209422C5F9 /* ffitarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget.h; path = "libffi-core/ffitarget.h"; sourceTree = "<group>"; };
+		1FBC92137290E7BF44A0D4D3D6756036 /* libffi-core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libffi-core.release.xcconfig"; sourceTree = "<group>"; };
+		45FD9D44E37A8D746751E01F8BF39D3C /* libffi.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libffi.a; path = "libffi-core/libffi.a"; sourceTree = "<group>"; };
+		535A44C5FAB45106D1E386671647C914 /* ffi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi.h; path = "libffi-core/ffi.h"; sourceTree = "<group>"; };
+		5915B5ECA3C810598AF2588939F5499B /* libffi-core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libffi-core.debug.xcconfig"; sourceTree = "<group>"; };
+		6D94405BC12C7FF93E3A861DAA26F94A /* ffi_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_arm64.h; path = "libffi-core/ffi_arm64.h"; sourceTree = "<group>"; };
+		7E6674C0A4DA69A9895E47EC6A4E79E1 /* ffi_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_i386.h; path = "libffi-core/ffi_i386.h"; sourceTree = "<group>"; };
+		8047F7E1E458AAD865A713E389D842AE /* ffi_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_arm.h; path = "libffi-core/ffi_arm.h"; sourceTree = "<group>"; };
+		81F060B72BE362DA79C6C346F6095A39 /* ffitarget_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_arm.h; path = "libffi-core/ffitarget_arm.h"; sourceTree = "<group>"; };
+		8A2CAA83780BF5F226274F86EDB6AB02 /* ffitarget_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_i386.h; path = "libffi-core/ffitarget_i386.h"; sourceTree = "<group>"; };
+		B061848D086B6E7B0181BC7B37A216CB /* ffi_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_x86_64.h; path = "libffi-core/ffi_x86_64.h"; sourceTree = "<group>"; };
+		ECDE5CDDF3398266A4FC29193F53A10B /* ffi_common.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_common.h; path = "libffi-core/ffi_common.h"; sourceTree = "<group>"; };
+		F84C70BB8606932B2647FC254E2F231C /* ffitarget_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffitarget_arm64.h; path = "libffi-core/ffitarget_arm64.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		011D89D27F2511E644AD5FFD225AEEC8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5915B5ECA3C810598AF2588939F5499B /* libffi-core.debug.xcconfig */,
+				1FBC92137290E7BF44A0D4D3D6756036 /* libffi-core.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/libffi-core";
+			sourceTree = "<group>";
+		};
 		0CE78A9F8D12CEFD5C5C9CB26D60165B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -42,30 +53,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		35EECAF9553FF07DFEEA2A249F0AF90E /* Frameworks */ = {
+		96445A357111A3521D6103F66FBA3205 /* libffi-core */ = {
 			isa = PBXGroup;
 			children = (
-				23D768B6C78FD1BDC809C57222937557 /* libffi.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8080DECB5FC096E980D226CD463D082D /* libffi-core */ = {
-			isa = PBXGroup;
-			children = (
-				F02D6E0A2A849043C9AE8C3717C1450F /* ffi.h */,
-				855BBB184745B4FB75AB6AB1CB0A3896 /* ffi_arm.h */,
-				7F7519724E9702E2CA7375E241D7BFC9 /* ffi_arm64.h */,
-				A63D5B7D22A834243EB2D15441F4B0BC /* ffi_common.h */,
-				944C13403F7C94168F1935FFC3ECBEAF /* ffi_i386.h */,
-				E895512E31CAE500211BA8F904BD3F42 /* ffi_x86_64.h */,
-				91496E97282435CA3862DF80C299F89B /* ffitarget.h */,
-				61FC6E0B62A3C554CD06D19D2C0E741B /* ffitarget_arm.h */,
-				F60A602D5E08A2E42E02A3CCB737AF40 /* ffitarget_arm64.h */,
-				7FF5AED357A3BC586B0A9856B357F4CA /* ffitarget_i386.h */,
-				795A6716CF5B23741B8DD2E286336F9C /* ffitarget_x86_64.h */,
-				35EECAF9553FF07DFEEA2A249F0AF90E /* Frameworks */,
-				EF79EA4E3E46F1E1212DD59CCE5404AF /* Support Files */,
+				535A44C5FAB45106D1E386671647C914 /* ffi.h */,
+				8047F7E1E458AAD865A713E389D842AE /* ffi_arm.h */,
+				6D94405BC12C7FF93E3A861DAA26F94A /* ffi_arm64.h */,
+				ECDE5CDDF3398266A4FC29193F53A10B /* ffi_common.h */,
+				7E6674C0A4DA69A9895E47EC6A4E79E1 /* ffi_i386.h */,
+				B061848D086B6E7B0181BC7B37A216CB /* ffi_x86_64.h */,
+				039A147CAD631333FD0E0E209422C5F9 /* ffitarget.h */,
+				81F060B72BE362DA79C6C346F6095A39 /* ffitarget_arm.h */,
+				F84C70BB8606932B2647FC254E2F231C /* ffitarget_arm64.h */,
+				8A2CAA83780BF5F226274F86EDB6AB02 /* ffitarget_i386.h */,
+				025B13598F67BFD406A56B051793CCA3 /* ffitarget_x86_64.h */,
+				CC65181DA9412AD8CA2DC0DE2999B8A9 /* Frameworks */,
+				011D89D27F2511E644AD5FFD225AEEC8 /* Support Files */,
 			);
 			name = "libffi-core";
 			path = "libffi-core";
@@ -75,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				AE679DB9365D7D9D0555437F528CCCEE /* Frameworks */,
-				8080DECB5FC096E980D226CD463D082D /* libffi-core */,
+				96445A357111A3521D6103F66FBA3205 /* libffi-core */,
 				0CE78A9F8D12CEFD5C5C9CB26D60165B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,13 +90,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EF79EA4E3E46F1E1212DD59CCE5404AF /* Support Files */ = {
+		CC65181DA9412AD8CA2DC0DE2999B8A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				393B56A53A93FD0C8B498D543DF0B274 /* libffi-core.xcconfig */,
+				45FD9D44E37A8D746751E01F8BF39D3C /* libffi.a */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/libffi-core";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,11 +108,12 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = D68E069E1B55263EA5C2231A60BD9E60 /* Build configuration list for PBXProject "libffi-core" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 9F5FD0857E342E2C01956E9DBD1D0109;
 			productRefGroup = 0CE78A9F8D12CEFD5C5C9CB26D60165B /* Products */;
@@ -123,9 +126,9 @@
 /* End PBXProject section */
 
 /* Begin XCBuildConfiguration section */
-		125E6A1AC4C4C6CC83B308210C085A2B /* Release */ = {
+		3572853BF62A16863ED5CDD7CA02048A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 393B56A53A93FD0C8B498D543DF0B274 /* libffi-core.xcconfig */;
+			baseConfigurationReference = 1FBC92137290E7BF44A0D4D3D6756036 /* libffi-core.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -139,22 +142,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		3FEF30F5F4FB607C9B8BDA903D364517 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 393B56A53A93FD0C8B498D543DF0B274 /* libffi-core.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
 		};
 		79807B502C4903402073B51F5BDCC5DE /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -280,14 +267,30 @@
 			};
 			name = Release;
 		};
+		D0E8DA4D2734551407C38C073BA05CD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5915B5ECA3C810598AF2588939F5499B /* libffi-core.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		4D9B52948523FA5DBDA63514848D5F77 /* Build configuration list for PBXAggregateTarget "libffi-core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3FEF30F5F4FB607C9B8BDA903D364517 /* Debug */,
-				125E6A1AC4C4C6CC83B308210C085A2B /* Release */,
+				D0E8DA4D2734551407C38C073BA05CD8 /* Debug */,
+				3572853BF62A16863ED5CDD7CA02048A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

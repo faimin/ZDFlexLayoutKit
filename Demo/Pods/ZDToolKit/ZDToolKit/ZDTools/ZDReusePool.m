@@ -14,7 +14,7 @@
     pthread_mutex_t _lock;
 }
 @property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredClasses;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSSet *> *reusePool;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableSet *> *reusePool;
 @end
 
 @implementation ZDReusePool
@@ -52,10 +52,8 @@
     if (!identifier) return nil;
     
     pthread_mutex_lock(&_lock);
-    if (![self.reusePool.allKeys containsObject:identifier]) return nil;
-    
     id value = nil;
-    NSMutableSet *valueSet = (id)self.reusePool[identifier];
+    NSMutableSet *valueSet = self.reusePool[identifier];
     value = [valueSet anyObject];
     if (value) {
         [valueSet removeObject:value];

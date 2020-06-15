@@ -16,6 +16,7 @@
     "git": "https://github.com/faimin/ZDFlexLayout.git",
     "tag": "0.0.1"
   },
+  "source_files": "Source/**/*.{h,m}",
   "public_header_files": "Source/ZDFlexLayoutKit.h",
   "subspecs": [
     {

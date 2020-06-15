@@ -4,48 +4,58 @@ BUILD_CONFIGURATIONS:
 CACHE_KEYS:
   libffi-core:
     BUILD_SETTINGS_CHECKSUM:
-      libffi-core: 62b8f22d5de8443aa64a34d02fa7e1d5
+      libffi-core:
+        :debug: f068a331eda1137d121206433e5963ee
+        :release: f068a331eda1137d121206433e5963ee
     CHECKSUM: c4049ed88381fee5c0a31d26c860fc427d3c301c
     PROJECT_NAME: libffi-core
     SPECS:
       - libffi-core (1.2.0)
   LookinServer:
     BUILD_SETTINGS_CHECKSUM:
-      LookinServer: 73179ce01803f635f5d62db2f62fb73e
+      LookinServer:
+        :debug: cce30f96e494c905fc725d185750cfd3
+        :release: cce30f96e494c905fc725d185750cfd3
     CHECKSUM: 0002891cd3cec5e082a910e897dfe71b4f06b89e
     PROJECT_NAME: LookinServer
     SPECS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 5beb4e753879c43c7b9fcd8475ce808b
-      Release: a2921361bb2761fb6373ca8506513a41
+      Debug: 118986519a18efb3a25dd600c52c04fe
+      Release: 5e070973acd3c782c3aecca664f3a3b2
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 5beb4e753879c43c7b9fcd8475ce808b
-      Release: a2921361bb2761fb6373ca8506513a41
+      Debug: 118986519a18efb3a25dd600c52c04fe
+      Release: 5e070973acd3c782c3aecca664f3a3b2
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 42e66277a74f8c681027aa2756c71079
-      Release: 76cb44a7ca3a7d18aef360dcf282455d
+      Debug: 9acf6c9e066d2c553ba23bfade20ddbc
+      Release: efa64c267472a9b4b1baf616288fc009
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
-      Yoga: 8e6f91e66940c2d4c98f65701bedd999
+      Yoga:
+        :debug: dc1487e9816565f56f21c2ef64c5a611
+        :release: dc1487e9816565f56f21c2ef64c5a611
     CHECKSUM: cff67a400f6b74dc38eb0bad4f156673d9aa980c
     PROJECT_NAME: Yoga
     SPECS:
       - Yoga (1.14.0)
   YYModel:
     BUILD_SETTINGS_CHECKSUM:
-      YYModel: 3fd76c6f26e790b726c60f7945ec41c3
+      YYModel:
+        :debug: f3127127507fbca6fdcda377fc0fed01
+        :release: f3127127507fbca6fdcda377fc0fed01
     CHECKSUM: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
     PROJECT_NAME: YYModel
     SPECS:
       - YYModel (1.0.4)
-  ZDFlexLayout:
+  ZDFlexLayoutKit:
     BUILD_SETTINGS_CHECKSUM:
-      ZDFlexLayout: 5ab2fe56f47a54f92d0700d8ab4fb2a8
-    CHECKSUM: 9085ddd85832a2114c27a1c33e646850684542b9
+      ZDFlexLayoutKit:
+        :debug: 34937d4218376605d4dd4b2c9f1b353c
+        :release: 34937d4218376605d4dd4b2c9f1b353c
+    CHECKSUM: b6b895e68a9c40cabae5acc25046b439aa3914f7
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -67,17 +77,20 @@ CACHE_KEYS:
       - "../../Source/Maker/ZDFlexLayoutChain.m"
       - "../../Source/Maker/ZDFlexLayoutMaker.h"
       - "../../Source/Maker/ZDFlexLayoutMaker.m"
-    PROJECT_NAME: ZDFlexLayout
+      - "../../Source/ZDFlexLayoutKit.h"
+    PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayout (0.0.1)
-      - ZDFlexLayout/Core (0.0.1)
-      - ZDFlexLayout/Helper (0.0.1)
-      - ZDFlexLayout/Maker (0.0.1)
+      - ZDFlexLayoutKit (0.0.1)
+      - ZDFlexLayoutKit/Core (0.0.1)
+      - ZDFlexLayoutKit/Helper (0.0.1)
+      - ZDFlexLayoutKit/Maker (0.0.1)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
-      ZDToolKit: f43181b4a5eabb9ca4e96a54e8fae4a7
+      ZDToolKit:
+        :debug: f43181b4a5eabb9ca4e96a54e8fae4a7
+        :release: f43181b4a5eabb9ca4e96a54e8fae4a7
     CHECKOUT_OPTIONS:
-      :commit: 52aaa819d4d2d2465ec911b17093eee4ad125498
+      :commit: 7ff53d62ca8262429d715e6c44bedaf74d570d3e
       :git: https://github.com/faimin/ZDToolKit
     CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
     PROJECT_NAME: ZDToolKit
@@ -96,4 +109,7 @@ CACHE_KEYS:
       - ZDToolKit/ZDTools/ProtocolKit (0.0.4)
       - ZDToolKit/ZDTools/ZDPromise (0.0.4)
       - ZDToolKit/ZDTools/ZDProxy (0.0.4)
-OBJECT_VERSION: 51
+OBJECT_VERSION: 50
+PLUGINS:
+  cocoapods-stats:
+    {}

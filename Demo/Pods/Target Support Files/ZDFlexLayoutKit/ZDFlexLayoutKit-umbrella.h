@@ -22,6 +22,6 @@
 #import "ZDFlexLayoutChain.h"
 #import "ZDFlexLayoutMaker.h"
 
-FOUNDATION_EXPORT double ZDFlexLayoutVersionNumber;
-FOUNDATION_EXPORT const unsigned char ZDFlexLayoutVersionString[];
+FOUNDATION_EXPORT double ZDFlexLayoutKitVersionNumber;
+FOUNDATION_EXPORT const unsigned char ZDFlexLayoutKitVersionString[];
 

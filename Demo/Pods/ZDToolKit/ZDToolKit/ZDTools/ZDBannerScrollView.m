@@ -49,7 +49,10 @@ struct ZDBannerDelegateResponseTo {
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) NSInteger maxIndex;
 @property (nonatomic, assign) struct ZDBannerDelegateResponseTo delegateResponseTo;
+@property (nonatomic, assign) BOOL isTimerRunningBeforeEnterBackground; ///< 进入后台之前timer是否正在运行
+@property (nonatomic, assign) BOOL timerIsPaused;
 @end
 
 @implementation ZDBannerScrollView
@@ -57,6 +60,7 @@ struct ZDBannerDelegateResponseTo {
 - (void)dealloc {
     [self invalidateTimer];
     
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleScrollDidScroll:) object:self.collectionView];
     if (_collectionView) {
         _collectionView.delegate = nil;
         _collectionView.dataSource = nil;
@@ -72,16 +76,28 @@ struct ZDBannerDelegateResponseTo {
         [_timer invalidate];
         _timer = nil;
     }
+    self.isTimerRunningBeforeEnterBackground = NO;
 }
 
 - (void)pauseTimer {
-    if (!_timer) return;
-    self.timer.fireDate = [NSDate distantFuture];
+    if (!_timerIsPaused) {
+        _timerIsPaused = YES;
+        
+        if (!_timer || !_timer.isValid) return;
+        
+        self.timer.fireDate = [NSDate distantFuture];
+        self.isTimerRunningBeforeEnterBackground = NO;
+    }
 }
 
 - (void)resumeTimer {
-    if (!_timer) return;
-    self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.interval > 0 ? self.interval : ZD_DefaultInterval)];
+    if (_timerIsPaused) {
+        _timerIsPaused = NO;
+        
+        if (!_timer || !_timer.isValid) return;
+        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.interval > 0 ? self.interval : ZD_DefaultInterval)];
+        self.isTimerRunningBeforeEnterBackground = YES;
+    }
 }
 
 + (instancetype)scrollViewWithFrame:(CGRect)frame
@@ -108,16 +124,33 @@ struct ZDBannerDelegateResponseTo {
     [super willMoveToSuperview:newSuperview];
     if (!newSuperview) return;
     
-    [self setupTimer];
+    if (newSuperview && !_disableAutoScroll) {
+        [self setupTimer];
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (_collectionView) {
+        UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)_collectionView.collectionViewLayout;
+        if ([layout respondsToSelector:@selector(setItemSize:)]) {
+            layout.itemSize = self.bounds.size;
+        }
+    }
 }
 
 #pragma mark -
 
 - (void)setup {
     _innerDataSource = @[].mutableCopy;
-    
+    [self setupNotification];
     [self addSubview:self.collectionView];
     [self addSubview:self.pageControl];
+}
+
+- (void)setupNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 - (void)setupTimer {
@@ -127,6 +160,7 @@ struct ZDBannerDelegateResponseTo {
         __strong typeof(weakSelf)self = weakSelf;
         [self autoScroll];
     }];
+    self.isTimerRunningBeforeEnterBackground = YES;
 }
 
 - (void)autoScroll {
@@ -147,6 +181,22 @@ struct ZDBannerDelegateResponseTo {
     }
 }
 
+#pragma mark - Notification
+
+- (void)didEnterBackground:(NSNotification *)notification {
+    if (!_timer || !_timer.isValid) return;
+    
+    self.timer.fireDate = [NSDate distantFuture];
+}
+
+- (void)willEnterForeground:(NSNotification *)notification {
+    if (self.isTimerRunningBeforeEnterBackground) {
+        if (!_timer || !_timer.isValid) return;
+        
+        self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.interval > 0 ? self.interval : ZD_DefaultInterval)];
+    }
+}
+
 #pragma mark - UICollectionViewDatasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -159,7 +209,7 @@ struct ZDBannerDelegateResponseTo {
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class]) forIndexPath:indexPath];
-    // 用自己外面的下载库下载
+    // 用外面的下载库下载
     if (self.delegateResponseTo.customDownloadWithImageViewUrlPlaceHolderImage && !cell.zdDownloadBlock) {
         __weak typeof(self) weakTarget = self;
         cell.zdDownloadBlock = ^(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage) {
@@ -168,7 +218,7 @@ struct ZDBannerDelegateResponseTo {
         };
     }
     cell.placeholderImage = self.placeholderImage;
-    cell.urlString = [self.innerDataSource objectAtIndex:indexPath.item];
+    cell.urlString = self.innerDataSource[indexPath.item];
     
     return cell;
 }
@@ -176,47 +226,32 @@ struct ZDBannerDelegateResponseTo {
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.delegateResponseTo.scrollViewDidSelectItemAtIndex) {
-        if (self.innerDataSource.count == 3) { // 此时说明只有一条数据
-            NSLog(@"点击了第0个");
-            [self.delegate scrollView:self didSelectItemAtIndex:0];
+    if (!self.delegateResponseTo.scrollViewDidSelectItemAtIndex) {
+        return;
+    }
+    
+    if (self.innerDataSource.count == 3) { // 此时说明只有一条数据
+        NSLog(@"点击了第0个");
+        [self.delegate scrollView:self didSelectItemAtIndex:0];
+    }
+    else {
+        NSLog(@"点击了第%lu个", (unsigned long)(indexPath.item - 1));
+        NSUInteger selectIndex = indexPath.item - 1;
+        if (indexPath.item > self.maxIndex) {
+            selectIndex = self.maxIndex;
         }
-        else {
-            NSLog(@"点击了第%lu个", (unsigned long)(indexPath.item - 1));
-            NSUInteger selectIndex = indexPath.item - 1;
-            if (indexPath.item >= self.innerDataSource.count - 2) {
-                selectIndex = self.innerDataSource.count - 2 - 1;
-            } else if (indexPath.item < 0) {
-                selectIndex = 0;
-            }
-            [self.delegate scrollView:self didSelectItemAtIndex:selectIndex];
+        else if (indexPath.item < 0) {
+            selectIndex = 0;
         }
+        [self.delegate scrollView:self didSelectItemAtIndex:selectIndex];
     }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat contentWidth = scrollView.contentSize.width;
-    if (contentWidth <= 0.01) return; // 此时还没有数据源
-    CGFloat offsetX = scrollView.contentOffset.x;
-    CGFloat boundsWidth = self.bounds.size.width;
-    if (offsetX >= (contentWidth - boundsWidth)) {
-        scrollView.contentOffset = CGPointMake(boundsWidth, scrollView.contentOffset.y);
-    }
-    else if (offsetX < boundsWidth) {
-        // 乘以一个大于1小于1.5的数，可以利用pagingEnabled特性，使滑动更自然
-        scrollView.contentOffset = CGPointMake(contentWidth - boundsWidth * 1.3, scrollView.contentOffset.y);
-    }
-    
-    NSInteger currentPage = offsetX / boundsWidth - 1;
-    if (currentPage < 0) {
-        currentPage = self.innerDataSource.count - 2 - 1;
-    } else if (currentPage > self.innerDataSource.count - 2 - 1) {
-        currentPage = 0;
-    }
-    
-    self.currentIndex = currentPage;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleScrollDidScroll:) object:scrollView];
+    [self handleScrollDidScroll:scrollView];
 }
 
 // 手指滑动时暂停计时器
@@ -228,12 +263,46 @@ struct ZDBannerDelegateResponseTo {
     [self resumeTimer];
 }
 
+#pragma mark - Private
+
+- (void)handleScrollDidScroll:(UIScrollView *)scrollView {
+    CGFloat contentWidth = scrollView.contentSize.width;
+    if (contentWidth <= 0.01) return; // 此时还没有数据源
+    
+    CGFloat offsetX = scrollView.contentOffset.x;
+    CGFloat boundsWidth = self.bounds.size.width;
+    CGFloat newX = CGFLOAT_MAX;
+    if (offsetX >= (contentWidth - boundsWidth)) {
+        newX = boundsWidth;
+    }
+    else if (offsetX < boundsWidth) {
+        // 乘以一个大于1小于1.5的数，然后利用pagingEnabled特性，使滑动更自然
+        //newX = contentWidth - boundsWidth * 1.3;
+        newX = contentWidth - (boundsWidth + 1);
+    }
+    if (newX != CGFLOAT_MAX) {
+        scrollView.contentOffset = CGPointMake(newX, scrollView.contentOffset.y);
+    }
+    
+    NSInteger currentPage = ABS(scrollView.contentOffset.x / boundsWidth) - 1;
+    if (currentPage < 0) {
+        currentPage = self.maxIndex;
+    }
+    else if (currentPage > self.maxIndex) {
+        currentPage = 0;
+    }
+    
+    self.currentIndex = currentPage;
+}
+
 #pragma mark - Property
 
 //MARK: Setter
 - (void)setImageURLStrings:(NSArray<NSString *> *)imageURLStrings {
     if (!imageURLStrings || imageURLStrings.count == 0) return;
+    
     _imageURLStrings = imageURLStrings;
+    self.maxIndex = imageURLStrings.count - 1;
     
     if (_innerDataSource.count > 0) {
         [_innerDataSource removeAllObjects];
@@ -241,8 +310,7 @@ struct ZDBannerDelegateResponseTo {
     
     // 1张图片时禁用定时器和滑动
     if (imageURLStrings.count == 1) {
-        [_timer invalidate];
-        _timer = nil;
+        [self invalidateTimer];
     }
     self.collectionView.scrollEnabled = (imageURLStrings.count > 1);
     
@@ -257,6 +325,8 @@ struct ZDBannerDelegateResponseTo {
 
 - (void)setCurrentIndex:(NSInteger)currentIndex {
     if (_currentIndex == currentIndex) return;
+    
+    NSLog(@"currentpage = %zd", currentIndex);
     _currentIndex = currentIndex;
     
     self.pageControl.currentPage = currentIndex;
@@ -291,6 +361,7 @@ struct ZDBannerDelegateResponseTo {
         collectionView.delegate = self;
         collectionView.scrollsToTop = NO;
         collectionView.pagingEnabled = YES;
+        collectionView.bounces = NO;
         collectionView.showsHorizontalScrollIndicator = NO;
         collectionView.showsVerticalScrollIndicator = NO;
         [collectionView registerClass:[ZDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class])];
@@ -312,6 +383,7 @@ struct ZDBannerDelegateResponseTo {
         view.pageIndicatorTintColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
         view.currentPageIndicatorTintColor = [UIColor colorWithRed:0.57 green:0.45 blue:0.57 alpha:1.0];
         view.hidesForSinglePage = YES;
+        view.userInteractionEnabled = NO;
         view.numberOfPages = self.imageURLStrings.count;
         view.currentPage = 0;
         _pageControl = view;

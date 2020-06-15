@@ -38,6 +38,10 @@ ZDFlexLayout:
   LABEL: ZDFlexLayout
   PROJECT_PATH: ZDFlexLayout.xcodeproj
   UUID: 3337AEF66F0A585831F5BF7521CAD899
+ZDFlexLayoutKit:
+  LABEL: ZDFlexLayoutKit
+  PROJECT_PATH: ZDFlexLayoutKit.xcodeproj
+  UUID: DC0718FA84D3DBA2088D0AD2B6D93986
 ZDToolKit:
   LABEL: ZDToolKit
   PROJECT_PATH: ZDToolKit.xcodeproj
