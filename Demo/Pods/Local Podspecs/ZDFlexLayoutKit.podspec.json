@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "summary": "Flex Layout in Objective-C",
   "description": "flex layout in Objective-C base on yoga",
-  "homepage": "https://github.com/faimin/ZDFlexLayout",
+  "homepage": "https://github.com/faimin/ZDFlexLayoutKit",
   "license": "MIT",
   "authors": {
     "faimin": "fuxianchao@gmail.com"
@@ -13,14 +13,17 @@
     "ios": "8.0"
   },
   "source": {
-    "git": "https://github.com/faimin/ZDFlexLayout.git",
+    "git": "https://github.com/faimin/ZDFlexLayoutKit.git",
     "tag": "0.0.1"
   },
   "source_files": "Source/**/*.{h,m}",
   "public_header_files": "Source/ZDFlexLayoutKit.h",
   "module_name": "ZDFlexLayoutKit",
+  "preserve_paths": "Source/module.modulemap",
+  "module_map": "Source/module.modulemap",
   "pod_target_xcconfig": {
-    "DEFINES_MODULE": "YES"
+    "DEFINES_MODULE": "YES",
+    "CLANG_ENABLE_MODULES": "YES"
   },
   "subspecs": [
     {

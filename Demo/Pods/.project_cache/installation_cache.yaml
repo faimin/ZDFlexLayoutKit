@@ -22,16 +22,16 @@ CACHE_KEYS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 118986519a18efb3a25dd600c52c04fe
-      Release: 5e070973acd3c782c3aecca664f3a3b2
+      Debug: e69b59503f9f5c7e43b28c1c287b7d63
+      Release: 58455282a27082359d2f1e6e63cdd302
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 118986519a18efb3a25dd600c52c04fe
-      Release: 5e070973acd3c782c3aecca664f3a3b2
+      Debug: e69b59503f9f5c7e43b28c1c287b7d63
+      Release: 58455282a27082359d2f1e6e63cdd302
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 9acf6c9e066d2c553ba23bfade20ddbc
-      Release: efa64c267472a9b4b1baf616288fc009
+      Debug: 4672eb95e6676380fd6793a5b0e7d290
+      Release: 0d316c0e0021599cdb5df8371b62f46a
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
@@ -53,9 +53,9 @@ CACHE_KEYS:
   ZDFlexLayoutKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDFlexLayoutKit:
-        :debug: 34937d4218376605d4dd4b2c9f1b353c
-        :release: 34937d4218376605d4dd4b2c9f1b353c
-    CHECKSUM: b6b895e68a9c40cabae5acc25046b439aa3914f7
+        :debug: 964c8ef77bf14065cf5c1c5691c4ff0d
+        :release: 964c8ef77bf14065cf5c1c5691c4ff0d
+    CHECKSUM: 2e62e294297bbd80c044618949913cdbd43e3b6a
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -77,6 +77,7 @@ CACHE_KEYS:
       - "../../Source/Maker/ZDFlexLayoutChain.m"
       - "../../Source/Maker/ZDFlexLayoutMaker.h"
       - "../../Source/Maker/ZDFlexLayoutMaker.m"
+      - "../../Source/module.modulemap"
       - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:

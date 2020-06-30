@@ -1,5 +1,5 @@
 module ZDFlexLayoutKit {
-  umbrella header "ZDFlexLayoutKit-umbrella.h"
+  umbrella header "ZDFlexLayoutKit.h"
 
   export *
   module * { export * }
