@@ -52,7 +52,7 @@
         make.flexDirection(YGFlexDirectionRow);
         make.justifyContent(YGJustifyFlexStart);
         make.height(YGValueAuto);
-        //make.marginHorizontal(YGPointValue(20));
+        make.paddingHorizontal(YGPointValue(20));
     }];
     //==================================================
     
