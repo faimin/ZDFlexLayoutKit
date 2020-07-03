@@ -115,18 +115,15 @@
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Vertical, capitalized_name ## Vertical, capitalized_name, YGEdgeVertical)       \
     YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-#if !INCLUDE_UIVIEW_YOGA
-YGValue YGPointValue(CGFloat value)
+__attribute__((weak)) YGValue YGPointValue(CGFloat value)
 {
     return (YGValue) { .value = value, .unit = YGUnitPoint };
 }
 
-YGValue YGPercentValue(CGFloat value)
+__attribute__((weak)) YGValue YGPercentValue(CGFloat value)
 {
     return (YGValue) { .value = value, .unit = YGUnitPercent };
 }
-
-#endif
 
 static YGConfigRef globalConfig;
 
