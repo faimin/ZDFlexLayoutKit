@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self normalLayout];
 }
@@ -36,8 +37,25 @@
     
     [self.view zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
-        make.flexDirection(YGFlexDirectionColumn).justifyContent(YGJustifySpaceAround);
+        make.flexDirection(YGFlexDirectionColumn).justifyContent(YGJustifyFlexStart);
     }];
+    
+    ZDFlexLayoutDiv *aDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.position(YGPositionTypeAbsolute);
+        make.flexDirection(YGFlexDirectionRow);
+        make.marginTop(YGPointValue(15));
+        make.alignSelf(YGAlignFlexEnd);
+    }];
+    UIView *aView = [({
+        UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+        v.backgroundColor = UIColor.cyanColor;
+        v;
+    }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.width(YGPointValue(100)).height(YGPointValue(50));
+        make.marginRight(YGPointValue(50));
+    }];
+    [self.view addChild:aDiv];
+    [aDiv addChild:aView];
     
     self.contentView = ({
         UIView *view = UIView.new;
@@ -46,6 +64,7 @@
     });
     [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
+        make.marginTop(YGPointValue(300));
         make.width(YGPercentValue(100));
         //make.height(YGPointValue(300));
         make.aspectRatio(2.0);  // width / height
