@@ -32,68 +32,74 @@
 
 - (void)normalLayout {
     self.view.backgroundColor = UIColor.magentaColor;
-    
-//    self.button.flexLayout.isIncludedInLayout = NO;
+    //self.button.flexLayout.isIncludedInLayout = NO;
     
     [self.view zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.flexDirection(YGFlexDirectionColumn).justifyContent(YGJustifyFlexStart);
     }];
     
-    ZDFlexLayoutDiv *aDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
-        make.position(YGPositionTypeAbsolute);
-        make.flexDirection(YGFlexDirectionRow);
-        make.marginTop(YGPointValue(15));
-        make.alignSelf(YGAlignFlexEnd);
-    }];
-    UIView *aView = [({
-        UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-        v.backgroundColor = UIColor.cyanColor;
-        v;
-    }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
-        make.width(YGPointValue(100)).height(YGPointValue(50));
-        make.marginRight(YGPointValue(50));
-    }];
-    [self.view addChild:aDiv];
-    [aDiv addChild:aView];
+    //flex相对布局
+    {
+        self.contentView = [({
+            UIView *view = UIView.new;
+            view.backgroundColor = UIColor.yellowColor;
+            view;
+        }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+            make.isEnabled(YES);
+            make.marginTop(YGPointValue(300));
+            make.width(YGPercentValue(100));
+            make.aspectRatio(2.0);  // width / height
+            make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifyFlexStart);
+            make.paddingHorizontal(YGPointValue(25));
+        }];
+        [self.view addChild:self.contentView];
+        
+        UIView *redView = [({
+            UIView *view = UIView.new;
+            view.backgroundColor = UIColor.redColor;
+            view;
+        }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+            make.isEnabled(YES).flexGrow(1);
+        }];
+        [self.contentView addChild:redView];
+        
+        UIView *blueView = [({
+            UIView *view = UIView.new;
+            view.backgroundColor = UIColor.blueColor;
+            view;
+        }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+            make.isEnabled(true).flexGrow(2);
+        }];
+        [self.contentView addChild:blueView];
+    }
     
-    self.contentView = ({
-        UIView *view = UIView.new;
-        view.backgroundColor = UIColor.yellowColor;
-        view;
-    });
-    [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
-        make.isEnabled(YES);
-        make.marginTop(YGPointValue(300));
-        make.width(YGPercentValue(100));
-        //make.height(YGPointValue(300));
-        make.aspectRatio(2.0);  // width / height
-        make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifyFlexStart);
-        make.paddingHorizontal(YGPointValue(25));
-    }];
-    [self.view addChild:self.contentView];
+    // flex绝对布局
+    {
+        UIView *aView = [({
+            UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+            v.backgroundColor = UIColor.purpleColor;
+            v;
+        }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+            make.position(YGPositionTypeAbsolute);
+            make.width(YGPointValue(100)).aspectRatio(1.5);
+            make.top(YGPointValue(50)).right(YGPointValue(50));
+        }];
+        [self.view addChild:aView];
+        
+        UIView *bView = [({
+            UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+            v.backgroundColor = UIColor.orangeColor;
+            v;
+        }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+            make.position(YGPositionTypeAbsolute);
+            make.width(YGPointValue(100)).height(YGPointValue(100));
+            make.top(YGPointValue(50)).left(YGPointValue(50));
+        }];
+        [self.view addChild:bView];
+    }
     
-    UIView *redView = ({
-        UIView *view = UIView.new;
-        view.backgroundColor = UIColor.redColor;
-        view;
-    });
-    [redView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
-        make.isEnabled(YES).flexGrow(1);
-    }];
-    [self.contentView addChild:redView];
-    
-    UIView *blueView = ({
-        UIView *view = UIView.new;
-        view.backgroundColor = UIColor.blueColor;
-        view;
-    });
-    [blueView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
-        make.isEnabled(true).flexGrow(2);
-    }];
-    [self.contentView addChild:blueView];
-    
-//    [self.view calculateLayoutPreservingOrigin:YES];
+    //[self.view calculateLayoutPreservingOrigin:YES];
     [self.view asyncCalculateLayoutPreservingOrigin:YES];
 }
 
