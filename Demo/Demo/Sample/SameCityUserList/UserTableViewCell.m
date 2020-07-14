@@ -64,7 +64,6 @@
     ZDFlexLayoutDiv *firstLineDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {       make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifySpaceBetween);
         make.alignItems(YGAlignCenter);
     }];
-    //self.nickNameLabel.flexLayout.flexShrink = 1;
     [self.nickNameLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.flexShrink(1);
@@ -77,7 +76,6 @@
     ZDFlexLayoutDiv *nameTagDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.flexDirection(YGFlexDirectionRow).alignItems(YGAlignCenter).flexShrink(1);
     }];
-    //self.locationLabel.flexLayout.marginLeft = YGPointValue(5);
     [self.locationLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.marginLeft(YGPointValue(5));
@@ -86,7 +84,6 @@
     [firstLineDiv addChildren:@[nameTagDiv, self.locationLabel]];
     
     // 第二行
-    //self.infoLabel.flexLayout.marginTop = YGPointValue(7);
     [self.infoLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.marginTop(YGPointValue(7));
@@ -97,7 +94,6 @@
         make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifySpaceBetween);
         make.alignItems(YGAlignCenter).marginTop(YGPointValue(5));
     }];
-    //self.noticeLabel.flexLayout.flexShrink = 1;
     [self.noticeLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.flexShrink(1);
@@ -108,7 +104,13 @@
     }];
     [thirdLineDiv addChildren:@[self.noticeLabel, self.chatBtn]];
     
+#if 1
     [rightContaienrDiv addChildren:@[firstLineDiv, self.infoLabel, thirdLineDiv]];
+#else
+    [rightContaienrDiv addChildren:@[thirdLineDiv]];
+    [rightContaienrDiv insertChild:firstLineDiv atIndex:0];
+    [rightContaienrDiv insertChild:self.infoLabel atIndex:1];
+#endif
 }
 
 - (void)setModel:(UserModel *)model {

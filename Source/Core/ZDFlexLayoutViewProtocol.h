@@ -32,6 +32,10 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 - (void)addChildren:(NSArray<ZDFlexLayoutView> *)children;
 - (void)removeChildren:(NSArray<ZDFlexLayoutView> *)children;
 
+- (void)insertChild:(ZDFlexLayoutView)child atIndex:(NSInteger)index;
+
+- (void)removeFromParent;
+
 - (CGSize)sizeThatFits:(CGSize)size;
 
 - (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayout *layout))block;

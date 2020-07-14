@@ -116,6 +116,40 @@
     }
 }
 
+- (void)insertChild:(ZDFlexLayoutView)child atIndex:(NSInteger)index {
+    if (![child conformsToProtocol:@protocol(ZDFlexLayoutViewProtocol)]) {
+        NSCAssert1(NO, @"don't support the type：%@", child);
+        return;
+    }
+    
+    [self.children removeObjectIdenticalTo:child];
+    NSInteger mapedIndex = index; // realIndex
+    if (index > self.children.count || index < 0) {
+        mapedIndex = self.children.count;
+    }
+    [self.children insertObject:child atIndex:mapedIndex];
+    child.parent = self;
+    child.owningView = self;
+    
+    if ([child isKindOfClass:UIView.class]) {
+        [self insertSubview:(UIView *)child atIndex:mapedIndex];
+    }
+    else {
+        for (ZDFlexLayoutView childChild in child.children) {
+            childChild.owningView = self;
+            if ([childChild isKindOfClass:UIView.class]) {
+                [self insertSubview:(UIView *)childChild atIndex:mapedIndex++];
+            }
+        }
+    }
+}
+
+- (void)removeFromParent {
+    if (self.parent) {
+        [self.parent removeChild:self];
+    }
+}
+
 //MARK: Property
 - (void)setChildren:(NSArray<ZDFlexLayoutView> *)children {
     objc_setAssociatedObject(self, @selector(children), children, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
