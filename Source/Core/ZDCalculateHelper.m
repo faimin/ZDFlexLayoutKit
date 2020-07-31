@@ -83,8 +83,11 @@ static void zd_sourceContextCallBackLog(void *info) {
 
 @implementation ZDCalculateHelper
 
-+ (void)load {
-    [self setupRunloop];
++ (void)initialize {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setupRunloop];
+    });
 }
 
 + (void)setupRunloop {
