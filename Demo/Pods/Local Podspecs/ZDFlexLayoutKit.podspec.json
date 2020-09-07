@@ -19,11 +19,9 @@
   "source_files": "Source/**/*.{h,m}",
   "public_header_files": "Source/ZDFlexLayoutKit.h",
   "module_name": "ZDFlexLayoutKit",
-  "preserve_paths": "Source/module.modulemap",
   "module_map": "Source/module.modulemap",
   "pod_target_xcconfig": {
-    "DEFINES_MODULE": "YES",
-    "CLANG_ENABLE_MODULES": "YES"
+    "DEFINES_MODULE": "YES"
   },
   "subspecs": [
     {

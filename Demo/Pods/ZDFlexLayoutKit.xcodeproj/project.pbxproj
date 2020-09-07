@@ -32,16 +32,9 @@
 /* Begin PBXContainerItemProxy section */
 		7518072438B51811A683E2E5AEC6F198 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 799B3B120B810BB62F05BF0642842C06 /* Yoga */;
+			containerPortal = 799B3B120B810BB62F05BF0642842C06 /* Yoga.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
-			remoteInfo = Yoga;
-		};
-		FA12A7EC249CBD8000543194 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 799B3B120B810BB62F05BF0642842C06 /* Yoga */;
-			proxyType = 2;
-			remoteGlobalIDString = 1C561D3EE26EC0222EE560A73583E5ED;
 			remoteInfo = Yoga;
 		};
 /* End PBXContainerItemProxy section */
@@ -50,12 +43,12 @@
 		02BB9AE0F9BF98356FC5E04868319BD4 /* ZDFlexLayoutKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDFlexLayoutKit.debug.xcconfig; sourceTree = "<group>"; };
 		0C54077E4BCBDE0557A179205BED9032 /* ZDCalculateHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
 		122B5AD080E94BA53D330AFCEE3C6631 /* ZDFlexLayoutChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutChain.h; sourceTree = "<group>"; };
-		1BC4A14EE6769E8348D6CCFFA3B03E4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1BC4A14EE6769E8348D6CCFFA3B03E4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		1BF5A7A8BB576B40C698C21B431D1F1F /* ZDFlexLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayout.m; sourceTree = "<group>"; };
 		25B2124BDB6AD822E2F5A07BE84F3A7D /* NSObject+ZDFlexLayoutFrameCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDFlexLayoutFrameCache.h"; sourceTree = "<group>"; };
 		2EE70302D2335C9693B8E928AB844BBA /* NSObject+ZDFlexLayoutFrameCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDFlexLayoutFrameCache.m"; sourceTree = "<group>"; };
 		346388C56CA367F2954D4FF3B607850A /* ZDFlexLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayout.h; sourceTree = "<group>"; };
-		3E647E38FFC1B13F47DEECE7AB8D2A7C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3E647E38FFC1B13F47DEECE7AB8D2A7C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		3F7A4BB4D3CC4B7A424FF0F0FDC570D7 /* ZDFlexLayoutKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutKit.h; path = Source/ZDFlexLayoutKit.h; sourceTree = "<group>"; };
 		455247B8359F7F062FCC31A77B9CDA52 /* ZDFlexLayoutKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDFlexLayoutKit-dummy.m"; sourceTree = "<group>"; };
 		4812780546401200025A7A0E314BD4D9 /* ZDFlexLayoutMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutMaker.m; sourceTree = "<group>"; };
@@ -64,8 +57,8 @@
 		764F351B7FA3BD032179AC1AC6AA47F5 /* ZDFlexLayoutKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayoutKit-prefix.pch"; sourceTree = "<group>"; };
 		799B3B120B810BB62F05BF0642842C06 /* Yoga */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Yoga; path = Yoga.xcodeproj; sourceTree = "<group>"; };
 		91C4A9047EC1556627653E76D8B62CBA /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = module.modulemap; path = Source/module.modulemap; sourceTree = "<group>"; };
-		A17C68037730BE10C11BC45AA581DB90 /* ZDFlexLayoutKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZDFlexLayoutKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B3AF79D5A215246354F11B8FFA97C08B /* libZDFlexLayoutKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZDFlexLayoutKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A17C68037730BE10C11BC45AA581DB90 /* ZDFlexLayoutKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZDFlexLayoutKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B3AF79D5A215246354F11B8FFA97C08B /* libZDFlexLayoutKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZDFlexLayoutKit.a; path = libZDFlexLayoutKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAFB12263A99E9681939944F11C4AC67 /* ZDTemplateCellHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDTemplateCellHandler.h; sourceTree = "<group>"; };
 		BDA9C0DD25EA49CB355F75BC6859D405 /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
 		C0FB7A6AA6F014215A0000119C946264 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
@@ -203,14 +196,6 @@
 			path = Source/Core;
 			sourceTree = "<group>";
 		};
-		FA12A7EA249CBBF500543194 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FA12A7ED249CBD8000543194 /* libYoga.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -275,7 +260,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FA12A7EA249CBBF500543194 /* Products */;
 					ProjectRef = 799B3B120B810BB62F05BF0642842C06 /* Yoga */;
 				},
 			);
@@ -285,16 +269,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		FA12A7ED249CBD8000543194 /* libYoga.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libYoga.a;
-			remoteRef = FA12A7EC249CBD8000543194 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		809D4904F681CD554AE0C34588092AF0 /* Sources */ = {
@@ -405,7 +379,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -494,7 +467,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

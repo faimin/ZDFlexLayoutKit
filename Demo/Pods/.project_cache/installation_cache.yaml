@@ -53,9 +53,9 @@ CACHE_KEYS:
   ZDFlexLayoutKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDFlexLayoutKit:
-        :debug: 964c8ef77bf14065cf5c1c5691c4ff0d
-        :release: 964c8ef77bf14065cf5c1c5691c4ff0d
-    CHECKSUM: 2e62e294297bbd80c044618949913cdbd43e3b6a
+        :debug: 34937d4218376605d4dd4b2c9f1b353c
+        :release: 34937d4218376605d4dd4b2c9f1b353c
+    CHECKSUM: f5f0671ae5a8cba0ea0966420136f12230231f46
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -91,7 +91,7 @@ CACHE_KEYS:
         :debug: f43181b4a5eabb9ca4e96a54e8fae4a7
         :release: f43181b4a5eabb9ca4e96a54e8fae4a7
     CHECKOUT_OPTIONS:
-      :commit: 7ff53d62ca8262429d715e6c44bedaf74d570d3e
+      :commit: 6cee2b7a1098bb5f825940ba93362eee143226e4
       :git: https://github.com/faimin/ZDToolKit
     CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
     PROJECT_NAME: ZDToolKit

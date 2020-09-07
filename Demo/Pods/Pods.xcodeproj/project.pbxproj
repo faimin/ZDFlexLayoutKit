@@ -374,9 +374,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProjectRef = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit */;
-				},
-				{
 					ProjectRef = 1A216F7703125BBF47A54C731F87AF6D /* LookinServer */;
 				},
 				{
@@ -384,6 +381,9 @@
 				},
 				{
 					ProjectRef = D824CCC4A173A2840EA755C332F1A7B7 /* Yoga */;
+				},
+				{
+					ProjectRef = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit */;
 				},
 				{
 					ProjectRef = 84F93651FC1827E74720CA84AF99772A /* ZDToolKit */;
