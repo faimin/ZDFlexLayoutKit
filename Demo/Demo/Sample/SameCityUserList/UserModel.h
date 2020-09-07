@@ -13,15 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserModel : NSObject
 
 @property (nonatomic, copy) NSString *province;
-@property (nonatomic, copy) NSString *momoid;
+@property (nonatomic, copy) NSString *user_id;
 @property (nonatomic, copy) NSString *s_city;
 @property (nonatomic, copy) NSString *district;
 @property (nonatomic, copy) NSString *sex;
 @property (nonatomic, copy) NSString *list_show_text;
 @property (nonatomic, copy) NSString *city;
-@property (nonatomic, copy) NSString *goto_room;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *match_maker_goto;
 @property (nonatomic, assign) NSInteger is_match_maker;
 @property (nonatomic, assign) NSInteger is_mic;
 @property (nonatomic, copy) NSString *job;
