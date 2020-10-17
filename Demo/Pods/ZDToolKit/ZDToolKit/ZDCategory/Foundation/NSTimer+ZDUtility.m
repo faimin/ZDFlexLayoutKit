@@ -7,9 +7,6 @@
 //
 
 #import "NSTimer+ZDUtility.h"
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSTimer_ZDUtility)
 
 @implementation NSTimer (ZDUtility)
 
@@ -33,3 +30,5 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSTimer_ZDUtility)
 }
 
 @end
+
+

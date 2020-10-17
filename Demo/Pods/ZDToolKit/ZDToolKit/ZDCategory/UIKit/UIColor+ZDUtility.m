@@ -7,9 +7,6 @@
 //
 
 #import "UIColor+ZDUtility.h"
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIColor_ZDUtility)
 
 @implementation UIColor (ZDUtility)
 
@@ -162,3 +159,23 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIColor_ZDUtility)
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

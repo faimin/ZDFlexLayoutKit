@@ -21,6 +21,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+
 /**
  *  AutoLayout abstract item
  */
@@ -63,7 +65,7 @@ UIKIT_EXTERN ALMargin ALMarginMakeTop(CGFloat t);
 UIKIT_EXTERN ALMargin ALMarginMakeBottom(CGFloat b);
 
 /* Make a margin from `(0, 0, 0, 0)'. */
-UIKIT_EXTERN ALMargin ALMarginZero(void);
+UIKIT_EXTERN ALMargin ALMarginZero();
 
 /**
  *  Flow layout direction
@@ -109,7 +111,7 @@ typedef NS_ENUM(NSInteger, ALLayoutDirection){
  *  @param direction    Flow layout direction.
  *  @param margin       Consider all view as one view on the superview (This method set interval bettween views as `ZERO`), and make a sute margin item.
  */
-- (void)addSubviews:(NSArray<UIView *> *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin)margin;
+- (void)addSubviews:(NSArray *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin )margin;
 
 /**
  *  Add subviews by Flow Layout
@@ -119,7 +121,7 @@ typedef NS_ENUM(NSInteger, ALLayoutDirection){
  *  @param margin    Consider all view as one view on the superview, and make a sute margin item.
  *  @param interval  Interval bettween views
  */
-- (void)addSubviews:(NSArray<UIView *> *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin)margin interval:(CGFloat)interval;
+- (void)addSubviews:(NSArray *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin)margin interval:(CGFloat)interval;
 
 @end
 

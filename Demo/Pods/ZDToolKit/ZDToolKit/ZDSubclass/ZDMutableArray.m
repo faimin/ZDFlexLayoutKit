@@ -7,20 +7,21 @@
 
 #import "ZDMutableArray.h"
 
-#ifndef ZD_INIT_MUT_ARRAY
-#define ZD_INIT_MUT_ARRAY(...) self = super.init; \
+@interface ZDMutableArray ()
+@property (nonatomic, strong) NSMutableArray *zdInnerMutArray;
+@end
+
+#define INIT(...) self = super.init; \
 if (!self) return nil; \
 __VA_ARGS__; \
 if (!_zdInnerMutArray) return nil; \
-_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.array", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_UTILITY, 0)); \
+_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.array", DISPATCH_QUEUE_CONCURRENT); \
 _lock = dispatch_semaphore_create(1); \
 return self;
-#endif
 
 @implementation ZDMutableArray {
     dispatch_semaphore_t _lock;
     dispatch_queue_t _zdInnerQueue;
-    NSMutableArray *_zdInnerMutArray;
 }
 
 - (void)dealloc {
@@ -32,23 +33,23 @@ return self;
 #pragma mark - Initialization
 
 - (instancetype)init {
-    ZD_INIT_MUT_ARRAY(_zdInnerMutArray = [[NSMutableArray alloc] init];)
+    INIT(_zdInnerMutArray = [[NSMutableArray alloc] init];)
 }
 
 - (instancetype)initWithCapacity:(NSUInteger)numItems {
-    ZD_INIT_MUT_ARRAY(_zdInnerMutArray = [[NSMutableArray alloc] initWithCapacity:numItems];)
+    INIT(_zdInnerMutArray = [[NSMutableArray alloc] initWithCapacity:numItems];)
 }
 
 - (NSArray *)initWithContentsOfFile:(NSString *)path {
-    ZD_INIT_MUT_ARRAY(_zdInnerMutArray = [[NSMutableArray alloc] initWithContentsOfFile:path];)
+    INIT(_zdInnerMutArray = [[NSMutableArray alloc] initWithContentsOfFile:path];)
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    ZD_INIT_MUT_ARRAY(_zdInnerMutArray = [[NSMutableArray alloc] initWithCoder:aDecoder];)
+    INIT(_zdInnerMutArray = [[NSMutableArray alloc] initWithCoder:aDecoder];)
 }
 
 - (instancetype)initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt {
-    ZD_INIT_MUT_ARRAY(_zdInnerMutArray = [[NSMutableArray alloc] initWithObjects:objects count:cnt];)
+    INIT(_zdInnerMutArray = [[NSMutableArray alloc] initWithObjects:objects count:cnt];)
 }
 
 #pragma mark -
@@ -62,7 +63,7 @@ return self;
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
-    if (_zdInnerMutArray.count <= index) return nil;
+    if (self.zdInnerMutArray.count <= index) return nil;
     
     __block id obj;
     dispatch_sync(_zdInnerQueue, ^{
@@ -94,7 +95,7 @@ return self;
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    if (_zdInnerMutArray.count <= index) return;
+    if (self.zdInnerMutArray.count <= index) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
         [self->_zdInnerMutArray removeObjectAtIndex:index];
@@ -108,7 +109,7 @@ return self;
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject; {
-    if (_zdInnerMutArray.count <= index) return;
+    if (self.zdInnerMutArray.count <= index) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
         [self->_zdInnerMutArray replaceObjectAtIndex:index withObject:anObject];

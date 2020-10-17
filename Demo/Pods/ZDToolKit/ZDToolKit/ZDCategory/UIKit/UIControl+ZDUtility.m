@@ -12,9 +12,6 @@
 
 #import "UIControl+ZDUtility.h"
 #import <objc/runtime.h>
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIControl_ZDUtility)
 
 static void SwizzleInstanceMethod(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);
@@ -69,9 +66,10 @@ static BOOL _isIgnoreEvent = NO;
 }
 
 - (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
-    if (_isIgnoreEvent) return;
-    
-    if (self.zd_clickIntervalTime > 0) {
+    if (_isIgnoreEvent) {
+        return;
+    }
+    else if (self.zd_clickIntervalTime > 0) {
         _isIgnoreEvent = YES;
         //超过时间间隔后恢复
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.zd_clickIntervalTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -100,3 +98,6 @@ static BOOL _isIgnoreEvent = NO;
 }
 
 @end
+
+
+

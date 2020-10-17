@@ -5,7 +5,6 @@
 //  Created by Zero.D.Saber on 2018/1/20.
 //  Copyright © 2018年 Zero.D.Saber. All rights reserved.
 //
-//  摘自: [promises](https://github.com/google/promises)
 
 #import <Foundation/Foundation.h>
 
@@ -19,7 +18,7 @@ typedef NS_ENUM(NSUInteger, ZDPromiseState) {
 
 //***************************************************************
 
-@interface ZDPromise<__covariant Value> : NSObject
+@interface ZDPromise<Value> : NSObject
 
 typedef void(^ZDFulfillBlock)(Value _Nullable value);
 typedef void(^ZDRejectBlock)(NSError *error);

@@ -21,9 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDBannerScrollView : UIView
 
-@property (nonatomic, assign) NSTimeInterval interval;              ///< 定时器的间隔时间,默认2.5s
+@property (nonatomic, assign) NSTimeInterval interval;              ///< 定时器的间隔时间,默认3.5s
 @property (nonatomic, strong) NSArray<NSString *> *imageURLStrings; ///< 图片地址数组
-@property (nonatomic, assign) BOOL disableAutoScroll;               ///< 禁用自动的滚动
 
 + (instancetype)scrollViewWithFrame:(CGRect)frame
                            delegate:(nullable id<ZDBannerScrollViewDelegate>)delegate

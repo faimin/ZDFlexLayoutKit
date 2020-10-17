@@ -8,13 +8,11 @@
 
 #import "ZDFunction.h"
 #import <ImageIO/ImageIO.h>
-#import <CoreText/CoreText.h>
 #import <objc/runtime.h>
 #import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
 #import <AVFoundation/AVAsset.h>
 #import <libkern/OSAtomic.h>
-#import <AudioToolbox/AudioToolbox.h>
 // -------- IP & Address --------
 #import <sys/sockio.h>
 #import <sys/ioctl.h>
@@ -25,58 +23,8 @@
 #import <mach/mach.h>
 //-----------------------------
 
-#pragma mark - CoreGraphics
-#pragma mark -
 
-// https://github.com/TextureGroup/Texture/pull/996
-// https://stackoverflow.com/questions/78127/cgpathaddarc-vs-cgpathaddarctopoint
-CGPathRef ZD_CGRoundedPathCreate(CGRect rect, UIRectCorner corners, CGSize cornerRadii) {
-    CGMutablePathRef path = CGPathCreateMutable();
-    
-    const CGPoint topLeft = rect.origin;
-    const CGPoint topRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
-    const CGPoint bottomRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-    const CGPoint bottomLeft = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
-    
-    if (corners & UIRectCornerTopLeft) {
-        CGPathMoveToPoint(path, NULL, topLeft.x+cornerRadii.width, topLeft.y);
-    } else {
-        CGPathMoveToPoint(path, NULL, topLeft.x, topLeft.y);
-    }
-    
-    if (corners & UIRectCornerTopRight) {
-        CGPathAddLineToPoint(path, NULL, topRight.x-cornerRadii.width, topRight.y);
-        CGPathAddCurveToPoint(path, NULL, topRight.x, topRight.y, topRight.x, topRight.y+cornerRadii.height, topRight.x, topRight.y+cornerRadii.height);
-    } else {
-        CGPathAddLineToPoint(path, NULL, topRight.x, topRight.y);
-    }
-    
-    if (corners & UIRectCornerBottomRight) {
-        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y-cornerRadii.height);
-        CGPathAddCurveToPoint(path, NULL, bottomRight.x, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y);
-    } else {
-        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y);
-    }
-    
-    if (corners & UIRectCornerBottomLeft) {
-        CGPathAddLineToPoint(path, NULL, bottomLeft.x+cornerRadii.width, bottomLeft.y);
-        CGPathAddCurveToPoint(path, NULL, bottomLeft.x, bottomLeft.y, bottomLeft.x, bottomLeft.y-cornerRadii.height, bottomLeft.x, bottomLeft.y-cornerRadii.height);
-    } else {
-        CGPathAddLineToPoint(path, NULL, bottomLeft.x, bottomLeft.y);
-    }
-    
-    if (corners & UIRectCornerTopLeft) {
-        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y+cornerRadii.height);
-        CGPathAddCurveToPoint(path, NULL, topLeft.x, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y);
-    } else {
-        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y);
-    }
-    
-    CGPathCloseSubpath(path);
-    return path;
-}
-
-#pragma mark - GIF Image
+#pragma mark - Gif Image
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
@@ -215,16 +163,16 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      CFNumberRef thumbnailSize;
     
      // Create an image source from NSData; no options.
-     myImageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
+     myImageSource = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
      // Make sure the image source exists before continuing.
-     if (myImageSource == NULL) {
+     if (myImageSource == NULL){
          fprintf(stderr, "Image source is NULL.");
          return NULL;
-     }
+    }
     
      // Package the integer as a CFNumber object. Using CFTypes allows you
      // to more easily create the options dictionary later.
-     imageSize *= [UIScreen mainScreen].scale;
+    imageSize *= [UIScreen mainScreen].scale;
      thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
     
      // Set up the thumbnail options.
@@ -235,16 +183,15 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
      myValues[2] = (CFTypeRef)thumbnailSize;
     
-     myOptions = CFDictionaryCreate(
-        NULL,
-        (const void **)myKeys,
-        (const void **)myValues, 3,
-        &kCFTypeDictionaryKeyCallBacks,
-        &kCFTypeDictionaryValueCallBacks
-    );
+     myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
+                                        (const void **) myValues, 3,
+                                        &kCFTypeDictionaryKeyCallBacks,
+                                        &kCFTypeDictionaryValueCallBacks);
     
      // Create the thumbnail image using the specified options.
-     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource, 0, myOptions);
+     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
+                                                                0,
+                                                                myOptions);
      // Release the options dictionary and the image source
      // when you no longer need them.
      CFRelease(thumbnailSize);
@@ -436,7 +383,7 @@ UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineS
     return dashedLine;
 }
 
-void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, CGFloat cornerRadius, UIColor *fillColor) {
+void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor) {
     if (!view) return;
     
     if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -448,7 +395,7 @@ void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, CGFloat corn
     hollowLayer.position = (CGPoint){size.width/2.0, size.height/2.0};
     
     UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:hollowLayer.bounds];
-    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithRoundedRect:hollowLayer.bounds cornerRadius:cornerRadius];
+    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithOvalInRect:hollowLayer.bounds];
     [squarePath appendPath:hollowPath];
     hollowLayer.path = squarePath.CGPath;
     
@@ -468,163 +415,10 @@ void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
           );
 }
 
-NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRect(CGRect rect, NSArray<UICollectionViewLayoutAttributes *> *cachedLayouts) {
-    if (cachedLayouts.count == 0) return @[];
-    
-    CGFloat rect_top = CGRectGetMinY(rect);
-    CGFloat rect_bottom = CGRectGetMaxY(rect);
-    
-    NSUInteger beginIndex = 0;
-    NSUInteger endIndex = cachedLayouts.count;
-    NSUInteger middleIndex = (beginIndex + endIndex) / 2;
-    
-    UICollectionViewLayoutAttributes *middleAttributes = cachedLayouts[middleIndex];
-    
-    while (CGRectEqualToRect(CGRectIntersection(middleAttributes.frame, rect), CGRectZero)) {
-        CGFloat middle_top = CGRectGetMinY(middleAttributes.frame);
-        CGFloat middle_bottom = CGRectGetMaxY(middleAttributes.frame);
-        
-        // 在前半部分查找
-        if (rect_bottom < middle_top) {
-            endIndex = middleIndex;
-        }
-        // 在后半部分查找
-        else if (rect_top > middle_bottom) {
-            beginIndex = middleIndex;
-        }
-        middleIndex = (beginIndex + endIndex) / 2;
-        
-        middleAttributes = cachedLayouts[middleIndex];
-    }
-    
-    NSMutableArray<UICollectionViewLayoutAttributes *> *targetAttributes = [NSMutableArray array];
-    for (NSInteger i = middleIndex; i >= 0; i--) {
-        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
-        if (CGRectGetMaxY(attributes.frame) >= rect_top) {
-            [targetAttributes insertObject:attributes atIndex:0];
-        }
-        else {
-            break;
-        }
-    }
-    
-    for (NSInteger i = middleIndex+1; i < cachedLayouts.count; i++) {
-        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
-        if (CGRectGetMinY(attributes.frame) <= rect_bottom) {
-            [targetAttributes addObject:attributes];
-        }
-        else {
-            break;
-        }
-    }
-    
-    return targetAttributes;
-}
-
 #pragma mark - String
 #pragma mark -
-
-/*
-static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstraints(CTFramesetterRef framesetter, NSAttributedString *attributedString, CGSize size, NSUInteger numberOfLines) {
-    
-    CFRange rangeToSize = CFRangeMake(0, (CFIndex)[attributedString length]);
-    CGSize constraints = CGSizeMake(size.width, CGFLOAT_MAX);
-    
-    if (numberOfLines == 1) {
-        // If there is one line, the size that fits is the full width of the line
-        constraints = CGSizeMake(MAXFLOAT, CGFLOAT_MAX);
-    } else {
-        // If the line count of the label more than 1, limit the range to size to the number of lines that have been set
-        CGMutablePathRef path = CGPathCreateMutable();
-        CGPathAddRect(path, NULL, CGRectMake(0.0f, 0.0f, constraints.width, CGFLOAT_MAX));
-        CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
-        CFArrayRef lines = CTFrameGetLines(frame);
-        
-        if (numberOfLines > 0 && CFArrayGetCount(lines) > 0) {
-            NSInteger lastVisibleLineIndex = MIN((CFIndex)numberOfLines, CFArrayGetCount(lines)) - 1;
-            CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, lastVisibleLineIndex);
-            
-            CFRange rangeToLayout = CTLineGetStringRange(lastVisibleLine);
-            rangeToSize = CFRangeMake(0, rangeToLayout.location + rangeToLayout.length);
-        }
-        
-        CFRelease(frame);
-        CFRelease(path);
-    }
-    
-    CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, rangeToSize, NULL, constraints, NULL);
-    
-    return CGSizeMake(ceilf(suggestedSize.width), ceilf(suggestedSize.height));
-}
-
-OS_OVERLOADABLE CGSize ZD_CalculateStringSize(NSString *text, UIFont *customFont, CGSize constrainedToSize, CGFloat lineSpace, NSUInteger numberOfLines) {
-    customFont = customFont ?: [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    CGFloat minimumLineHeight = customFont.pointSize, maximumLineHeight = minimumLineHeight, linespace = lineSpace;
-    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)customFont.fontName, customFont.pointSize, NULL);
-    CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
-    //Apply paragraph settings
-    CTTextAlignment alignment = kCTTextAlignmentLeft;
-    CTParagraphStyleSetting settings[] = {
-        {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
-        {kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(minimumLineHeight), &minimumLineHeight},
-        {kCTParagraphStyleSpecifierMaximumLineHeight, sizeof(maximumLineHeight), &maximumLineHeight},
-        {kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(linespace), &linespace},
-        {kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(linespace), &linespace},
-        {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode}
-    };
-    
-    CTParagraphStyleRef style = CTParagraphStyleCreate(settings, sizeof(settings) / sizeof(settings[0]));
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                (__bridge id)fontRef, (NSString *)kCTFontAttributeName,
-                                (__bridge id)style, (NSString *)kCTParagraphStyleAttributeName,
-                                nil];
-    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
-    
-    CFAttributedStringRef cfAttributedString = (__bridge CFAttributedStringRef)attributeString;
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)cfAttributedString);
-    CGSize suggestSize = CTFramesetterSuggestFrameSizeForAttributedStringWithConstraints(framesetter, attributeString, constrainedToSize, numberOfLines);
-    //CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, [string length]), NULL, size, NULL);
-    CFRelease(framesetter);
-    CFRelease(fontRef);
-    CFRelease(style);
-    attributeString = nil;
-    attributes = nil;
-    return suggestSize;
-}
-*/
-
-CGSize ZD_CalculateStringSize(NSString *text, UIFont *textFont, CGSize constrainSize, void(^extendAttributesBlock)(NSMutableDictionary *attributes)) {
-    
-    if (text.length == 0) {
-        return CGSizeZero;
-    }
-    
-    if (CGSizeEqualToSize(constrainSize, CGSizeZero)) {
-        constrainSize = (CGSize){CGFLOAT_MAX, CGFLOAT_MAX};
-    }
-    
-    NSMutableDictionary *attributes = @{}.mutableCopy;
-    attributes[NSFontAttributeName] = textFont;
-    attributes[NSParagraphStyleAttributeName] = ({
-        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        paragraph;
-    });
-    
-    if (extendAttributesBlock) {
-        extendAttributesBlock(attributes);
-    }
-    
-    CGSize textSize = [text boundingRectWithSize:constrainSize
-                                         options:(NSStringDrawingUsesLineFragmentOrigin |
-                                                  NSStringDrawingTruncatesLastVisibleLine)
-                                      attributes:attributes
-                                         context:nil].size;
-    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
-}
-
 /// 设置文字行间距
-OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
+NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
 	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:originString attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
@@ -632,86 +426,11 @@ OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *
 }
 
 /// 筛选设置文字color && font
-OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
+NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
     [mutAttributeStr addAttributes:@{NSForegroundColorAttributeName : filterColor, NSFontAttributeName : filterFont} range:range];
 	return mutAttributeStr;
-}
-
-OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString,
-                                                                      NSString *_Nullable filterString,
-                                                                      UIColor *_Nullable originColor,
-                                                                      UIColor *_Nullable filterColor,
-                                                                      UIFont *_Nullable originFont,
-                                                                      UIFont *_Nullable filterFont,
-                                                                      CGFloat lineSpacing,
-                                                                      void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle),
-                                                                      void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict),
-                                                                      void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict)) {
-    
-    if (!orignString) return nil;
-    
-    // 设置原始属性
-    NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
-    NSMutableDictionary *originAttributes = @{}.mutableCopy;
-    originAttributes[NSForegroundColorAttributeName] = originColor;
-    originAttributes[NSFontAttributeName] = originFont;
-    if (lineSpacing > 0) {
-        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-        // https://juejin.im/post/5abc54edf265da23826e0dc9
-        paragraphStyle.lineSpacing = lineSpacing - (originFont.lineHeight - originFont.pointSize);
-        if (extendParagraphSet) extendParagraphSet(paragraphStyle);
-        originAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
-    }
-    if (extendOriginSetBlock) extendOriginSetBlock(originAttributes);
-    [mutAttributeStr addAttributes:originAttributes range:NSMakeRange(0, orignString.length)];
-    
-    // 设置filter属性
-    NSRange range = [orignString rangeOfString:filterString];
-    if (range.location == NSNotFound) return mutAttributeStr;
-    
-    NSMutableDictionary *attributes = @{}.mutableCopy;
-    attributes[NSForegroundColorAttributeName] = filterColor;
-    attributes[NSFontAttributeName] = filterFont;
-    if (extendFilterSetBlock) extendFilterSetBlock(attributes);
-    [mutAttributeStr addAttributes:attributes range:range];
-    return mutAttributeStr;
-}
-
-NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width) {
-    if (string.length == 0) return @[];
-    
-    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
-    
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:string];
-    [attStr addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)fontRef range:NSMakeRange(0, string.length)];
-    CFRelease(fontRef);
-    
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, (CGRect){CGPointZero, width, CGFLOAT_MAX});
-    
-    CTFramesetterRef framesetterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
-    CTFrameRef frameRef = CTFramesetterCreateFrame(framesetterRef, CFRangeMake(0, 0), path, NULL);
-    
-    NSMutableArray<NSString *> *linesArray = @[].mutableCopy;
-    CFArrayRef lines = CTFrameGetLines(frameRef);
-    for (CFIndex i = 0; i < CFArrayGetCount(lines); ++i) {
-        CTLineRef lineRef = CFArrayGetValueAtIndex(lines, i);
-        CFRange lineRange = CTLineGetStringRange(lineRef);
-        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
-        NSString *lineString = [string substringWithRange:range];
-        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0.0) );
-        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0) );
-        
-        [linesArray addObject:lineString];
-    }
-    
-    CFRelease(path);
-    CFRelease(frameRef);
-    CFRelease(framesetterRef);
-    
-    return linesArray;
 }
 
 NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {
@@ -789,7 +508,7 @@ NSString *ZD_ReverseString(NSString *sourceString) {
 BOOL ZD_IsEmptyString(NSString *str) {
     if (!str || str == (id)[NSNull null]) return YES;
     if ([str isKindOfClass:[NSString class]]) {
-        return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0;
+        return str.length == 0;
     }
     else {
         return YES;
@@ -881,57 +600,18 @@ BOOL ZD_VideoIsPlayable(NSString *urlString) {
     return asset.isPlayable;
 }
 
-#pragma mark - Json
-#pragma mark -
-
-id ZD_DictOrArrFromJsonString(NSString *jsonString) {
-    if (!jsonString) return nil;
-    
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    id jsonValue = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-    if (error) NSLog(@"%s, %@", __PRETTY_FUNCTION__, error);
-    return jsonValue;
-}
-
-NSString *ZD_JsonStringFromDictionary(NSDictionary *dict) {
-    NSError *parserError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parserError];
-    if (parserError) {
-        NSLog(@"%s, %@", __PRETTY_FUNCTION__, parserError);;
-        return nil;
-    }
-    else {
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        return jsonString;
-    }
-}
-
-id ZD_JsonFromSourceFile(NSString *fileName, NSString *fileType) {
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
-    if (jsonPath.length == 0) {
-        NSLog(@"%@", @"❌文件没找到，请检查文件名称是否正确");
-        return nil;
-    }
-    NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
-    NSError *error = nil;
-    id json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-    NSLog(@"%s, %@", __PRETTY_FUNCTION__, error);
-    return json;
-}
-
 #pragma mark - InterfaceOrientation
 
-UIInterfaceOrientation ZD_CurrentInterfaceOrientation(void) {
+UIInterfaceOrientation ZD_CurrentInterfaceOrientation() {
     UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
     return orient;
 }
 
-BOOL ZD_isPortrait(void) {
+BOOL ZD_isPortrait() {
     return UIInterfaceOrientationIsPortrait(ZD_CurrentInterfaceOrientation());
 }
 
-BOOL ZD_isLandscape(void) {
+BOOL ZD_isLandscape() {
     return UIInterfaceOrientationIsLandscape(ZD_CurrentInterfaceOrientation());
 }
 
@@ -939,37 +619,22 @@ BOOL ZD_isLandscape(void) {
 #pragma mark -
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
-NSArray<NSString *> *ZD_GetClassNames(void) {
+NSArray *ZD_GetClassNames() {
+    NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
     const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
-    
-    NSMutableArray<NSString *> *classNames = [[NSMutableArray alloc] initWithCapacity:count];
-    for (u_int i = 0; i < count; i++) {
-        NSString *className = [NSString stringWithUTF8String:classes[i]];
+    for (unsigned int i = 0; i<count; i++) {
+        NSString* className = [NSString stringWithUTF8String:classes[i]];
         [classNames addObject:className];
     }
     return classNames.copy;
-}
-
-BOOL ZD_ClassIsCustomClass(Class aClass) {
-    NSCParameterAssert(aClass);
-    if (!aClass) return NO;
-    
-    NSString *bundlePath = [[NSBundle bundleForClass:aClass] bundlePath];
-    if ([bundlePath containsString:@"System/Library/"]) {
-        return NO;
-    }
-    else if ([bundlePath containsString:@"usr/"]) {
-        return NO;
-    }
-    return YES;
 }
 
 #pragma mark - Device
 #pragma mark -
 /// nativeScale与scale的区别
 /// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
-BOOL ZD_isRetina(void) {
+BOOL ZD_isRetina() {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale >= 2;
     }
@@ -978,7 +643,7 @@ BOOL ZD_isRetina(void) {
     }
 }
 
-BOOL ZD_isPad(void) {
+BOOL ZD_isPad() {
     static dispatch_once_t one;
     static BOOL pad;
     dispatch_once(&one, ^{
@@ -987,7 +652,7 @@ BOOL ZD_isPad(void) {
     return pad;
 }
 
-BOOL ZD_isSimulator(void) {
+BOOL ZD_isSimulator() {
 #if 1
     
 #if TARGET_IPHONE_SIMULATOR
@@ -1006,7 +671,7 @@ BOOL ZD_isSimulator(void) {
 }
 
 // 是否越狱 refer:YYCategories
-BOOL ZD_isJailbroken(void) {
+BOOL ZD_isJailbroken() {
     if (ZD_isSimulator()) return NO; // Dont't check simulator
     
     // iOS9 URL Scheme query changed ...
@@ -1041,15 +706,15 @@ BOOL ZD_isJailbroken(void) {
 }
 
 // 当前设备是否设置了代理
-BOOL ZD_isSetProxy(void) {
+BOOL ZD_isSetProxy() {
     NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
     NSArray *proxies = (__bridge NSArray *)(CFNetworkCopyProxiesForURL((__bridge CFURLRef _Nonnull)([NSURL URLWithString:@"http://www.baidu.com"]), (__bridge CFDictionaryRef _Nonnull)(proxySettings)));
     
-    NSDictionary *settings = proxies.firstObject;
+    NSDictionary *settings = proxies[0];
     return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
 }
 
-double ZD_SystemVersion(void) {
+double ZD_SystemVersion() {
     static double _version;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -1058,7 +723,7 @@ double ZD_SystemVersion(void) {
     return _version;
 }
 
-CGFloat ZD_Scale(void) {
+CGFloat ZD_Scale() {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale;
     }
@@ -1067,7 +732,7 @@ CGFloat ZD_Scale(void) {
     }
 }
 
-CGSize ZD_ScreenSize(void) {
+CGSize ZD_ScreenSize() {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { // 横屏
         return CGSizeMake(screenSize.height, screenSize.width);
@@ -1078,15 +743,15 @@ CGSize ZD_ScreenSize(void) {
 }
 
 /// 竖屏状态下
-CGSize ZD_PrivateScreenSize(void) {
+CGSize ZD_PrivateScreenSize() {
     return [UIScreen mainScreen].bounds.size;
 }
 
-CGFloat ZD_ScreenWidth(void) {
+CGFloat ZD_ScreenWidth() {
     return ZD_ScreenSize().width;
 }
 
-CGFloat ZD_ScreenHeight(void) {
+CGFloat ZD_ScreenHeight() {
     return ZD_ScreenSize().height;
 }
 
@@ -1094,7 +759,7 @@ CGFloat ZD_ScreenHeight(void) {
  竖屏尺寸：640px × 960px(320pt × 480pt @2x)
  横屏尺寸：960px × 640px(480pt × 320pt @2x)
  */
-BOOL ZD_iPhone4s(void) {
+BOOL ZD_iPhone4s() {
 	if (ZD_PrivateScreenSize().height == 480) {
 		return YES;
 	}
@@ -1105,7 +770,7 @@ BOOL ZD_iPhone4s(void) {
  竖屏尺寸：640px × 1136px(320pt × 568pt @2x)
  横屏尺寸：1136px × 640px(568pt × 320pt @2x)
  */
-BOOL ZD_iPhone5s(void) {
+BOOL ZD_iPhone5s() {
 	if (ZD_PrivateScreenSize().height == 568) {
 		return YES;
 	}
@@ -1116,7 +781,7 @@ BOOL ZD_iPhone5s(void) {
  竖屏尺寸：750px × 1334px(375pt × 667pt @2x)
  横屏尺寸：1334px × 750px(667pt × 375pt @2x)
  */
-BOOL ZD_iPhone6(void) {
+BOOL ZD_iPhone6() {
 	if (CGSizeEqualToSize(ZD_PrivateScreenSize(), CGSizeMake(375, 667))) {
 		return YES;
 	}
@@ -1127,7 +792,7 @@ BOOL ZD_iPhone6(void) {
  竖屏尺寸：1242px × 2208px(414pt × 736pt @3x)
  横屏尺寸：2208px × 1242px(736pt × 414pt @3x)
  */
-BOOL ZD_iPhone6p(void) {
+BOOL ZD_iPhone6p() {
 	if (ZD_PrivateScreenSize().width == 414) {
 		return YES;
 	}
@@ -1138,7 +803,7 @@ BOOL ZD_iPhone6p(void) {
  竖屏尺寸：1125px × 2436px(375pt × 812pt @3x)
  横屏尺寸：2436px × 1125px(812pt × 375pt @3x)
  */
-BOOL ZD_iPhoneX(void) {
+BOOL ZD_iPhoneX() {
     if (ZD_PrivateScreenSize().height == 812) {
         return YES;
     }
@@ -1147,19 +812,19 @@ BOOL ZD_iPhoneX(void) {
 
 // refer: http://www.cnblogs.com/tandaxia/p/5820217.html
 /// 获取 app 的 icon 图标名称
-NSString *ZD_IconName(void) {
+NSString *ZD_IconName() {
     NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
     NSArray<NSString *> *iconArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
     NSString *iconLastName = iconArr.lastObject;
     return iconLastName;
 }
 
-NSString *ZD_LaunchImageName(void) {
+NSString *ZD_LaunchImageName() {
     CGSize viewSize = [UIApplication sharedApplication].delegate.window.bounds.size;
     // 竖屏
     NSString *viewOrientation = @"Portrait";
     NSString *launchImageName = nil;
-    NSArray<NSDictionary *> *imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
+    NSArray *imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
     for (NSDictionary *dict in imagesDict) {
         CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
         if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
@@ -1169,10 +834,10 @@ NSString *ZD_LaunchImageName(void) {
     return launchImageName;
 }
 
-NSArray *ZD_IPAddresses(void) {
+NSArray *ZD_IPAddresses() {
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) return nil;
-    NSMutableArray<NSString *> *ips = [[NSMutableArray alloc] init];
+    NSMutableArray *ips = [NSMutableArray array];
     
     int BUFFERSIZE = 4096;
     struct ifconf ifc;
@@ -1180,7 +845,7 @@ NSArray *ZD_IPAddresses(void) {
     struct ifreq *ifr, ifrcopy;
     ifc.ifc_len = BUFFERSIZE;
     ifc.ifc_buf = buffer;
-    if (ioctl(sockfd, SIOCGIFCONF, &ifc) >= 0) {
+    if (ioctl(sockfd, SIOCGIFCONF, &ifc) >= 0){
         for (ptr = buffer; ptr < buffer + ifc.ifc_len; ){
             ifr = (struct ifreq *)ptr;
             int len = sizeof(struct sockaddr);
@@ -1204,7 +869,7 @@ NSArray *ZD_IPAddresses(void) {
     return ips;
 }
 
-NSString *ZD_MacAddress(void) {
+NSString *ZD_MacAddress() {
     int                 mib[6];
     size_t              len;
     char                *buf;
@@ -1258,41 +923,10 @@ double ZD_MemoryUsage(void) {
     return memoryUsageInMB;
 }
 
-static CFTimeInterval startPlayTime;
-NS_INLINE void _ZD_PlaySoundCompletionCallback(SystemSoundID ssID, void *clientData) {
-    void(^callback)(BOOL) = (__bridge void (^)(BOOL))(clientData);
-    
-    AudioServicesRemoveSystemSoundCompletion(ssID);
-    // 播放结束时记录时间差，如果小于0.1s则认为是静音
-    CFTimeInterval playDuring = CACurrentMediaTime() - startPlayTime;
-    BOOL isMuted = playDuring < 0.1;
-    NSLog(@"%@", isMuted ? @"静音状态" : @"非静音状态");
-    if (callback) {
-        callback(isMuted);
-    }
-}
-BOOL ZD_IsMutedOfDevice(NSString *resourceName, NSString *resourceType) {
-    // 记录开始播放时间
-    startPlayTime = CACurrentMediaTime();
-    // 假设本地存放一个长度为0.2s的空白音频，detection.aiff
-    //CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
-    CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)resourceName, (__bridge CFStringRef)resourceType, NULL);
-    SystemSoundID soundFileID;
-    AudioServicesCreateSystemSoundID(soundFileURLRef, &soundFileID);
-    
-    __block BOOL isMuted = NO;
-    __auto_type callback = ^(BOOL muted){
-        isMuted = muted;
-    };
-    AudioServicesAddSystemSoundCompletion(soundFileID, NULL, NULL, _ZD_PlaySoundCompletionCallback, (__bridge void *)callback);
-    AudioServicesPlaySystemSound(soundFileID);
-    
-    return isMuted;
-}
-
 #pragma mark - Function
 #pragma mark -
-double ZD_Round(CGFloat num, NSInteger num_digits) {
+double ZD_Round(CGFloat num, NSInteger num_digits)
+{
     double zd_pow = pow(10, num_digits); // 指数函数，相当于10的digits次方
     double i = round(num * zd_pow) / zd_pow;
     return i;
@@ -1308,7 +942,7 @@ NSData *ZD_ConvertIntToData(int intValue) {
     return data;
 }
 
-UIColor *ZD_RandomColor(void) {
+UIColor *ZD_RandomColor() {
     CGFloat hue = (arc4random() % 256 / 256.0);
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
     CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
@@ -1338,7 +972,7 @@ OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block) {
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
-BOOL ZD_IsMainQueue(void) {
+BOOL ZD_IsMainQueue() {
     // 方案1:(最佳)
     static const void *mainQueueKey = &mainQueueKey;
     static void *mainQueueContext = &mainQueueContext;
@@ -1418,21 +1052,6 @@ void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval i
     ZD_ExecuteFunctionThrottle(throttleType, intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
 }
 
-void ZD_Delay(NSTimeInterval delay, dispatch_queue_t targetQueue, dispatch_block_t block) {
-    if (!targetQueue) {
-        targetQueue = dispatch_get_main_queue();
-    }
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, targetQueue);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        if (block) {
-            block();
-        }
-        dispatch_source_cancel(timer);
-    });
-    dispatch_resume(timer);
-}
-
 static const NSUInteger MaxQueueCount = 8;
 dispatch_queue_t ZD_TaskQueue(void) {
     static NSUInteger queueCount;
@@ -1455,34 +1074,11 @@ dispatch_queue_t ZD_TaskQueue(void) {
 
 #pragma mark - Runtime
 #pragma mark -
-void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
-    if (!object || !key) return;
-    
-    if (value) {
-        __weak typeof(value) weakTarget = value;
-        __auto_type block = ^id{
-            return weakTarget;
-        };
-        objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
-    }
-    else {
-        objc_setAssociatedObject(object, key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
-
-id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
-    if (!object || !key) return nil;
-    
-    id(^block)(void) = objc_getAssociatedObject(object, key);
-    id value = block ? block() : nil;
-    return value;
-}
-
-void ZD_PrintObjectMethods(void) {
+void ZD_PrintObjectMethods() {
 	unsigned int count = 0;
 	Method *methods = class_copyMethodList([NSObject class], &count);
 
-	for (u_int i = 0; i < count; ++i) {
+	for (unsigned int i = 0; i < count; ++i) {
 		SEL sel = method_getName(methods[i]);
 		const char *name = sel_getName(sel);
 		printf("\n方法名:%s\n", name);
@@ -1520,7 +1116,8 @@ IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP) {
     
     IMP origIMP = method_getImplementation(origMethod);
     
-    if (!class_addMethod(aClass, originalSel, replacementIMP, method_getTypeEncoding(origMethod))) {
+    if(!class_addMethod(aClass, originalSel, replacementIMP,
+                        method_getTypeEncoding(origMethod))) {
         method_setImplementation(origMethod, replacementIMP);
     }
     
@@ -1560,7 +1157,16 @@ struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *pr
     return (struct objc_method_description){NULL, NULL};
 }
 
-BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel) {
+BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel) {
     return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
 }
+
+
+
+
+
+
+
+
+
 

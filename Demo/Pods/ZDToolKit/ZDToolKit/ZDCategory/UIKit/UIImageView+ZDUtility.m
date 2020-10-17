@@ -9,11 +9,7 @@
 #import "UIImageView+ZDUtility.h"
 #if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/SDImageCache.h>
 #endif
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImageView_ZDUtility)
 
 @implementation UIImage (CornerRadius)
 
@@ -194,3 +190,6 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImageView_ZDUtility)
 }
 
 @end
+
+
+

@@ -56,19 +56,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)zd_isContainsEmoji;
 - (NSString *)zd_filterEmoji;
 - (NSString *)zd_removeHalfEmoji;
-- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index;       ///< 安全截取包含emoji的文本
-
-/// @param isContainTone 是否包含声调
-- (nullable NSString *)zd_chineseToPinyin:(BOOL)isContainTone;
+- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index;   ///< 安全截取包含emoji的文本
 
 // MARK: Function
-- (NSString *)zd_reservedNumberOnly;                            ///< 只保留数字
-- (nullable NSString *)zd_reservedNormalCharacterOnly;          
-- (NSString *)zd_reverse;                                       ///< 反转字符串
+- (NSString *)zd_reservedNumberOnly;   ///< 只保留数字
+- (NSString *)zd_reverse;              ///< 反转字符串
 - (BOOL)zd_isContainString:(NSString *)string;
 - (BOOL)zd_isContainChinese;
 - (BOOL)zd_isAllChinse;
-- (BOOL)zd_isAllDigit;
+- (BOOL)zd_isAllNumber;
 - (BOOL)zd_isEmptyOrNil;
 - (BOOL)zd_isEmpty;
 - (NSUInteger)zd_countForTargetString:(NSString *)targetString; ///< 包含的指定字符串的个数

@@ -7,9 +7,6 @@
 //
 
 #import "NSArray+ZDUtility.h"
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
 
 @implementation NSArray (ZDUtility)
 
@@ -27,24 +24,26 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
     return [self reverseObjectEnumerator].allObjects;
 }
 
-- (NSMutableArray *)zd_shuffle {
-    NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
+- (__kindof NSArray *)zd_shuffle {
     if (self.count > 0) {
+        NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
         for (NSUInteger i = self.count; i > 1; i--) {
             [mutArr exchangeObjectAtIndex:(i - 1)
                       withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
         }
+        return mutArr;
     }
-    return mutArr;
+    return self;
 }
 
-- (NSMutableArray *)zd_moveObjcToFront:(id)obj {
-    NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
-    if ([mutArr containsObject:obj]) {
-        [mutArr removeObject:obj];
-        [mutArr insertObject:obj atIndex:0];
+- (__kindof NSArray *)zd_moveObjcToFront:(id)objc {
+    if ([self containsObject:objc]) {
+        NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
+        [mutArr removeObject:objc];
+        [mutArr insertObject:objc atIndex:0];
+        return mutArr;
     }
-    return mutArr;
+    return self;
 }
 
 - (NSArray *)zd_deduplication {
@@ -56,7 +55,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
 #endif
 }
 
-- (NSArray *)zd_collectSameElementWithArray:(NSArray *)otherArray {
+- (NSArray *)zd_collectSameElementWithArray:(__kindof NSArray *)otherArray {
     if (!otherArray || otherArray.count == 0) return @[];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", otherArray];
     NSArray *sameElements = [self filteredArrayUsingPredicate:predicate];
@@ -79,18 +78,10 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
     return [[self valueForKeyPath:@"@min.floatValue"] floatValue];
 }
 
-- (void)zd_forEach:(void(^)(id, NSUInteger))block {
-    if (!block) return;
-    
-    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        block(obj, idx);
-    }];
-}
-
-- (NSMutableArray *)zd_map:(id (^)(id, NSUInteger))block {
+- (NSMutableArray *)zd_map:(id (^)(id objc))block {
     NSMutableArray *mapedMutArr = [NSMutableArray arrayWithCapacity:self.count];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        id value = block ? block(obj, idx) : nil;
+        id value = block ? block(obj) : nil;
         if (value) {
             [mapedMutArr addObject:value];
         }
@@ -99,27 +90,16 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
     return mapedMutArr;
 }
 
-- (NSMutableArray *)zd_filter:(BOOL (^)(id objc, NSUInteger idx))block {
+- (NSMutableArray *)zd_filter:(BOOL (^)(id objc))block {
     if (!block) return self.zd_mutableArray;
     
     NSMutableArray *filteredMutArr = @[].mutableCopy;
-    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        BOOL isPass = block(obj, idx);
-        if (!isPass) {
-            [filteredMutArr addObject:obj];
+    for (id value in self) {
+        if (block(value)) {
+            [filteredMutArr addObject:value];
         }
-    }];
+    }
     return filteredMutArr;
-}
-
-- (id)zd_reduce:(id(^)(id previousResult, id currentObject, NSUInteger idx))block {
-    if (!block) return self;
-    
-    __block id result = nil;
-    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        result = block(result, obj, idx);
-    }];
-    return result;
 }
 
 - (NSMutableArray *)zd_flatten {

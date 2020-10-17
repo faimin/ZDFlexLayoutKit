@@ -8,9 +8,6 @@
 
 #import "NSDictionary+ZDUtility.h"
 #import <Security/Security.h>
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSDictionary_ZDUtility)
 
 @implementation NSDictionary (ZDUtility)
 

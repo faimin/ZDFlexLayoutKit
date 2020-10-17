@@ -10,7 +10,7 @@
   },
   "requires_arc": true,
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source": {
     "git": "https://github.com/faimin/ZDFlexLayoutKit.git",
@@ -19,7 +19,6 @@
   "source_files": "Source/**/*.{h,m}",
   "public_header_files": "Source/ZDFlexLayoutKit.h",
   "module_name": "ZDFlexLayoutKit",
-  "module_map": "Source/module.modulemap",
   "pod_target_xcconfig": {
     "DEFINES_MODULE": "YES"
   },

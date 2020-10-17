@@ -10,9 +10,6 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreImage/CoreImage.h>
 #import <ImageIO/ImageIO.h>
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImage_ZDUtility)
 
 #pragma mark - Function
 
@@ -291,9 +288,10 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
     
 #else
     
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
     CGImageRef imageRef = self.CGImage;
     //返回包围源矩形的最小整数矩形 http://nshipster.cn/cggeometry/
-    //CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+    newRect = CGRectIntegral(newRect);
     
     UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -303,97 +301,84 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
     CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
     CGContextConcatCTM(context, flipVertical);
     // Draw into the context; this scales the image
-    CGContextDrawImage(context, (CGRect){CGPointZero, newSize}, imageRef);
+    CGContextDrawImage(context, newRect, imageRef);
     
     // Get the resized image from the context and a UIImage
     CGImageRef newImageRef = CGBitmapContextCreateImage(context);
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
-    CGImageRelease(newImageRef);
     
+    CGImageRelease(newImageRef);
     UIGraphicsEndImageContext();
     
     return newImage;
 #endif
 }
 
-- (UIImage *)zd_thumbnailWithSize:(CGSize)imageSize {
-    return [self zd_thumbnailWithLocalURL:nil scaleToMaxPixelSize:imageSize];
+- (UIImage *)zd_thumbnailWithSize:(int)imageWidthOrHeight {
+    return [self zd_thumbnailWithLocalURL:nil scaleToSize:imageWidthOrHeight];
 }
 
-- (UIImage *)zd_thumbnailWithLocalURL:(NSURL *)url scaleToMaxPixelSize:(CGSize)maxPixelSize {
-    CFStringRef key[1];
-    CFBooleanRef value[1];
-    key[0] = kCGImageSourceShouldCache;
-    value[0] = kCFBooleanFalse;
-    CFDictionaryRef tempOptionsRef = CFDictionaryCreate(kCFAllocatorDefault,
-                                                        (const void **)key,
-                                                        (const void **)value,
-                                                        1,
-                                                        &kCFTypeDictionaryKeyCallBacks,
-                                                        &kCFTypeDictionaryValueCallBacks);
+- (UIImage *)zd_thumbnailWithLocalURL:(NSURL *)url scaleToSize:(int)imageSize {
+    CGImageRef        myThumbnailImage = NULL;
+    CGImageSourceRef  myImageSource;
+    CFDictionaryRef   myOptions = NULL;
+    CFStringRef       myKeys[3];
+    CFTypeRef         myValues[3];
+    CFNumberRef       thumbnailSize;
     
-    CGImageSourceRef myImageSourceRef = NULL;
     if (url) {
         // Create an image source from NSData; no options.
-        myImageSourceRef = CGImageSourceCreateWithURL((__bridge CFURLRef)url, tempOptionsRef);
+        myImageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
     } else {
         NSData *imageData = UIImageJPEGRepresentation(self, 0.618);
-        CFDataRef dataRef = CFDataCreate(kCFAllocatorDefault, imageData.bytes, imageData.length);
-        myImageSourceRef = CGImageSourceCreateWithData(dataRef, tempOptionsRef);
-        CFRelease(dataRef);
+        CFDataRef data = CFDataCreate(NULL, [imageData bytes], [imageData length]); //(__bridge CFDataRef)(UIImageJPEGRepresentation(self, 0.618));
+        myImageSource = CGImageSourceCreateWithData(data, NULL);
     }
-    CFRelease(tempOptionsRef);
-    
     // Make sure the image source exists before continuing.
-    if (myImageSourceRef == NULL) {
+    if (myImageSource == NULL){
         fprintf(stderr, "Image source is NULL.");
-        return nil;
+        return  nil;
     }
     
     // Package the integer as a  CFNumber object. Using CFTypes allows you
     // to more easily create the options dictionary later.
-    CGFloat maxLength = MAX(maxPixelSize.width, maxPixelSize.height) * UIScreen.mainScreen.scale;
-    CFNumberRef thumbnailLengthRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberCGFloatType, &maxLength);
+    imageSize *= [UIScreen mainScreen].scale;
+    thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
     
     // Set up the thumbnail options.
-    CFStringRef myKeys[4];
-    CFTypeRef myValues[4];
-    myKeys[0] = kCGImageSourceCreateThumbnailFromImageAlways;
+    myKeys[0] = kCGImageSourceCreateThumbnailWithTransform;
     myValues[0] = (CFTypeRef)kCFBooleanTrue;
-    myKeys[1] = kCGImageSourceCreateThumbnailWithTransform;
+    myKeys[1] = kCGImageSourceCreateThumbnailFromImageIfAbsent;
     myValues[1] = (CFTypeRef)kCFBooleanTrue;
-    myKeys[2] = kCGImageSourceCreateThumbnailFromImageIfAbsent;
-    myValues[2] = (CFTypeRef)kCFBooleanTrue;
-    myKeys[3] = kCGImageSourceThumbnailMaxPixelSize;
-    myValues[3] = (CFTypeRef)thumbnailLengthRef;
+    myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
+    myValues[2] = (CFTypeRef)thumbnailSize;
     
-    CFDictionaryRef myOptionsRef = CFDictionaryCreate(kCFAllocatorDefault,
-                                                      (const void **)myKeys,
-                                                      (const void **)myValues,
-                                                      4,
-                                                      &kCFTypeDictionaryKeyCallBacks,
-                                                      &kCFTypeDictionaryValueCallBacks);
+    myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
+                                   (const void **) myValues,
+                                   3,
+                                   &kCFTypeDictionaryKeyCallBacks,
+                                   &kCFTypeDictionaryValueCallBacks);
     
     // Create the thumbnail image using the specified options.
-    CGImageRef thumbnailImageRef = CGImageSourceCreateThumbnailAtIndex(myImageSourceRef,
-                                                                       0,
-                                                                       myOptionsRef);
+    myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
+                                                           0,
+                                                           myOptions);
     // Release the options dictionary and the image source
     // when you no longer need them.
-    CFRelease(thumbnailLengthRef);
-    CFRelease(myOptionsRef);
-    CFRelease(myImageSourceRef);
+    CFRelease(thumbnailSize);
+    CFRelease(myOptions);
+    CFRelease(myImageSource);
     
-    UIImage *thumbnailImage = nil;
     // Make sure the thumbnail image exists before continuing.
-    if (thumbnailImageRef == NULL) {
+    if (myThumbnailImage == NULL){
         fprintf(stderr, "Thumbnail image not created from image source.");
-    } else {
-        thumbnailImage = [UIImage imageWithCGImage:thumbnailImageRef];
+        return nil;
     }
-    CGImageRelease(thumbnailImageRef);
     
-    return thumbnailImage;
+    UIImage *thumbnail = [UIImage imageWithCGImage:myThumbnailImage];
+    CFRelease(myThumbnailImage);
+    
+    return thumbnail;
 }
 
 ///====================== by ibireme =======================
@@ -677,3 +662,7 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
 }
 
 @end
+
+
+
+

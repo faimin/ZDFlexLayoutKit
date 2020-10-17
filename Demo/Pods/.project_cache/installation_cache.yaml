@@ -2,15 +2,6 @@ BUILD_CONFIGURATIONS:
   Debug: :debug
   Release: :release
 CACHE_KEYS:
-  libffi-core:
-    BUILD_SETTINGS_CHECKSUM:
-      libffi-core:
-        :debug: f068a331eda1137d121206433e5963ee
-        :release: f068a331eda1137d121206433e5963ee
-    CHECKSUM: c4049ed88381fee5c0a31d26c860fc427d3c301c
-    PROJECT_NAME: libffi-core
-    SPECS:
-      - libffi-core (1.2.0)
   LookinServer:
     BUILD_SETTINGS_CHECKSUM:
       LookinServer:
@@ -22,16 +13,16 @@ CACHE_KEYS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: e69b59503f9f5c7e43b28c1c287b7d63
-      Release: 58455282a27082359d2f1e6e63cdd302
+      Debug: fce4bde06e00076e87264634f157d748
+      Release: 844933639f15aa40d5b2933bbecb5ffa
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: e69b59503f9f5c7e43b28c1c287b7d63
-      Release: 58455282a27082359d2f1e6e63cdd302
+      Debug: fce4bde06e00076e87264634f157d748
+      Release: 844933639f15aa40d5b2933bbecb5ffa
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 4672eb95e6676380fd6793a5b0e7d290
-      Release: 0d316c0e0021599cdb5df8371b62f46a
+      Debug: 42522a4ea76820e2c612d59ded57c2b6
+      Release: 4f5f4f4074cdbb2d55c7c9392f403b6b
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
@@ -55,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 34937d4218376605d4dd4b2c9f1b353c
         :release: 34937d4218376605d4dd4b2c9f1b353c
-    CHECKSUM: f5f0671ae5a8cba0ea0966420136f12230231f46
+    CHECKSUM: dab343719d32586dddec6ae74f3449a2ef1bffb2
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -77,7 +68,6 @@ CACHE_KEYS:
       - "../../Source/Maker/ZDFlexLayoutChain.m"
       - "../../Source/Maker/ZDFlexLayoutMaker.h"
       - "../../Source/Maker/ZDFlexLayoutMaker.m"
-      - "../../Source/module.modulemap"
       - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
@@ -88,22 +78,18 @@ CACHE_KEYS:
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
-        :debug: f43181b4a5eabb9ca4e96a54e8fae4a7
-        :release: f43181b4a5eabb9ca4e96a54e8fae4a7
-    CHECKOUT_OPTIONS:
-      :commit: 6cee2b7a1098bb5f825940ba93362eee143226e4
-      :git: https://github.com/faimin/ZDToolKit
-    CHECKSUM: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
+        :debug: 911a4ae3b56142344dc71f72be2a243a
+        :release: 911a4ae3b56142344dc71f72be2a243a
+    CHECKSUM: d8e01665027555cea53dca39762bff1b67afaddf
     PROJECT_NAME: ZDToolKit
     SPECS:
       - ZDToolKit (0.0.4)
+      - ZDToolKit/no-arc (0.0.4)
       - ZDToolKit/ZDAutoLayout (0.0.4)
       - ZDToolKit/ZDCategory (0.0.4)
       - ZDToolKit/ZDCategory/Foundation (0.0.4)
       - ZDToolKit/ZDCategory/UIKit (0.0.4)
-      - ZDToolKit/ZDDebug (0.0.4)
       - ZDToolKit/ZDMacros (0.0.4)
-      - ZDToolKit/ZDMRC (0.0.4)
       - ZDToolKit/ZDRuntime (0.0.4)
       - ZDToolKit/ZDSubclass (0.0.4)
       - ZDToolKit/ZDTools (0.0.4)

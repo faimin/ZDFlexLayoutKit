@@ -1,5 +1,4 @@
 PODS:
-  - libffi-core (1.2.0)
   - LookinServer (1.0.0)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
@@ -14,29 +13,23 @@ PODS:
   - ZDFlexLayoutKit/Maker (0.0.1):
     - ZDFlexLayoutKit/Core
   - ZDToolKit (0.0.4):
+    - ZDToolKit/no-arc (= 0.0.4)
     - ZDToolKit/ZDAutoLayout (= 0.0.4)
     - ZDToolKit/ZDCategory (= 0.0.4)
-    - ZDToolKit/ZDDebug (= 0.0.4)
     - ZDToolKit/ZDMacros (= 0.0.4)
-    - ZDToolKit/ZDMRC (= 0.0.4)
     - ZDToolKit/ZDRuntime (= 0.0.4)
     - ZDToolKit/ZDSubclass (= 0.0.4)
     - ZDToolKit/ZDTools (= 0.0.4)
+  - ZDToolKit/no-arc (0.0.4)
   - ZDToolKit/ZDAutoLayout (0.0.4)
   - ZDToolKit/ZDCategory (0.0.4):
     - ZDToolKit/ZDCategory/Foundation (= 0.0.4)
     - ZDToolKit/ZDCategory/UIKit (= 0.0.4)
-    - ZDToolKit/ZDMacros
-  - ZDToolKit/ZDCategory/Foundation (0.0.4):
-    - ZDToolKit/ZDMacros
+  - ZDToolKit/ZDCategory/Foundation (0.0.4)
   - ZDToolKit/ZDCategory/UIKit (0.0.4):
-    - ZDToolKit/ZDMacros
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDDebug (0.0.4)
   - ZDToolKit/ZDMacros (0.0.4)
-  - ZDToolKit/ZDMRC (0.0.4)
-  - ZDToolKit/ZDRuntime (0.0.4):
-    - libffi-core
+  - ZDToolKit/ZDRuntime (0.0.4)
   - ZDToolKit/ZDSubclass (0.0.4):
     - ZDToolKit/ZDTools/ZDProxy
   - ZDToolKit/ZDTools (0.0.4):
@@ -52,35 +45,26 @@ DEPENDENCIES:
   - Yoga
   - YYModel
   - ZDFlexLayoutKit (from `../ZDFlexLayoutKit.podspec`)
-  - ZDToolKit (from `https://github.com/faimin/ZDToolKit`, branch `develop`)
+  - ZDToolKit (~> 0.0.4)
 
 SPEC REPOS:
   trunk:
-    - libffi-core
     - LookinServer
     - Yoga
     - YYModel
+    - ZDToolKit
 
 EXTERNAL SOURCES:
   ZDFlexLayoutKit:
     :path: "../ZDFlexLayoutKit.podspec"
-  ZDToolKit:
-    :branch: develop
-    :git: https://github.com/faimin/ZDToolKit
-
-CHECKOUT OPTIONS:
-  ZDToolKit:
-    :commit: 6cee2b7a1098bb5f825940ba93362eee143226e4
-    :git: https://github.com/faimin/ZDToolKit
 
 SPEC CHECKSUMS:
-  libffi-core: c4049ed88381fee5c0a31d26c860fc427d3c301c
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: f5f0671ae5a8cba0ea0966420136f12230231f46
-  ZDToolKit: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
+  ZDFlexLayoutKit: dab343719d32586dddec6ae74f3449a2ef1bffb2
+  ZDToolKit: d8e01665027555cea53dca39762bff1b67afaddf
 
-PODFILE CHECKSUM: 412917fb147810c81efcfcf4635c615ebcd9013a
+PODFILE CHECKSUM: e62edf2a863236f75dda61ef1036da8e84e09765
 
 COCOAPODS: 1.9.3

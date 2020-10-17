@@ -2,7 +2,7 @@
 //  NSDate+ZDUtility.h
 //  Pods
 //
-//  Created by Zero.D.Saber on 2017/6/1.
+//  Created by MOMO on 2017/6/1.
 //
 //
 
@@ -12,9 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDate (ZDUtility)
 
-+ (instancetype)zd_pekingDate;
-
-+ (instancetype)zd_dateWithISO8601String:(NSString *)iso8601String;
++ (NSDate *)zd_dateWithISO8601String:(NSString *)iso8601String;
 
 @end
 

@@ -52,20 +52,19 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     if (_observer) return;
     
     // 创建添加观察者
-    CFRunLoopObserverContext context;//{0, (__bridge void*)self, NULL, NULL, NULL};
+    CFRunLoopObserverContext context;//{0, (__bridge void*)self, NULL, NULL, NULL}
     context.version         = 0;
     context.info            = (__bridge void *)self;
-    context.retain          = &CFRetain;
-    context.release         = &CFRelease;
+    context.retain          = NULL;
+    context.release         = NULL;
     context.copyDescription = NULL;
     _observer = CFRunLoopObserverCreate(CFAllocatorGetDefault(),
                                         kCFRunLoopAllActivities,
                                         true,
                                         0,
-                                        RunLoopObserverCallBack,
+                                        &RunLoopObserverCallBack,
                                         &context);
     CFRunLoopAddObserver(CFRunLoopGetMain(), _observer, kCFRunLoopCommonModes);
-    CFRelease(_observer);
 }
 
 #pragma mark - Public Method
@@ -158,6 +157,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     if (!_observer) return;
     
     CFRunLoopRemoveObserver(CFRunLoopGetMain(), _observer, kCFRunLoopCommonModes);
+    CFRelease(_observer);
     _observer = NULL;
 }
 
@@ -175,4 +175,11 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
 }
 
 @end
+
+
+
+
+
+
+
 

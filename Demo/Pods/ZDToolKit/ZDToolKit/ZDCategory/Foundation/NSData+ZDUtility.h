@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData *)zd_base64Encode;
 - (nullable NSData *)zd_base64Decode;
 
-+ (instancetype)zd_dataWithValue:(NSValue *)value;
-
 @end
 
 NS_ASSUME_NONNULL_END

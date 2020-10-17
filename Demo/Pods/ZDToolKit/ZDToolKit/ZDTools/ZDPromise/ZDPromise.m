@@ -193,16 +193,7 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
     ZDPromise *newPromise = [[ZDPromise alloc] initPending];
     
     void(^finishedBlock)(id) = ^(id value){
-        if ([value isKindOfClass:[ZDPromise class]]) {
-            [(ZDPromise *)value observeOnQueue:queue fulfill:^(id _Nullable value) {
-                [newPromise fulfill:value];
-            } reject:^(NSError * _Nonnull error) {
-                [newPromise reject:error];
-            }];
-        }
-        else {        
-            [newPromise fulfill:value];
-        }
+        [newPromise fulfill:value];
     };
     
     [self observeOnQueue:queue fulfill:^(id  _Nonnull value) {

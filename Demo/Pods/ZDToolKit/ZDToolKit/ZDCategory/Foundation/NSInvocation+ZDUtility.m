@@ -7,9 +7,6 @@
 //  https://github.com/ReactiveCocoa/ReactiveObjC/blob/master/ReactiveObjC/NSInvocation%2BRACTypeParsing.m
 
 #import "NSInvocation+ZDUtility.h"
-#import "ZDMacro.h"
-
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSInvocation_ZDUtility)
 
 @implementation NSInvocation (ZDUtility)
 
@@ -96,9 +93,9 @@ return @(val); \
     }
     
     if (strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
-        __autoreleasing id argValue;
-        [self getArgument:&argValue atIndex:(NSInteger)index];
-        return argValue;
+        __autoreleasing id returnObj;
+        [self getArgument:&returnObj atIndex:(NSInteger)index];
+        return returnObj;
     } else if (strcmp(argType, @encode(char)) == 0) {
         WRAP_AND_RETURN(char);
     } else if (strcmp(argType, @encode(int)) == 0) {
