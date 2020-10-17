@@ -17,14 +17,14 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
   spec.author       = { "faimin" => "fuxianchao@gmail.com" }
   spec.requires_arc = true
-  spec.platform     = :ios, "8.0"
+  spec.platform     = :ios, "9.0"
   spec.source       = { :git => "https://github.com/faimin/ZDFlexLayoutKit.git", :tag => "#{spec.version}" }
   spec.source_files  = "Source/**/*.{h,m}"
   spec.public_header_files = "Source/ZDFlexLayoutKit.h"
 
   spec.module_name = 'ZDFlexLayoutKit'
   #spec.preserve_path = 'Source/module.modulemap'
-  spec.module_map = 'Source/module.modulemap'
+  #spec.module_map = 'Source/module.modulemap'
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES'
   }
