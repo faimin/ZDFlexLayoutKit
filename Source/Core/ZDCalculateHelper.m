@@ -102,6 +102,7 @@ static void zd_sourceContextCallBackLog(void *info) {
     sourceContext->perform = zd_sourceContextCallBackLog;
     _runloopSource = CFRunLoopSourceCreate(CFAllocatorGetDefault(), 0, sourceContext);
     CFRunLoopAddSource(runloop, _runloopSource, kCFRunLoopCommonModes);
+    CFRelease(_runloopSource);
 }
 
 + (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t)onComplete {
