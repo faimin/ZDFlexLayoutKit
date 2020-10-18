@@ -40,7 +40,7 @@ static dispatch_queue_t zd_calculate_queue() {
     static dispatch_queue_t calculateQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        calculateQueue = dispatch_queue_create("queue.calculate.flexlayout.zd", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INTERACTIVE, 0));
+        calculateQueue = dispatch_queue_create("queue.calculate.flexlayout.zd", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_USER_INTERACTIVE, 0));
     });
     return calculateQueue;
 }
