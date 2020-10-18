@@ -9,7 +9,7 @@
 #import "ZDCalculateHelper.h"
 #import <os/lock.h>
 
-static NSMutableArray<dispatch_block_t> *_asyncTaskQueue = nil;
+static NSMutableOrderedSet<dispatch_block_t> *_asyncTaskQueue = nil;
 static CFRunLoopSourceRef _runloopSource = NULL;
 
 static void zd_lock(dispatch_block_t callback) {
@@ -48,7 +48,7 @@ static dispatch_queue_t zd_calculate_queue() {
 static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, dispatch_block_t complete) {
     if (task == nil) return;
     
-    _asyncTaskQueue = [[NSMutableArray alloc] init];
+    _asyncTaskQueue = [[NSMutableOrderedSet alloc] init];
     
     dispatch_async(zd_calculate_queue(), ^{
         task();
