@@ -357,6 +357,7 @@
 				TargetAttributes = {
 					FA843021234F4231000F7E35 = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1200;
 					};
 					FA84303C234F4234000F7E35 = {
 						CreatedOnToolsVersion = 11.1;
@@ -704,6 +705,7 @@
 			baseConfigurationReference = 0289ACDC0CCA00EC5ED4088A /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,6 +714,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Sample/LayoutDemo/Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -721,6 +726,7 @@
 			baseConfigurationReference = D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -729,6 +735,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Sample/LayoutDemo/Demo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -9,6 +9,7 @@
     "faimin": "fuxianchao@gmail.com"
   },
   "requires_arc": true,
+  "prefix_header_file": false,
   "platforms": {
     "ios": "9.0"
   },
@@ -26,6 +27,7 @@
     {
       "name": "Core",
       "source_files": "Source/Core/*.{h,m}",
+      "private_header_files": "Source/Core/ZDFlexLayout+Private.h",
       "dependencies": {
         "Yoga": [
 

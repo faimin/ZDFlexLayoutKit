@@ -62,7 +62,7 @@ SPEC CHECKSUMS:
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: dab343719d32586dddec6ae74f3449a2ef1bffb2
+  ZDFlexLayoutKit: 2eeb61cf5d6bf79448e6a2d853edbcd45b1e24c2
   ZDToolKit: d8e01665027555cea53dca39762bff1b67afaddf
 
 PODFILE CHECKSUM: e62edf2a863236f75dda61ef1036da8e84e09765
