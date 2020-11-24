@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "ZDFlexLayout+Private.h"
 #import "ZDFlexLayoutDiv.h"
+#import "ZDCalculateHelper.h"
 
 // add this, so we don't have to use `-all_load` or `-force_load` to load object files from static libraries that only contain categories and no classes.
 @interface UIView_ZDFlexLayout : NSObject @end
@@ -44,12 +45,22 @@
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
     self.isRoot = YES;
-    [self.flexLayout asyncApplyLayoutPreservingOrigin:preserveOrigin];
+    __weak typeof(self) weakSelf = self;
+    [ZDCalculateHelper asyncLayoutTask:^{
+        if (weakSelf.flexLayout.isDirty) {
+            [weakSelf.flexLayout asyncApplyLayoutPreservingOrigin:preserveOrigin];
+        }
+    }];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     self.isRoot = YES;
-    [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+    __weak typeof(self) weakSelf = self;
+    [ZDCalculateHelper asyncLayoutTask:^{
+        if (weakSelf.flexLayout.isDirty) {
+            [weakSelf.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+        }
+    }];
 }
 
 #pragma mark - ZDFlexLayoutNodeProtocol
