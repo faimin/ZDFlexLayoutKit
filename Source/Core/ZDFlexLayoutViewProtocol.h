@@ -25,6 +25,7 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 @property (nonatomic, weak, nullable) UIView *owningView;  ///< 持有自己的视图
 @property (nonatomic, strong) NSMutableArray<ZDFlexLayoutView> *children;
 @property (nonatomic, assign) CGRect layoutFrame;
+@property (nonatomic, assign) BOOL isRoot; ///< used to autolayout flag
 
 - (void)addChild:(ZDFlexLayoutView)child;
 - (void)removeChild:(ZDFlexLayoutView)child;
@@ -39,6 +40,8 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 - (CGSize)sizeThatFits:(CGSize)size;
 
 - (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayout *layout))block;
+
+- (void)notifyRootMarkDirty;
 
 @optional
 - (void)needReApplyLayoutAtNextRunloop;

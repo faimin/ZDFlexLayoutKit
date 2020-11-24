@@ -11,7 +11,7 @@
 #import "ZDFlexLayout+Private.h"
 
 @implementation ZDFlexLayoutDiv
-@synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView;
+@synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView, isRoot = _isRoot;
 
 #pragma mark - ZDFlexLayoutNodeProtocol
 
@@ -106,6 +106,19 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
     return CGSizeZero;
+}
+
+- (void)notifyRootMarkDirty {
+    if (self.isRoot && self.flexLayout.isDirty) {
+        return;
+    }
+    
+    if (self.isRoot && !self.flexLayout.isDirty) {
+        [self.flexLayout markDirty];
+    }
+    else if (self.parent) {
+        [self.parent notifyRootMarkDirty];
+    }
 }
 
 //MARK: Property

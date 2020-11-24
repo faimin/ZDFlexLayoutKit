@@ -18,22 +18,37 @@
 @implementation UIView (ZDFlexLayout)
 
 - (void)markDirty {
+    [self notifyRootMarkDirty];
     [self.flexLayout markDirty];
 }
 
+- (void)notifyRootMarkDirty {
+    if (self.isRoot && self.flexLayout.isDirty) {
+        return;
+    }
+    
+    if (!self.isRoot && self.parent) {
+        [self.parent notifyRootMarkDirty];
+    }
+}
+
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
+    self.isRoot = YES;
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+    self.isRoot = YES;
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
+    self.isRoot = YES;
     [self.flexLayout asyncApplyLayoutPreservingOrigin:preserveOrigin];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+    self.isRoot = YES;
     [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
@@ -212,6 +227,14 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 - (CGRect)layoutFrame {
     return self.frame;
+}
+
+- (void)setIsRoot:(BOOL)isRoot {
+    objc_setAssociatedObject(self, @selector(isRoot), @(isRoot), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isRoot {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 @end
