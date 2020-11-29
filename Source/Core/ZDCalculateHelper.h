@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// thread
 + (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t _Nullable)onComplete;
-
 + (void)asyncCalculateMultiTasks:(NSArray<dispatch_block_t> *)calculateTasks onComplete:(dispatch_block_t)onComplete;
 
 /// runloop
 + (void)asyncLayoutTask:(dispatch_block_t)layoutTask;
++ (void)removeAsyncLayoutTask:(dispatch_block_t)layoutTask;
 
 @end
 

@@ -170,6 +170,8 @@ static void zd_autoLayoutWhenIdle(dispatch_block_t layoutTask) {
     zd_initRunloop();
 }
 
+#pragma mark - Thread
+
 + (void)asyncCalculateTask:(dispatch_block_t)calculateTask onComplete:(dispatch_block_t)onComplete {
     NSCAssert(calculateTask, @"params can't be nil");
     if (!calculateTask) {
@@ -186,11 +188,20 @@ static void zd_autoLayoutWhenIdle(dispatch_block_t layoutTask) {
     zd_addAsyncTaskBlockWithCompleteCallback(calculateTasks, onComplete);
 }
 
+#pragma mark - Runloop Idle
+
 + (void)asyncLayoutTask:(dispatch_block_t)layoutTask {
     if (!layoutTask) {
         return;
     }
     zd_autoLayoutWhenIdle(layoutTask);
+}
+
++ (void)removeAsyncLayoutTask:(dispatch_block_t)layoutTask {
+    if (!layoutTask) {
+        return;
+    }
+    [_asyncMainThreadQueue removeObject:layoutTask];
 }
 
 @end

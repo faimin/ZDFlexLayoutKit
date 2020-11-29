@@ -11,6 +11,7 @@
 #import "ZDFlexLayout+Private.h"
 #import "ZDFlexLayoutDiv.h"
 #import "ZDCalculateHelper.h"
+#import "NSObject+ZDFLDeallocCallback.h"
 
 // add this, so we don't have to use `-all_load` or `-force_load` to load object files from static libraries that only contain categories and no classes.
 @interface UIView_ZDFlexLayout : NSObject @end
@@ -37,24 +38,32 @@
     self.isRoot = YES;
     self.isNeedLayoutChildren = YES;
     __weak typeof(self) weakSelf = self;
-    [ZDCalculateHelper asyncLayoutTask:^{
+    dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
             [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
             weakSelf.isNeedLayoutChildren = NO;
         }
+    };
+    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
+        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
     }];
+    [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     self.isRoot = YES;
     self.isNeedLayoutChildren = YES;
     __weak typeof(self) weakSelf = self;
-    [ZDCalculateHelper asyncLayoutTask:^{
+    dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
             [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
             weakSelf.isNeedLayoutChildren = NO;
         }
+    };
+    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
+        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
     }];
+    [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
 #pragma mark - ZDFlexLayoutNodeProtocol
