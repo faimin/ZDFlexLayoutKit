@@ -150,7 +150,34 @@
     return _children;
 }
 
+- (void)setGone:(BOOL)gone {
+    self.flexLayout.isIncludedInLayout = !gone;
+    [self setView:self hidden:gone];
+    objc_setAssociatedObject(self, @selector(gone), @(gone), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self notifyRootNeedsLayout];
+}
+
+- (BOOL)gone {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
 #pragma mark - Private Method
+
+- (void)setView:(ZDFlexLayoutView)view hidden:(BOOL)hidden {
+    if ([view respondsToSelector:@selector(setHidden:)]) {
+        [(UIView *)view setHidden:hidden];
+    }
+    else {
+        for (ZDFlexLayoutView child in view.children) {
+            if ([child respondsToSelector:@selector(setHidden:)]) {
+                [(UIView *)child setHidden:hidden];
+            }
+            else {
+                [self setView:child hidden:hidden];
+            }
+        }
+    }
+}
 
 - (void)addChildSubviews:(ZDFlexLayoutView)child {
     if (!child || !_owningView) {

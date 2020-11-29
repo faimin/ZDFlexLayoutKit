@@ -27,11 +27,35 @@
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
     self.isRoot = YES;
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_block_t calculateTask = ^{
+        if (weakSelf.isNeedLayoutChildren) {
+            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            weakSelf.isNeedLayoutChildren = NO;
+        }
+    };
+    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
+        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
+    }];
+    [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     self.isRoot = YES;
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_block_t calculateTask = ^{
+        if (weakSelf.isNeedLayoutChildren) {
+            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            weakSelf.isNeedLayoutChildren = NO;
+        }
+    };
+    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
+        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
+    }];
+    [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
@@ -254,6 +278,17 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 
 - (CGRect)layoutFrame {
     return self.frame;
+}
+
+- (void)setGone:(BOOL)gone {
+    self.flexLayout.isIncludedInLayout = !gone;
+    self.hidden = gone;
+    objc_setAssociatedObject(self, @selector(gone), @(gone), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self markDirty];
+}
+
+- (BOOL)gone {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setIsRoot:(BOOL)isRoot {

@@ -26,6 +26,7 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 @property (nonatomic, weak, nullable) UIView *owningView;
 @property (nonatomic, strong) NSMutableArray<ZDFlexLayoutView> *children;
 @property (nonatomic, assign) CGRect layoutFrame;
+@property (nonatomic, assign) BOOL gone;
 
 //=============== autolayout ===============
 /// mark the view as root which to calculate frame

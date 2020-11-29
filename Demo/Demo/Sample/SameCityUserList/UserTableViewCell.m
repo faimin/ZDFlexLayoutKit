@@ -20,6 +20,9 @@
 @property (nonatomic, strong) UILabel *infoLabel;     ///< 个人信息
 @property (nonatomic, strong) UILabel *noticeLabel;   ///< 宣言
 @property (nonatomic, strong) UIButton *chatBtn;      ///< 聊天
+
+@property (nonatomic, strong) ZDFlexLayoutDiv *firstLineDiv;
+@property (nonatomic, assign) BOOL show;
 @end
 
 @implementation UserTableViewCell
@@ -64,6 +67,7 @@
     ZDFlexLayoutDiv *firstLineDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {       make.flexDirection(YGFlexDirectionRow).justifyContent(YGJustifySpaceBetween);
         make.alignItems(YGAlignCenter);
     }];
+    self.firstLineDiv = firstLineDiv;
     [self.nickNameLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.flexShrink(1);
@@ -135,6 +139,11 @@
     
     // 计算layout
     [self.contentView calculateLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+}
+
+- (void)chatAction {
+    self.show = !self.show;
+    self.firstLineDiv.gone = self.show;
 }
 
 #pragma mark - Property
@@ -222,6 +231,7 @@
     if (!_chatBtn) {
         UIButton *view = [UIButton buttonWithType:UIButtonTypeCustom];
         view.backgroundColor = ZD_RandomColor();
+        [view addTarget:self action:@selector(chatAction) forControlEvents:UIControlEventTouchUpInside];
         _chatBtn = view;
     }
     return _chatBtn;
