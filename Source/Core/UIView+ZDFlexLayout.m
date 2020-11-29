@@ -31,7 +31,9 @@
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
-            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            });
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
@@ -48,7 +50,9 @@
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
-            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            });
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
@@ -64,7 +68,9 @@
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
-            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            });
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
@@ -80,7 +86,9 @@
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
-            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            });
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
