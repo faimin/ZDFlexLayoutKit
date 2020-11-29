@@ -19,18 +19,8 @@
 @implementation UIView (ZDFlexLayout)
 
 - (void)markDirty {
-    [self notifyRootMarkDirty];
     [self.flexLayout markDirty];
-}
-
-- (void)notifyRootMarkDirty {
-    if (self.isRoot && self.flexLayout.isDirty) {
-        return;
-    }
-    
-    if (!self.isRoot && self.parent) {
-        [self.parent notifyRootMarkDirty];
-    }
+    [self notifyRootNeedsLayout];
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
@@ -45,20 +35,24 @@
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
     self.isRoot = YES;
+    self.isNeedLayoutChildren = YES;
     __weak typeof(self) weakSelf = self;
     [ZDCalculateHelper asyncLayoutTask:^{
-        if (weakSelf.flexLayout.isDirty) {
-            [weakSelf.flexLayout asyncApplyLayoutPreservingOrigin:preserveOrigin];
+        if (weakSelf.isNeedLayoutChildren) {
+            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
+            weakSelf.isNeedLayoutChildren = NO;
         }
     }];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     self.isRoot = YES;
+    self.isNeedLayoutChildren = YES;
     __weak typeof(self) weakSelf = self;
     [ZDCalculateHelper asyncLayoutTask:^{
-        if (weakSelf.flexLayout.isDirty) {
-            [weakSelf.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+        if (weakSelf.isNeedLayoutChildren) {
+            [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+            weakSelf.isNeedLayoutChildren = NO;
         }
     }];
 }
@@ -176,6 +170,19 @@
     }
 }
 
+- (void)notifyRootNeedsLayout {
+    if (self.isRoot && self.isNeedLayoutChildren) {
+        return;
+    }
+    
+    if (self.isRoot && !self.isNeedLayoutChildren) {
+        self.isNeedLayoutChildren = YES;
+    }
+    else if (!self.isRoot && self.parent) {
+        [self.parent notifyRootNeedsLayout];
+    }
+}
+
 //MARK: Property
 - (void)setChildren:(NSArray<ZDFlexLayoutView> *)children {
     objc_setAssociatedObject(self, @selector(children), children, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -245,6 +252,14 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
 }
 
 - (BOOL)isRoot {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setIsNeedLayoutChildren:(BOOL)isNeedLayoutChildren {
+    objc_setAssociatedObject(self, @selector(isNeedLayoutChildren), @(isNeedLayoutChildren), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isNeedLayoutChildren {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 

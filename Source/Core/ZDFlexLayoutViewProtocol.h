@@ -22,11 +22,21 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 @property (nonatomic, assign, readonly) BOOL isFlexLayoutEnabled;
 @property (nonatomic, strong, readonly) ZDFlexLayout *flexLayout;
 @property (nonatomic, weak, nullable) ZDFlexLayoutView parent;
-@property (nonatomic, weak, nullable) UIView *owningView;  ///< 持有自己的视图
+/// real superview
+@property (nonatomic, weak, nullable) UIView *owningView;
 @property (nonatomic, strong) NSMutableArray<ZDFlexLayoutView> *children;
 @property (nonatomic, assign) CGRect layoutFrame;
-@property (nonatomic, assign) BOOL isRoot; ///< used to autolayout flag
 
+//=============== autolayout ===============
+/// mark the view as root which to calculate frame
+@property (nonatomic, assign) BOOL isRoot;
+/// mark the rootView need relayout
+@property (nonatomic, assign) BOOL isNeedLayoutChildren;
+
+- (void)notifyRootNeedsLayout;
+//==========================================
+
+//==========================================
 - (void)addChild:(ZDFlexLayoutView)child;
 - (void)removeChild:(ZDFlexLayoutView)child;
 
@@ -40,8 +50,6 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 - (CGSize)sizeThatFits:(CGSize)size;
 
 - (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayout *layout))block;
-
-- (void)notifyRootMarkDirty;
 
 @optional
 - (void)needReApplyLayoutAtNextRunloop;

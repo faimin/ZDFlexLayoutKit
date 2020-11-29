@@ -11,7 +11,7 @@
 #import "ZDFlexLayout+Private.h"
 
 @implementation ZDFlexLayoutDiv
-@synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView, isRoot = _isRoot;
+@synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView, isRoot = _isRoot, isNeedLayoutChildren = _isNeedLayoutChildren;
 
 #pragma mark - ZDFlexLayoutNodeProtocol
 
@@ -108,16 +108,16 @@
     return CGSizeZero;
 }
 
-- (void)notifyRootMarkDirty {
-    if (self.isRoot && self.flexLayout.isDirty) {
+- (void)notifyRootNeedsLayout {
+    if (self.isRoot && self.isNeedLayoutChildren) {
         return;
     }
     
-    if (self.isRoot && !self.flexLayout.isDirty) {
-        [self.flexLayout markDirty];
+    if (self.isRoot && !self.isNeedLayoutChildren) {
+        self.isNeedLayoutChildren = YES;
     }
     else if (self.parent) {
-        [self.parent notifyRootMarkDirty];
+        [self.parent notifyRootNeedsLayout];
     }
 }
 

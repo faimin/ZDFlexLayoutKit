@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UIButton *actionBtn;
 
 @end
 
@@ -101,6 +102,14 @@
     
     //[self.view calculateLayoutPreservingOrigin:YES];
     [self.view asyncCalculateLayoutPreservingOrigin:YES];
+}
+
+- (IBAction)movePostion:(UIButton *)sender forEvent:(UIEvent *)event {
+    [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        CGFloat percent = self.contentView.flexLayout.width.value;
+        make.width(YGPercentValue(MAX(30, percent - 10)));
+        make.markDirty();
+    }];
 }
 
 /*
