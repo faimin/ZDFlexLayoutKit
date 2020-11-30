@@ -6,15 +6,18 @@
 
 #### 特色：
 
-+ 支持虚拟视图（virtual view）
++ 支持虚拟视图（`virtual view`）
 
 + 支持链式调用
 
-+ 支持异步计算布局
++ 支持异步(`runloop` / `thread`)计算布局
 
-+ 支持`UIScrollView`
++ 支持利用`runloop`机制自动更新布局
 
-+ UITableViewCell高度缓存（beta）
++ 支持`UIScrollView`布局
+
+
+    > 拒绝使用`runtime`的方法交换更新布局
 
 #### 资料：
 
