@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZDFlexLayoutViewProtocol.h"
-#import "ZDFlexLayout.h"
+#import "ZDFlexLayoutDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,15 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param dimensionFlexibility 横向是flex的还是纵向是flex的
 - (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh
                       preservingOrigin:(BOOL)preserveOrigin
-                  dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+                  dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin
-                   dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+                   dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
 /// 在子线程计算布局（不推荐）
 /// 内部牵扯到锁与线程切换带来的性能损耗，性能并不比同步好;
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin: instead")));
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin
-                        dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin:dimensionFlexibility: instead")));
+                        dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin:dimensionFlexibility: instead")));
 
 @end
 

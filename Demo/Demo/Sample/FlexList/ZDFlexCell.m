@@ -90,7 +90,7 @@
     self.aImageView.flexLayout.isIncludedInLayout = model.imageName.length > 0;
     
     // 计算layout
-    [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)prepareForReuse {

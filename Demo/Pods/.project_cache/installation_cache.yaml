@@ -5,29 +5,29 @@ CACHE_KEYS:
   LookinServer:
     BUILD_SETTINGS_CHECKSUM:
       LookinServer:
-        :debug: cce30f96e494c905fc725d185750cfd3
-        :release: cce30f96e494c905fc725d185750cfd3
+        :debug: 5333a4078bb77376ec4fad4d73eea811
+        :release: 5333a4078bb77376ec4fad4d73eea811
     CHECKSUM: 0002891cd3cec5e082a910e897dfe71b4f06b89e
     PROJECT_NAME: LookinServer
     SPECS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: fce4bde06e00076e87264634f157d748
-      Release: 844933639f15aa40d5b2933bbecb5ffa
+      Debug: 7f0752d9384f362ffe9a7b8b6566060a
+      Release: 763ad70c5d54abe753d9ee432e71ab5a
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: fce4bde06e00076e87264634f157d748
-      Release: 844933639f15aa40d5b2933bbecb5ffa
+      Debug: 7f0752d9384f362ffe9a7b8b6566060a
+      Release: 763ad70c5d54abe753d9ee432e71ab5a
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 42522a4ea76820e2c612d59ded57c2b6
-      Release: 4f5f4f4074cdbb2d55c7c9392f403b6b
+      Debug: e5e80d1648501242cf073e0133dec74c
+      Release: 191d035db81e861bd3345d76a916d1be
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
-        :debug: dc1487e9816565f56f21c2ef64c5a611
-        :release: dc1487e9816565f56f21c2ef64c5a611
+        :debug: f157acbfdf13dd47f252bf2f937c2c4d
+        :release: f157acbfdf13dd47f252bf2f937c2c4d
     CHECKSUM: cff67a400f6b74dc38eb0bad4f156673d9aa980c
     PROJECT_NAME: Yoga
     SPECS:
@@ -35,8 +35,8 @@ CACHE_KEYS:
   YYModel:
     BUILD_SETTINGS_CHECKSUM:
       YYModel:
-        :debug: f3127127507fbca6fdcda377fc0fed01
-        :release: f3127127507fbca6fdcda377fc0fed01
+        :debug: 7bb5a5b937c762c5f8b3dd4f57a1eeae
+        :release: 7bb5a5b937c762c5f8b3dd4f57a1eeae
     CHECKSUM: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
     PROJECT_NAME: YYModel
     SPECS:
@@ -44,22 +44,25 @@ CACHE_KEYS:
   ZDFlexLayoutKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDFlexLayoutKit:
-        :debug: 34937d4218376605d4dd4b2c9f1b353c
-        :release: 34937d4218376605d4dd4b2c9f1b353c
-    CHECKSUM: 2eeb61cf5d6bf79448e6a2d853edbcd45b1e24c2
+        :debug: 9b39002de1504c017a3b95e558903093
+        :release: 9b39002de1504c017a3b95e558903093
+    CHECKSUM: 0820d87dc1284e12235b437ab3d1174f83dae74d
     FILES:
       - "../../LICENSE"
       - "../../README.md"
-      - "../../Source/Core/UIView+ZDFlexLayout.h"
-      - "../../Source/Core/UIView+ZDFlexLayout.m"
-      - "../../Source/Core/ZDCalculateHelper.h"
-      - "../../Source/Core/ZDCalculateHelper.m"
-      - "../../Source/Core/ZDFlexLayout+Private.h"
-      - "../../Source/Core/ZDFlexLayout.h"
-      - "../../Source/Core/ZDFlexLayout.m"
-      - "../../Source/Core/ZDFlexLayoutDiv.h"
-      - "../../Source/Core/ZDFlexLayoutDiv.m"
-      - "../../Source/Core/ZDFlexLayoutViewProtocol.h"
+      - "../../Source/Core/Private/NSObject+ZDFLDeallocCallback.h"
+      - "../../Source/Core/Private/NSObject+ZDFLDeallocCallback.m"
+      - "../../Source/Core/Private/ZDCalculateHelper.h"
+      - "../../Source/Core/Private/ZDCalculateHelper.m"
+      - "../../Source/Core/Private/ZDFlexLayout+Private.h"
+      - "../../Source/Core/Public/UIView+ZDFlexLayout.h"
+      - "../../Source/Core/Public/UIView+ZDFlexLayout.m"
+      - "../../Source/Core/Public/ZDFlexLayout.h"
+      - "../../Source/Core/Public/ZDFlexLayout.m"
+      - "../../Source/Core/Public/ZDFlexLayoutDefine.h"
+      - "../../Source/Core/Public/ZDFlexLayoutDiv.h"
+      - "../../Source/Core/Public/ZDFlexLayoutDiv.m"
+      - "../../Source/Core/Public/ZDFlexLayoutViewProtocol.h"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.h"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.m"
       - "../../Source/Helper/ZDTemplateCellHandler.h"
@@ -78,8 +81,8 @@ CACHE_KEYS:
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
-        :debug: 911a4ae3b56142344dc71f72be2a243a
-        :release: 911a4ae3b56142344dc71f72be2a243a
+        :debug: d3ac186d656219bdba0aba3616b532c5
+        :release: d3ac186d656219bdba0aba3616b532c5
     CHECKSUM: d8e01665027555cea53dca39762bff1b67afaddf
     PROJECT_NAME: ZDToolKit
     SPECS:
@@ -98,5 +101,4 @@ CACHE_KEYS:
       - ZDToolKit/ZDTools/ZDProxy (0.0.4)
 OBJECT_VERSION: 50
 PLUGINS:
-  cocoapods-stats:
-    {}
+  {}

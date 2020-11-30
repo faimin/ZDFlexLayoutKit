@@ -279,7 +279,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     [self asyncApplyLayout:NO preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
 {
     [self asyncApplyLayout:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
@@ -291,13 +291,13 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     [self asyncApplyLayout:YES preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
-- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility
+- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
 {
     CGSize size = self.view.layoutFrame.size;
-    if (dimensionFlexibility & YGDimensionFlexibilityFlexibleWidth) {
+    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
         size.width = YGUndefined;
     }
-    if (dimensionFlexibility & YGDimensionFlexibilityFlexibleHeight) {
+    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
         size.height = YGUndefined;
     }
     [self asyncApplyLayout:async preservingOrigin:preserveOrigin constraintSize:size];

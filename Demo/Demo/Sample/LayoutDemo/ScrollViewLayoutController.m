@@ -7,7 +7,7 @@
 //
 
 #import "ScrollViewLayoutController.h"
-#import "ZDFlexLayoutKit.h"
+@import ZDFlexLayoutKit;
 
 @interface ScrollViewLayoutController ()
 
@@ -32,7 +32,7 @@
     [self scrollViewLayout];
     [self textScrollViewLayout];
     
-    [self.view calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.view calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)scrollViewLayout {

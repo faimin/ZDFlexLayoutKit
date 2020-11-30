@@ -8,7 +8,7 @@
 
 #import "SameCityUserListController.h"
 #import <ZDToolKit/NSObject+ZDUtility.h>
-#import "ZDTemplateCellHandler.h"
+#import <ZDFlexLayoutKit/ZDTemplateCellHandler.h>
 #import "SameCityUserListViewModel.h"
 #import "UserTableViewCell.h"
 

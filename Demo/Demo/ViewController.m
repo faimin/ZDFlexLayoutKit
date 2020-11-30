@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "ZDFlexLayoutKit.h"
+//#import <ZDFlexLayoutKit/ZDFlexLayoutKit.h>
+@import ZDFlexLayoutKit;
 
 @interface ViewController ()
 

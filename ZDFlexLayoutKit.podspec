@@ -32,8 +32,9 @@ Pod::Spec.new do |spec|
   }
   
   spec.subspec 'Core' do |s|
-    s.source_files = "Source/Core/*.{h,m}"
-    s.private_header_files = "Source/Core/ZDFlexLayout+Private.h"
+    s.source_files = "Source/Core/**/*.{h,m}"
+    s.public_header_files = "Source/Core/Public/*.h"
+    s.private_header_files = "Source/Core/Private/*.h"
     s.dependency 'Yoga'
   end
   spec.subspec 'Maker' do |s|

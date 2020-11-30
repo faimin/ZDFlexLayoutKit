@@ -32,11 +32,11 @@
     [self calculateLayoutWithAutoRefresh:autoRefresh preservingOrigin:preserveOrigin dimensionFlexibility:0];
 }
 
-- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
     [self calculateLayoutWithAutoRefresh:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
-- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
     
     if (!autoRefresh) {
@@ -63,7 +63,7 @@
     [self asyncCalculateLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:0];
 }
 
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
+- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
     [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 

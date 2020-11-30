@@ -9,7 +9,7 @@
 #import "YogaKitListViewController.h"
 #import "YogaKitListViewModel.h"
 #import "ZDFlexCell.h"
-#import "ZDTemplateCellHandler.h"
+#import <ZDFlexLayoutKit/ZDTemplateCellHandler.h>
 #import <ZDToolKit/NSObject+ZDUtility.h>
 
 @interface YogaKitListViewController () <UITableViewDataSource, UITableViewDelegate>

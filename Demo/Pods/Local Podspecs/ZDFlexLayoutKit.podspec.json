@@ -26,8 +26,9 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Source/Core/*.{h,m}",
-      "private_header_files": "Source/Core/ZDFlexLayout+Private.h",
+      "source_files": "Source/Core/**/*.{h,m}",
+      "private_header_files": "Source/Core/Private/*.{h}",
+      "public_header_files": "Source/Core/Public/*.{h}",
       "dependencies": {
         "Yoga": [
 

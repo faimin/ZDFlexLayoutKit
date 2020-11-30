@@ -10,8 +10,7 @@
 #import <yoga/YGEnums.h>
 #import <yoga/Yoga.h>
 #import <yoga/YGMacros.h>
-
-#define INCLUDE_UIVIEW_YOGA (__has_include(<UIView+Yoga.h>) || __has_include("UIView+Yoga.h"))
+#import "ZDFlexLayoutDefine.h"
 
 YG_EXTERN_C_BEGIN
 
@@ -24,15 +23,6 @@ extern CGFloat ZDCeilPixelValue(CGFloat value);
 extern CGFloat ZDFloorPixelValue(CGFloat f);
 
 YG_EXTERN_C_END
-
-#if INCLUDE_UIVIEW_YOGA
-#import <UIView+Yoga.h>
-#else
-typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
-    YGDimensionFlexibilityFlexibleWidth = 1 << 0,
-    YGDimensionFlexibilityFlexibleHeight = 1 << 1,
-};
-#endif
 
 @interface ZDFlexLayout : NSObject
 
@@ -148,13 +138,13 @@ typedef NS_OPTIONS(NSInteger, YGDimensionFlexibility) {
  If the origin is not preserved, the root view's layout results will applied from {0,0}.
  */
 - (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
-               dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+               dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
 - (void)asyncApplyLayoutPreservingOrigin:(BOOL)preserveOrigin;
 
 - (void)asyncApplyLayout:(BOOL)async
         preservingOrigin:(BOOL)preserveOrigin
-    dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility;
+    dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
 - (void)asyncApplyLayout:(BOOL)async
         preservingOrigin:(BOOL)preserveOrigin
