@@ -100,8 +100,7 @@
         [self.view addChild:bView];
     }
     
-    //[self.view calculateLayoutPreservingOrigin:YES];
-    [self.view asyncCalculateLayoutPreservingOrigin:YES];
+    [self.view calculateLayoutWithAutoRefresh:YES preservingOrigin:YES];
 }
 
 - (IBAction)movePostion:(UIButton *)sender forEvent:(UIEvent *)event {

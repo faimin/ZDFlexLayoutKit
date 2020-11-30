@@ -138,7 +138,7 @@
     [self.noticeLabel markDirty];
     
     // 计算layout
-    [self.contentView calculateLayoutPreservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.contentView calculateLayoutWithAutoRefresh:YES preservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)chatAction {

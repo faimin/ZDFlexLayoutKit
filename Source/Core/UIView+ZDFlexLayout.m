@@ -25,28 +25,25 @@
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
-    self.isRoot = YES;
-    [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
-    
-    __weak typeof(self) weakSelf = self;
-    dispatch_block_t calculateTask = ^{
-        if (weakSelf.isNeedLayoutChildren) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
-            });
-            weakSelf.isNeedLayoutChildren = NO;
-        }
-    };
-    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
-        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
-    }];
-    [ZDCalculateHelper asyncLayoutTask:calculateTask];
+    [self calculateLayoutWithAutoRefresh:NO preservingOrigin:preserveOrigin];
+}
+
+- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin {
+    [self calculateLayoutWithAutoRefresh:autoRefresh preservingOrigin:preserveOrigin dimensionFlexibility:0];
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
-    self.isRoot = YES;
+    [self calculateLayoutWithAutoRefresh:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+}
+
+- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
     
+    if (!autoRefresh) {
+        return;
+    }
+    
+    self.isRoot = YES;
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
@@ -62,40 +59,12 @@
     [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
-    self.isRoot = YES;
-    self.isNeedLayoutChildren = YES;
-    __weak typeof(self) weakSelf = self;
-    dispatch_block_t calculateTask = ^{
-        if (weakSelf.isNeedLayoutChildren) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin];
-            });
-            weakSelf.isNeedLayoutChildren = NO;
-        }
-    };
-    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
-        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
-    }];
-    [ZDCalculateHelper asyncLayoutTask:calculateTask];
+- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {    
+    [self asyncCalculateLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:0];
 }
 
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(YGDimensionFlexibility)dimensionFlexibility {
-    self.isRoot = YES;
-    self.isNeedLayoutChildren = YES;
-    __weak typeof(self) weakSelf = self;
-    dispatch_block_t calculateTask = ^{
-        if (weakSelf.isNeedLayoutChildren) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
-            });
-            weakSelf.isNeedLayoutChildren = NO;
-        }
-    };
-    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
-        [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
-    }];
-    [ZDCalculateHelper asyncLayoutTask:calculateTask];
+    [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
 #pragma mark - ZDFlexLayoutNodeProtocol

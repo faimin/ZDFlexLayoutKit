@@ -32,8 +32,7 @@
     [self scrollViewLayout];
     [self textScrollViewLayout];
     
-    //[self.view calculateLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
-    [self.view asyncCalculateLayoutPreservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
+    [self.view calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)scrollViewLayout {
