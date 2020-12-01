@@ -13,16 +13,16 @@ install! 'cocoapods',
 
 ############################################################
 
-#$static_framework = ['ZDToolKit']
 #pre_install do |installer|
-#  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
-#  installer.pod_targets.each do |pod|
-#     if $static_framework.include?(pod.name)
-#       def pod.build_type;
-#          Pod::Target::BuildType.static_library
-#       end
-#     end
-#  end
+#    $dynamic_framework = ['Yoga', 'YogaKit']
+#    Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+#    installer.pod_targets.each do |pod|
+#      if $dynamic_framework.include?(pod.name)
+#        def pod.build_type;
+#          Pod::BuildType.dynamic_framework
+#        end
+#      end
+#    end
 #end
 
 ############################################################

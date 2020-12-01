@@ -13,47 +13,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1E4FDA31960015EEC91CFD8B6A715DA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E9D03A2C07C8ED883C24F7C2FBC9E7F /* LookinServer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 648108237631EEA52299D347ABDCA30C;
-			remoteInfo = LookinServer;
-		};
-		30ABC5B1DD0D0B4BB7DFC686320C3BC1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DC0718FA84D3DBA2088D0AD2B6D93986;
-			remoteInfo = ZDFlexLayoutKit;
-		};
-		60C48C6CA32E0268FB5BF84C6A4E1D3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6328B86AB22BBA4A5DBDA038013A20DD /* Yoga.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
-			remoteInfo = Yoga;
-		};
-		62C7C4A9B7DD0BA4AC625A7944A3AB27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E9D03A2C07C8ED883C24F7C2FBC9E7F /* LookinServer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 648108237631EEA52299D347ABDCA30C;
-			remoteInfo = LookinServer;
-		};
-		7017E6B1C07931A850498266C2BFFD79 /* PBXContainerItemProxy */ = {
+		011E343B82455AE787AEB2141E04EB93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A86F4DD8773984EDC6DE01443BDD3174 /* YYModel.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B24F71FDC23D2B2E241DE51DECC7ED5F;
 			remoteInfo = YYModel;
 		};
-		930F6E98C0A0BB7C5082F5CD89137ADC /* PBXContainerItemProxy */ = {
+		1E8E1819CCA7083A1DD36BE57A919A88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6328B86AB22BBA4A5DBDA038013A20DD /* Yoga.xcodeproj */;
+			containerPortal = A86F4DD8773984EDC6DE01443BDD3174 /* YYModel.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
-			remoteInfo = Yoga;
+			remoteGlobalIDString = B24F71FDC23D2B2E241DE51DECC7ED5F;
+			remoteInfo = YYModel;
+		};
+		440EDF521530323E09276177C90668E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DC0718FA84D3DBA2088D0AD2B6D93986;
+			remoteInfo = ZDFlexLayoutKit;
+		};
+		7982782F1DD8C3AA9016E67075A69FA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E9D03A2C07C8ED883C24F7C2FBC9E7F /* LookinServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 648108237631EEA52299D347ABDCA30C;
+			remoteInfo = LookinServer;
+		};
+		9C9F4BCEEEC446467F5ACDCADAE9BF04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 380694B9ADC0CBB5D29A662EFE7F52C8;
+			remoteInfo = "Pods-Demo";
 		};
 		A9C87871900EB6A41E6B20BB52A3D2B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -62,12 +55,26 @@
 			remoteGlobalIDString = F01D98A255D10FCA305E22F1C7AF6818;
 			remoteInfo = ZDToolKit;
 		};
-		C6FE5FA6DC25317E76F071C6CF688197 /* PBXContainerItemProxy */ = {
+		C0EF3A3861075E60F61211A0308B73E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E9D03A2C07C8ED883C24F7C2FBC9E7F /* LookinServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 648108237631EEA52299D347ABDCA30C;
+			remoteInfo = LookinServer;
+		};
+		CD504D06DFFAF7F6BA5D06A46E657C13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = DC0718FA84D3DBA2088D0AD2B6D93986;
 			remoteInfo = ZDFlexLayoutKit;
+		};
+		CFC41321F57E0089784C7CE9A7DAAB41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6328B86AB22BBA4A5DBDA038013A20DD /* Yoga.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
+			remoteInfo = Yoga;
 		};
 		D4AE9C396E5B1A92F0DC7BF93F68D483 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -76,19 +83,12 @@
 			remoteGlobalIDString = F01D98A255D10FCA305E22F1C7AF6818;
 			remoteInfo = ZDToolKit;
 		};
-		D7BE82936C937B1BE25BDC414C2A56E1 /* PBXContainerItemProxy */ = {
+		E31523E37279BE367228725F3EF703A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A86F4DD8773984EDC6DE01443BDD3174 /* YYModel.xcodeproj */;
+			containerPortal = 6328B86AB22BBA4A5DBDA038013A20DD /* Yoga.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = B24F71FDC23D2B2E241DE51DECC7ED5F;
-			remoteInfo = YYModel;
-		};
-		EC436A294E6838B550025285651A8B61 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 380694B9ADC0CBB5D29A662EFE7F52C8;
-			remoteInfo = "Pods-Demo";
+			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
+			remoteInfo = Yoga;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -283,10 +283,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				564BF67075495E03D4111BB90E04D47A /* PBXTargetDependency */,
-				B89D961FD13248A4F98A994F031CDE9C /* PBXTargetDependency */,
-				E2D0859025524623C75BDE6E22241138 /* PBXTargetDependency */,
-				AB2C81D07D9AE1CBC7ACC2D8538F770C /* PBXTargetDependency */,
+				D89E1174FE709E3FAB25806BCA7F66F0 /* PBXTargetDependency */,
+				F7F8A3CD49E935FD964414F47B223F3C /* PBXTargetDependency */,
+				82D70E1802501C8D77CF358EB5B29433 /* PBXTargetDependency */,
+				ADC193CA191601063B49F7DEDF4BA818 /* PBXTargetDependency */,
 				69795E48EC92D94F1210DEDE045C6B9C /* PBXTargetDependency */,
 			);
 			name = "Pods-Demo";
@@ -305,10 +305,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				F0E912A9BA509E25B992D5A9A64C0111 /* PBXTargetDependency */,
-				76AF52A99D4AA11936B1E5305A009A35 /* PBXTargetDependency */,
-				7071A73B8A8FB6F06A41753F9B424286 /* PBXTargetDependency */,
-				4B0D00A8BEA09376CDADADEB48F2F469 /* PBXTargetDependency */,
+				DCBD3976B3BEA4F2182C7278D301306B /* PBXTargetDependency */,
+				2A4CD7A5AAC68C90D86685AAA6229B18 /* PBXTargetDependency */,
+				6A80B0A67711C2C4DA98758F7F11A5BC /* PBXTargetDependency */,
+				4EE8EA2150C7735F49EE79E97A4553A8 /* PBXTargetDependency */,
 				77D9E4DF9A45CECC63E64D32D0D094CB /* PBXTargetDependency */,
 			);
 			name = "Pods-Demo-DemoUITests";
@@ -327,7 +327,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3389DFFB944EF37A494C76A0DF58A571 /* PBXTargetDependency */,
+				360124DE2B47E476A9465918C28C5126 /* PBXTargetDependency */,
 			);
 			name = "Pods-DemoTests";
 			productName = "Pods-DemoTests";
@@ -356,9 +356,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProjectRef = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit */;
-				},
-				{
 					ProjectRef = 3E9D03A2C07C8ED883C24F7C2FBC9E7F /* LookinServer */;
 				},
 				{
@@ -366,6 +363,9 @@
 				},
 				{
 					ProjectRef = 6328B86AB22BBA4A5DBDA038013A20DD /* Yoga */;
+				},
+				{
+					ProjectRef = CB6718EF694D353D8FDF71BFCA262AED /* ZDFlexLayoutKit */;
 				},
 				{
 					ProjectRef = B1BEB8ABDC30F8E2B70A781F5579A6E6 /* ZDToolKit */;
@@ -408,61 +408,61 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3389DFFB944EF37A494C76A0DF58A571 /* PBXTargetDependency */ = {
+		2A4CD7A5AAC68C90D86685AAA6229B18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YYModel;
+			targetProxy = 011E343B82455AE787AEB2141E04EB93 /* PBXContainerItemProxy */;
+		};
+		360124DE2B47E476A9465918C28C5126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Demo";
 			target = 380694B9ADC0CBB5D29A662EFE7F52C8 /* Pods-Demo */;
-			targetProxy = EC436A294E6838B550025285651A8B61 /* PBXContainerItemProxy */;
+			targetProxy = 9C9F4BCEEEC446467F5ACDCADAE9BF04 /* PBXContainerItemProxy */;
 		};
-		4B0D00A8BEA09376CDADADEB48F2F469 /* PBXTargetDependency */ = {
+		4EE8EA2150C7735F49EE79E97A4553A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZDFlexLayoutKit;
-			targetProxy = 30ABC5B1DD0D0B4BB7DFC686320C3BC1 /* PBXContainerItemProxy */;
-		};
-		564BF67075495E03D4111BB90E04D47A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LookinServer;
-			targetProxy = 1E4FDA31960015EEC91CFD8B6A715DA8 /* PBXContainerItemProxy */;
+			targetProxy = 440EDF521530323E09276177C90668E9 /* PBXContainerItemProxy */;
 		};
 		69795E48EC92D94F1210DEDE045C6B9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZDToolKit;
 			targetProxy = D4AE9C396E5B1A92F0DC7BF93F68D483 /* PBXContainerItemProxy */;
 		};
-		7071A73B8A8FB6F06A41753F9B424286 /* PBXTargetDependency */ = {
+		6A80B0A67711C2C4DA98758F7F11A5BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Yoga;
-			targetProxy = 930F6E98C0A0BB7C5082F5CD89137ADC /* PBXContainerItemProxy */;
-		};
-		76AF52A99D4AA11936B1E5305A009A35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YYModel;
-			targetProxy = 7017E6B1C07931A850498266C2BFFD79 /* PBXContainerItemProxy */;
+			targetProxy = E31523E37279BE367228725F3EF703A6 /* PBXContainerItemProxy */;
 		};
 		77D9E4DF9A45CECC63E64D32D0D094CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZDToolKit;
 			targetProxy = A9C87871900EB6A41E6B20BB52A3D2B3 /* PBXContainerItemProxy */;
 		};
-		AB2C81D07D9AE1CBC7ACC2D8538F770C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZDFlexLayoutKit;
-			targetProxy = C6FE5FA6DC25317E76F071C6CF688197 /* PBXContainerItemProxy */;
-		};
-		B89D961FD13248A4F98A994F031CDE9C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YYModel;
-			targetProxy = D7BE82936C937B1BE25BDC414C2A56E1 /* PBXContainerItemProxy */;
-		};
-		E2D0859025524623C75BDE6E22241138 /* PBXTargetDependency */ = {
+		82D70E1802501C8D77CF358EB5B29433 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Yoga;
-			targetProxy = 60C48C6CA32E0268FB5BF84C6A4E1D3C /* PBXContainerItemProxy */;
+			targetProxy = CFC41321F57E0089784C7CE9A7DAAB41 /* PBXContainerItemProxy */;
 		};
-		F0E912A9BA509E25B992D5A9A64C0111 /* PBXTargetDependency */ = {
+		ADC193CA191601063B49F7DEDF4BA818 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZDFlexLayoutKit;
+			targetProxy = CD504D06DFFAF7F6BA5D06A46E657C13 /* PBXContainerItemProxy */;
+		};
+		D89E1174FE709E3FAB25806BCA7F66F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LookinServer;
-			targetProxy = 62C7C4A9B7DD0BA4AC625A7944A3AB27 /* PBXContainerItemProxy */;
+			targetProxy = 7982782F1DD8C3AA9016E67075A69FA1 /* PBXContainerItemProxy */;
+		};
+		DCBD3976B3BEA4F2182C7278D301306B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LookinServer;
+			targetProxy = C0EF3A3861075E60F61211A0308B73E1 /* PBXContainerItemProxy */;
+		};
+		F7F8A3CD49E935FD964414F47B223F3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YYModel;
+			targetProxy = 1E8E1819CCA7083A1DD36BE57A919A88 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

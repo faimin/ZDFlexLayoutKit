@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 9b39002de1504c017a3b95e558903093
         :release: 9b39002de1504c017a3b95e558903093
-    CHECKSUM: 0820d87dc1284e12235b437ab3d1174f83dae74d
+    CHECKSUM: 22f7212e04e33a680c70867177e22e36efd84b1d
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -74,10 +74,10 @@ CACHE_KEYS:
       - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayoutKit (0.0.1)
-      - ZDFlexLayoutKit/Core (0.0.1)
-      - ZDFlexLayoutKit/Helper (0.0.1)
-      - ZDFlexLayoutKit/Maker (0.0.1)
+      - ZDFlexLayoutKit (0.0.2)
+      - ZDFlexLayoutKit/Core (0.0.2)
+      - ZDFlexLayoutKit/Helper (0.0.2)
+      - ZDFlexLayoutKit/Maker (0.0.2)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:

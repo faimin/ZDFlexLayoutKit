@@ -14,6 +14,7 @@
 		FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */; };
 		FA1A54E22355ED3500C80712 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FA1A54E12355ED3500C80712 /* data.json */; };
 		FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E42355ED8100C80712 /* TextureModel.m */; };
+		FA289FFA2576554000FA57D7 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA289FF92576554000FA57D7 /* Empty.swift */; };
 		FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA617C0B23572AA100477C31 /* ZDFlexCell.m */; };
 		FA843027234F4231000F7E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843026234F4231000F7E35 /* AppDelegate.m */; };
 		FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843029234F4231000F7E35 /* SceneDelegate.m */; };
@@ -68,6 +69,8 @@
 		FA1A54E12355ED3500C80712 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		FA1A54E32355ED8100C80712 /* TextureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureModel.h; sourceTree = "<group>"; };
 		FA1A54E42355ED8100C80712 /* TextureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureModel.m; sourceTree = "<group>"; };
+		FA289FF82576554000FA57D7 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA289FF92576554000FA57D7 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		FA617C0A23572AA100477C31 /* ZDFlexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexCell.h; sourceTree = "<group>"; };
 		FA617C0B23572AA100477C31 /* ZDFlexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexCell.m; sourceTree = "<group>"; };
 		FA843022234F4231000F7E35 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,10 +210,12 @@
 				FA843029234F4231000F7E35 /* SceneDelegate.m */,
 				FA84302B234F4231000F7E35 /* ViewController.h */,
 				FA84302C234F4231000F7E35 /* ViewController.m */,
+				FA289FF92576554000FA57D7 /* Empty.swift */,
 				FA1A54CD2355E36000C80712 /* Sample */,
 				FA1A54E02355ECFE00C80712 /* Resource */,
 				FAD3AA0F237E810600EDEA13 /* Others */,
 				FA843036234F4234000F7E35 /* Info.plist */,
+				FA289FF82576554000FA57D7 /* Demo-Bridging-Header.h */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -357,7 +362,7 @@
 				TargetAttributes = {
 					FA843021234F4231000F7E35 = {
 						CreatedOnToolsVersion = 11.1;
-						LastSwiftMigration = 1200;
+						LastSwiftMigration = 1220;
 					};
 					FA84303C234F4234000F7E35 = {
 						CreatedOnToolsVersion = 11.1;
@@ -524,6 +529,7 @@
 			files = (
 				FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */,
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
+				FA289FFA2576554000FA57D7 /* Empty.swift in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
@@ -714,7 +720,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Sample/LayoutDemo/Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -735,7 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Sample/LayoutDemo/Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -745,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6042CC5A8A78852D60A515D4 /* Pods-DemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
@@ -765,6 +772,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 69C429D0F4F254DA2244BCA9 /* Pods-DemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
@@ -785,6 +793,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -803,6 +812,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58ADF0759809E42F4183EFA7 /* Pods-Demo-DemoUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
