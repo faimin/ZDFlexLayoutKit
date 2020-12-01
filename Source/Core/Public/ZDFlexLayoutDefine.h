@@ -15,4 +15,9 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
     ZDDimensionFlexibilityFlexibleHeight = 1 << 1,
 };
 
+// compatible with older versions
+#define YGDimensionFlexibility ZDDimensionFlexibility
+#define YGDimensionFlexibilityFlexibleWidth (ZDDimensionFlexibilityFlexibleWidth)
+#define YGDimensionFlexibilityFlexibleHeight (ZDDimensionFlexibilityFlexibleHeight)
+
 #endif /* ZDFlexLayoutDefine_h */
