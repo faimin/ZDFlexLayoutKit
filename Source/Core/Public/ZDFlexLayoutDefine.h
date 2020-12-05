@@ -11,8 +11,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
-    ZDDimensionFlexibilityFlexibleWidth = 1 << 0,
-    ZDDimensionFlexibilityFlexibleHeight = 1 << 1,
+    ZDDimensionFlexibilityFlexibleNone      = 0,
+    ZDDimensionFlexibilityFlexibleWidth     = 1 << 0,
+    ZDDimensionFlexibilityFlexibleHeight    = 1 << 1,
+    ZDDimensionFlexibilityFlexibleAll       = ~0L
 };
 
 // compatible with older versions

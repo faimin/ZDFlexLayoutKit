@@ -29,7 +29,7 @@
 }
 
 - (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin {
-    [self calculateLayoutWithAutoRefresh:autoRefresh preservingOrigin:preserveOrigin dimensionFlexibility:0];
+    [self calculateLayoutWithAutoRefresh:autoRefresh preservingOrigin:preserveOrigin dimensionFlexibility:ZDDimensionFlexibilityFlexibleNone];
 }
 
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
