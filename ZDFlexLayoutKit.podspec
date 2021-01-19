@@ -45,4 +45,10 @@ Pod::Spec.new do |spec|
     s.source_files = "Source/Helper/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
   end
+  spec.subspec 'SwiftMaker' do |s|
+    s.source_files = "Source/SwiftMaker/*.swift"
+    s.dependency 'ZDFlexLayoutKit/Core'
+    s.dependency 'Yoga'
+    s.swift_versions = ['5.0']
+  end
 end
