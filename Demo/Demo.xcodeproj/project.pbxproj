@@ -26,6 +26,7 @@
 		FA84304D234F4234000F7E35 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84304C234F4234000F7E35 /* DemoUITests.m */; };
 		FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */; };
 		FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */; };
+		FACF10A425B70AEC00C91DA3 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF10A325B70AEC00C91DA3 /* Empty.swift */; };
 		FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEA4A0E235F0F6000422C35 /* same_city_users.json */; };
 		FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */; };
 		FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A15235F0FF600422C35 /* SameCityUserListViewModel.m */; };
@@ -92,6 +93,7 @@
 		FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalLayoutController.m; sourceTree = "<group>"; };
 		FA90B084237D4D3E00DBDB77 /* ScrollViewLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewLayoutController.h; sourceTree = "<group>"; };
 		FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewLayoutController.m; sourceTree = "<group>"; };
+		FACF10A325B70AEC00C91DA3 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		FAEA4A0E235F0F6000422C35 /* same_city_users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = same_city_users.json; sourceTree = "<group>"; };
 		FAEA4A11235F0FD400422C35 /* SameCityUserListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameCityUserListController.h; sourceTree = "<group>"; };
 		FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SameCityUserListController.m; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				FA843029234F4231000F7E35 /* SceneDelegate.m */,
 				FA84302B234F4231000F7E35 /* ViewController.h */,
 				FA84302C234F4231000F7E35 /* ViewController.m */,
+				FACF10A325B70AEC00C91DA3 /* Empty.swift */,
 				FA1A54CD2355E36000C80712 /* Sample */,
 				FA1A54E02355ECFE00C80712 /* Resource */,
 				FAD3AA0F237E810600EDEA13 /* Others */,
@@ -524,6 +527,7 @@
 			files = (
 				FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */,
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
+				FACF10A425B70AEC00C91DA3 /* Empty.swift in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
@@ -714,7 +718,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -735,7 +739,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -745,6 +749,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6042CC5A8A78852D60A515D4 /* Pods-DemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
@@ -765,6 +770,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 69C429D0F4F254DA2244BCA9 /* Pods-DemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
@@ -785,6 +791,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -803,6 +810,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58ADF0759809E42F4183EFA7 /* Pods-Demo-DemoUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

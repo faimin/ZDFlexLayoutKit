@@ -9,10 +9,18 @@
 #ifndef ZDFlexLayoutKit_h
 #define ZDFlexLayoutKit_h
 
-#import "ZDFlexLayoutDefine.h"
-#import "ZDFlexLayoutViewProtocol.h"
-#import "UIView+ZDFlexLayout.h"
-#import "ZDFlexLayoutDiv.h"
-#import "ZDFlexLayoutChain.h"
+// Core
+#if __has_include(<ZDFlexLayoutKit/ZDFlexLayout.h>)
+#import <ZDFlexLayoutKit/ZDFlexLayoutDefine.h>
+#import <ZDFlexLayoutKit/ZDFlexLayoutViewProtocol.h>
+#import <ZDFlexLayoutKit/ZDFlexLayout.h>
+#import <ZDFlexLayoutKit/UIView+ZDFlexLayout.h>
+#import <ZDFlexLayoutKit/ZDFlexLayoutDiv.h>
+#endif
+
+// Maker
+#if __has_include(<ZDFlexLayoutKit/ZDFlexLayoutChain.h>)
+#import <ZDFlexLayoutKit/ZDFlexLayoutChain.h>
+#endif
 
 #endif /* ZDFlexLayoutKit_h */

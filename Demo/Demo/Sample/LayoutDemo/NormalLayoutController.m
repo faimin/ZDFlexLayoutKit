@@ -7,7 +7,7 @@
 //
 
 #import "NormalLayoutController.h"
-#import "ZDFlexLayoutKit.h"
+#import <ZDFlexLayoutKit/ZDFlexLayoutKit.h>
 
 @interface NormalLayoutController ()
 

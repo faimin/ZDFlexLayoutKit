@@ -33,12 +33,19 @@
   ],
   "subspecs": [
     {
+      "name": "Header",
+      "source_files": "Source/ZDFlexLayoutKit.h"
+    },
+    {
       "name": "Core",
       "source_files": "Source/Core/**/*.{h,m}",
       "public_header_files": "Source/Core/Public/*.h",
       "private_header_files": "Source/Core/Private/*.h",
       "dependencies": {
         "Yoga": [
+
+        ],
+        "ZDFlexLayoutKit/Header": [
 
         ]
       }
@@ -49,6 +56,9 @@
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
+        ],
+        "ZDFlexLayoutKit/Header": [
+
         ]
       }
     },
@@ -58,6 +68,9 @@
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
+        ],
+        "ZDFlexLayoutKit/Header": [
+
         ]
       }
     },
@@ -66,6 +79,9 @@
       "source_files": "Source/SwiftMaker/*.swift",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
+
+        ],
+        "ZDFlexLayoutKit/Header": [
 
         ],
         "Yoga": [

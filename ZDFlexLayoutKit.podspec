@@ -38,23 +38,30 @@ Pod::Spec.new do |spec|
   spec.swift_versions   = ['5.0']
   spec.default_subspecs = 'Core', 'OCMaker', 'Helper'
   
+  spec.subspec 'Header' do |s|
+    s.source_files = "Source/ZDFlexLayoutKit.h"
+  end
   spec.subspec 'Core' do |s|
     s.source_files = "Source/Core/**/*.{h,m}"
     s.public_header_files = "Source/Core/Public/*.h"
     s.private_header_files = "Source/Core/Private/*.h"
     s.dependency 'Yoga'
+    s.dependency 'ZDFlexLayoutKit/Header'
   end
   spec.subspec 'OCMaker' do |s|
     s.source_files = "Source/OCMaker/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
+    s.dependency 'ZDFlexLayoutKit/Header'
   end
   spec.subspec 'Helper' do |s|
     s.source_files = "Source/Helper/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
+    s.dependency 'ZDFlexLayoutKit/Header'
   end
   spec.subspec 'SwiftMaker' do |s|
     s.source_files = "Source/SwiftMaker/*.swift"
     s.dependency 'ZDFlexLayoutKit/Core'
+    s.dependency 'ZDFlexLayoutKit/Header'
     s.dependency 'Yoga'
   end
 end

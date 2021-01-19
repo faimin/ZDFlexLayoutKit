@@ -13,16 +13,16 @@ CACHE_KEYS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 7f0752d9384f362ffe9a7b8b6566060a
-      Release: 763ad70c5d54abe753d9ee432e71ab5a
+      Debug: 11571c00920ddc9ee4b43b59722d0d83
+      Release: 37c5a9f6920620905e4c50959360c52a
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 7f0752d9384f362ffe9a7b8b6566060a
-      Release: 763ad70c5d54abe753d9ee432e71ab5a
+      Debug: be6686657d0667d690e8bf12426c7fd9
+      Release: 95e3e7df7ce0ac30cf1ed30ae5961c59
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: e5e80d1648501242cf073e0133dec74c
-      Release: 191d035db81e861bd3345d76a916d1be
+      Debug: b471328e5442b4904e51f87e360858b2
+      Release: ed64e88f91c7e082704c0c0da8e119ab
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
@@ -44,9 +44,9 @@ CACHE_KEYS:
   ZDFlexLayoutKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDFlexLayoutKit:
-        :debug: 9b39002de1504c017a3b95e558903093
-        :release: 9b39002de1504c017a3b95e558903093
-    CHECKSUM: 669656f61b1a8aec0239cffaf838304ea4afb7de
+        :debug: 2f98729a05a63f02ef3399fd2baa652a
+        :release: 2f98729a05a63f02ef3399fd2baa652a
+    CHECKSUM: 9f8c10fe7a3ec3ce4d49a24acae02bdf56c3823e
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -71,13 +71,16 @@ CACHE_KEYS:
       - "../../Source/OCMaker/ZDFlexLayoutChain.m"
       - "../../Source/OCMaker/ZDFlexLayoutMaker.h"
       - "../../Source/OCMaker/ZDFlexLayoutMaker.m"
+      - "../../Source/SwiftMaker/ZDSFlexExtension.swift"
+      - "../../Source/SwiftMaker/ZDSFlexLayoutChain.swift"
       - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayoutKit (0.0.2.2)
       - ZDFlexLayoutKit/Core (0.0.2.2)
+      - ZDFlexLayoutKit/Header (0.0.2.2)
       - ZDFlexLayoutKit/Helper (0.0.2.2)
       - ZDFlexLayoutKit/OCMaker (0.0.2.2)
+      - ZDFlexLayoutKit/SwiftMaker (0.0.2.2)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
