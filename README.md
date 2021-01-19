@@ -21,6 +21,20 @@
     
 > PS：开启自动更新布局时，当布局发生改变需要更新时需要手动调用 `markDirty`方法；`gone`不用，它内部会自己调用
 
+#### 安装：
+
+```ruby
+pod 'ZDFlexLayoutKit'
+```
+
+> 默认是`Objective-C`语法版本，虽然也支持在`Swift`中使用，但是如果想有更好的体验请使用下面的设置来原生支持`Swift`
+>
+> 从 `0.1.0` 开始支持 `Swift`
+
+```ruby
+pod 'ZDFlexLayoutKit', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']
+```
+
 #### 资料：
 
 + [Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
