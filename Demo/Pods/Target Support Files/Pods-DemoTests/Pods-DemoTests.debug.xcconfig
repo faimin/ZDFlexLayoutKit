@@ -2,13 +2,12 @@ CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/LookinServer"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/YYModel" "${PODS_ROOT}/Headers/Public/Yoga" "${PODS_ROOT}/Headers/Public/ZDFlexLayoutKit" "${PODS_ROOT}/Headers/Public/ZDToolKit"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_ROOT}/Headers/Public/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap"
 OTHER_LDFLAGS = $(inherited) -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "LookinServer" -framework "QuartzCore" -framework "UIKit" -framework "WebKit"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
 PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ZDFlexLayoutKit"
 USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

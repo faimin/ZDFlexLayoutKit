@@ -7,6 +7,22 @@
 
 import Foundation
 
+//MARK: - makeFlexLayout
+
+public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
+    
+    //MARK: - Maker
+    
+    @discardableResult
+    func makeFlexLayout(_ block: (ZDSFlexLayoutMaker) -> Void) -> T {
+        let maker = ZDSFlexLayoutMaker(base.flexLayout)
+        block(maker)
+        return base
+    }
+}
+
+//MARK: - ZDSFlexLayoutMaker
+
 public struct ZDSFlexLayoutMaker {
     
     private let flexLayout: ZDFlexLayout

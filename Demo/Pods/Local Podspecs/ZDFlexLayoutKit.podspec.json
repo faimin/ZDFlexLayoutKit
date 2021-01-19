@@ -9,7 +9,6 @@
     "faimin": "fuxianchao@gmail.com"
   },
   "requires_arc": true,
-  "prefix_header_file": false,
   "platforms": {
     "ios": "9.0"
   },
@@ -17,12 +16,21 @@
     "git": "https://github.com/faimin/ZDFlexLayoutKit.git",
     "tag": "0.0.2.2"
   },
+  "prefix_header_file": false,
   "source_files": "Source/**/*.{h,m}",
   "public_header_files": "Source/ZDFlexLayoutKit.h",
   "module_name": "ZDFlexLayoutKit",
   "pod_target_xcconfig": {
     "DEFINES_MODULE": "YES"
   },
+  "swift_versions": [
+    "5.0"
+  ],
+  "default_subspecs": [
+    "Core",
+    "OCMaker",
+    "Helper"
+  ],
   "subspecs": [
     {
       "name": "Core",
@@ -36,8 +44,8 @@
       }
     },
     {
-      "name": "Maker",
-      "source_files": "Source/Maker/*.{h,m}",
+      "name": "OCMaker",
+      "source_files": "Source/OCMaker/*.{h,m}",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
@@ -65,5 +73,6 @@
         ]
       }
     }
-  ]
+  ],
+  "swift_version": "5.0"
 }

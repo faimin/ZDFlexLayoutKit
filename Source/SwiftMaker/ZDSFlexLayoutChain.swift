@@ -7,16 +7,6 @@
 
 import Foundation
 
-public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
-    
-    //MARK: - Maker
-    @discardableResult
-    func makeFlexLayout(_ block: (Self) -> Void) -> T {
-        block(self)
-        return base
-    }
-}
-
 /*
 public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
     
