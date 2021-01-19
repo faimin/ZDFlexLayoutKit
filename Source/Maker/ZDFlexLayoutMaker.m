@@ -16,10 +16,6 @@
     };                                                      \
 }
 
-@interface ZDFlexLayout ()
-@property (nonatomic, weak, readonly) ZDFlexLayoutView view;
-@end
-
 @interface ZDFlexLayoutMaker ()
 @property (nonatomic, weak) ZDFlexLayout *flexLayout;
 @end

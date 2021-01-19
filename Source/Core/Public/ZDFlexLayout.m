@@ -129,7 +129,7 @@ static YGConfigRef globalConfig;
 
 @interface ZDFlexLayout ()
 
-@property (nonatomic, weak, readonly) ZDFlexLayoutView view;
+@property (nonatomic, weak, readwrite) ZDFlexLayoutView view;
 @property (nonatomic, assign, readonly) BOOL isUIView;
 
 @end
