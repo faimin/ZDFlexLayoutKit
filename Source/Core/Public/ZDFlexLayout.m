@@ -484,12 +484,12 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
     const CGPoint origin = preserveOrigin ? view.layoutFrame.origin : CGPointZero;
     view.layoutFrame = (CGRect) {
         .origin = {
-            .x = ZDRoundPixelValue(topLeft.x + origin.x),
-            .y = ZDRoundPixelValue(topLeft.y + origin.y),
+            .x = ZDFLRoundPixelValue(topLeft.x + origin.x),
+            .y = ZDFLRoundPixelValue(topLeft.y + origin.y),
         },
         .size = {
-            .width  = ZDRoundPixelValue(bottomRight.x) - ZDRoundPixelValue(topLeft.x),
-            .height = ZDRoundPixelValue(bottomRight.y) - ZDRoundPixelValue(topLeft.y),
+            .width  = ZDFLRoundPixelValue(bottomRight.x) - ZDFLRoundPixelValue(topLeft.x),
+            .height = ZDFLRoundPixelValue(bottomRight.y) - ZDFLRoundPixelValue(topLeft.y),
         },
     };
 
@@ -518,7 +518,7 @@ static void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block)
 //-------------------------- Function ------------------------
 #pragma mark -
 
-CGFloat ZDScreenScale(void)
+CGFloat ZDFLScreenScale(void)
 {
     static CGFloat scale = 0.0;
     static dispatch_once_t onceToken;
@@ -530,20 +530,20 @@ CGFloat ZDScreenScale(void)
     return scale;
 }
 
-CGFloat ZDRoundPixelValue(CGFloat value)
+CGFloat ZDFLRoundPixelValue(CGFloat value)
 {
-    CGFloat scale = ZDScreenScale();
+    CGFloat scale = ZDFLScreenScale();
     return roundf(value * scale) / scale;
 }
 
-CGFloat ZDCeilPixelValue(CGFloat value)
+CGFloat ZDFLCeilPixelValue(CGFloat value)
 {
-    CGFloat scale = ZDScreenScale();
+    CGFloat scale = ZDFLScreenScale();
     return ceil((value - FLT_EPSILON) * scale) / scale;
 }
 
-CGFloat ZDFloorPixelValue(CGFloat f)
+CGFloat ZDFLFloorPixelValue(CGFloat f)
 {
-    CGFloat scale = ZDScreenScale();
+    CGFloat scale = ZDFLScreenScale();
     return floor((f + FLT_EPSILON) * scale) / scale;
 }

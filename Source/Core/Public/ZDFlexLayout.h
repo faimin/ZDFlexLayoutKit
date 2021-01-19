@@ -17,10 +17,10 @@ YG_EXTERN_C_BEGIN
 extern YGValue YGPointValue(CGFloat value);
 extern YGValue YGPercentValue(CGFloat value);
 
-extern CGFloat ZDScreenScale(void);
-extern CGFloat ZDRoundPixelValue(CGFloat value);
-extern CGFloat ZDCeilPixelValue(CGFloat value);
-extern CGFloat ZDFloorPixelValue(CGFloat f);
+extern CGFloat ZDFLScreenScale(void);
+extern CGFloat ZDFLRoundPixelValue(CGFloat value);
+extern CGFloat ZDFLCeilPixelValue(CGFloat value);
+extern CGFloat ZDFLFloorPixelValue(CGFloat f);
 
 YG_EXTERN_C_END
 
