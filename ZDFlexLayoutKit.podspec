@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.prefix_header_file = false
   
   spec.source_files  = "Source/**/*.{h,m}"
-  #spec.public_header_files = "Source/ZDFlexLayoutKit.h"
+  spec.public_header_files = "Source/Header/*.h"
 
   spec.module_name = 'ZDFlexLayoutKit'
   #spec.preserve_path = 'Source/module.modulemap', "Source/ZDFlexLayoutKit.h"
