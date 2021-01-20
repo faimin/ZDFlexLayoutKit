@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 2f98729a05a63f02ef3399fd2baa652a
         :release: 2f98729a05a63f02ef3399fd2baa652a
-    CHECKSUM: 50a0d4e79eaa6420187e2feeedf212b8ea66c3ba
+    CHECKSUM: 8336a8f3a262ada46914b03a8d51a716b89a9eef
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -63,6 +63,8 @@ CACHE_KEYS:
       - "../../Source/Core/Public/ZDFlexLayoutDiv.h"
       - "../../Source/Core/Public/ZDFlexLayoutDiv.m"
       - "../../Source/Core/Public/ZDFlexLayoutViewProtocol.h"
+      - "../../Source/Header/ZDFlexLayoutKit.h"
+      - "../../Source/Header/ZDFlexLayoutKit.m"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.h"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.m"
       - "../../Source/Helper/ZDTemplateCellHandler.h"
@@ -75,14 +77,13 @@ CACHE_KEYS:
       - "../../Source/SwiftMaker/ZDSFlexLayoutChain.swift"
       - "../../Source/SwiftMaker/ZDSFlexLayoutMaker.swift"
       - "../../Source/SwiftMaker/ZDSNamespace.swift"
-      - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayoutKit/Core (0.1.0)
-      - ZDFlexLayoutKit/Header (0.1.0)
-      - ZDFlexLayoutKit/Helper (0.1.0)
-      - ZDFlexLayoutKit/OCMaker (0.1.0)
-      - ZDFlexLayoutKit/SwiftMaker (0.1.0)
+      - ZDFlexLayoutKit/Core (0.1.1)
+      - ZDFlexLayoutKit/Header (0.1.1)
+      - ZDFlexLayoutKit/Helper (0.1.1)
+      - ZDFlexLayoutKit/OCMaker (0.1.1)
+      - ZDFlexLayoutKit/SwiftMaker (0.1.1)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:

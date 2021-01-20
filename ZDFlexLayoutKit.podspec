@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.prefix_header_file = false
   
   spec.source_files  = "Source/**/*.{h,m}"
-  spec.public_header_files = "Source/ZDFlexLayoutKit.h"
+  #spec.public_header_files = "Source/ZDFlexLayoutKit.h"
 
   spec.module_name = 'ZDFlexLayoutKit'
   #spec.preserve_path = 'Source/module.modulemap', "Source/ZDFlexLayoutKit.h"
@@ -39,7 +39,7 @@ Pod::Spec.new do |spec|
   spec.default_subspecs = 'Core', 'OCMaker', 'Helper'
   
   spec.subspec 'Header' do |s|
-    s.source_files = "Source/ZDFlexLayoutKit.h"
+    s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"
   end
   spec.subspec 'Core' do |s|
     s.source_files = "Source/Core/**/*.{h,m}"
