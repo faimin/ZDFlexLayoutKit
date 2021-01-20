@@ -38,6 +38,7 @@ target 'Demo' do
   pod 'ZDToolKit', '~> 0.0.4'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']#, :modular_headers => true
+  #pod 'ZDFlexLayoutKit', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']
 
   target 'DemoTests' do
     inherit! :search_paths

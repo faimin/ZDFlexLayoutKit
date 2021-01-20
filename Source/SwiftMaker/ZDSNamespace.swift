@@ -18,11 +18,9 @@ public struct ZDSFlexNamespace<T> {
 
 public protocol ZDSFlexObject: AnyObject {
     
-    associatedtype ZDSType
+    associatedtype ZDSType: AnyObject
     
     var zds: ZDSFlexNamespace<ZDSType> { get set }
-    
-    static var zds: ZDSFlexNamespace<ZDSType>.Type { get set }
 }
 
 public extension ZDSFlexObject {
@@ -33,13 +31,17 @@ public extension ZDSFlexObject {
         }
         set { }
     }
+}
+
+extension NSObject: ZDSFlexObject { }
+
+public extension ZDFlexLayoutDiv {
     
-    static var zds: ZDSFlexNamespace<Self>.Type {
+    static var zds: ZDSFlexNamespace<ZDFlexLayoutDiv> {
         get {
-            return ZDSFlexNamespace<Self>.self
+            return ZDSFlexNamespace(Self())
         }
         set { }
     }
 }
 
-extension NSObject: ZDSFlexObject {}

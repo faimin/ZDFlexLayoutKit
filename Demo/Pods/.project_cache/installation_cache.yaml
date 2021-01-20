@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 2f98729a05a63f02ef3399fd2baa652a
         :release: 2f98729a05a63f02ef3399fd2baa652a
-    CHECKSUM: 9f8c10fe7a3ec3ce4d49a24acae02bdf56c3823e
+    CHECKSUM: 50a0d4e79eaa6420187e2feeedf212b8ea66c3ba
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -73,14 +73,16 @@ CACHE_KEYS:
       - "../../Source/OCMaker/ZDFlexLayoutMaker.m"
       - "../../Source/SwiftMaker/ZDSFlexExtension.swift"
       - "../../Source/SwiftMaker/ZDSFlexLayoutChain.swift"
+      - "../../Source/SwiftMaker/ZDSFlexLayoutMaker.swift"
+      - "../../Source/SwiftMaker/ZDSNamespace.swift"
       - "../../Source/ZDFlexLayoutKit.h"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayoutKit/Core (0.0.2.2)
-      - ZDFlexLayoutKit/Header (0.0.2.2)
-      - ZDFlexLayoutKit/Helper (0.0.2.2)
-      - ZDFlexLayoutKit/OCMaker (0.0.2.2)
-      - ZDFlexLayoutKit/SwiftMaker (0.0.2.2)
+      - ZDFlexLayoutKit/Core (0.1.0)
+      - ZDFlexLayoutKit/Header (0.1.0)
+      - ZDFlexLayoutKit/Helper (0.1.0)
+      - ZDFlexLayoutKit/OCMaker (0.1.0)
+      - ZDFlexLayoutKit/SwiftMaker (0.1.0)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
