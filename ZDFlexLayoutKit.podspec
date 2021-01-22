@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.1.1"
+  spec.version      = "0.1.2"
   spec.summary      = "Flex Layout in Objective-C"
   spec.description  = <<-DESC
     flex layout in Objective-C base on yoga
@@ -24,12 +24,12 @@ Pod::Spec.new do |spec|
   }
   spec.prefix_header_file = false
   
-  spec.source_files  = "Source/**/*.{h,m}"
-  spec.public_header_files = "Source/Header/*.h"
-
-  spec.module_name = 'ZDFlexLayoutKit'
+  #spec.source_files  = "Source/**/*.{h,m}"
+  #spec.public_header_files = "Source/Header/*.h"
   #spec.preserve_path = 'Source/module.modulemap', "Source/ZDFlexLayoutKit.h"
   #spec.module_map = 'Source/module.modulemap'
+
+  spec.module_name = 'ZDFlexLayoutKit'
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     #'SWIFT_INCLUDE_PATHS' => ["$(PODS_ROOT)/#{spec.module_name}/", "$(PODS_TARGET_SRCROOT)/#{spec.module_name}/"]
@@ -62,6 +62,5 @@ Pod::Spec.new do |spec|
     s.source_files = "Source/SwiftMaker/*.swift"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
-    s.dependency 'Yoga'
   end
 end
