@@ -28,6 +28,7 @@ public struct ZDSFlexLayoutMaker {
     private let flexLayout: ZDFlexLayout
     
     public init(_ flexLayout: ZDFlexLayout) {
+        flexLayout.isEnabled = true
         self.flexLayout = flexLayout
     }
 }
