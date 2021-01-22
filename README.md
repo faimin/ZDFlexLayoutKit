@@ -29,7 +29,7 @@ pod 'ZDFlexLayoutKit'
 
 > 默认是`Objective-C`语法版本，虽然也支持在`Swift`中使用，但是如果想有更好的体验请使用下面的设置来原生支持`Swift`
 >
-> 从 `0.1.1` 开始支持 `Swift`
+> 从 `0.1.2` 开始支持 `Swift`
 
 ```ruby
 pod 'ZDFlexLayoutKit', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']
