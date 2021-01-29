@@ -29,7 +29,7 @@ Pod::Spec.new do |spec|
   #spec.preserve_path = 'Source/module.modulemap', "Source/ZDFlexLayoutKit.h"
   #spec.module_map = 'Source/module.modulemap'
 
-  spec.header_dir = "Source"
+  spec.header_dir = "./"
   spec.module_name = 'ZDFlexLayoutKit'
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
@@ -37,7 +37,7 @@ Pod::Spec.new do |spec|
   }
   
   spec.swift_versions   = ['5.0']
-  spec.default_subspecs = 'Core', 'OCMaker', 'Helper'
+  spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
   
   spec.subspec 'Header' do |s|
     s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"
