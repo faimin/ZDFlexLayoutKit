@@ -29,6 +29,7 @@ Pod::Spec.new do |spec|
   #spec.preserve_path = 'Source/module.modulemap', "Source/ZDFlexLayoutKit.h"
   #spec.module_map = 'Source/module.modulemap'
 
+  spec.header_dir = "Source"
   spec.module_name = 'ZDFlexLayoutKit'
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
