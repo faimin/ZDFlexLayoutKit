@@ -37,7 +37,7 @@ Pod::Spec.new do |spec|
   }
   
   spec.swift_versions   = ['5.0']
-  spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
+  #spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
   
   spec.subspec 'Header' do |s|
     s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"
