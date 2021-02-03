@@ -35,6 +35,10 @@ pod 'ZDFlexLayoutKit'
 pod 'ZDFlexLayoutKit', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']
 ```
 
+> 支持编译为静态库，但如果想使用`Literal`字面量特性，需要把这个`repo`编译为`framework`的形式，比如在`podfile`中开启`use_framework!`或者其他方式让它以动态库的形式存在
+>
+> 如果它被编译为了动态库，其依赖`yoga`也需要以动态库的形式存在，即动态库不能依赖静态库
+
 #### 资料：
 
 + [Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
