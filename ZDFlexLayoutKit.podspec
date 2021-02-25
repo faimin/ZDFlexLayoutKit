@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.1.3"
+  spec.version      = "0.1.4"
   spec.summary      = "Flex Layout in Objective-C"
   spec.description  = <<-DESC
     flex layout in Objective-C base on yoga
@@ -37,7 +37,7 @@ Pod::Spec.new do |spec|
   }
   
   spec.swift_versions   = ['5.0']
-  spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
+  #spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
   
   spec.subspec 'Header' do |s|
     s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"

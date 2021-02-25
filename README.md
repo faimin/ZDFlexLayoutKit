@@ -16,10 +16,8 @@
 
 + 支持`UIScrollView`布局
 
-
-    > 拒绝使用`runtime`的方法交换更新布局
     
-> PS：开启自动更新布局时，当布局发生改变需要更新时需要手动调用 `markDirty`方法；`gone`不用，它内部会自己调用
+> PS：开启自动更新布局后，在布局发生改变需要更新时需要手动调用 `markDirty`方法（`gone`不需要调用`markDirty`，它内部会自己处理）
 
 #### 安装：
 
@@ -27,12 +25,12 @@
 pod 'ZDFlexLayoutKit'
 ```
 
-> 默认是`Objective-C`语法版本，虽然也支持在`Swift`中使用，但是如果想有更好的体验请使用下面的设置来原生支持`Swift`
+> 默认是包含`Objective-C`与`Swift`的混编`pod`，如果只是用于纯`OC`工程，可以仅引用`OC`版本
 >
 > 从 `0.1.2` 开始支持 `Swift`
 
 ```ruby
-pod 'ZDFlexLayoutKit', :subspecs => ['Core', 'OCMaker', 'Helper', 'SwiftMaker']
+pod 'ZDFlexLayoutKit', :subspecs => ['OCMaker']
 ```
 
 > 支持编译为静态库，但如果想使用`Literal`字面量特性，需要把这个`repo`编译为`framework`的形式，比如在`podfile`中开启`use_framework!`或者其他方式让它以动态库的形式存在

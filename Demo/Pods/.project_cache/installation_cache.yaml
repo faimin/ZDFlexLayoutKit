@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 309691f0cf6d122b188a9d138ae9f03d
         :release: 309691f0cf6d122b188a9d138ae9f03d
-    CHECKSUM: 2da372f0f17e432f416056048bb5391fa21b7220
+    CHECKSUM: 01ac75bdb8580f482ceeed94880c51ef70d8c9e1
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -78,6 +78,7 @@ CACHE_KEYS:
       - "../../Source/SwiftMaker/ZDSNamespace.swift"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
+      - ZDFlexLayoutKit (0.1.3)
       - ZDFlexLayoutKit/Core (0.1.3)
       - ZDFlexLayoutKit/Header (0.1.3)
       - ZDFlexLayoutKit/Helper (0.1.3)
