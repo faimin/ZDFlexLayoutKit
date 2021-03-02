@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,16 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<ObjectType> *)zd_reverse;
 
 /// 打乱数组中元素的原有顺序
-- (__kindof NSArray<ObjectType> *)zd_shuffle;
+- (NSMutableArray<ObjectType> *)zd_shuffle;
 
 /// 把某一元素移动到最前面
-- (__kindof NSArray<ObjectType> *)zd_moveObjcToFront:(ObjectType)objc;
+- (NSMutableArray<ObjectType> *)zd_moveObjcToFront:(ObjectType)obj;
 
 /// 去重
 - (NSArray<ObjectType> *)zd_deduplication;
 
 /// 获取两个数组中的相同元素
-- (NSArray *)zd_collectSameElementWithArray:(__kindof NSArray *)otherArray;
+- (NSArray<ObjectType> *)zd_collectSameElementWithArray:(NSArray<ObjectType> *)otherArray;
 
 /// 求和
 - (CGFloat)zd_sum;
@@ -39,8 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 最小值
 - (CGFloat)zd_min;
 
-- (NSMutableArray *)zd_map:(id (^)(ObjectType objc))block;
-- (NSMutableArray<ObjectType> *)zd_filter:(BOOL (^)(ObjectType objc))block;
+- (void)zd_forEach:(void(^)(ObjectType obj, NSUInteger idx))block;
+- (NSMutableArray *)zd_map:(id(^)(ObjectType obj, NSUInteger idx))block;
+- (NSMutableArray<ObjectType> *)zd_filter:(BOOL(^)(ObjectType obj, NSUInteger idx))block;
+- (nullable id)zd_reduce:(id _Nullable (^)(id _Nullable previousResult, ObjectType currentObject, NSUInteger idx))block;
 - (NSMutableArray<ObjectType> *)zd_flatten;
 - (NSMutableArray<ObjectType> *)zd_zipWith:(NSArray<ObjectType> *)rightArray usingBlock:(id(^)(ObjectType left, ObjectType right))block;
 - (NSMutableArray<ObjectType> *)zd_mutableArray;

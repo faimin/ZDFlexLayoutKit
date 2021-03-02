@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Preserves aspect ratio. Same as 'aspect fit' in IB.
 - (UIImage *)zd_scaleToFitSize:(CGSize)newSize;
 - (UIImage *)zd_resizeToSize:(CGSize)newSize;
-- (UIImage *)zd_thumbnailWithSize:(int)imageWidthOrHeight;
+- (UIImage *)zd_thumbnailWithSize:(CGSize)imageSize;
 
 - (UIImage *)zd_imageByInsetEdge:(UIEdgeInsets)insets
                        withColor:(UIColor *)color;

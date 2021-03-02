@@ -43,7 +43,7 @@ ALMargin  ALMarginMakeTop(CGFloat t) {
 ALMargin  ALMarginMakeBottom(CGFloat b) {
     return ALMarginMake(0.f, 0.f, 0.f, b);
 }
-ALMargin  ALMarginZero(){
+ALMargin  ALMarginZero(void){
     return ALMarginMake(0.f, 0.f, 0.f, 0.f);
 }
 

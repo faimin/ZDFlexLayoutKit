@@ -7,65 +7,85 @@
 //
 
 #import "ZDReusePool.h"
+#import <pthread/pthread.h>
 
 @interface ZDReusePool ()
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSSet *> *reusePool;
+{
+    pthread_mutex_t _lock;
+}
+@property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredClasses;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableSet *> *reusePool;
 @end
 
 @implementation ZDReusePool
 
-- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-    NSCParameterAssert(identifier);
+- (void)dealloc {
+    [self.registeredClasses removeAllObjects];
+    [self.reusePool removeAllObjects];
+    pthread_mutex_destroy(&_lock);
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        pthread_mutexattr_t attr;
+        pthread_mutexattr_init(&attr);
+        pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_DEFAULT);
+        pthread_mutex_init(&_lock, &attr);
+        pthread_mutexattr_destroy(&attr);
+        
+        _registeredClasses = [[NSMutableDictionary alloc] init];
+        _reusePool = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
+- (void)registerClass:(nullable Class)aClass forReuseIdentifier:(NSString *)identifier {
+    if (!identifier) return;
     
+    pthread_mutex_lock(&_lock);
+    self.registeredClasses[identifier] = aClass;
+    pthread_mutex_unlock(&_lock);
+}
+
+- (id)dequeueReusableObjectWithIdentifier:(NSString *)identifier {
+    NSCParameterAssert(identifier);
     if (!identifier) return nil;
     
-    id value;
-    if ([self.reusePool.allKeys containsObject:identifier]) {
-        NSMutableSet *valueSet = (id)[self.reusePool valueForKey:identifier];
-        value = [valueSet anyObject];
-        if (value) {
-            [valueSet removeObject:value];
-        }
-        
-        if ([value conformsToProtocol:@protocol(ZDPrepareForReuseProtocol)] && [value respondsToSelector:@selector(prepareForReuse)]) {
-            [value prepareForReuse];
+    pthread_mutex_lock(&_lock);
+    id value = nil;
+    NSMutableSet *valueSet = self.reusePool[identifier];
+    value = [valueSet anyObject];
+    if (value) {
+        [valueSet removeObject:value];
+    } else {
+        Class aClass = self.registeredClasses[identifier];
+        if (aClass) {
+            value = [aClass new];
+            [self addObject:value withIdentifier:identifier];
         }
     }
+    
+    if ([value conformsToProtocol:@protocol(ZDPrepareForReuseProtocol)] && [value respondsToSelector:@selector(prepareForReuse)]) {
+        [value prepareForReuse];
+    }
+    pthread_mutex_unlock(&_lock);
     return value;
 }
 
-- (void)addReusePoolObject:(id)object withIdentifier:(NSString *)identifier {
+- (void)addObject:(id)object withIdentifier:(NSString *)identifier {
     if (!object || !identifier) return;
     
-    NSMutableSet *mutSet = (id)[self.reusePool valueForKey:identifier];
+    NSMutableSet *mutSet = (id)self.reusePool[identifier];
     if (mutSet) {
+        mutSet = [mutSet isKindOfClass:[NSMutableSet class]] ? mutSet : [NSMutableSet setWithSet:mutSet];
         [mutSet addObject:object];
-        [self.reusePool setValue:mutSet forKey:identifier];
     }
     else {
         mutSet = [NSMutableSet setWithObject:object];
-        [self.reusePool setValue:mutSet forKey:identifier];
     }
-}
-
-- (id)_getValue:(NSString *)identifier {
-    Class aClass = NSClassFromString(identifier);
-    id value;
-    if (aClass) {
-        value = [aClass new];
-        NSMutableSet *mutSet = [NSMutableSet setWithObject:value];
-        [self.reusePool setValue:mutSet forKey:identifier];
-    }
-    return value;
+    self.reusePool[identifier] = mutSet;
 }
 
 #pragma mark - Property
-//MARK: Getter
-- (NSMutableDictionary<NSString *, NSSet *> *)reusePool {
-    if (!_reusePool) {
-        _reusePool = @{}.mutableCopy;
-    }
-    return _reusePool;
-}
 
 @end

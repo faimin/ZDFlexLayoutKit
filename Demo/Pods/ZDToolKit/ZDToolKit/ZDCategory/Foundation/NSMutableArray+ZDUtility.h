@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSMutableArray (ZDUtility)
+@interface NSMutableArray<ObjectType> (ZDUtility)
 
-+ (id)zd_mutableArrayUsingWeakReferences;
++ (instancetype)zd_mutableArrayUsingWeakReferences;
 
-+ (id)zd_mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity;
++ (instancetype)zd_mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity;
 
 @end
 

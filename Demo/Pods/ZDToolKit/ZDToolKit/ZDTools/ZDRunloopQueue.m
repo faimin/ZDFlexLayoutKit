@@ -149,6 +149,7 @@ static void _sourceContextPerformCallBack(void *info) {
 - (void)main {
     CFRunLoopRef runloop = CFRunLoopGetCurrent();
     self.currentRunloop = runloop;
+    
     CFRunLoopAddSource(runloop, self.runloopSource, kCFRunLoopCommonModes);
     
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, false, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
@@ -163,31 +164,4 @@ static void _sourceContextPerformCallBack(void *info) {
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

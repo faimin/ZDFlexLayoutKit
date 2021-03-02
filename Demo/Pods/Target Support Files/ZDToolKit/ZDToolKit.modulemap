@@ -1,0 +1,6 @@
+module ZDToolKit {
+  umbrella header "ZDToolKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

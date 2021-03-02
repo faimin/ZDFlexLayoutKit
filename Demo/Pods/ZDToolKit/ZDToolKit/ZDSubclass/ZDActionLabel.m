@@ -11,8 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDActionLabel ()
-{
+@interface ZDActionLabel () {
 //    CGFloat _iLineSpacing;
 //    CALayer *_underlindeLayer;
 //    CGRect _textRect;
@@ -195,8 +194,7 @@ NS_ASSUME_NONNULL_END
 
 #if 0
  /// CoreText实现图文混排之点击事件：http://www.jianshu.com/p/51c47329203e
-- (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range
-{
+- (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range {
     if (nil == target || NULL == selector) {
         return;
     }
@@ -216,8 +214,7 @@ NS_ASSUME_NONNULL_END
     }
 }
 
-- (NSInteger)indexOfTouchLocation:(CGPoint)location
-{
+- (NSInteger)indexOfTouchLocation:(CGPoint)location {
     if (NULL == _ctFrameRef) {
         NSAttributedString *content = self.attributedText;
         CTFramesetterRef framesetter =  CTFramesetterCreateWithAttributedString((__bridge_retained CFAttributedStringRef)content);
@@ -236,7 +233,7 @@ NS_ASSUME_NONNULL_END
     CGPoint lineOrigin = CGPointZero;
     CGPathRef path = CTFrameGetPath(_ctFrameRef);
     CGRect rect = CGPathGetBoundingBox(path);
-    for (int i = 0; i < CFArrayGetCount(lines); i++) {
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); i++) {
         CGPoint origin = origins[i];
         CGFloat y = rect.origin.y + rect.size.height - origin.y;
         if ((location.y >= y - _iLineSpacing/2.0f)
@@ -254,8 +251,7 @@ NS_ASSUME_NONNULL_END
     return index;
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
     
     UITouch *touch = [touches anyObject];

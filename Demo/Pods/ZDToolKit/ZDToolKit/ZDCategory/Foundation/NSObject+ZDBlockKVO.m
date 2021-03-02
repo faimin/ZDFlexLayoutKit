@@ -5,6 +5,9 @@
 
 #import "NSObject+ZDBlockKVO.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDBlockKVO)
 
 @interface ZDBlockObservation : NSObject
 

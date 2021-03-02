@@ -7,7 +7,7 @@
 //
 
 #import "ZDWatchdog.h"
-#import <execinfo.h>
+#include <execinfo.h>
 
 static const NSTimeInterval kDefaultInterval = 50.0; // 单位：毫秒
 
@@ -52,19 +52,20 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     if (_observer) return;
     
     // 创建添加观察者
-    CFRunLoopObserverContext context;//{0, (__bridge void*)self, NULL, NULL, NULL}
+    CFRunLoopObserverContext context;//{0, (__bridge void*)self, NULL, NULL, NULL};
     context.version         = 0;
     context.info            = (__bridge void *)self;
-    context.retain          = NULL;
-    context.release         = NULL;
+    context.retain          = &CFRetain;
+    context.release         = &CFRelease;
     context.copyDescription = NULL;
     _observer = CFRunLoopObserverCreate(CFAllocatorGetDefault(),
                                         kCFRunLoopAllActivities,
                                         true,
                                         0,
-                                        &RunLoopObserverCallBack,
+                                        RunLoopObserverCallBack,
                                         &context);
     CFRunLoopAddObserver(CFRunLoopGetMain(), _observer, kCFRunLoopCommonModes);
+    CFRelease(_observer);
 }
 
 #pragma mark - Public Method
@@ -119,11 +120,15 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     __weak __typeof__(self) weakTarget = self;
     dispatch_source_set_event_handler(self.timer, ^{
         __strong __typeof__(weakTarget) self = weakTarget;
+        if (!self) {
+            return;
+        }
+        
         if (self->_activity == kCFRunLoopBeforeWaiting ||
             self->_activity == kCFRunLoopBeforeSources) {
             static BOOL isNotTimeOut = YES;
             if (isNotTimeOut == NO) {
-                chokeCount ++;
+                ++chokeCount;
                 if (chokeCount > 40) {
                     NSLog(@"貌似卡死了❌❌❌");
                     dispatch_suspend(self.timer);
@@ -157,7 +162,6 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     if (!_observer) return;
     
     CFRunLoopRemoveObserver(CFRunLoopGetMain(), _observer, kCFRunLoopCommonModes);
-    CFRelease(_observer);
     _observer = NULL;
 }
 
@@ -175,11 +179,4 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
 }
 
 @end
-
-
-
-
-
-
-
 

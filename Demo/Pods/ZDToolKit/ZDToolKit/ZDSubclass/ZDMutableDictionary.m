@@ -9,13 +9,15 @@
 
 #import "ZDMutableDictionary.h"
 
-#define INIT(...) self = super.init; \
+#ifndef ZD_INIT_MUT_DICT
+#define ZD_INIT_MUT_DICT(...) self = super.init; \
 if (!self) return nil; \
 __VA_ARGS__; \
 if (!_zdInnerMutDict) return nil; \
-_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.dictionary", DISPATCH_QUEUE_CONCURRENT); \
+_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.dictionary", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_UTILITY, 0)); \
 _lock = dispatch_semaphore_create(1); \
 return self;
+#endif
 
 @implementation ZDMutableDictionary {
     dispatch_semaphore_t _lock;
@@ -32,23 +34,23 @@ return self;
 #pragma mark - Initialization
 
 - (instancetype)init {
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] init];)
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] init];)
 }
 
 - (instancetype)initWithObjects:(NSArray *)objects forKeys:(NSArray<id<NSCopying>> *)keys {
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];)
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];)
 }
 
 - (instancetype)initWithCapacity:(NSUInteger)numItems {
-    INIT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithCapacity:numItems];)
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithCapacity:numItems];)
 }
 
 - (NSDictionary *)initWithContentsOfFile:(NSString *)path {
-    INIT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithContentsOfFile:path];)
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithContentsOfFile:path];)
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithCoder:aDecoder];)
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithCoder:aDecoder];)
 }
 
 - (instancetype)initWithObjects:(id  _Nonnull const [])objects forKeys:(id<NSCopying>  _Nonnull const [])keys count:(NSUInteger)cnt {
@@ -57,15 +59,15 @@ return self;
         return nil;
     }
     
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys count:cnt]);
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys count:cnt]);
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)otherDictionary {
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary]);
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary]);
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)otherDictionary copyItems:(BOOL)flag {
-    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary copyItems:flag]);
+    ZD_INIT_MUT_DICT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary copyItems:flag]);
 }
 
 #pragma mark -

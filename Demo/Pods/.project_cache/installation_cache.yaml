@@ -13,16 +13,16 @@ CACHE_KEYS:
       - LookinServer (1.0.0)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 11571c00920ddc9ee4b43b59722d0d83
-      Release: 37c5a9f6920620905e4c50959360c52a
+      Debug: a36b897efaa894440b8872bfe2b707fc
+      Release: bfc82f03f4c5ef43b6263f3eb8eded26
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: be6686657d0667d690e8bf12426c7fd9
-      Release: 95e3e7df7ce0ac30cf1ed30ae5961c59
+      Debug: 4d83dbc9ede6848e384a4797cdc88c1a
+      Release: b1e961d8b0ed70087bd870c7de6d1361
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: b471328e5442b4904e51f87e360858b2
-      Release: ed64e88f91c7e082704c0c0da8e119ab
+      Debug: fea9de0ecd502288520cc0b0dd7a1165
+      Release: 2505cf742eb309a4ecbf542113c0f5d8
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 309691f0cf6d122b188a9d138ae9f03d
         :release: 309691f0cf6d122b188a9d138ae9f03d
-    CHECKSUM: 01ac75bdb8580f482ceeed94880c51ef70d8c9e1
+    CHECKSUM: 6d50c7aa135995781b5445a9424d04b685e857d1
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -78,33 +78,34 @@ CACHE_KEYS:
       - "../../Source/SwiftMaker/ZDSNamespace.swift"
     PROJECT_NAME: ZDFlexLayoutKit
     SPECS:
-      - ZDFlexLayoutKit (0.1.3)
-      - ZDFlexLayoutKit/Core (0.1.3)
-      - ZDFlexLayoutKit/Header (0.1.3)
-      - ZDFlexLayoutKit/Helper (0.1.3)
-      - ZDFlexLayoutKit/OCMaker (0.1.3)
-      - ZDFlexLayoutKit/SwiftMaker (0.1.3)
+      - ZDFlexLayoutKit (0.1.4)
+      - ZDFlexLayoutKit/Core (0.1.4)
+      - ZDFlexLayoutKit/Header (0.1.4)
+      - ZDFlexLayoutKit/Helper (0.1.4)
+      - ZDFlexLayoutKit/OCMaker (0.1.4)
+      - ZDFlexLayoutKit/SwiftMaker (0.1.4)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
-        :debug: d3ac186d656219bdba0aba3616b532c5
-        :release: d3ac186d656219bdba0aba3616b532c5
-    CHECKSUM: d8e01665027555cea53dca39762bff1b67afaddf
+        :debug: a6553c6e3652e862cec39f148f66364b
+        :release: a6553c6e3652e862cec39f148f66364b
+    CHECKSUM: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
     PROJECT_NAME: ZDToolKit
     SPECS:
-      - ZDToolKit (0.0.4)
-      - ZDToolKit/no-arc (0.0.4)
-      - ZDToolKit/ZDAutoLayout (0.0.4)
-      - ZDToolKit/ZDCategory (0.0.4)
-      - ZDToolKit/ZDCategory/Foundation (0.0.4)
-      - ZDToolKit/ZDCategory/UIKit (0.0.4)
-      - ZDToolKit/ZDMacros (0.0.4)
-      - ZDToolKit/ZDRuntime (0.0.4)
-      - ZDToolKit/ZDSubclass (0.0.4)
-      - ZDToolKit/ZDTools (0.0.4)
-      - ZDToolKit/ZDTools/ProtocolKit (0.0.4)
-      - ZDToolKit/ZDTools/ZDPromise (0.0.4)
-      - ZDToolKit/ZDTools/ZDProxy (0.0.4)
+      - ZDToolKit (0.0.5)
+      - ZDToolKit/ZDAutoLayout (0.0.5)
+      - ZDToolKit/ZDCategory (0.0.5)
+      - ZDToolKit/ZDCategory/Foundation (0.0.5)
+      - ZDToolKit/ZDCategory/UIKit (0.0.5)
+      - ZDToolKit/ZDDebug (0.0.5)
+      - ZDToolKit/ZDMacros (0.0.5)
+      - ZDToolKit/ZDMRC (0.0.5)
+      - ZDToolKit/ZDRuntime (0.0.5)
+      - ZDToolKit/ZDSubclass (0.0.5)
+      - ZDToolKit/ZDTools (0.0.5)
+      - ZDToolKit/ZDTools/ProtocolKit (0.0.5)
+      - ZDToolKit/ZDTools/ZDPromise (0.0.5)
+      - ZDToolKit/ZDTools/ZDProxy (0.0.5)
 OBJECT_VERSION: 50
 PLUGINS:
   {}

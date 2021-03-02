@@ -9,15 +9,16 @@
 #import "UIImageView+FaceAwareFill.h"
 #import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ZDMacro.h"
 
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImageView_FaceAwareFill)
 
 static CIDetector* _faceDetector;
 
 
 @implementation UIImageView (FaceAwareFill)
 
-+ (void)initialize
-{
++ (void)initialize {
     _faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace
                                        context:nil
                                        options:@{CIDetectorAccuracy:CIDetectorAccuracyLow}];

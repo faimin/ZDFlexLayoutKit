@@ -8,19 +8,21 @@
 
 #import "NSObject+ZDUtility.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDUtility)
 
 typedef NS_ENUM(NSUInteger, PropertyType) {
+    PropertyType_UnKnown,
     PropertyType_Strong,
     PropertyType_Copy,
     PropertyType_Weak,
     PropertyType_Assign,
-    PropertyType_UnKnown
 };
 
 @implementation NSObject (ZDUtility)
 
-+ (instancetype)zd_cast:(id)objc
-{
++ (instancetype)zd_cast:(id)objc {
     if (!objc) return nil;
     
     if ([objc isKindOfClass:[self class]]) {
@@ -29,11 +31,16 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return nil;
 }
 
-- (instancetype)zd_deepCopy
-{
+- (instancetype)zd_deepCopy {
     id obj = nil;
     @try {
-        obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        if (@available(iOS 11, *)) {
+            NSError *error1, *error2;
+            obj = [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:[NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error1] error:&error2];
+        }
+        else {
+            obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"deepCopy error: %@", exception);
@@ -41,54 +48,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return obj;
 }
 
-/// http://nathanli.cn/2015/12/14/objective-c-%E5%85%83%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-%E5%88%86%E7%B1%BB%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7/
-/// AutoCoding: https://github.com/nicklockwood/AutoCoding/blob/master/AutoCoding/AutoCoding.m
-- (id)zd_deepCopy_inComplete
-{
-    Class selfClass = [self class];
-    
-    unsigned int propertyListCount = 0;
-    objc_property_t *propertyList = class_copyPropertyList(selfClass, &propertyListCount);
-    
-    id newInstance = [[self class] new];
-    
-    for (int i = 0; i < propertyListCount; i++) {
-        objc_property_t property = propertyList[i];
-        
-        const char *property_Name = property_getName(property);
-        NSString *propertyName = [NSString stringWithCString:property_Name encoding:NSUTF8StringEncoding];
-        
-        // 检查此属性是否是可读写和动态的
-        char *dynamic = property_copyAttributeValue(property, "D");
-        char *readonly = property_copyAttributeValue(property, "R");
-        if (propertyName && !readonly) {
-            id propertyValue = [self valueForKey:propertyName];
-            // 检查属性是否是对象
-            BOOL flag = [[self class] isObjectClass:[propertyValue class]];
-            if (flag) {
-                if ([propertyValue conformsToProtocol:@protocol(NSCopying)]) {
-                    id copyValue = [propertyValue copy];
-                    [newInstance setValue:copyValue forKey:propertyName];
-                }
-                else {
-                    id copyValue = [[[propertyValue class] alloc] init];
-                    [copyValue zd_deepCopy];
-                    [newInstance setValue:copyValue forKey:propertyName];
-                }
-            }
-            else {
-                [newInstance setValue:propertyValue forKey:propertyName];
-            }
-        }
-        free(dynamic);
-        free(readonly);
-    }
-    free(propertyList);
-    return newInstance;
-}
-
-+ (BOOL)isObjectClass:(Class)clazz
-{
++ (BOOL)isObjectClass:(Class)clazz {
     BOOL flag = class_conformsToProtocol(clazz, @protocol(NSObject));
     if (flag) {
         return flag;
@@ -104,16 +64,16 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     }
 }
 
-- (PropertyType)propertyType:(objc_property_t)property
-{
+- (PropertyType)propertyType:(objc_property_t)property {
     unsigned int attributeCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(property, &attributeCount);
-    
-    NSMutableDictionary *attributes = @{}.mutableCopy;
-    for (int i = 0; i < attributeCount; i++) {
+    NSMutableDictionary<NSString *, NSString *> *attributes = @{}.mutableCopy;
+    for (int i = 0; i < attributeCount; ++i) {
         NSString *name = [NSString stringWithCString:attrs[i].name encoding:NSUTF8StringEncoding];
         NSString *value = [NSString stringWithCString:attrs[i].value encoding:NSUTF8StringEncoding];
-        [attributes setObject:value forKey:name];
+        if (name) {
+            attributes[name] = value;
+        }
     }
     free(attrs);
     
@@ -131,27 +91,26 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 }
 
 /// 不支持block、struct、union类型
-- (NSString *)decodeType:(const char *)cString
-{
-    if (!strcmp(cString, @encode(id))) return @"id";
-    if (!strcmp(cString, @encode(void))) return @"void";
-    if (!strcmp(cString, @encode(void *))) return @"void *";
-    if (!strcmp(cString, @encode(float))) return @"float";
-    if (!strcmp(cString, @encode(int))) return @"int";
-    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int";
-    if (!strcmp(cString, @encode(BOOL))) return @"BOOL";
-    if (!strcmp(cString, @encode(bool))) return @"bool";
-    if (!strcmp(cString, @encode(char *))) return @"char *";
-    if (!strcmp(cString, @encode(char))) return @"char";
-    if (!strcmp(cString, @encode(unsigned char))) return @"unsigned char";
-    if (!strcmp(cString, @encode(double))) return @"double";
-    if (!strcmp(cString, @encode(long double))) return @"long double";
-    if (!strcmp(cString, @encode(long))) return @"long";
-    if (!strcmp(cString, @encode(long long))) return @"long long";
-    if (!strcmp(cString, @encode(unsigned long))) return @"unsigned long";
-    if (!strcmp(cString, @encode(unsigned long long))) return @"unsigned long long";
-    if (!strcmp(cString, @encode(Class))) return @"class";
-    if (!strcmp(cString, @encode(SEL))) return @"SEL";
+- (NSString *)decodeType:(const char *)cString {
+    if (strcmp(cString, @encode(id)) == 0) return @"id";
+    if (strcmp(cString, @encode(void)) == 0) return @"void";
+    if (strcmp(cString, @encode(void *)) == 0) return @"void *";
+    if (strcmp(cString, @encode(float)) == 0) return @"float";
+    if (strcmp(cString, @encode(int)) == 0) return @"int";
+    if (strcmp(cString, @encode(unsigned int)) == 0) return @"unsigned int";
+    if (strcmp(cString, @encode(BOOL)) == 0) return @"BOOL";
+    if (strcmp(cString, @encode(bool)) == 0) return @"bool";
+    if (strcmp(cString, @encode(char *)) == 0) return @"char *";
+    if (strcmp(cString, @encode(char)) == 0) return @"char";
+    if (strcmp(cString, @encode(unsigned char)) == 0) return @"unsigned char";
+    if (strcmp(cString, @encode(double)) == 0) return @"double";
+    if (strcmp(cString, @encode(long double)) == 0) return @"long double";
+    if (strcmp(cString, @encode(long)) == 0) return @"long";
+    if (strcmp(cString, @encode(long long)) == 0) return @"long long";
+    if (strcmp(cString, @encode(unsigned long)) == 0) return @"unsigned long";
+    if (strcmp(cString, @encode(unsigned long long)) == 0) return @"unsigned long long";
+    if (strcmp(cString, @encode(Class)) == 0) return @"class";
+    if (strcmp(cString, @encode(SEL)) == 0) return @"SEL";
     
     NSString *classStr = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
     if ([[classStr substringToIndex:1] isEqualToString:@"@"] && [classStr rangeOfString:@"?"].location == NSNotFound) {
@@ -194,9 +153,9 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 + (void)zd_setInv:(NSInvocation *)inv withSig:(NSMethodSignature *)sig args:(va_list)args {
     NSUInteger count = [sig numberOfArguments];
-    for (int index = 2; index < count; index++) {
+    for (NSUInteger index = 2; index < count; ++index) {
         char *type = (char *)[sig getArgumentTypeAtIndex:index];
-        while (*type == 'r' || // const
+        while (*type == _C_CONST || // const
                *type == 'n' || // in
                *type == 'N' || // inout
                *type == 'o' || // out
@@ -208,36 +167,36 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
         
         BOOL unsupportedType = NO;
         switch (*type) {
-            case 'v': // 1: void
-            case 'B': // 1: bool
-            case 'c': // 1: char / BOOL
-            case 'C': // 1: unsigned char
-            case 's': // 2: short
-            case 'S': // 2: unsigned short
-            case 'i': // 4: int / NSInteger(32bit)
-            case 'I': // 4: unsigned int / NSUInteger(32bit)
-            case 'l': // 4: long(32bit)
-            case 'L': // 4: unsigned long(32bit)
+            case _C_VOID:   // 1: void
+            case _C_BOOL:   // 1: bool
+            case _C_CHR:    // 1: char / BOOL
+            case _C_UCHR:   // 1: unsigned char
+            case _C_SHT:    // 2: short
+            case _C_USHT:   // 2: unsigned short
+            case _C_INT:    // 4: int / NSInteger(32bit)
+            case _C_UINT:   // 4: unsigned int / NSUInteger(32bit)
+            case _C_LNG:    // 4: long(32bit)
+            case _C_ULNG:   // 4: unsigned long(32bit)
             { // 'char' and 'short' will be promoted to 'int'.
                 int arg = va_arg(args, int);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case 'q': // 8: long long / long(64bit) / NSInteger(64bit)
-            case 'Q': // 8: unsigned long long / unsigned long(64bit) / NSUInteger(64bit)
+            case _C_LNG_LNG: // 8: long long / long(64bit) / NSInteger(64bit)
+            case _C_ULNG_LNG: // 8: unsigned long long / unsigned long(64bit) / NSUInteger(64bit)
             {
                 long long arg = va_arg(args, long long);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case 'f': // 4: float / CGFloat(32bit)
+            case _C_FLT: // 4: float / CGFloat(32bit)
             { // 'float' will be promoted to 'double'.
                 double arg = va_arg(args, double);
                 float argf = arg;
                 [inv setArgument:&argf atIndex:index];
-            }
+            } break;
                 
-            case 'd': // 8: double / CGFloat(64bit)
+            case _C_DBL: // 8: double / CGFloat(64bit)
             {
                 double arg = va_arg(args, double);
                 [inv setArgument:&arg atIndex:index];
@@ -249,32 +208,32 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case '*': // char *
-            case '^': // pointer
+            case _C_CHARPTR: // char *
+            case _C_PTR: // pointer
             {
                 void *arg = va_arg(args, void *);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case ':': // SEL
+            case _C_SEL: // SEL
             {
                 SEL arg = va_arg(args, SEL);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case '#': // Class
+            case _C_CLASS: // Class
             {
                 Class arg = va_arg(args, Class);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case '@': // id
+            case _C_ID: // id
             {
                 id arg = va_arg(args, id);
                 [inv setArgument:&arg atIndex:index];
             } break;
                 
-            case '{': // struct
+            case _C_STRUCT_B: // struct
             {
                 if (strcmp(type, @encode(CGPoint)) == 0) {
                     CGPoint arg = va_arg(args, CGPoint);
@@ -307,18 +266,12 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
                     unsupportedType = YES;
                 }
             } break;
-                
-            case '(': // union
-            {
-                unsupportedType = YES;
-            } break;
-                
-            case '[': // array
-            {
-                unsupportedType = YES;
-            } break;
-                
-            default: // what?!
+            
+            case _C_UNION_B: // union
+            case _C_UNION_E:
+            case _C_ARY_B:   // array
+            case _C_ARY_E:
+            default:         // what?!
             {
                 unsupportedType = YES;
             } break;
@@ -326,15 +279,16 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
         
         if (unsupportedType) {
             // Try with some dummy type...
-            
             NSUInteger size = 0;
             NSGetSizeAndAlignment(type, &size, NULL);
             
-#define case_size(_size_) \
+#define case_size(_size_)       \
 else if (size <= 4 * _size_ ) { \
-struct dummy { char tmp[4 * _size_]; }; \
-struct dummy arg = va_arg(args, struct dummy); \
-[inv setArgument:&arg atIndex:index]; \
+    struct dummy {              \
+        char tmp[4 * _size_];   \
+    };                          \
+    struct dummy arg = va_arg(args, struct dummy); \
+    [inv setArgument:&arg atIndex:index]; \
 }
             if (size == 0) { }
             case_size( 1) case_size( 2) case_size( 3) case_size( 4)
@@ -391,16 +345,16 @@ return @(ret); \
 } while (0)
     
     switch (*type) {
-        case 'v': return nil; // void
-        case 'B': return_with_number(bool);
-        case 'c': return_with_number(char);
+        case 'v': return nil; // void                       // _C_VOID
+        case 'B': return_with_number(bool);                 // _C_BOOL
+        case 'c': return_with_number(char);                 // _C_CHR
         case 'C': return_with_number(unsigned char);
         case 's': return_with_number(short);
         case 'S': return_with_number(unsigned short);
         case 'i': return_with_number(int);
         case 'I': return_with_number(unsigned int);
-        case 'l': return_with_number(int);
-        case 'L': return_with_number(unsigned int);
+        case 'l': return_with_number(long);
+        case 'L': return_with_number(unsigned long);
         case 'q': return_with_number(long long);
         case 'Q': return_with_number(unsigned long long);
         case 'f': return_with_number(float);
@@ -412,7 +366,7 @@ return @(ret); \
         };
             
         case '@': { // id
-            __autoreleasing id ret; //void *ret;
+            __unsafe_unretained id ret; //void *ret;
             [inv getReturnValue:&ret];
             return ret; //(__bridge id)ret;
         };
@@ -437,6 +391,3 @@ return @(ret); \
 }
 
 @end
-
-
-

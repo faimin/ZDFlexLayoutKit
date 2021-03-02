@@ -2,59 +2,64 @@ PODS:
   - LookinServer (1.0.0)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
-  - ZDFlexLayoutKit (0.1.3):
-    - ZDFlexLayoutKit/Core (= 0.1.3)
-    - ZDFlexLayoutKit/Header (= 0.1.3)
-    - ZDFlexLayoutKit/Helper (= 0.1.3)
-    - ZDFlexLayoutKit/OCMaker (= 0.1.3)
-    - ZDFlexLayoutKit/SwiftMaker (= 0.1.3)
-  - ZDFlexLayoutKit/Core (0.1.3):
+  - ZDFlexLayoutKit (0.1.4):
+    - ZDFlexLayoutKit/Core (= 0.1.4)
+    - ZDFlexLayoutKit/Header (= 0.1.4)
+    - ZDFlexLayoutKit/Helper (= 0.1.4)
+    - ZDFlexLayoutKit/OCMaker (= 0.1.4)
+    - ZDFlexLayoutKit/SwiftMaker (= 0.1.4)
+  - ZDFlexLayoutKit/Core (0.1.4):
     - Yoga
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/Header (0.1.3)
-  - ZDFlexLayoutKit/Helper (0.1.3):
+  - ZDFlexLayoutKit/Header (0.1.4)
+  - ZDFlexLayoutKit/Helper (0.1.4):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/OCMaker (0.1.3):
+  - ZDFlexLayoutKit/OCMaker (0.1.4):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/SwiftMaker (0.1.3):
+  - ZDFlexLayoutKit/SwiftMaker (0.1.4):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDToolKit (0.0.4):
-    - ZDToolKit/no-arc (= 0.0.4)
-    - ZDToolKit/ZDAutoLayout (= 0.0.4)
-    - ZDToolKit/ZDCategory (= 0.0.4)
-    - ZDToolKit/ZDMacros (= 0.0.4)
-    - ZDToolKit/ZDRuntime (= 0.0.4)
-    - ZDToolKit/ZDSubclass (= 0.0.4)
-    - ZDToolKit/ZDTools (= 0.0.4)
-  - ZDToolKit/no-arc (0.0.4)
-  - ZDToolKit/ZDAutoLayout (0.0.4)
-  - ZDToolKit/ZDCategory (0.0.4):
-    - ZDToolKit/ZDCategory/Foundation (= 0.0.4)
-    - ZDToolKit/ZDCategory/UIKit (= 0.0.4)
-  - ZDToolKit/ZDCategory/Foundation (0.0.4)
-  - ZDToolKit/ZDCategory/UIKit (0.0.4):
+  - ZDToolKit (0.0.5):
+    - ZDToolKit/ZDAutoLayout (= 0.0.5)
+    - ZDToolKit/ZDCategory (= 0.0.5)
+    - ZDToolKit/ZDDebug (= 0.0.5)
+    - ZDToolKit/ZDMacros (= 0.0.5)
+    - ZDToolKit/ZDMRC (= 0.0.5)
+    - ZDToolKit/ZDRuntime (= 0.0.5)
+    - ZDToolKit/ZDSubclass (= 0.0.5)
+    - ZDToolKit/ZDTools (= 0.0.5)
+  - ZDToolKit/ZDAutoLayout (0.0.5)
+  - ZDToolKit/ZDCategory (0.0.5):
+    - ZDToolKit/ZDCategory/Foundation (= 0.0.5)
+    - ZDToolKit/ZDCategory/UIKit (= 0.0.5)
+    - ZDToolKit/ZDMacros
+  - ZDToolKit/ZDCategory/Foundation (0.0.5):
+    - ZDToolKit/ZDMacros
+  - ZDToolKit/ZDCategory/UIKit (0.0.5):
+    - ZDToolKit/ZDMacros
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDMacros (0.0.4)
-  - ZDToolKit/ZDRuntime (0.0.4)
-  - ZDToolKit/ZDSubclass (0.0.4):
+  - ZDToolKit/ZDDebug (0.0.5)
+  - ZDToolKit/ZDMacros (0.0.5)
+  - ZDToolKit/ZDMRC (0.0.5)
+  - ZDToolKit/ZDRuntime (0.0.5)
+  - ZDToolKit/ZDSubclass (0.0.5):
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDTools (0.0.4):
-    - ZDToolKit/ZDTools/ProtocolKit (= 0.0.4)
-    - ZDToolKit/ZDTools/ZDPromise (= 0.0.4)
-    - ZDToolKit/ZDTools/ZDProxy (= 0.0.4)
-  - ZDToolKit/ZDTools/ProtocolKit (0.0.4)
-  - ZDToolKit/ZDTools/ZDPromise (0.0.4)
-  - ZDToolKit/ZDTools/ZDProxy (0.0.4)
+  - ZDToolKit/ZDTools (0.0.5):
+    - ZDToolKit/ZDTools/ProtocolKit (= 0.0.5)
+    - ZDToolKit/ZDTools/ZDPromise (= 0.0.5)
+    - ZDToolKit/ZDTools/ZDProxy (= 0.0.5)
+  - ZDToolKit/ZDTools/ProtocolKit (0.0.5)
+  - ZDToolKit/ZDTools/ZDPromise (0.0.5)
+  - ZDToolKit/ZDTools/ZDProxy (0.0.5)
 
 DEPENDENCIES:
   - LookinServer
   - Yoga
   - YYModel
   - ZDFlexLayoutKit (from `../ZDFlexLayoutKit.podspec`)
-  - ZDToolKit (~> 0.0.4)
+  - ZDToolKit (~> 0.0.5)
 
 SPEC REPOS:
   trunk:
@@ -71,9 +76,9 @@ SPEC CHECKSUMS:
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: 01ac75bdb8580f482ceeed94880c51ef70d8c9e1
-  ZDToolKit: d8e01665027555cea53dca39762bff1b67afaddf
+  ZDFlexLayoutKit: 6d50c7aa135995781b5445a9424d04b685e857d1
+  ZDToolKit: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
 
-PODFILE CHECKSUM: 5bf3063373b7751ef61825f04406333c9f682e62
+PODFILE CHECKSUM: 7bd2868cd4f6d569d799af289fb46273bfdcf252
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

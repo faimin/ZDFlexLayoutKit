@@ -32,8 +32,8 @@
  */
 #ifndef onExit
 #define onExit \
-    rac_keywordify \
-    __strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribute__((cleanup(rac_executeCleanupBlock), unused)) = ^
+    zd_keywordify \
+    __strong zd_cleanupBlock_t metamacro_concat(zd_exitBlock_, __LINE__) __attribute__((cleanup(zd_executeCleanupBlock), unused)) = ^
 #endif
 
 /**
@@ -48,8 +48,8 @@
  */
 #ifndef weakify
 #define weakify(...) \
-    rac_keywordify \
-    metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
+    zd_keywordify \
+    metamacro_foreach_cxt(zd_weakify_,, __weak, __VA_ARGS__)
 #endif
 
 /**
@@ -58,8 +58,8 @@
  */
 #ifndef unsafeify
 #define unsafeify(...) \
-    rac_keywordify \
-    metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
+    zd_keywordify \
+    metamacro_foreach_cxt(zd_weakify_,, __unsafe_unretained, __VA_ARGS__)
 #endif
 
 /**
@@ -90,27 +90,27 @@
  */
 #ifndef strongify
 #define strongify(...) \
-    rac_keywordify \
+    zd_keywordify \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wshadow\"") \
-    metamacro_foreach(rac_strongify_,, __VA_ARGS__) \
+    metamacro_foreach(zd_strongify_,, __VA_ARGS__) \
     _Pragma("clang diagnostic pop")
 #endif
 
 /*** implementation details follow ***/
-typedef void (^rac_cleanupBlock_t)();
+typedef void (^zd_cleanupBlock_t)(void);
 
-static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) {
+static inline void zd_executeCleanupBlock (__strong zd_cleanupBlock_t *block) {
     (*block)();
 }
 
-#ifndef rac_weakify_
-#define rac_weakify_(INDEX, CONTEXT, VAR) \
+#ifndef zd_weakify_
+#define zd_weakify_(INDEX, CONTEXT, VAR) \
     CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
 #endif
 
-#ifndef rac_strongify_
-#define rac_strongify_(INDEX, VAR) \
+#ifndef zd_strongify_
+#define zd_strongify_(INDEX, VAR) \
     __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
 #endif
 
@@ -126,9 +126,9 @@ static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) 
 // analysis, and to use @try/@catch otherwise to avoid insertion of unnecessary
 // autorelease pools.
 #if DEBUG
-#ifndef rac_keywordify
-#define rac_keywordify autoreleasepool {}
+#ifndef zd_keywordify
+#define zd_keywordify autoreleasepool {}
 #else
-#define rac_keywordify try {} @catch (...) {}
+#define zd_keywordify try {} @catch (...) {}
 #endif
 #endif

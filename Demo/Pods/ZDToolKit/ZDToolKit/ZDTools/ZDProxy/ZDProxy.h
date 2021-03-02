@@ -13,29 +13,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ZDWeakProxy
 
-@interface ZDWeakProxy : NSProxy
+@interface ZDWeakProxy<__covariant TargetType : id> : NSProxy
 
-@property (nonatomic, weak, readonly) id target;
+@property (nonatomic, weak, readonly) TargetType target;
 
 ///  利用消息转发,把可能引起循环引用的target传给weakProxy,比如timer的target
 ///  @param target the real target of a object
 ///  @return instance of ZDWeakProxy that is a proxy for the real target
-+ (instancetype)proxyWithTarget:(id)target;
++ (instancetype)proxyWithTarget:(TargetType)target;
 
 @end
 
 
 #pragma mark - ZDMutiDelegatesProxy
 
-@interface ZDMutiDelegatesProxy : NSObject
+@interface ZDMutiDelegatesProxy<__covariant TargetType : id> : NSProxy
 
-@property (nonatomic, strong) IBOutletCollection(id) NSArray *delegateTargets;
+@property (nonatomic, strong) IBOutletCollection(TargetType) NSArray<TargetType> *delegateTargets;
 
-- (instancetype)initWithDelegates:(NSArray *)aDelegates;
+- (instancetype)initWithDelegates:(NSArray<TargetType> *)aDelegates;
 
-- (void)addDelegate:(id)aDelegate;
+- (void)addDelegate:(TargetType)aDelegate;
 
-- (void)removeDelegate:(id)aDelegate;
+- (void)removeDelegate:(TargetType)aDelegate;
 
 @end
 

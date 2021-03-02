@@ -7,17 +7,20 @@
 //
 
 #import "NSMutableArray+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSMutableArray_ZDUtility)
 
 @implementation NSMutableArray (ZDUtility)
 
-+ (id)zd_mutableArrayUsingWeakReferences {
++ (instancetype)zd_mutableArrayUsingWeakReferences {
     return [self zd_mutableArrayUsingWeakReferencesWithCapacity:0];
 }
 
-+ (id)zd_mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity {
++ (instancetype)zd_mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity {
     CFArrayCallBacks callbacks = {0, NULL, NULL, CFCopyDescription, CFEqual};
     // Cast of C pointer type 'CFMutableArrayRef' (aka 'struct __CFArray *') to Objective-C pointer type 'id' requires a bridged cast
-    return (id)CFBridgingRelease(CFArrayCreateMutable(0, capacity, &callbacks));
+    return (NSMutableArray *)CFBridgingRelease(CFArrayCreateMutable(0, capacity, &callbacks));
 }
 
 @end

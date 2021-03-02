@@ -9,6 +9,7 @@
 //  https://github.com/steipete/PSTDelegateProxy/blob/master/PSTDelegateProxy.m
 
 #import "ZDProxy.h"
+#import <pthread/pthread.h>
 
 @implementation ZDWeakProxy
 
@@ -95,50 +96,73 @@
 @end
 
 
+#pragma mark - ************* ZDMutiDelegatesProxy *****************
 #pragma mark -
 
-@interface ZDMutiDelegatesProxy ()
-
-@property (nonatomic, strong) NSPointerArray *weakTargets;
-
+@interface ZDMutiDelegatesProxy () {
+    pthread_mutex_t _lock;
+}
+//@property (nonatomic, strong) NSHashTable *weakTargets;
+@property (nonatomic, strong) NSMutableArray *weakTargets;
 @end
 
 @implementation ZDMutiDelegatesProxy
 
+- (void)dealloc {
+    pthread_mutex_destroy(&_lock);
+}
+
 //MARK: Public Mehtod
 - (instancetype)initWithDelegates:(NSArray *)aDelegates {
-    NSParameterAssert(aDelegates);
-    self.delegateTargets = aDelegates;
+    NSCParameterAssert(aDelegates);
+    
+    pthread_mutexattr_t attr;
+    pthread_mutexattr_init(&attr);
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_DEFAULT);
+    pthread_mutex_init(&_lock, &attr);
+    pthread_mutexattr_destroy(&attr);
+    
+    _weakTargets = [self.class weakReferenceArray];
+    
+    self.delegateTargets = aDelegates.copy;
     return self;
 }
 
 - (void)addDelegate:(id)aDelegate {
-    NSParameterAssert(aDelegate);
-    [self.weakTargets addPointer:(void *)aDelegate];
-    _delegateTargets = self.weakTargets.allObjects;
+    NSCParameterAssert(aDelegate);
+    if (!aDelegate) return;
+    
+    pthread_mutex_lock(&_lock);
+    [_weakTargets addObject:aDelegate];
+    pthread_mutex_unlock(&_lock);
+    
+    _delegateTargets = _weakTargets.copy;
 }
 
 - (void)removeDelegate:(id)aDelegate {
-    NSParameterAssert(aDelegate);
-    NSUInteger index = 0;
-    for (id target in self.weakTargets) {
-        if (target == aDelegate) {
-            [self.weakTargets removePointerAtIndex:index];
-        }
-        index++;
-    }
-    _delegateTargets = self.weakTargets.allObjects;
+    NSCParameterAssert(aDelegate);
+    if (!aDelegate) return;
+    
+    pthread_mutex_lock(&_lock);
+    [_weakTargets removeObject:aDelegate];
+    pthread_mutex_unlock(&_lock);
+    
+    _delegateTargets = _weakTargets.copy;
 }
 
 //MARK: Forward Message
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([super respondsToSelector:aSelector]) return YES;
-    
-    for (id target in self.weakTargets) {
-        return [target respondsToSelector:aSelector];
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
     }
-    
-    return NO;
+    else {
+        for (id target in self.weakTargets) {
+            if ([target respondsToSelector:aSelector]) {
+                return YES;
+            }
+        }
+        return NO;
+    }
 }
 
 /// 方法签名
@@ -165,13 +189,26 @@
 
 //MARK: Property
 - (void)setDelegateTargets:(NSArray *)delegateTargets {
-    self.weakTargets = [NSPointerArray weakObjectsPointerArray];
+    if (!delegateTargets) return;
+    
+    /*
+    self.weakTargets = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory | NSPointerFunctionsObjectPointerPersonality];
     for (id target in delegateTargets) {
-        [self.weakTargets addPointer:(__bridge void *)(target)];
+        [self.weakTargets addObject:target];
     }
+    */
+    
+    pthread_mutex_lock(&_lock);
+    [_weakTargets addObjectsFromArray:delegateTargets];
+    pthread_mutex_unlock(&_lock);
 }
 
 //MARK: Private Method
++ (NSMutableArray *)weakReferenceArray {
+    CFArrayCallBacks callBacks = {0, NULL, NULL, CFCopyDescription, CFEqual};
+    return CFBridgingRelease(CFArrayCreateMutable(kCFAllocatorDefault, 0, &callBacks));
+}
+
 - (NSString *)debugDescription {
     NSString *allTargetsDebugDescription = @"";
     for (id target in self.weakTargets) {
@@ -181,15 +218,5 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
 
 

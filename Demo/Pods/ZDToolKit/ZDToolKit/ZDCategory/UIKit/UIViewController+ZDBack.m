@@ -7,6 +7,9 @@
 //
 
 #import "UIViewController+ZDBack.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIViewController_ZDBack)
 
 @implementation UIViewController (ZDBack)
 
@@ -14,8 +17,7 @@
 
 @implementation UINavigationController (ShouldPopOnBackButton)
 
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
-{
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
 	if ([self.viewControllers count] < [navigationBar.items count]) {
 		return YES;
 	}
@@ -46,8 +48,7 @@
 	return NO;
 }
 
-- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item
-{
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPushItem:(UINavigationItem *)item {
 	UIViewController *viewController = self.viewControllers.count > 1 ?	\
 		[self.viewControllers objectAtIndex:self.viewControllers.count - 2] : nil;
 

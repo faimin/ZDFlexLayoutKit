@@ -7,6 +7,9 @@
 //
 
 #import "UIButton+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIButton_ZDUtility)
 
 @implementation UIButton (ZDUtility)
 
@@ -33,19 +36,27 @@
 }
 
 - (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing {
-    [self zd_imagePosition:postion spacing:spacing contentInsets:UIEdgeInsetsZero];
+    [self zd_imagePosition:postion spacing:spacing contentInsets:UIEdgeInsetsZero extraAttributes:nil];
 }
 
-- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing contentInsets:(UIEdgeInsets)insets {
-    [self setTitle:self.currentTitle forState:UIControlStateNormal];
-    [self setImage:self.currentImage forState:UIControlStateNormal];
-    
+- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing contentInsets:(UIEdgeInsets)insets extraAttributes:(void(^)(NSMutableDictionary *))extraAttributesBlock {
     CGFloat imageWidth = self.imageView.image.size.width;
     CGFloat imageHeight = self.imageView.image.size.height;
     
-    CGSize labelSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName : self.titleLabel.font}];
-    CGFloat labelWidth = labelSize.width;
-    CGFloat labelHeight = labelSize.height;
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    NSMutableDictionary *attributes = @{
+        NSFontAttributeName: self.titleLabel.font,
+        NSParagraphStyleAttributeName: paragraph
+    }.mutableCopy;
+    if (extraAttributesBlock) extraAttributesBlock(attributes);
+    
+    CGSize labelSize = [self.titleLabel.text boundingRectWithSize:(CGSize){CGFLOAT_MAX, CGFLOAT_MAX}
+                                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingTruncatesLastVisibleLine)
+                                                       attributes:attributes
+                                                          context:nil].size;
+    CGFloat labelWidth = ceil(labelSize.width);
+    CGFloat labelHeight = ceil(labelSize.height);
     
     CGFloat imageOffsetX = (imageWidth + labelWidth) / 2.0f - imageWidth / 2.0f;//image中心移动的x距离
     CGFloat imageOffsetY = imageHeight / 2.0f + spacing / 2.0f;//image中心移动的y距离

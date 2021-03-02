@@ -8,6 +8,9 @@
 
 #import "UIView+ZDDraggable.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIView_ZDDraggable)
 
 @implementation UIView (ZDDraggable)
 

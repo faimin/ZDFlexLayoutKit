@@ -8,6 +8,9 @@
 
 #import "UITextView+ZDUtility.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UITextView_ZDUtility)
 
 static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
 
@@ -81,6 +84,5 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
         [self addSubview:button];
     }
 }
-
 
 @end

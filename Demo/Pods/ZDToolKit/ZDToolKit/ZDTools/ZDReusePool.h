@@ -11,16 +11,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZDPrepareForReuseProtocol <NSObject>
-
+@optional
 - (void)prepareForReuse;
 
 @end
 
 @interface ZDReusePool<__covariant ValueType> : NSObject
 
-- (nullable ValueType)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+- (void)registerClass:(nullable Class)aClass forReuseIdentifier:(NSString *)identifier;
 
-- (void)addReusePoolObject:(ValueType)object withIdentifier:(NSString *)identifier;
+- (nullable ValueType)dequeueReusableObjectWithIdentifier:(NSString *)identifier;
+
+- (void)addObject:(ValueType)object withIdentifier:(NSString *)identifier;
 
 @end
 

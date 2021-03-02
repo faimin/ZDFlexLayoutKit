@@ -21,6 +21,7 @@ static NSMutableArray *imagesArr;
 @implementation ZDGifImageView
 
 - (void)dealloc {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [imagesArr removeAllObjects];
     imagesArr = nil;
     [self stopAnimation];
@@ -48,10 +49,10 @@ static NSMutableArray *imagesArr;
 
 - (void)startKeyframeAni {
     NSMutableArray *images = @[].mutableCopy;
-    NSMutableArray *numbers = @[].mutableCopy;
+    NSMutableArray<NSNumber *> *numbers = @[].mutableCopy;
     
     CGFloat last = 0.f;
-    for (int i = 0; i < self.imageNames.count; i++) {
+    for (NSUInteger i = 0; i < self.imageNames.count; i++) {
         id cgi = (__bridge id)[UIImage imageNamed:self.imageNames[i]].CGImage;
         [images addObject:cgi];
         NSNumber *n;
@@ -68,17 +69,16 @@ static NSMutableArray *imagesArr;
     }
     
     CAKeyframeAnimation *ani = [CAKeyframeAnimation animation];
-    [ani setKeyPath:@"contents"];
-    [ani setValues:images];
-    [ani setKeyTimes:numbers];
-    [ani setRepeatCount:CGFLOAT_MAX];
-    [ani setDelegate:self];
-    
-    CGFloat t = 5.96;
-    ani.duration = t;
-    
+    ani.keyPath = @"contents";
+    ani.values = images;
+    ani.keyTimes = numbers;
+    ani.repeatCount = CGFLOAT_MAX;
+    ani.delegate = self;
+    ani.duration = 5.96;
     [self.layer addAnimation:ani forKey:@"cus"];
 }
+
+#pragma mark - CAAnimationDelegate
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     UIImage *i = [UIImage imageNamed:self.imageNames.firstObject];
@@ -99,7 +99,7 @@ static NSMutableArray *imagesArr;
 #pragma mark -
 
 - (void)displayExecute:(CADisplayLink *)displayLink {
-    m++;
+    ++m;
     NSUInteger imageCount = self.imageNames.count ?: self.imagePaths.count;
     NSUInteger i = m % imageCount;
     // 每秒执行次数 * 时间间隔
@@ -112,7 +112,7 @@ static NSMutableArray *imagesArr;
     }
     
     if (m < imageCount) {
-        UIImage *image;
+        UIImage *image = nil;
         if (self.imageNames && self.imageNames.count > i) {
             image = [UIImage imageNamed:self.imageNames[i]];
         }

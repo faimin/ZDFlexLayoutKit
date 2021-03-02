@@ -35,7 +35,7 @@ target 'Demo' do
   # Pods for Demo
   pod 'Yoga'
   pod 'YYModel'
-  pod 'ZDToolKit', '~> 0.0.4'
+  pod 'ZDToolKit', '~> 0.0.5'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec'#, :subspecs => ['OCMaker', 'Helper']
 

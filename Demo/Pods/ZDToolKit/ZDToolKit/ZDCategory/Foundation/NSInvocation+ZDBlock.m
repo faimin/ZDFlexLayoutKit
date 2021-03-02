@@ -8,6 +8,9 @@
 
 #import "NSInvocation+ZDBlock.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSInvocation_ZDBlock)
 
 struct Block_literal_1 {
     void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
@@ -111,4 +114,5 @@ do {                                                \
     va_end(args);
     return invocation;
 }
+
 @end
