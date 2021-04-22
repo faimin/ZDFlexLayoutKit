@@ -37,6 +37,60 @@ pod 'ZDFlexLayoutKit', :subspecs => ['OCMaker']
 >
 > 如果它被编译为了动态库，其依赖`yoga`也需要以动态库的形式存在，即动态库不能依赖静态库
 
+#### 使用：
+
+> Swift
+
+```swift
+avatarImgView.zds.makeFlexLayout {
+    $0.position(.absolute)
+    $0.width(100%)
+    $0.height(100%)
+}
+gradientView.zds.makeFlexLayout {
+    $0.position(.relative).flexDirection(.column)
+    $0.paddingHorizontal(8)
+    $0.width(100%)
+}
+titleLabel.zds.makeFlexLayout { (make) in
+    make.marginTop(3.5)
+    make.width(100%)
+    make.flexShrink(1)
+}
+// 虚拟视图
+let userInfoDiv = ZDFlexLayoutDiv.zds.makeFlexLayout { (make) in
+    make.flexDirection(.row)
+    make.alignItems(.center)
+    make.marginTop(2.5)
+    make.marginBottom(6)
+}
+
+// 这里需要调用 `addChildren` 函数，因为我们重新构建了视图树
+gradientView.addChildren([titleLabel, avatarImgView])
+userInfoDiv.addChildren([gradientView])
+
+// 计算布局，以下2种方式皆可，第二种会当你标记为mark之后会在runloop空闲时自动计算布局
+//userInfoDiv.calculateLayoutPreservingOrigin(true, dimensionFlexibility: .flexibleHeight)
+userInfoDiv.calculateLayout(withAutoRefresh: true, preservingOrigin: false, dimensionFlexibility: .flexibleHeight)
+```
+
+> Objective-C
+
+```objective-c
+[self zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+    make.isEnabled(YES);
+    make.flexDirection(YGFlexDirectionColumn).flexWrap(YGWrapWrap).alignContent(YGAlignCenter);
+}];
+[self.iconimageV zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+    // 属性设置支持链式调用
+    make.marginLeft(YGPointValue(10)).marginTop(YGPointValue(6)).marginBottom(YGPointValue(6)).width(YGPointValue(20)).height(YGPointValue(20));
+ }];
+[self.contentLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+    make.marginLeft(YGPointValue(5)).marginRight(YGPointValue(10));
+}];
+[self calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+```
+
 #### 资料：
 
 + [Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
