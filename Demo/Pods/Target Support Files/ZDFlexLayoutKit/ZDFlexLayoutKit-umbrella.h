@@ -17,6 +17,8 @@
 #import "ZDFlexLayoutViewProtocol.h"
 #import "ZDFlexLayoutKit.h"
 #import "NSObject+ZDFlexLayoutFrameCache.h"
+#import "ZDFlexLayoutCollectionViewCell.h"
+#import "ZDFlexLayoutTableViewCell.h"
 #import "ZDTemplateCellHandler.h"
 #import "ZDFlexLayoutChain.h"
 #import "ZDFlexLayoutMaker.h"

@@ -8,7 +8,6 @@
   "authors": {
     "faimin": "fuxianchao@gmail.com"
   },
-  "requires_arc": true,
   "platforms": {
     "ios": "9.0"
   },
@@ -16,6 +15,7 @@
     "git": "https://github.com/faimin/ZDFlexLayoutKit.git",
     "tag": "0.1.4"
   },
+  "requires_arc": true,
   "prefix_header_file": false,
   "header_dir": "./",
   "module_name": "ZDFlexLayoutKit",

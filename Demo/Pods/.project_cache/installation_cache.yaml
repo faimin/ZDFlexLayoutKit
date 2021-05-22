@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 309691f0cf6d122b188a9d138ae9f03d
         :release: 309691f0cf6d122b188a9d138ae9f03d
-    CHECKSUM: 6d50c7aa135995781b5445a9424d04b685e857d1
+    CHECKSUM: 8d0de7766cb8b2ff26ed2326239b9993f933746d
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -66,6 +66,10 @@ CACHE_KEYS:
       - "../../Source/Header/ZDFlexLayoutKit.h"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.h"
       - "../../Source/Helper/NSObject+ZDFlexLayoutFrameCache.m"
+      - "../../Source/Helper/ZDFlexLayoutCollectionViewCell.h"
+      - "../../Source/Helper/ZDFlexLayoutCollectionViewCell.m"
+      - "../../Source/Helper/ZDFlexLayoutTableViewCell.h"
+      - "../../Source/Helper/ZDFlexLayoutTableViewCell.m"
       - "../../Source/Helper/ZDTemplateCellHandler.h"
       - "../../Source/Helper/ZDTemplateCellHandler.m"
       - "../../Source/OCMaker/ZDFlexLayoutChain.h"

@@ -88,7 +88,13 @@
         tableView.backgroundColor = [UIColor whiteColor];
         tableView.dataSource = self;
         tableView.delegate = self;
+#if 1
         tableView.estimatedRowHeight = 0.f; // 禁用预估高度
+#else
+        // 开启如下设置需要Cell继承ZDFlexLayoutTableViewCell
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+        tableView.rowHeight = UITableViewAutomaticDimension;
+#endif
         tableView.tableFooterView = [UIView new];
         [tableView registerClass:[ZDFlexCell class] forCellReuseIdentifier:NSStringFromClass([ZDFlexCell class])];
         _tableView = tableView;
