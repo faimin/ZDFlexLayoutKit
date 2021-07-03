@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIButton *chatBtn;      ///< 聊天
 
 @property (nonatomic, strong) ZDFlexLayoutDiv *firstLineDiv;
-@property (nonatomic, assign) BOOL show;
+
 @end
 
 @implementation UserTableViewCell
@@ -121,14 +121,14 @@
     if (_model == model) return;
     _model = model;
     
-    self.tagLabel.text = model.is_match_maker == 1 ? @"认证红娘" : nil;
-    self.tagLabel.flexLayout.isIncludedInLayout = model.is_match_maker == 1;
-    self.tagLabel.hidden = model.is_match_maker == 0;
+    self.tagLabel.gone = model.is_match_maker == 0;
     
     self.nickNameLabel.text = model.name;
     self.locationLabel.text = model.city;
     self.infoLabel.text = model.list_show_text;
     self.noticeLabel.text = model.marry_declare;
+    
+    self.firstLineDiv.gone = model.flag;
     
     // 子节点置为markDirty状态，否则yoga会使用缓存高度，不会重新计算
     [self.nickNameLabel markDirty];
@@ -142,8 +142,8 @@
 }
 
 - (void)chatAction {
-    self.show = !self.show;
-    self.firstLineDiv.gone = self.show;
+    self.model.flag = !self.model.flag;
+    self.firstLineDiv.gone = self.model.flag;
 }
 
 #pragma mark - Property
@@ -184,6 +184,7 @@
 - (UILabel *)tagLabel {
     if (!_tagLabel) {
         UILabel *node = [UILabel new];
+        node.text = @"认证真人";
         node.backgroundColor = ZD_RGB(218, 102, 250);
         node.numberOfLines = 1;
         node.font = [UIFont boldSystemFontOfSize:9];

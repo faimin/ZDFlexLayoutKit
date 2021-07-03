@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger fortune;
 @property (nonatomic, copy) NSString *condition_age;
 
+@property (nonatomic, assign) BOOL flag;
+
 @end
 
 @interface UserModelList : NSObject
