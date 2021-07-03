@@ -5,24 +5,24 @@ CACHE_KEYS:
   LookinServer:
     BUILD_SETTINGS_CHECKSUM:
       LookinServer:
-        :debug: 5333a4078bb77376ec4fad4d73eea811
-        :release: 5333a4078bb77376ec4fad4d73eea811
-    CHECKSUM: 0002891cd3cec5e082a910e897dfe71b4f06b89e
+        :debug: b622df923e4b573a7ce1cbdb3e640cb1
+        :release: b622df923e4b573a7ce1cbdb3e640cb1
+    CHECKSUM: d6874df8b58096c8d463817b6baaa3abc21d31f7
     PROJECT_NAME: LookinServer
     SPECS:
-      - LookinServer (1.0.0)
+      - LookinServer (1.0.2)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: a36b897efaa894440b8872bfe2b707fc
-      Release: bfc82f03f4c5ef43b6263f3eb8eded26
+      Debug: 9c5dce92b9fd37974e87b3b959ad0184
+      Release: 2eea543d07242d5757dfee68449dd11b
   Pods-Demo-DemoUITests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 4d83dbc9ede6848e384a4797cdc88c1a
-      Release: b1e961d8b0ed70087bd870c7de6d1361
+      Debug: 2d4e91e05655d14ab46e7c086358c0eb
+      Release: cbf04427a7c453ee815ad57d98cc588e
   Pods-DemoTests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: fea9de0ecd502288520cc0b0dd7a1165
-      Release: 2505cf742eb309a4ecbf542113c0f5d8
+      Debug: e5be04a765960ca2d22d8541cab47971
+      Release: e5be04a765960ca2d22d8541cab47971
   Yoga:
     BUILD_SETTINGS_CHECKSUM:
       Yoga:
@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 309691f0cf6d122b188a9d138ae9f03d
         :release: 309691f0cf6d122b188a9d138ae9f03d
-    CHECKSUM: 8d0de7766cb8b2ff26ed2326239b9993f933746d
+    CHECKSUM: 6d50c7aa135995781b5445a9424d04b685e857d1
     FILES:
       - "../../LICENSE"
       - "../../README.md"
