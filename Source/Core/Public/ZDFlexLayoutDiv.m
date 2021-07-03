@@ -168,13 +168,16 @@
         [(UIView *)view setHidden:hidden];
     }
     else {
+        // exist child has been setted to gone condition
+        // don't deal it
         for (ZDFlexLayoutView child in view.children) {
-            if ([child respondsToSelector:@selector(setHidden:)]) {
-                [(UIView *)child setHidden:hidden];
+            if (!child.isFlexLayoutEnabled) {
+                continue;
             }
-            else {
-                [self setView:child hidden:hidden];
+            if (!child.flexLayout.isIncludedInLayout) {
+                continue;
             }
+            [self setView:child hidden:hidden];
         }
     }
 }
