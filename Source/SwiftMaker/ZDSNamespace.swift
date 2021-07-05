@@ -20,12 +20,23 @@ public protocol ZDSFlexObject: AnyObject {
     
     associatedtype ZDSType: AnyObject
     
+    @available(*, deprecated, renamed: "zd")
     var zds: ZDSFlexNamespace<ZDSType> { get set }
+    
+    var zd: ZDSFlexNamespace<ZDSType> { get set }
 }
 
 public extension ZDSFlexObject {
     
+    @available(*, deprecated, renamed: "zd")
     var zds: ZDSFlexNamespace<Self> {
+        get {
+            return ZDSFlexNamespace(self)
+        }
+        set { }
+    }
+    
+    var zd: ZDSFlexNamespace<Self> {
         get {
             return ZDSFlexNamespace(self)
         }
@@ -37,7 +48,15 @@ extension NSObject: ZDSFlexObject { }
 
 public extension ZDFlexLayoutDiv {
     
+    @available(*, deprecated, renamed: "zd")
     static var zds: ZDSFlexNamespace<ZDFlexLayoutDiv> {
+        get {
+            return ZDSFlexNamespace(Self())
+        }
+        set { }
+    }
+    
+    static var zd: ZDSFlexNamespace<ZDFlexLayoutDiv> {
         get {
             return ZDSFlexNamespace(Self())
         }

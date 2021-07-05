@@ -23,14 +23,16 @@ class ZDXView: UIView {
         let view1 = UIView()
         let view2 = UIView()
         
-        view1.zds.makeFlexLayout { (make) in
+        view1.zd.makeFlexLayout { (make) in
             make.width(100).aspectRatio(0.7)
         }
-        ZDFlexLayoutDiv.zds.makeFlexLayout { (make) in
+        ZDFlexLayoutDiv.zd.makeFlexLayout { (make) in
             make.isEnable(true).paddingHorizontal(10)
         }
-        view2.zds.makeFlexLayout {
+        view2.zd.makeFlexLayout {
             $0.width(100).height(200)
         }
+        self.zd.addChildren(view1, view2)
+        view2.markDirty()
     }
 }
