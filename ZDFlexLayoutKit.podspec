@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.1.4"
+  spec.version      = "0.1.5"
   spec.summary      = "Flex Layout in Objective-C"
   spec.description  = <<-DESC
     flex layout in Objective-C base on yoga
@@ -20,7 +20,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "9.0"
   spec.source       = {
     :git => "https://github.com/faimin/ZDFlexLayoutKit.git",
-    :tag => spec.version
+    :tag => spec.version.to_s
   }
   spec.prefix_header_file = false
   
@@ -36,7 +36,7 @@ Pod::Spec.new do |spec|
     #'SWIFT_INCLUDE_PATHS' => ["$(PODS_ROOT)/#{spec.module_name}/", "$(PODS_TARGET_SRCROOT)/#{spec.module_name}/"]
   }
   
-  spec.swift_versions   = ['5.0']
+  spec.swift_versions   = ['5.1']
   #spec.default_subspecs = 'Header', 'Core', 'OCMaker', 'Helper'
   
   spec.subspec 'Header' do |s|
