@@ -19,6 +19,28 @@ public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
         block(maker)
         return base
     }
+    
+    @discardableResult
+    func addChild(_ child: ZDFlexLayoutView) -> Self {
+        self.base.addChild(child)
+        return self
+    }
+    
+    @discardableResult
+    func addChildren(_ children: [ZDFlexLayoutView]) -> Self {
+        children.forEach { (child) in
+            self.addChild(child)
+        }
+        return self
+    }
+    
+    @discardableResult
+    func addChildren(_ children: ZDFlexLayoutView ...) -> Self {
+        children.forEach { (child) in
+            self.addChild(child)
+        }
+        return self
+    }
 }
 
 //MARK: - ZDSFlexLayoutMaker
