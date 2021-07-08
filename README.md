@@ -10,11 +10,13 @@
 
 + 支持链式调用
 
-+ 支持异步(`runloop` / `thread`)计算布局
++ ~~支持异步(`runloop` / `thread`)计算布局~~
 
 + 支持利用`runloop`机制自动更新布局
 
 + 支持`UIScrollView`布局
+
++ 支持`UITableView`设置`rowHeight`为`UITableViewAutomaticDimension`后自动计算高度（`cell`需要继承自 `ZDFlexLayoutTableViewCell`）
 
     
 > PS：开启自动更新布局后，在布局发生改变需要更新时需要手动调用 `markDirty`方法（`gone`不需要调用`markDirty`，它内部会自己处理）
