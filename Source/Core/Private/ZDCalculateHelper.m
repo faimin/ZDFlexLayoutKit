@@ -78,7 +78,7 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
                 }
             }];
             CFRunLoopSourceSignal(_runloopSource);
-            CFRunLoopWakeUp(CFRunLoopGetMain());
+            //CFRunLoopWakeUp(CFRunLoopGetMain());
         });
     });
     dispatch_group_notify(_taskGroup, dispatch_get_main_queue(), ^{
