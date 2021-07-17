@@ -14,6 +14,7 @@ static NSMutableOrderedSet<dispatch_block_t> *_asyncMainThreadQueue = nil;
 static dispatch_group_t _taskGroup = NULL;
 static CFRunLoopSourceRef _runloopSource = NULL;
 
+// 此函数不是线程安全的，但是计算函数一般都是在主线程调用的，所以就暂不加锁了
 static void zd_init(void) {
     if (!_asyncTaskQueue) {
         _asyncTaskQueue = [[NSMutableOrderedSet alloc] init];
