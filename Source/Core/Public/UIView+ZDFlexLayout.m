@@ -95,7 +95,7 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    [self.children removeObject:child];
     [self.children addObject:child];
     child.parent = self;
     child.owningView = self;
@@ -119,7 +119,11 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    if (![self.children containsObject:child]) {
+        return;
+    }
+    
+    [self.children removeObject:child];
     
     if ([child isKindOfClass:UIView.class]) {
         [(UIView *)child removeFromSuperview];
@@ -152,7 +156,7 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    [self.children removeObject:child];
     NSInteger mapedIndex = index; // realIndex
     if (index > self.children.count || index < 0) {
         mapedIndex = self.children.count;
@@ -194,14 +198,14 @@
 }
 
 //MARK: Property
-- (void)setChildren:(NSArray<ZDFlexLayoutView> *)children {
+- (void)setChildren:(NSMutableOrderedSet<ZDFlexLayoutView> *)children {
     objc_setAssociatedObject(self, @selector(children), children, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableArray<ZDFlexLayoutView> *)children {
-    NSMutableArray<ZDFlexLayoutView> *tempChildren = objc_getAssociatedObject(self, _cmd);
+- (NSMutableOrderedSet<ZDFlexLayoutView> *)children {
+    NSMutableOrderedSet<ZDFlexLayoutView> *tempChildren = objc_getAssociatedObject(self, _cmd);
     if (!tempChildren) {
-        tempChildren = [[NSMutableArray<ZDFlexLayoutView> alloc] init];
+        tempChildren = [[NSMutableOrderedSet<ZDFlexLayoutView> alloc] init];
         objc_setAssociatedObject(self, _cmd, tempChildren, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return tempChildren;

@@ -31,7 +31,7 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    [self.children removeObject:child];
     [self.children addObject:child];
     child.parent = self;
     
@@ -44,7 +44,11 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    if (![self.children containsObject:child]) {
+        return;
+    }
+    
+    [self.children removeObject:child];
     
     if ([child isKindOfClass:UIView.class]) {
         [(UIView *)child removeFromSuperview];
@@ -76,7 +80,7 @@
         return;
     }
     
-    [self.children removeObjectIdenticalTo:child];
+    [self.children removeObject:child];
     NSInteger mapedIndex = index; // realIndex
     if (index > self.children.count || index < 0) {
         mapedIndex = self.children.count;
@@ -143,9 +147,9 @@
     return _flexLayout;
 }
 
-- (NSMutableArray<ZDFlexLayoutView> *)children {
+- (NSMutableOrderedSet<ZDFlexLayoutView> *)children {
     if (!_children) {
-        _children = @[].mutableCopy;
+        _children = [[NSMutableOrderedSet alloc] init];
     }
     return _children;
 }
