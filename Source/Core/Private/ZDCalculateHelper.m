@@ -142,6 +142,7 @@ static void zd_initRunloop() {
     CFRunLoopSourceContext *sourceContext = calloc(1, sizeof(CFRunLoopSourceContext));
     sourceContext->perform = zd_sourceContextCallBackLog;
     _runloopSource = CFRunLoopSourceCreate(CFAllocatorGetDefault(), 0, sourceContext);
+    free(sourceContext);
     CFRunLoopAddSource(runloop, _runloopSource, kCFRunLoopCommonModes);
     CFRelease(_runloopSource);
 }

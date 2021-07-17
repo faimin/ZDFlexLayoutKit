@@ -33,6 +33,7 @@
     [self textScrollViewLayout];
     
     [self.view calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+    //[self.view asyncCalculateLayoutPreservingOrigin:YES dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)scrollViewLayout {
