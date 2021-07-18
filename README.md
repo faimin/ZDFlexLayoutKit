@@ -2,7 +2,7 @@
 
 #### 简介：
 
-扩展`YGLayout`，增加对虚拟视图，异步计算、`UIScrollView`自适应的支持，修复了计算`UILabel`尺寸精度缺失导致文字截断问题。
+扩展`YGLayout`，增加对虚拟视图、异步计算、`UIScrollView`自适应的支持，修复由于精度问题导致文字截断问题。
 
 #### 特色：
 
@@ -10,7 +10,7 @@
 
 + 支持链式调用
 
-+ ~~支持异步(`runloop` / `thread`)计算布局~~
++ 支持异步(`runloop` / `thread`)计算布局
 
 + 支持利用`runloop`机制自动更新布局
 
@@ -19,7 +19,7 @@
 + 支持`UITableView`设置`rowHeight`为`UITableViewAutomaticDimension`后自动计算高度（`cell`需要继承自 `ZDFlexLayoutTableViewCell`）
 
     
-> PS：开启自动更新布局后，在布局发生改变需要更新时需要手动调用 `markDirty`方法（`gone`不需要调用`markDirty`，它内部会自己处理）
+> PS：开启自动更新布局后，在布局发生改变需要更新时需要手动调用 `markDirty` 方法（ `gone` 不需要调用 `markDirty` ，它内部会自己处理）
 
 #### 安装：
 
@@ -93,7 +93,9 @@ userInfoDiv.calculateLayout(withAutoRefresh: true, preservingOrigin: false, dime
 [self calculateLayoutWithAutoRefresh:YES preservingOrigin:YES dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
 ```
 
-#### 资料：
+#### 学习资料：
+
++ [由 FlexBox 算法强力驱动的 Weex 布局引擎](https://halfrost.com/weex_flexbox/)
 
 + [Flex排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)
 
