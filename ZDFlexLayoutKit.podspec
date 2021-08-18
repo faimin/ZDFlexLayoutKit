@@ -35,6 +35,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'Header' do |s|
     s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"
   end
+  
   spec.subspec 'Core' do |s|
     s.source_files = "Source/Core/**/*.{h,m}"
     s.public_header_files = "Source/Core/Public/*.h"
@@ -42,19 +43,23 @@ Pod::Spec.new do |spec|
     s.dependency 'Yoga'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
+  
   spec.subspec 'OCMaker' do |s|
     s.source_files = "Source/OCMaker/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
+  
   spec.subspec 'Helper' do |s|
     s.source_files = "Source/Helper/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
+  
   spec.subspec 'SwiftMaker' do |s|
     s.source_files = "Source/SwiftMaker/*.swift"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
+  
 end
