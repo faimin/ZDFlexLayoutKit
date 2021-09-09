@@ -1,8 +1,8 @@
 {
   "name": "ZDFlexLayoutKit",
-  "version": "0.1.4",
-  "summary": "Flex Layout in Objective-C",
-  "description": "flex layout in Objective-C base on yoga",
+  "version": "0.1.7",
+  "summary": "Flex Layout for iOS",
+  "description": "flex layout for iOS powered by yoga",
   "homepage": "https://github.com/faimin/ZDFlexLayoutKit",
   "license": "MIT",
   "authors": {
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/faimin/ZDFlexLayoutKit.git",
-    "tag": "0.1.4"
+    "tag": "0.1.7"
   },
   "prefix_header_file": false,
   "header_dir": "./",
@@ -23,7 +23,7 @@
     "DEFINES_MODULE": "YES"
   },
   "swift_versions": [
-    "5.0"
+    "5.1"
   ],
   "subspecs": [
     {
@@ -71,6 +71,7 @@
     {
       "name": "SwiftMaker",
       "source_files": "Source/SwiftMaker/*.swift",
+      "exclude_files": "Source/SwiftMaker/ZDSFlexLayoutChain.swift",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
@@ -81,5 +82,5 @@
       }
     }
   ],
-  "swift_version": "5.0"
+  "swift_version": "5.1"
 }

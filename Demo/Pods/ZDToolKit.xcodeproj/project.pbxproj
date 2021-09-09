@@ -7,154 +7,154 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007F7811E21BC6CAC34DBE36394F35FF /* UIImageView+FaceAwareFill.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B437D6BD2B851C364DA53C9AA5BD953 /* UIImageView+FaceAwareFill.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		00A15FEDB0E1E5CF9208A28D80867F00 /* UIControl+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9921AF11F61DFD44686CCB4D790D34DF /* UIControl+ZDUtility.m */; };
-		0120ED23BF3BCC16AEDC732585E5A368 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9B49C116D56DF9C31A210B2EBBDB /* ZDAlertControllerHelper.m */; };
-		014B05C6ACB990A01141F777BED85571 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D80C062C9716CA491FB4AA1BC23F43 /* ZDFunction.m */; };
-		0659DC37036BE849C98F64C726871A0A /* ZDConsoleUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D827DABAEF24F542166013A4147D7BB /* ZDConsoleUnicode.m */; };
-		09FE3F01BC054D9D08B675FBCB2CECC7 /* ZDOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB8C0289A361C32384F29D4DDAB6E10 /* ZDOrderedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0FE88BF8193EA61412F3325DB1F89BE3 /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FF620FB8C08B4A2195C9B8CE15A4FE /* UIViewController+ZDUtility.m */; };
-		139B6C5EB81E8DB8F9EC58186F2970D9 /* ZDEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E270A7D21945D3B74029D1C92B86A27 /* ZDEdgeLabel.m */; };
-		15DA97640A5DF9C187E488DD0C9F7E10 /* NSObject+ZDRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B4BC9E2884A925BC9C56EC8BD12606 /* NSObject+ZDRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1728B9CD6A0057D0425FB825281B5DA4 /* ZDInvocationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F8118CF33A80603CE52F0445337DFED0 /* ZDInvocationWrapper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		17D025D155C319A6C520AF341C322D2C /* UIImage+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AC7D47488B711BD822DF9E03EE82AB25 /* UIImage+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		183AEEFF7BFF46FFEE3515861AD076EA /* NSString+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CE7DC3AAE40755E40D6737B55C4046A /* NSString+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		18B4B29CB8A56CAA38CC19145A271EDD /* ZDRunloopQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6470793F81B97AF915392335F718B388 /* ZDRunloopQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		19DF43610B8AAD0A98CF7B6ECD1A9557 /* UIResponder+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C8D0A6B4311F0669305604EA356343 /* UIResponder+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		19EB1A415B1CB906018C03348F36A837 /* ZDBannerScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C0B403B272D2C3E5206E5F0B4181755 /* ZDBannerScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1A1DE4A1C36F78700D48514F1D108164 /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7C871945BC375D2E5DD40D082EAD2 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1BDE6405F2071FBA5875525A4FBEDBE9 /* UIView+ZDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2906AA4CA650E935C519DED22E859ECA /* UIView+ZDCollapsibleConstraints.m */; };
-		1C995A81B176DD36909D7E6543709B91 /* ZDInvocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B367BFBED6C4D921901D3CF232982E /* ZDInvocationWrapper.m */; };
-		1F15146FD14D4C135935891FD3392925 /* NSMutableArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7093DEC692C29A1028717AD57E81D7 /* NSMutableArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1FE8B6FED2CE264F5606EC709950147C /* ZDTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B11E7E06B3167275A9BC1CDF31B730 /* ZDTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		20A7E4F6BEE372670A336702CDC3CB3A /* ZDIntegrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB365835C9C4EB1EA50DE969FBE65F7 /* ZDIntegrationManager.m */; };
-		21F51E992B46DEC06CD455AC44A28E1E /* ZDPermissionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 774A5AC5EC1D8EE7CBBA0E81C0EF38A4 /* ZDPermissionHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		225731E798EAF4A9125CBFDCBD48F4BA /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B110C5918A8B835E44E1EA422AEF6622 /* CALayer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2282AC64F4AD9CCE71C30C2997BCDA2F /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7797E7557893DE31D15925644D3D72 /* UIView+AutoLayout.m */; };
-		237EA454B79B86D8DAEF780334F22E32 /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A30E247493A875734E3852710B18EE /* NSObject+ZDRuntime.m */; };
-		25B6D75FF9301CF2821B12057C965255 /* ZDReusePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AE6F59E056B532F9DD56146BF51476 /* ZDReusePool.m */; };
-		262E6C9AFDC323E482217C061F8F96DE /* ZDMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A049EA2B8C6C2BA0100AED1E1302CF16 /* ZDMutableArray.m */; };
-		2A6602F9FD6FCA393BF8E85D418B7518 /* ZDDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD81615C21B532F3B771352EF6DBD9 /* ZDDispatchQueuePool.m */; };
-		2B79E5DA22B12ED8C5D6559BF0661255 /* ZDWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52BFCE2710265CCC1914CDB915C817 /* ZDWatchdog.m */; };
-		2BAE6B6F293242AC92DEDBC8B5EFF2AF /* ZDActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 81265797B95997B9063D4BDBD1CCB15A /* ZDActionLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2CC63C95F3034185FB063026F8F98943 /* ZDWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 38547B43C1FA385A8D04C3E6D57A6E5B /* ZDWatchdog.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2D20AEBF23D639DE2274E1A2DCA416A7 /* NSMutableArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9E775B0F692B9D8EB13951D71A3D52 /* NSMutableArray+ZDUtility.m */; };
-		2D7A2ABCA87C572073274766DFD78C8D /* UIView+ZDDraggable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5469B397D490D6C47AEEC10EADCB4989 /* UIView+ZDDraggable.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		321A91435804D1A5FC003FC216B24520 /* UIView+ZDDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = A3624D5F8DB63F8D14902907C870005A /* UIView+ZDDraggable.m */; };
-		346FA2BFE225BEB70134C74BF54590D0 /* ZDPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = B6751B2A917DAA4F411C8E8D37048159 /* ZDPromise.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		362E8ADFBC36FA6A11648254D159960F /* NSURLSession+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = D85C5C17C95B8C209B1A312A4FCE4024 /* NSURLSession+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		36A2991E7A157175FE6787F1CABC1B02 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C1DD1434FDD47BC574F46F467D99E1 /* UITextView+ZDUtility.m */; };
-		385C993DE26B7258919EE2CAF664565E /* ZDBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE3A7143F5A6DE837140F88D256709EE /* ZDBannerScrollView.m */; };
-		3DDDF0F468E3E10FE860FD9A4F977378 /* UIView+AutoFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 62A468EF3CE92FAF5BBE22338BBA61D4 /* UIView+AutoFlowLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3F45020C4560FAE7FEEC60654ACB5F82 /* UIImageView+ZDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C523E18107B5B87248B371F6D52CD0 /* UIImageView+ZDGIF.m */; };
-		418ED34990C21C83B7BBAECACC80125F /* UIColor+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D8AA3B77778EC21A5587808AA1046 /* UIColor+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4454DFC7DBA9F21E4D2D5935259C43D8 /* ZDBackgroundContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4E25F229CDF6FFB8A7AB11D9C1DE66 /* ZDBackgroundContainerView.m */; };
-		46D4402A1D54C0FD4FE534944BD986DE /* ZDConcurrentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC08EE1A1E165395189BC89E19BE999 /* ZDConcurrentOperation.m */; };
-		47FE81F885669B67ED58B39ADD21A0AD /* ZDConcurrentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 61C01FA385FC2056953FADF359FB6AF3 /* ZDConcurrentOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		480B96603349F0B447B63484577CD3E7 /* ZDEXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = AE742C63DC606E01E579CC615EE81021 /* ZDEXTScope.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4977F07018D31AC73E324BB4BDCA7AC2 /* ZDLinkedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = DE0A6CBE02FCEE0A02D58E9B8225F221 /* ZDLinkedMap.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C44B41C9FEAFB4980CB9FEC422EADBE /* UIImageView+ZDGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B926B4F0825B82D7ACAAB66FFA6A59A /* UIImageView+ZDGIF.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4D7036DFF5AB4ED8699A084766D7DB70 /* UITextView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 87155D955754CD7128FC9DC099A797DB /* UITextView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5146129A497B0EEB509520A9A1C0226F /* NSNotificationCenter+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 46008B21E483BE22D22165AA9C8CE358 /* NSNotificationCenter+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		52692B27A42F499502D3143850E0F52A /* NSTimer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A3EFD7ACAD020C765B43D3AE32C8C /* NSTimer+ZDUtility.m */; };
-		53653EB2C3FD37B1E5A241D09926E564 /* NSData+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6650C26D6CC8C20E3B49106FEB365D /* NSData+ZDUtility.m */; };
-		54CB7C589A82779BFD09AD3281DF7102 /* NSObject+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8B82BBC83B78521B520F6BEE81F790 /* NSObject+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5510F2795A22E74E6C348D0FF6AE7BD7 /* UIView+ZDBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = 29830728BBCF19AF0A4249AD14DE2C76 /* UIView+ZDBorders.m */; };
-		583E4D06516F00A24F289F89AA499806 /* ZDDispatchSourceMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6174EFECCE1BEE92446F319EC2EF32C3 /* ZDDispatchSourceMerge.m */; };
-		5874DF7816CE24B1006E8DB0340E5034 /* ZDFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = E855C630AFCCD9856A16A6D664CC180A /* ZDFunction.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		593EC1D6BEF1C66AD987700D5BC8DBCF /* ZDMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E36455D6397F4B051D4AB81F05B56967 /* ZDMutableDictionary.m */; };
-		59B92019855CB277B3A63019118938DC /* ZDFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DE4FF5A484AA50F0AB177D40713F3B /* ZDFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5C6FDB36B4824B1323D29E8FA9F42080 /* NSArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B9E623FE1FCF10CA19A7986A3DFB9B33 /* NSArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5DD180DF01F7B6E119D0E245748F1074 /* UIApplication+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BA6E53D3B2215FEA9CD9ACE4D564AE /* UIApplication+ZDUtility.m */; };
-		5FCE67175E20B4CF3678D16E6CBD39CF /* NSDate+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 202289000809F89369C329C3E4706C9F /* NSDate+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		681E3E0039D784EFE6E28B069F9A4AD5 /* ZDToolKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AD573CE1E1FAE85C5BD00DCAE33319 /* ZDToolKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		69E1B1F167B00545C3CB9E41C92FFB08 /* UIImageView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 001C16A41A27A5FD9D03DF4D1E39C72B /* UIImageView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		69E613ADF57CF0CA2CE63DE488E1DB34 /* NSObject+ZDBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0729C9D9291EA68DDB009A25496F85 /* NSObject+ZDBlockKVO.m */; };
-		6B9FBA4C55544EF5D519FDFDDECA2503 /* ProtocolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE778E0173D786C3DC5D3F1B14B407C /* ProtocolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6CCA6C395956625C8BF8A2179EA3B9F5 /* NSURLSession+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDC5CD414D080085778A8CE35D9858 /* NSURLSession+ZDUtility.m */; };
-		6D11E5D891DC8F876DF6082629C41281 /* UIView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AD3D4DBB7A57AEAB119602BD40C48F8 /* UIView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6DFA7951590D3B457F574EBF9486681F /* UIView+ZDBorders.h in Headers */ = {isa = PBXBuildFile; fileRef = E596F4EA44FCDDA9FB9FC8724AEDED1B /* UIView+ZDBorders.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6FDCA0F5CDB31DB2B689F4B8AB841324 /* UIView+AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 344310E388F0BAE2BD5A88290815A32A /* UIView+AutoLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		72493967BDB55EAD136A649D87F9AADC /* UIImageView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8A4D67DC6CD5D86380FBE08A77DEC0 /* UIImageView+ZDUtility.m */; };
-		73C3C342BC67A1358836223D1F00FE09 /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B532BF8CC948F44EBC1E2142DA438B0 /* UIImageView+FaceAwareFill.m */; };
-		75C1E68E84409F42BE19564881DCA43A /* NSObject+ZDBlockKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 132D2C778E0BC87CEFDCF0A198914678 /* NSObject+ZDBlockKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		77A3FD648582B3B6596975553F5BA9FB /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D1F4AC18B0B50C7B1C92CBB48870CA /* NSString+ZDUtility.m */; };
-		78EE290F092579CCFC79811CF952F4FE /* NSInvocation+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7590253B7ED8EAC18B8C701B4E218907 /* NSInvocation+ZDUtility.m */; };
-		79B383D2804024819F966D5BB0210011 /* ZDGuardUIKitOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = B537CFFC9B35443F928A1E7447E155F5 /* ZDGuardUIKitOnMainThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7BDC2198A94E20BCA21490404856FFFF /* ZDEdgeLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD0859D065E0DC553F34E0369B5417A /* ZDEdgeLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		80FCD5CF363643421D7E399911DC6A69 /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8056362D8758FBF5470A9AEA2F5427BE /* NSObject+ZDUtility.m */; };
-		85FF6015EA3E8BFB6FE9C760B659C6E1 /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D23769EF73512F00BE93B0C3984B8D /* UIView+FDCollapsibleConstraints.m */; };
-		87E6207C5E48A67885827C3CE10CEAE2 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D4CDDAB61CE8F10CF408CEAA11B40 /* ZDFileManager.m */; };
-		886A46C01BA96966BA4E52B08A65F4FD /* UIViewController+ZDBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE9885AE3DF82285B31B02B2B480927 /* UIViewController+ZDBack.m */; };
-		8B4ACDDDADA91261BAB63A4F70FDABFD /* UIApplication+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D586683A331CDF0ABF91B9B70B92CBC /* UIApplication+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8CFDC3A8B65A4EF416B386E6AB86F2C1 /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB878F60B5DAD29AC5D888836C30DDE6 /* UIView+AutoFlowLayout.m */; };
-		8D0F3DC800DFC97AC417F8557A1D0EC5 /* ZDFastEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFD4D6B893ED70D98C4A138D2FDF7E /* ZDFastEnumeration.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9092EC779F87339628DA537A275E96C9 /* WKWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FE4015DD4C071C6721C7D67DC8E1A /* WKWebView+ZDUtility.m */; };
-		92B19A3CEFC68E771E8D42B87B74A3F0 /* NSArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F4051BC0C5994AA2B7B7EF8394567 /* NSArray+ZDUtility.m */; };
-		938D754B1A9C6CA265AB7B34818479A7 /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 601FE58740715E5852C04D24C5F2D130 /* ZDAlertControllerHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		942E98A7045FC77CCC212FC3D3156740 /* UIWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FB27C94920B42D9067B49A18D426A759 /* UIWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		94C0532B250A26C7F9E5D3B1837035AD /* WKWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 50430FFDCFF35FBD9975E1A51CCA81E8 /* WKWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9684A132E28CF92F1C9A3C4B8D9FE59C /* ZDPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 316141C46E1FE61F16F2E9B0FC771E28 /* ZDPermissionHandler.m */; };
-		973D63356D8C5F1DF2011B999FF4F4F2 /* ZDReusePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 51FD1842B7A0288FFB2A83A60D2AFFEC /* ZDReusePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		980FD0490AE63959C51A9357E54118B5 /* ZDConsoleUnicode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9426E59A0DFB593D171B711F1B674B26 /* ZDConsoleUnicode.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9834B1CEE11F953A174D7B7D5B4B0FC2 /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BD47B9D7AD3DC29EA2CF70E2A2135B /* NSDictionary+ZDUtility.m */; };
-		9935041FC29A6E7160CFFD3C5ACB27CD /* NSNotificationCenter+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DB37F336D2A3B85E62B95BE148889500 /* NSNotificationCenter+ZDUtility.m */; };
-		9E419E67C679D2C069A46120C886295B /* ZDGifImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FDF22B419A96D6616BC4C376F815126 /* ZDGifImageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A07B6D26302C4D71CA695FFB8CF1E556 /* PKProtocolExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E5772F4248735D5C1C4EAE11EA4386 /* PKProtocolExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A0A1B37E6D64F479E803E6C6264A4AC6 /* ZDDispatchSourceMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F2374A0727DE9FB570F3ABC2F05764 /* ZDDispatchSourceMerge.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A11E9A15203A15A7481C092083A55818 /* ZDBackgroundContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E5F60B4DAB8D3C45F82FC2DEAB18C /* ZDBackgroundContainerView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A45E86E13F9BECCA9F21F5EE891879F7 /* ZDRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE56DA5A3D46C5BBAA1417945C301CD /* ZDRuntimeTool.m */; };
-		A4A23650DEB30EECE924A5FE1C8500BF /* ZDGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB36D1EFBEC5CF136AAF70688033AEA /* ZDGifImageView.m */; };
-		A635193C08C4D7106B1688F354D1EFBB /* ZDSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B16AC16ED7DB793BC2B1881198541D /* ZDSafe.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A8AD6CF61F3B0F50EAEBECD9D994F09A /* ZDPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 7861F35E18F00B135606C6B526C26D37 /* ZDPromise.m */; };
-		AB3309A5FA5B273A17C27DF440D19275 /* ZDOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1AE310D4C2EDCD1A082CB67B6A9CC8 /* ZDOrderedDictionary.m */; };
-		AC1CBEB2B3AE96A151B7B98364A3DC22 /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5573D06403C9D9976658415AFB76CFD7 /* CALayer+ZDUtility.m */; };
-		ACD7F31EC609212303B73282F20FE2B9 /* NSInvocation+ZDBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = D085CAF41EB0FDF066FACC8B61D77FB7 /* NSInvocation+ZDBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AEE34E3D35D6BE423B06A133984E9D08 /* ZDIntegrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F5B2C108053FC365546D8DBDDF973A /* ZDIntegrationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B01ABF745462B1F0AA2D208B2C442E06 /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D871E8733E042315F774AB8B4468A00B /* UIView+ZDUtility.m */; };
-		B1E343A00B1CB807182F5E767CF3BDF7 /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F39E077AFB9F869361A5E9F29EA0DC0 /* UILabel+ZDUtility.m */; };
-		B24EC82555664E0B4126D11FB9229852 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93D960E52C7B1979495EC1D4FBD6DC3 /* ZDTextView.m */; };
-		B3A560679A3F6D2FF2ADF86FC876862E /* ZDDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7A38D81A5E00F2011320AC7247A53 /* ZDDispatchQueuePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B5A4566F625AF82D048097F826307C1F /* UILabel+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A2FCA080CE0D647D34E100E1822302 /* UILabel+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B5AB1FA1FD27D74DD5D778F5E0697739 /* ZDToolKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C91C91CA6E815B8B328C5D60F636ADF /* ZDToolKit-dummy.m */; };
-		B654DC3ADD6F937CA9AEA37768304BAD /* ZDOSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 17354F623A81D94655F47A03F496CC0F /* ZDOSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B69214C50A1F32E560A077136287FEED /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 64820413F35BBDFF40A79DB733CFA9D6 /* UIButton+ZDUtility.m */; };
-		B72549270D6349B3BC9E069E38C7920C /* ZDGuardUIKitOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 627B3D6FD08DCACF62161AA129718130 /* ZDGuardUIKitOnMainThread.m */; };
-		BAF2E35FF870EB5837FAA75EC2269D0D /* ZDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AEDE9FAB65C8C8E9BC303A0818E634 /* ZDProxy.m */; };
-		BBB4E62C50E9DDC5A5F7007C678C7680 /* ZDOSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D606CC30A02EF8FC6C4CCCCC364374B /* ZDOSLogger.m */; };
-		BBEE9D1A6450EB3E547C925E6F7A2AB3 /* NSObject+ZDSimulateKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = FEE08CED6EC53B7E761D0B6DC94B8ED0 /* NSObject+ZDSimulateKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BC22E3818AD1C292451A0CBA7D3BC431 /* UIViewController+ZDPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 47EA67D072043B41091EF1E1E41A306E /* UIViewController+ZDPop.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C18466E97E787CF81B6123F7EBA5DF12 /* UIColor+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBE3F9EC46D24953FC4571FD8C9D3DE /* UIColor+ZDUtility.m */; };
-		C362F55CB96A4BA57471F190AA250AF4 /* ZDRunloopQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DFBF792433C1FEF116FCE37114D7DC /* ZDRunloopQueue.m */; };
-		C3A6FA9BE57F499B0069BC7797842DBE /* NSInvocation+ZDBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A42F8ED5C4C493F9DEAB1172E2040F63 /* NSInvocation+ZDBlock.m */; };
-		C548E8432F80D627E07DC805848A367D /* ZDProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 33E33D2A95182DAD731678B427B2D0C9 /* ZDProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C5C67A8556935706086BFA97D0FBA4D1 /* NSTimer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E9813384DE0ABF26D65CA4DE15C0AD /* NSTimer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C5F321EB84D5543A26B56E093E9441FB /* UIViewController+ZDBack.h in Headers */ = {isa = PBXBuildFile; fileRef = ED406594F94D2B8DE31E47A9163165C4 /* UIViewController+ZDBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C78CFBC9FA0A9033E4107ED584A5C092 /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 570CA35B26AC942B0AE734CD6F30AD18 /* UIWebView+ZDUtility.m */; };
-		CA3CAE98199A6BF82BD65F4197C78DED /* UIViewController+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 396DF39771BC8838044FD221E307816F /* UIViewController+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CE3C157EBE946ECD237DD0E4EA10EC8D /* UIControl+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927A760756638C3F67C12308208D26A /* UIControl+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D3647073E6500A12A4DEF6324C416B2C /* ZDLinkedMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC348B8435F3FE53ED72766097025A3 /* ZDLinkedMap.m */; };
-		D5080C0A32CA9400E879DBA04F426F0A /* NSData+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B25C1F38504BBAAE7A79BD8C753168E4 /* NSData+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D59A8504CA89CE5D0D20352D2ACC40CA /* NSDictionary+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2669EC590F19000F5571DB83D3117D55 /* NSDictionary+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D63910F34B8FB516516D8ADD6CA7988B /* NSInvocation+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = CFEA47D85CD1F2AE8F025D57832282FB /* NSInvocation+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D825179F902FCC2508C2000D447EB181 /* NSNull+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 477C48D8D41BD4D8D2A181419362E556 /* NSNull+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E21D31BCB0FC52F84E78943544652368 /* ZDMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 703D234DB88D3F6BD27217937039EB68 /* ZDMetamacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E4BA575ED690123619D898F8418C0034 /* ZDMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1223969F51CC5C533269F4F944B287D /* ZDMutableDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E50C8CD886CF28BEBAE106CA3E7CF94C /* PKProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CBB34C2DD2802719F5FA7F5E28A2C /* PKProtocolExtension.m */; };
-		E68D820B8C837E5CE4C59F72322650DB /* UIImage+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5617C1F1B241E36F6B955B1D691ED1 /* UIImage+ZDUtility.m */; };
-		E9D71909D6059CBA9B6C33D62D63EC7B /* ZDActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C42FD5FF1BC287E0FF904A7324AACF7C /* ZDActionLabel.m */; };
-		EA6ED890CDBC1A043C956803E2DDCB7C /* ZDMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = EE86EF2C16EB4BC22D18FD6A71A5B8BD /* ZDMutableArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EA78777CF2F36FEC59E3EF039F7D4EB5 /* NSObject+ZDSimulateKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CF5C065706010C6989B7F339DFAA78 /* NSObject+ZDSimulateKVO.m */; };
-		EC76FF3E33BE1699632759443CD94624 /* NSDate+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6593E16F4AA7BCCCA44DA46BD5AD1923 /* NSDate+ZDUtility.m */; };
-		EF59D1DD9A92F2D96EE142D272B60676 /* ZDRuntimeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CFCD80029B08D4E46B2C8AE24CB35B5 /* ZDRuntimeTool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EFA5B796DAA754FDB6AD2BC27303BF2C /* ZDToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 124EB089D9455C44D1AE5F373DA7C893 /* ZDToolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EFD0E6AF2928B4FF050AC6990786572E /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF05BD46771903C922B11C7CBAD209B /* UIViewController+ZDPop.m */; };
-		F17F57DC360E94C83BA80DCF25AA26BE /* UIResponder+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C34AE91E8513021D988D26D7E9EC0BC /* UIResponder+ZDUtility.m */; };
-		F53F2D088DBD34727B4385B1592E613A /* ZDMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CAD96757375EA735C4CA19B787238A6 /* ZDMacro.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F656EB54F09D6BA2CA2835FE102DEEAA /* UIView+FDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = E3E9FA07E6C552A6ED048FE58553CFFF /* UIView+FDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F824FCF689F8E10991C1E6FF15E070D2 /* NSNull+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B9412F4B7714D365AA20A8BAF7C273 /* NSNull+ZDUtility.m */; };
-		FC9652DB0AE7A5D1DF30A672EEBF7B37 /* UIView+ZDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = E35F24B75AC59FAF1B8E3C55A4F3AB86 /* UIView+ZDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FDBA36A0794CE48FA2AED87E3497A14B /* UIButton+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 29D9BA2D694C4F4E8ACAF7107C3D1248 /* UIButton+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		00378A921A846556FDE99084CB3CB96E /* UIViewController+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 396DF39771BC8838044FD221E307816F /* UIViewController+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0092F9495A8826EA2446A77568ED7A5C /* NSTimer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A3EFD7ACAD020C765B43D3AE32C8C /* NSTimer+ZDUtility.m */; };
+		04F223F53E4AAA76E6BBD1FB2AC67E79 /* ZDLinkedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = DE0A6CBE02FCEE0A02D58E9B8225F221 /* ZDLinkedMap.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		08FCF35F33C130A6D4B664A2E4802C51 /* ZDOSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 17354F623A81D94655F47A03F496CC0F /* ZDOSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0B499495603B19D1788D0CE90BD870A3 /* ZDMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 703D234DB88D3F6BD27217937039EB68 /* ZDMetamacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0BACA81C6ECA54A07FC85007196B4779 /* ZDGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB36D1EFBEC5CF136AAF70688033AEA /* ZDGifImageView.m */; };
+		0C4357B838ACACB15F85FC1D92B90F46 /* ZDWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC52BFCE2710265CCC1914CDB915C817 /* ZDWatchdog.m */; };
+		1010E7F1C392E72265DA5014CB097EEB /* NSObject+ZDSimulateKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CF5C065706010C6989B7F339DFAA78 /* NSObject+ZDSimulateKVO.m */; };
+		1162774705D90940EB314792B4F54484 /* ZDPermissionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 774A5AC5EC1D8EE7CBBA0E81C0EF38A4 /* ZDPermissionHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1196F9D9C5FB4FB546130A6DBC071F59 /* WKWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 50430FFDCFF35FBD9975E1A51CCA81E8 /* WKWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1256727EEE158504A8E9A27BD59F7585 /* ZDGifImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FDF22B419A96D6616BC4C376F815126 /* ZDGifImageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		156AB92DC65051CF03E7EE7ED81E115D /* ZDConsoleUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D827DABAEF24F542166013A4147D7BB /* ZDConsoleUnicode.m */; };
+		1685B53A6FC99F5B23EAD18D16150CE1 /* ZDActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 81265797B95997B9063D4BDBD1CCB15A /* ZDActionLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		16C2ADD80CFAA343E25D119AEB5B6AE5 /* NSObject+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8B82BBC83B78521B520F6BEE81F790 /* NSObject+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		16FDB39C2CF75C30CD4E59F72147667A /* ZDPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 7861F35E18F00B135606C6B526C26D37 /* ZDPromise.m */; };
+		1740E763897683FBB546DD92E07DC1DE /* NSDate+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 202289000809F89369C329C3E4706C9F /* NSDate+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		18D5DD5E6DD10DA611EBED0959A0F58E /* NSInvocation+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7590253B7ED8EAC18B8C701B4E218907 /* NSInvocation+ZDUtility.m */; };
+		1D38E075A97D4AFAF704743D29A6957F /* UIApplication+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BA6E53D3B2215FEA9CD9ACE4D564AE /* UIApplication+ZDUtility.m */; };
+		1DC7A7C104DB108F9A9E8BC51A137481 /* UIResponder+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C34AE91E8513021D988D26D7E9EC0BC /* UIResponder+ZDUtility.m */; };
+		1E9B70D29CBF2CC0CCBF015A98BD0180 /* ZDDispatchSourceMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F2374A0727DE9FB570F3ABC2F05764 /* ZDDispatchSourceMerge.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		206927A4B6CBCA2E831FAFE48C83A4CA /* ZDGuardUIKitOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = B537CFFC9B35443F928A1E7447E155F5 /* ZDGuardUIKitOnMainThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20CCBEC3043E9B9D13A3E9FBC4F2C84C /* ZDMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = EE86EF2C16EB4BC22D18FD6A71A5B8BD /* ZDMutableArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		231F098EF841B6896F38626D233B5D18 /* ZDReusePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AE6F59E056B532F9DD56146BF51476 /* ZDReusePool.m */; };
+		238781246F03D2F65CFF63666DCF93C5 /* NSMutableArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EE7093DEC692C29A1028717AD57E81D7 /* NSMutableArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2537F8F4792A8AC33D58DEB061B94BFE /* ZDBackgroundContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4E25F229CDF6FFB8A7AB11D9C1DE66 /* ZDBackgroundContainerView.m */; };
+		2743815BBA9A03BD26D0E7D0632321AF /* NSURLSession+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDC5CD414D080085778A8CE35D9858 /* NSURLSession+ZDUtility.m */; };
+		280B5A9A378826114CD7B556990B06B1 /* ZDMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = E36455D6397F4B051D4AB81F05B56967 /* ZDMutableDictionary.m */; };
+		2B090E6923166F734BBE5E03A3A082F3 /* ZDToolKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AD573CE1E1FAE85C5BD00DCAE33319 /* ZDToolKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2C1AFC082B458EE6FA7B647DE0FBF8E4 /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B110C5918A8B835E44E1EA422AEF6622 /* CALayer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2D12A0FDAA1C160D1F6D90912A6CF8C9 /* NSDictionary+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2669EC590F19000F5571DB83D3117D55 /* NSDictionary+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2DC321AC8F75CB04E9AD5EAC1F6C3650 /* ZDIntegrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB365835C9C4EB1EA50DE969FBE65F7 /* ZDIntegrationManager.m */; };
+		303B3C04CBFCAF0AF178EF01D0437C74 /* UIWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FB27C94920B42D9067B49A18D426A759 /* UIWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		308725B9C056905477877952B2818F2B /* ZDDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7A38D81A5E00F2011320AC7247A53 /* ZDDispatchQueuePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		32383E1EB312CB75A5AF36EE0659A551 /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8056362D8758FBF5470A9AEA2F5427BE /* NSObject+ZDUtility.m */; };
+		331E9573F3274FC1635AD3B6F5FE3421 /* ZDOSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D606CC30A02EF8FC6C4CCCCC364374B /* ZDOSLogger.m */; };
+		34F088D4BAF9BED707C0EE5DFB3E2921 /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A30E247493A875734E3852710B18EE /* NSObject+ZDRuntime.m */; };
+		386A4D3106F4859834DF5DFF8CA686F0 /* ZDActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C42FD5FF1BC287E0FF904A7324AACF7C /* ZDActionLabel.m */; };
+		38971C4E3D83F3F1FA2173128297AAA4 /* ZDEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E270A7D21945D3B74029D1C92B86A27 /* ZDEdgeLabel.m */; };
+		397D4BC0B08B452DDE1E3C1B6BDA98C1 /* UIResponder+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C8D0A6B4311F0669305604EA356343 /* UIResponder+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3D753D7396E32A4A37F7E469BC1A5FF8 /* UIView+ZDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = E35F24B75AC59FAF1B8E3C55A4F3AB86 /* UIView+ZDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3D8776C4B2D626099A552779E5F68B4F /* ZDOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB8C0289A361C32384F29D4DDAB6E10 /* ZDOrderedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3EB02EFF5E760A42EFB09BF53858F400 /* ZDPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 316141C46E1FE61F16F2E9B0FC771E28 /* ZDPermissionHandler.m */; };
+		3F317C9653FFB0373316A4E125B17AEE /* UIView+AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 344310E388F0BAE2BD5A88290815A32A /* UIView+AutoLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3F870B61347E34BD20BB579C728F3617 /* NSInvocation+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = CFEA47D85CD1F2AE8F025D57832282FB /* NSInvocation+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		40861A16F30868AAB0C46D3EF1CE36D8 /* WKWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2FE4015DD4C071C6721C7D67DC8E1A /* WKWebView+ZDUtility.m */; };
+		41B6BD953277E0B82018EE7048A85950 /* NSData+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6650C26D6CC8C20E3B49106FEB365D /* NSData+ZDUtility.m */; };
+		4392FA7F5EFF891532ABA6822BE35669 /* UITextView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 87155D955754CD7128FC9DC099A797DB /* UITextView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		43F8577117E4D02482276E8EFF652E6B /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 64820413F35BBDFF40A79DB733CFA9D6 /* UIButton+ZDUtility.m */; };
+		441AD1DF8E22F477A07AE00DB8352383 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7797E7557893DE31D15925644D3D72 /* UIView+AutoLayout.m */; };
+		44D7C9B74E5C01704DE9DE4CD2AEAC6B /* ZDReusePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 51FD1842B7A0288FFB2A83A60D2AFFEC /* ZDReusePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		48AFA6BDA34A1D256319326E7EF67C41 /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB878F60B5DAD29AC5D888836C30DDE6 /* UIView+AutoFlowLayout.m */; };
+		48B06A544A232F5876D29E496059A64A /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F39E077AFB9F869361A5E9F29EA0DC0 /* UILabel+ZDUtility.m */; };
+		49F9BAD68A119E3A414F72E93A3FFF71 /* NSNull+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 477C48D8D41BD4D8D2A181419362E556 /* NSNull+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4AA404EC87B5D65600FA4F5908A1857F /* UIControl+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7927A760756638C3F67C12308208D26A /* UIControl+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4BC8C1A3A2C94BAEC979714405B2F56F /* ZDFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DE4FF5A484AA50F0AB177D40713F3B /* ZDFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55BF01CEBFB7B4220754E5613A2A8385 /* ZDMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = E1223969F51CC5C533269F4F944B287D /* ZDMutableDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		581AC124289A0E9C8C86E9598238EB82 /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FF620FB8C08B4A2195C9B8CE15A4FE /* UIViewController+ZDUtility.m */; };
+		5A2CF11E1BE2B442209F1EE4B5A5D944 /* UIImageView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8A4D67DC6CD5D86380FBE08A77DEC0 /* UIImageView+ZDUtility.m */; };
+		5BF947E48E41070EF26A1CF8D77E51C4 /* ZDGuardUIKitOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 627B3D6FD08DCACF62161AA129718130 /* ZDGuardUIKitOnMainThread.m */; };
+		5C4C71442F97C2E38F722132B3126426 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D80C062C9716CA491FB4AA1BC23F43 /* ZDFunction.m */; };
+		5D1B31987D0F4A9F41AAB72475E9E703 /* ZDEdgeLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EFD0859D065E0DC553F34E0369B5417A /* ZDEdgeLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5FCF16B4358C8A19F57D6DCC891588D6 /* ZDFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = E855C630AFCCD9856A16A6D664CC180A /* ZDFunction.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		605971E208826E6373A45171EE4998B8 /* ZDToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 124EB089D9455C44D1AE5F373DA7C893 /* ZDToolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		631A625239255E4DDA2EA92B48E6F643 /* UIView+ZDDraggable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5469B397D490D6C47AEEC10EADCB4989 /* UIView+ZDDraggable.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		63222361DA9D019AE4CFC0F1E12C8F88 /* ZDOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1AE310D4C2EDCD1A082CB67B6A9CC8 /* ZDOrderedDictionary.m */; };
+		6850D3C4A7E94BFA632E82C4841B756D /* UIView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AD3D4DBB7A57AEAB119602BD40C48F8 /* UIView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6A0710201C5A24D7DEC6CB47CEECE0E8 /* UIButton+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 29D9BA2D694C4F4E8ACAF7107C3D1248 /* UIButton+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6A1350C5DAAE032D4E98A9747C96D4C2 /* ZDBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE3A7143F5A6DE837140F88D256709EE /* ZDBannerScrollView.m */; };
+		6B6F3479EB403F62D6AC38EE05B559B7 /* NSNull+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B9412F4B7714D365AA20A8BAF7C273 /* NSNull+ZDUtility.m */; };
+		6E2347B8E7A31FCD88E19D08AA7FAD14 /* ZDProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 33E33D2A95182DAD731678B427B2D0C9 /* ZDProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		70724FC735D3853837D14CD050279C3A /* NSNotificationCenter+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DB37F336D2A3B85E62B95BE148889500 /* NSNotificationCenter+ZDUtility.m */; };
+		738C0E0BF4BDDB7EEF1C0268914EEF6C /* ZDWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 38547B43C1FA385A8D04C3E6D57A6E5B /* ZDWatchdog.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7565A638E9B15B550F6E3BC1C24E10F9 /* UIImageView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 001C16A41A27A5FD9D03DF4D1E39C72B /* UIImageView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		75CC010D960FCED2D897BC00A99A30C1 /* UIImage+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AC7D47488B711BD822DF9E03EE82AB25 /* UIImage+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		764764824F690D2522A0A79C86AABCFC /* ZDRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE56DA5A3D46C5BBAA1417945C301CD /* ZDRuntimeTool.m */; };
+		7ADFF806173EEE5294AE2D062653F6E4 /* UIViewController+ZDBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE9885AE3DF82285B31B02B2B480927 /* UIViewController+ZDBack.m */; };
+		7C1E2DA9653E55A26A51D31C88A44D98 /* ZDToolKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C91C91CA6E815B8B328C5D60F636ADF /* ZDToolKit-dummy.m */; };
+		7CE262FD9F2CE51F167545E06C875638 /* ZDLinkedMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC348B8435F3FE53ED72766097025A3 /* ZDLinkedMap.m */; };
+		7D9F75E43EE8A9B5E547CBC02A126229 /* NSArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B9E623FE1FCF10CA19A7986A3DFB9B33 /* NSArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7E628B8285A3AE47BF8E6CE185C7F288 /* ZDDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD81615C21B532F3B771352EF6DBD9 /* ZDDispatchQueuePool.m */; };
+		80152E085DC3CD76045FB07A467A4D68 /* ZDTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B11E7E06B3167275A9BC1CDF31B730 /* ZDTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		824C65CB83F6AB9289554F8BF2AEB5D5 /* PKProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CBB34C2DD2802719F5FA7F5E28A2C /* PKProtocolExtension.m */; };
+		83823627C910B30D97B5DB8099DB3973 /* UIControl+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9921AF11F61DFD44686CCB4D790D34DF /* UIControl+ZDUtility.m */; };
+		859BC61C3EE0CC027571DC8D0B4B1304 /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D23769EF73512F00BE93B0C3984B8D /* UIView+FDCollapsibleConstraints.m */; };
+		89267EB25D2E968366F9C3E656F98D8C /* UIColor+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D8AA3B77778EC21A5587808AA1046 /* UIColor+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8A269EB95340C52337AD640F48CD23A4 /* NSTimer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F6E9813384DE0ABF26D65CA4DE15C0AD /* NSTimer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D471E92876BF8C646C235959D583DEE /* NSObject+ZDRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B4BC9E2884A925BC9C56EC8BD12606 /* NSObject+ZDRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8FF5ADE8F28D99BE9389ACA3524D6BE1 /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF05BD46771903C922B11C7CBAD209B /* UIViewController+ZDPop.m */; };
+		914751EA453845AC51D39F072F23DA67 /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BD47B9D7AD3DC29EA2CF70E2A2135B /* NSDictionary+ZDUtility.m */; };
+		937059AEAFF2E9F8DA94C333A1BE100B /* ZDRunloopQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DFBF792433C1FEF116FCE37114D7DC /* ZDRunloopQueue.m */; };
+		974599D50FAB466C6B5E3B3669E58DBB /* NSDate+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6593E16F4AA7BCCCA44DA46BD5AD1923 /* NSDate+ZDUtility.m */; };
+		992A5A723C039827D2D5057F265263BC /* NSInvocation+ZDBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A42F8ED5C4C493F9DEAB1172E2040F63 /* NSInvocation+ZDBlock.m */; };
+		9DBB8B314916E732B83D3FE7874A8D2D /* NSNotificationCenter+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 46008B21E483BE22D22165AA9C8CE358 /* NSNotificationCenter+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9DC0152B11931428BAAF926FAA8035B1 /* ZDConcurrentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC08EE1A1E165395189BC89E19BE999 /* ZDConcurrentOperation.m */; };
+		A10FC8AFA21AA791FF38FA333AC59E32 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93D960E52C7B1979495EC1D4FBD6DC3 /* ZDTextView.m */; };
+		A695155E6603CFDB58DA665A42FE80F3 /* ProtocolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE778E0173D786C3DC5D3F1B14B407C /* ProtocolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A6B79BBFC4767DA0801EE1D9A49E81ED /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B532BF8CC948F44EBC1E2142DA438B0 /* UIImageView+FaceAwareFill.m */; };
+		A77A1394BFF49B1E9C7B26F64095A104 /* NSData+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B25C1F38504BBAAE7A79BD8C753168E4 /* NSData+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A8EAEFB05208FB608D4EC98303537803 /* ZDDispatchSourceMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6174EFECCE1BEE92446F319EC2EF32C3 /* ZDDispatchSourceMerge.m */; };
+		A988D1B949301DAC7E8DA9FC6672BBE5 /* ZDInvocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B367BFBED6C4D921901D3CF232982E /* ZDInvocationWrapper.m */; };
+		ABCEC77FDF51BA9C9EEB0E9CF7F32931 /* NSObject+ZDSimulateKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = FEE08CED6EC53B7E761D0B6DC94B8ED0 /* NSObject+ZDSimulateKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AC547A262EC48F13AEC82B9945D61DF1 /* UIView+ZDBorders.h in Headers */ = {isa = PBXBuildFile; fileRef = E596F4EA44FCDDA9FB9FC8724AEDED1B /* UIView+ZDBorders.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ACD4EBB106710CAC5E68955330CDE5AC /* UIViewController+ZDBack.h in Headers */ = {isa = PBXBuildFile; fileRef = ED406594F94D2B8DE31E47A9163165C4 /* UIViewController+ZDBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AF1374FF95BC2FCF5EACCFE1DF65E3D9 /* NSMutableArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9E775B0F692B9D8EB13951D71A3D52 /* NSMutableArray+ZDUtility.m */; };
+		B164AF27544C9468875B380293922A3A /* UIView+ZDBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = 29830728BBCF19AF0A4249AD14DE2C76 /* UIView+ZDBorders.m */; };
+		B2076D3B69A87E2A4CA89A8FA7229944 /* ZDPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = B6751B2A917DAA4F411C8E8D37048159 /* ZDPromise.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B2C44FE22A8BD83ED6A8956DF041DE5A /* ZDInvocationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F8118CF33A80603CE52F0445337DFED0 /* ZDInvocationWrapper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B38549163B55B268B50DD816D7E5E312 /* NSObject+ZDBlockKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 132D2C778E0BC87CEFDCF0A198914678 /* NSObject+ZDBlockKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B5127345FB1148F53CA330FC2968D74B /* ZDConsoleUnicode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9426E59A0DFB593D171B711F1B674B26 /* ZDConsoleUnicode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B5320B65A53646D0D3899428CE4A94D9 /* ZDBannerScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C0B403B272D2C3E5206E5F0B4181755 /* ZDBannerScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B615B664C0DB54756CAFE438AA26E3F0 /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5573D06403C9D9976658415AFB76CFD7 /* CALayer+ZDUtility.m */; };
+		B7D5F6EB395B42A30D62976EC95B01E3 /* PKProtocolExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 62E5772F4248735D5C1C4EAE11EA4386 /* PKProtocolExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BEF5BE7E913218BFE03D5332EF76AD49 /* ZDIntegrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F5B2C108053FC365546D8DBDDF973A /* ZDIntegrationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C7A9BDF83A4A40F891D55783AB853A52 /* ZDMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A049EA2B8C6C2BA0100AED1E1302CF16 /* ZDMutableArray.m */; };
+		CA8C58E1B2530DCA0CF8F0D71E2E850E /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D871E8733E042315F774AB8B4468A00B /* UIView+ZDUtility.m */; };
+		D095CAE312AC7A11B749EA108036CE15 /* ZDFastEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFD4D6B893ED70D98C4A138D2FDF7E /* ZDFastEnumeration.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D7588A869B098B52451510E8D3B58C3E /* UIImageView+FaceAwareFill.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B437D6BD2B851C364DA53C9AA5BD953 /* UIImageView+FaceAwareFill.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D7AE29E6BFBD03A0AE19D518CD1C98D6 /* ZDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AEDE9FAB65C8C8E9BC303A0818E634 /* ZDProxy.m */; };
+		D85084879424F3D3997D07D6D374CC50 /* ZDMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CAD96757375EA735C4CA19B787238A6 /* ZDMacro.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D87E38DD1AE8EA38EB3F9DCF1CAC1280 /* UIColor+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBE3F9EC46D24953FC4571FD8C9D3DE /* UIColor+ZDUtility.m */; };
+		D88683DCED2BADF38D1C2A5A0EF8A78E /* UIView+ZDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2906AA4CA650E935C519DED22E859ECA /* UIView+ZDCollapsibleConstraints.m */; };
+		D9314D3092E0D79C254E2370C520C07D /* UIView+ZDDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = A3624D5F8DB63F8D14902907C870005A /* UIView+ZDDraggable.m */; };
+		DACA835AAF8A6574232D95A30F7E2818 /* ZDRunloopQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6470793F81B97AF915392335F718B388 /* ZDRunloopQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD8C14A66F05D3D8755C1B1199CE6509 /* UIImage+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5617C1F1B241E36F6B955B1D691ED1 /* UIImage+ZDUtility.m */; };
+		DDE3A089E5AE7092FF26E52F66D317EE /* NSInvocation+ZDBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = D085CAF41EB0FDF066FACC8B61D77FB7 /* NSInvocation+ZDBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DF98F6DD854F1735DF750202892C2B94 /* NSString+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CE7DC3AAE40755E40D6737B55C4046A /* NSString+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E159D1CA65209DBB417C18DD75625ACF /* NSURLSession+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = D85C5C17C95B8C209B1A312A4FCE4024 /* NSURLSession+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E190D3B7342104FD00E23F37B06DB7D7 /* NSObject+ZDBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0729C9D9291EA68DDB009A25496F85 /* NSObject+ZDBlockKVO.m */; };
+		E1EB10279095FC994A8A5E3FDBCA8133 /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 570CA35B26AC942B0AE734CD6F30AD18 /* UIWebView+ZDUtility.m */; };
+		E498A60EC6A7D179A93024905F04D10D /* ZDConcurrentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 61C01FA385FC2056953FADF359FB6AF3 /* ZDConcurrentOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E6A82311E29E187CA2012042471E67E8 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABC9B49C116D56DF9C31A210B2EBBDB /* ZDAlertControllerHelper.m */; };
+		E91B6E3A51498BF9220936E88782C846 /* UIImageView+ZDGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B926B4F0825B82D7ACAAB66FFA6A59A /* UIImageView+ZDGIF.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EA0B6FE78689B922D085941D36A3F508 /* UIApplication+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D586683A331CDF0ABF91B9B70B92CBC /* UIApplication+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EB5031BA0E4E87FB8701119E9254007D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7C871945BC375D2E5DD40D082EAD2 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EE1C2421339202DB87CECCDBFDEA1E73 /* UIView+AutoFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 62A468EF3CE92FAF5BBE22338BBA61D4 /* UIView+AutoFlowLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EF005A7CA63FEA45BEB157328FB8F2E0 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C1DD1434FDD47BC574F46F467D99E1 /* UITextView+ZDUtility.m */; };
+		F00C742589CB14EE05487E0CF8BBB14A /* UIView+FDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = E3E9FA07E6C552A6ED048FE58553CFFF /* UIView+FDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F5A697DA086C426AB5FDA27044880E16 /* ZDEXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = AE742C63DC606E01E579CC615EE81021 /* ZDEXTScope.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F6688F8CFA0DDDBD0F157D16B9221E67 /* ZDRuntimeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CFCD80029B08D4E46B2C8AE24CB35B5 /* ZDRuntimeTool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F69C259D4345823293B2D173137B56AC /* UIViewController+ZDPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 47EA67D072043B41091EF1E1E41A306E /* UIViewController+ZDPop.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F7004E7B4391FCF805A8E062F2645720 /* UILabel+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A2FCA080CE0D647D34E100E1822302 /* UILabel+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F71632E6438BC397664F31AEF66E844A /* ZDBackgroundContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 294E5F60B4DAB8D3C45F82FC2DEAB18C /* ZDBackgroundContainerView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F7A41CCC6958E89BF3341C2C8A56B1DA /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D4CDDAB61CE8F10CF408CEAA11B40 /* ZDFileManager.m */; };
+		F97582738FA302A50F8A358932191728 /* ZDSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B16AC16ED7DB793BC2B1881198541D /* ZDSafe.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F9C6CC04E16967F749F3E43237E3AD0C /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 601FE58740715E5852C04D24C5F2D130 /* ZDAlertControllerHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FB7503460A940184EE58A868CF199C49 /* NSArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F4051BC0C5994AA2B7B7EF8394567 /* NSArray+ZDUtility.m */; };
+		FBFCE7CFB289231D226514EBF864F0D2 /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D1F4AC18B0B50C7B1C92CBB48870CA /* NSString+ZDUtility.m */; };
+		FC9131504A0871A081B559591B52355E /* UIImageView+ZDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C523E18107B5B87248B371F6D52CD0 /* UIImageView+ZDGIF.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,7 +188,7 @@
 		2E0EA6BF863BF548A0E07C6D9E3B3330 /* ZDToolKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDToolKit.debug.xcconfig; sourceTree = "<group>"; };
 		316141C46E1FE61F16F2E9B0FC771E28 /* ZDPermissionHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDPermissionHandler.m; path = ZDToolKit/ZDTools/ZDPermissionHandler.m; sourceTree = "<group>"; };
 		31CDC5CD414D080085778A8CE35D9858 /* NSURLSession+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSURLSession+ZDUtility.m"; sourceTree = "<group>"; };
-		32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZDToolKit.a; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = ZDToolKit; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E33D2A95182DAD731678B427B2D0C9 /* ZDProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDProxy.h; path = ZDToolKit/ZDTools/ZDProxy/ZDProxy.h; sourceTree = "<group>"; };
 		344310E388F0BAE2BD5A88290815A32A /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AutoLayout.h"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		38547B43C1FA385A8D04C3E6D57A6E5B /* ZDWatchdog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDWatchdog.h; path = ZDToolKit/ZDTools/ZDWatchdog.h; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8D5E068323B73B35A5CCFFCB10F8C062 /* Frameworks */ = {
+		54807BE5CA4EA818C8C4738A8A300E74 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,7 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				C2AB0E8DB8E120DC3914E6BE60E07AFB /* Frameworks */,
-				5F4169285C56518D57B1F9579C50A672 /* Products */,
+				3A0F3E04D00761301EB4354DA19ED1CD /* Products */,
 				A7932D61598A8A23DD2EA3FABB700636 /* ZDToolKit */,
 			);
 			sourceTree = "<group>";
@@ -374,6 +374,14 @@
 			name = ZDProxy;
 			sourceTree = "<group>";
 		};
+		3A0F3E04D00761301EB4354DA19ED1CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		40CA80C8F7B3095469DAF326D70C8AA7 /* ZDDebug */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,14 +405,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ZDToolKit";
-			sourceTree = "<group>";
-		};
-		5F4169285C56518D57B1F9579C50A672 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		5FA27AEBDBD2E34EAA6674637BED744C /* ZDPromise */ = {
@@ -624,87 +624,87 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		7659C64ECA94CE6B68506E6061B00503 /* Headers */ = {
+		A99294819BA32CCA73FD7F50DFC42EE3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				225731E798EAF4A9125CBFDCBD48F4BA /* CALayer+ZDUtility.h in Headers */,
-				5C6FDB36B4824B1323D29E8FA9F42080 /* NSArray+ZDUtility.h in Headers */,
-				D5080C0A32CA9400E879DBA04F426F0A /* NSData+ZDUtility.h in Headers */,
-				5FCE67175E20B4CF3678D16E6CBD39CF /* NSDate+ZDUtility.h in Headers */,
-				D59A8504CA89CE5D0D20352D2ACC40CA /* NSDictionary+ZDUtility.h in Headers */,
-				ACD7F31EC609212303B73282F20FE2B9 /* NSInvocation+ZDBlock.h in Headers */,
-				D63910F34B8FB516516D8ADD6CA7988B /* NSInvocation+ZDUtility.h in Headers */,
-				1F15146FD14D4C135935891FD3392925 /* NSMutableArray+ZDUtility.h in Headers */,
-				5146129A497B0EEB509520A9A1C0226F /* NSNotificationCenter+ZDUtility.h in Headers */,
-				D825179F902FCC2508C2000D447EB181 /* NSNull+ZDUtility.h in Headers */,
-				75C1E68E84409F42BE19564881DCA43A /* NSObject+ZDBlockKVO.h in Headers */,
-				15DA97640A5DF9C187E488DD0C9F7E10 /* NSObject+ZDRuntime.h in Headers */,
-				BBEE9D1A6450EB3E547C925E6F7A2AB3 /* NSObject+ZDSimulateKVO.h in Headers */,
-				54CB7C589A82779BFD09AD3281DF7102 /* NSObject+ZDUtility.h in Headers */,
-				183AEEFF7BFF46FFEE3515861AD076EA /* NSString+ZDUtility.h in Headers */,
-				C5C67A8556935706086BFA97D0FBA4D1 /* NSTimer+ZDUtility.h in Headers */,
-				362E8ADFBC36FA6A11648254D159960F /* NSURLSession+ZDUtility.h in Headers */,
-				A07B6D26302C4D71CA695FFB8CF1E556 /* PKProtocolExtension.h in Headers */,
-				6B9FBA4C55544EF5D519FDFDDECA2503 /* ProtocolKit.h in Headers */,
-				8B4ACDDDADA91261BAB63A4F70FDABFD /* UIApplication+ZDUtility.h in Headers */,
-				FDBA36A0794CE48FA2AED87E3497A14B /* UIButton+ZDUtility.h in Headers */,
-				418ED34990C21C83B7BBAECACC80125F /* UIColor+ZDUtility.h in Headers */,
-				CE3C157EBE946ECD237DD0E4EA10EC8D /* UIControl+ZDUtility.h in Headers */,
-				17D025D155C319A6C520AF341C322D2C /* UIImage+ZDUtility.h in Headers */,
-				007F7811E21BC6CAC34DBE36394F35FF /* UIImageView+FaceAwareFill.h in Headers */,
-				4C44B41C9FEAFB4980CB9FEC422EADBE /* UIImageView+ZDGIF.h in Headers */,
-				69E1B1F167B00545C3CB9E41C92FFB08 /* UIImageView+ZDUtility.h in Headers */,
-				B5A4566F625AF82D048097F826307C1F /* UILabel+ZDUtility.h in Headers */,
-				19DF43610B8AAD0A98CF7B6ECD1A9557 /* UIResponder+ZDUtility.h in Headers */,
-				4D7036DFF5AB4ED8699A084766D7DB70 /* UITextView+ZDUtility.h in Headers */,
-				3DDDF0F468E3E10FE860FD9A4F977378 /* UIView+AutoFlowLayout.h in Headers */,
-				6FDCA0F5CDB31DB2B689F4B8AB841324 /* UIView+AutoLayout.h in Headers */,
-				F656EB54F09D6BA2CA2835FE102DEEAA /* UIView+FDCollapsibleConstraints.h in Headers */,
-				6DFA7951590D3B457F574EBF9486681F /* UIView+ZDBorders.h in Headers */,
-				FC9652DB0AE7A5D1DF30A672EEBF7B37 /* UIView+ZDCollapsibleConstraints.h in Headers */,
-				2D7A2ABCA87C572073274766DFD78C8D /* UIView+ZDDraggable.h in Headers */,
-				6D11E5D891DC8F876DF6082629C41281 /* UIView+ZDUtility.h in Headers */,
-				C5F321EB84D5543A26B56E093E9441FB /* UIViewController+ZDBack.h in Headers */,
-				BC22E3818AD1C292451A0CBA7D3BC431 /* UIViewController+ZDPop.h in Headers */,
-				CA3CAE98199A6BF82BD65F4197C78DED /* UIViewController+ZDUtility.h in Headers */,
-				942E98A7045FC77CCC212FC3D3156740 /* UIWebView+ZDUtility.h in Headers */,
-				94C0532B250A26C7F9E5D3B1837035AD /* WKWebView+ZDUtility.h in Headers */,
-				2BAE6B6F293242AC92DEDBC8B5EFF2AF /* ZDActionLabel.h in Headers */,
-				938D754B1A9C6CA265AB7B34818479A7 /* ZDAlertControllerHelper.h in Headers */,
-				A11E9A15203A15A7481C092083A55818 /* ZDBackgroundContainerView.h in Headers */,
-				19EB1A415B1CB906018C03348F36A837 /* ZDBannerScrollView.h in Headers */,
-				47FE81F885669B67ED58B39ADD21A0AD /* ZDConcurrentOperation.h in Headers */,
-				980FD0490AE63959C51A9357E54118B5 /* ZDConsoleUnicode.h in Headers */,
-				B3A560679A3F6D2FF2ADF86FC876862E /* ZDDispatchQueuePool.h in Headers */,
-				A0A1B37E6D64F479E803E6C6264A4AC6 /* ZDDispatchSourceMerge.h in Headers */,
-				7BDC2198A94E20BCA21490404856FFFF /* ZDEdgeLabel.h in Headers */,
-				480B96603349F0B447B63484577CD3E7 /* ZDEXTScope.h in Headers */,
-				8D0F3DC800DFC97AC417F8557A1D0EC5 /* ZDFastEnumeration.h in Headers */,
-				59B92019855CB277B3A63019118938DC /* ZDFileManager.h in Headers */,
-				5874DF7816CE24B1006E8DB0340E5034 /* ZDFunction.h in Headers */,
-				9E419E67C679D2C069A46120C886295B /* ZDGifImageView.h in Headers */,
-				79B383D2804024819F966D5BB0210011 /* ZDGuardUIKitOnMainThread.h in Headers */,
-				AEE34E3D35D6BE423B06A133984E9D08 /* ZDIntegrationManager.h in Headers */,
-				1728B9CD6A0057D0425FB825281B5DA4 /* ZDInvocationWrapper.h in Headers */,
-				4977F07018D31AC73E324BB4BDCA7AC2 /* ZDLinkedMap.h in Headers */,
-				F53F2D088DBD34727B4385B1592E613A /* ZDMacro.h in Headers */,
-				E21D31BCB0FC52F84E78943544652368 /* ZDMetamacros.h in Headers */,
-				EA6ED890CDBC1A043C956803E2DDCB7C /* ZDMutableArray.h in Headers */,
-				E4BA575ED690123619D898F8418C0034 /* ZDMutableDictionary.h in Headers */,
-				09FE3F01BC054D9D08B675FBCB2CECC7 /* ZDOrderedDictionary.h in Headers */,
-				B654DC3ADD6F937CA9AEA37768304BAD /* ZDOSLogger.h in Headers */,
-				21F51E992B46DEC06CD455AC44A28E1E /* ZDPermissionHandler.h in Headers */,
-				346FA2BFE225BEB70134C74BF54590D0 /* ZDPromise.h in Headers */,
-				C548E8432F80D627E07DC805848A367D /* ZDProxy.h in Headers */,
-				973D63356D8C5F1DF2011B999FF4F4F2 /* ZDReusePool.h in Headers */,
-				18B4B29CB8A56CAA38CC19145A271EDD /* ZDRunloopQueue.h in Headers */,
-				EF59D1DD9A92F2D96EE142D272B60676 /* ZDRuntimeTool.h in Headers */,
-				A635193C08C4D7106B1688F354D1EFBB /* ZDSafe.h in Headers */,
-				1FE8B6FED2CE264F5606EC709950147C /* ZDTextView.h in Headers */,
-				681E3E0039D784EFE6E28B069F9A4AD5 /* ZDToolKit-umbrella.h in Headers */,
-				EFA5B796DAA754FDB6AD2BC27303BF2C /* ZDToolKit.h in Headers */,
-				2CC63C95F3034185FB063026F8F98943 /* ZDWatchdog.h in Headers */,
+				2C1AFC082B458EE6FA7B647DE0FBF8E4 /* CALayer+ZDUtility.h in Headers */,
+				7D9F75E43EE8A9B5E547CBC02A126229 /* NSArray+ZDUtility.h in Headers */,
+				A77A1394BFF49B1E9C7B26F64095A104 /* NSData+ZDUtility.h in Headers */,
+				1740E763897683FBB546DD92E07DC1DE /* NSDate+ZDUtility.h in Headers */,
+				2D12A0FDAA1C160D1F6D90912A6CF8C9 /* NSDictionary+ZDUtility.h in Headers */,
+				DDE3A089E5AE7092FF26E52F66D317EE /* NSInvocation+ZDBlock.h in Headers */,
+				3F870B61347E34BD20BB579C728F3617 /* NSInvocation+ZDUtility.h in Headers */,
+				238781246F03D2F65CFF63666DCF93C5 /* NSMutableArray+ZDUtility.h in Headers */,
+				9DBB8B314916E732B83D3FE7874A8D2D /* NSNotificationCenter+ZDUtility.h in Headers */,
+				49F9BAD68A119E3A414F72E93A3FFF71 /* NSNull+ZDUtility.h in Headers */,
+				B38549163B55B268B50DD816D7E5E312 /* NSObject+ZDBlockKVO.h in Headers */,
+				8D471E92876BF8C646C235959D583DEE /* NSObject+ZDRuntime.h in Headers */,
+				ABCEC77FDF51BA9C9EEB0E9CF7F32931 /* NSObject+ZDSimulateKVO.h in Headers */,
+				16C2ADD80CFAA343E25D119AEB5B6AE5 /* NSObject+ZDUtility.h in Headers */,
+				DF98F6DD854F1735DF750202892C2B94 /* NSString+ZDUtility.h in Headers */,
+				8A269EB95340C52337AD640F48CD23A4 /* NSTimer+ZDUtility.h in Headers */,
+				E159D1CA65209DBB417C18DD75625ACF /* NSURLSession+ZDUtility.h in Headers */,
+				B7D5F6EB395B42A30D62976EC95B01E3 /* PKProtocolExtension.h in Headers */,
+				A695155E6603CFDB58DA665A42FE80F3 /* ProtocolKit.h in Headers */,
+				EA0B6FE78689B922D085941D36A3F508 /* UIApplication+ZDUtility.h in Headers */,
+				6A0710201C5A24D7DEC6CB47CEECE0E8 /* UIButton+ZDUtility.h in Headers */,
+				89267EB25D2E968366F9C3E656F98D8C /* UIColor+ZDUtility.h in Headers */,
+				4AA404EC87B5D65600FA4F5908A1857F /* UIControl+ZDUtility.h in Headers */,
+				75CC010D960FCED2D897BC00A99A30C1 /* UIImage+ZDUtility.h in Headers */,
+				D7588A869B098B52451510E8D3B58C3E /* UIImageView+FaceAwareFill.h in Headers */,
+				E91B6E3A51498BF9220936E88782C846 /* UIImageView+ZDGIF.h in Headers */,
+				7565A638E9B15B550F6E3BC1C24E10F9 /* UIImageView+ZDUtility.h in Headers */,
+				F7004E7B4391FCF805A8E062F2645720 /* UILabel+ZDUtility.h in Headers */,
+				397D4BC0B08B452DDE1E3C1B6BDA98C1 /* UIResponder+ZDUtility.h in Headers */,
+				4392FA7F5EFF891532ABA6822BE35669 /* UITextView+ZDUtility.h in Headers */,
+				EE1C2421339202DB87CECCDBFDEA1E73 /* UIView+AutoFlowLayout.h in Headers */,
+				3F317C9653FFB0373316A4E125B17AEE /* UIView+AutoLayout.h in Headers */,
+				F00C742589CB14EE05487E0CF8BBB14A /* UIView+FDCollapsibleConstraints.h in Headers */,
+				AC547A262EC48F13AEC82B9945D61DF1 /* UIView+ZDBorders.h in Headers */,
+				3D753D7396E32A4A37F7E469BC1A5FF8 /* UIView+ZDCollapsibleConstraints.h in Headers */,
+				631A625239255E4DDA2EA92B48E6F643 /* UIView+ZDDraggable.h in Headers */,
+				6850D3C4A7E94BFA632E82C4841B756D /* UIView+ZDUtility.h in Headers */,
+				ACD4EBB106710CAC5E68955330CDE5AC /* UIViewController+ZDBack.h in Headers */,
+				F69C259D4345823293B2D173137B56AC /* UIViewController+ZDPop.h in Headers */,
+				00378A921A846556FDE99084CB3CB96E /* UIViewController+ZDUtility.h in Headers */,
+				303B3C04CBFCAF0AF178EF01D0437C74 /* UIWebView+ZDUtility.h in Headers */,
+				1196F9D9C5FB4FB546130A6DBC071F59 /* WKWebView+ZDUtility.h in Headers */,
+				1685B53A6FC99F5B23EAD18D16150CE1 /* ZDActionLabel.h in Headers */,
+				F9C6CC04E16967F749F3E43237E3AD0C /* ZDAlertControllerHelper.h in Headers */,
+				F71632E6438BC397664F31AEF66E844A /* ZDBackgroundContainerView.h in Headers */,
+				B5320B65A53646D0D3899428CE4A94D9 /* ZDBannerScrollView.h in Headers */,
+				E498A60EC6A7D179A93024905F04D10D /* ZDConcurrentOperation.h in Headers */,
+				B5127345FB1148F53CA330FC2968D74B /* ZDConsoleUnicode.h in Headers */,
+				308725B9C056905477877952B2818F2B /* ZDDispatchQueuePool.h in Headers */,
+				1E9B70D29CBF2CC0CCBF015A98BD0180 /* ZDDispatchSourceMerge.h in Headers */,
+				5D1B31987D0F4A9F41AAB72475E9E703 /* ZDEdgeLabel.h in Headers */,
+				F5A697DA086C426AB5FDA27044880E16 /* ZDEXTScope.h in Headers */,
+				D095CAE312AC7A11B749EA108036CE15 /* ZDFastEnumeration.h in Headers */,
+				4BC8C1A3A2C94BAEC979714405B2F56F /* ZDFileManager.h in Headers */,
+				5FCF16B4358C8A19F57D6DCC891588D6 /* ZDFunction.h in Headers */,
+				1256727EEE158504A8E9A27BD59F7585 /* ZDGifImageView.h in Headers */,
+				206927A4B6CBCA2E831FAFE48C83A4CA /* ZDGuardUIKitOnMainThread.h in Headers */,
+				BEF5BE7E913218BFE03D5332EF76AD49 /* ZDIntegrationManager.h in Headers */,
+				B2C44FE22A8BD83ED6A8956DF041DE5A /* ZDInvocationWrapper.h in Headers */,
+				04F223F53E4AAA76E6BBD1FB2AC67E79 /* ZDLinkedMap.h in Headers */,
+				D85084879424F3D3997D07D6D374CC50 /* ZDMacro.h in Headers */,
+				0B499495603B19D1788D0CE90BD870A3 /* ZDMetamacros.h in Headers */,
+				20CCBEC3043E9B9D13A3E9FBC4F2C84C /* ZDMutableArray.h in Headers */,
+				55BF01CEBFB7B4220754E5613A2A8385 /* ZDMutableDictionary.h in Headers */,
+				3D8776C4B2D626099A552779E5F68B4F /* ZDOrderedDictionary.h in Headers */,
+				08FCF35F33C130A6D4B664A2E4802C51 /* ZDOSLogger.h in Headers */,
+				1162774705D90940EB314792B4F54484 /* ZDPermissionHandler.h in Headers */,
+				B2076D3B69A87E2A4CA89A8FA7229944 /* ZDPromise.h in Headers */,
+				6E2347B8E7A31FCD88E19D08AA7FAD14 /* ZDProxy.h in Headers */,
+				44D7C9B74E5C01704DE9DE4CD2AEAC6B /* ZDReusePool.h in Headers */,
+				DACA835AAF8A6574232D95A30F7E2818 /* ZDRunloopQueue.h in Headers */,
+				F6688F8CFA0DDDBD0F157D16B9221E67 /* ZDRuntimeTool.h in Headers */,
+				F97582738FA302A50F8A358932191728 /* ZDSafe.h in Headers */,
+				80152E085DC3CD76045FB07A467A4D68 /* ZDTextView.h in Headers */,
+				605971E208826E6373A45171EE4998B8 /* ZDToolKit.h in Headers */,
+				2B090E6923166F734BBE5E03A3A082F3 /* ZDToolKit-umbrella.h in Headers */,
+				738C0E0BF4BDDB7EEF1C0268914EEF6C /* ZDWatchdog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,11 +713,11 @@
 /* Begin PBXNativeTarget section */
 		F01D98A255D10FCA305E22F1C7AF6818 /* ZDToolKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA534DFC79A77E0CADF55979A6F7E354 /* Build configuration list for PBXNativeTarget "ZDToolKit" */;
+			buildConfigurationList = 598887277A5EABC1230626CCF08BB2D3 /* Build configuration list for PBXNativeTarget "ZDToolKit" */;
 			buildPhases = (
-				7659C64ECA94CE6B68506E6061B00503 /* Headers */,
-				80B5722BF92E5855DE212AFD49B1C7DC /* Sources */,
-				8D5E068323B73B35A5CCFFCB10F8C062 /* Frameworks */,
+				A99294819BA32CCA73FD7F50DFC42EE3 /* Headers */,
+				AF9A76873252CADB88371102952AC175 /* Sources */,
+				54807BE5CA4EA818C8C4738A8A300E74 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -725,7 +725,7 @@
 			);
 			name = ZDToolKit;
 			productName = ZDToolKit;
-			productReference = 32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */;
+			productReference = 32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -734,19 +734,19 @@
 		C7021AA7AF740AA83E35E8DAD8181108 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = B4FC1B577ACD17B180FB1A5FBEE7223A /* Build configuration list for PBXProject "ZDToolKit" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = 04A6D03C46A81EA58FDFB6BF0DCE96DD;
-			productRefGroup = 5F4169285C56518D57B1F9579C50A672 /* Products */;
+			productRefGroup = 3A0F3E04D00761301EB4354DA19ED1CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -756,88 +756,88 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		80B5722BF92E5855DE212AFD49B1C7DC /* Sources */ = {
+		AF9A76873252CADB88371102952AC175 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC1CBEB2B3AE96A151B7B98364A3DC22 /* CALayer+ZDUtility.m in Sources */,
-				92B19A3CEFC68E771E8D42B87B74A3F0 /* NSArray+ZDUtility.m in Sources */,
-				53653EB2C3FD37B1E5A241D09926E564 /* NSData+ZDUtility.m in Sources */,
-				EC76FF3E33BE1699632759443CD94624 /* NSDate+ZDUtility.m in Sources */,
-				9834B1CEE11F953A174D7B7D5B4B0FC2 /* NSDictionary+ZDUtility.m in Sources */,
-				C3A6FA9BE57F499B0069BC7797842DBE /* NSInvocation+ZDBlock.m in Sources */,
-				78EE290F092579CCFC79811CF952F4FE /* NSInvocation+ZDUtility.m in Sources */,
-				2D20AEBF23D639DE2274E1A2DCA416A7 /* NSMutableArray+ZDUtility.m in Sources */,
-				9935041FC29A6E7160CFFD3C5ACB27CD /* NSNotificationCenter+ZDUtility.m in Sources */,
-				F824FCF689F8E10991C1E6FF15E070D2 /* NSNull+ZDUtility.m in Sources */,
-				69E613ADF57CF0CA2CE63DE488E1DB34 /* NSObject+ZDBlockKVO.m in Sources */,
-				237EA454B79B86D8DAEF780334F22E32 /* NSObject+ZDRuntime.m in Sources */,
-				EA78777CF2F36FEC59E3EF039F7D4EB5 /* NSObject+ZDSimulateKVO.m in Sources */,
-				80FCD5CF363643421D7E399911DC6A69 /* NSObject+ZDUtility.m in Sources */,
-				77A3FD648582B3B6596975553F5BA9FB /* NSString+ZDUtility.m in Sources */,
-				52692B27A42F499502D3143850E0F52A /* NSTimer+ZDUtility.m in Sources */,
-				6CCA6C395956625C8BF8A2179EA3B9F5 /* NSURLSession+ZDUtility.m in Sources */,
-				E50C8CD886CF28BEBAE106CA3E7CF94C /* PKProtocolExtension.m in Sources */,
-				5DD180DF01F7B6E119D0E245748F1074 /* UIApplication+ZDUtility.m in Sources */,
-				B69214C50A1F32E560A077136287FEED /* UIButton+ZDUtility.m in Sources */,
-				C18466E97E787CF81B6123F7EBA5DF12 /* UIColor+ZDUtility.m in Sources */,
-				00A15FEDB0E1E5CF9208A28D80867F00 /* UIControl+ZDUtility.m in Sources */,
-				E68D820B8C837E5CE4C59F72322650DB /* UIImage+ZDUtility.m in Sources */,
-				73C3C342BC67A1358836223D1F00FE09 /* UIImageView+FaceAwareFill.m in Sources */,
-				3F45020C4560FAE7FEEC60654ACB5F82 /* UIImageView+ZDGIF.m in Sources */,
-				72493967BDB55EAD136A649D87F9AADC /* UIImageView+ZDUtility.m in Sources */,
-				B1E343A00B1CB807182F5E767CF3BDF7 /* UILabel+ZDUtility.m in Sources */,
-				F17F57DC360E94C83BA80DCF25AA26BE /* UIResponder+ZDUtility.m in Sources */,
-				36A2991E7A157175FE6787F1CABC1B02 /* UITextView+ZDUtility.m in Sources */,
-				8CFDC3A8B65A4EF416B386E6AB86F2C1 /* UIView+AutoFlowLayout.m in Sources */,
-				2282AC64F4AD9CCE71C30C2997BCDA2F /* UIView+AutoLayout.m in Sources */,
-				85FF6015EA3E8BFB6FE9C760B659C6E1 /* UIView+FDCollapsibleConstraints.m in Sources */,
-				5510F2795A22E74E6C348D0FF6AE7BD7 /* UIView+ZDBorders.m in Sources */,
-				1BDE6405F2071FBA5875525A4FBEDBE9 /* UIView+ZDCollapsibleConstraints.m in Sources */,
-				321A91435804D1A5FC003FC216B24520 /* UIView+ZDDraggable.m in Sources */,
-				B01ABF745462B1F0AA2D208B2C442E06 /* UIView+ZDUtility.m in Sources */,
-				886A46C01BA96966BA4E52B08A65F4FD /* UIViewController+ZDBack.m in Sources */,
-				EFD0E6AF2928B4FF050AC6990786572E /* UIViewController+ZDPop.m in Sources */,
-				0FE88BF8193EA61412F3325DB1F89BE3 /* UIViewController+ZDUtility.m in Sources */,
-				C78CFBC9FA0A9033E4107ED584A5C092 /* UIWebView+ZDUtility.m in Sources */,
-				9092EC779F87339628DA537A275E96C9 /* WKWebView+ZDUtility.m in Sources */,
-				E9D71909D6059CBA9B6C33D62D63EC7B /* ZDActionLabel.m in Sources */,
-				0120ED23BF3BCC16AEDC732585E5A368 /* ZDAlertControllerHelper.m in Sources */,
-				4454DFC7DBA9F21E4D2D5935259C43D8 /* ZDBackgroundContainerView.m in Sources */,
-				385C993DE26B7258919EE2CAF664565E /* ZDBannerScrollView.m in Sources */,
-				46D4402A1D54C0FD4FE534944BD986DE /* ZDConcurrentOperation.m in Sources */,
-				0659DC37036BE849C98F64C726871A0A /* ZDConsoleUnicode.m in Sources */,
-				2A6602F9FD6FCA393BF8E85D418B7518 /* ZDDispatchQueuePool.m in Sources */,
-				583E4D06516F00A24F289F89AA499806 /* ZDDispatchSourceMerge.m in Sources */,
-				139B6C5EB81E8DB8F9EC58186F2970D9 /* ZDEdgeLabel.m in Sources */,
-				87E6207C5E48A67885827C3CE10CEAE2 /* ZDFileManager.m in Sources */,
-				014B05C6ACB990A01141F777BED85571 /* ZDFunction.m in Sources */,
-				A4A23650DEB30EECE924A5FE1C8500BF /* ZDGifImageView.m in Sources */,
-				B72549270D6349B3BC9E069E38C7920C /* ZDGuardUIKitOnMainThread.m in Sources */,
-				20A7E4F6BEE372670A336702CDC3CB3A /* ZDIntegrationManager.m in Sources */,
-				1C995A81B176DD36909D7E6543709B91 /* ZDInvocationWrapper.m in Sources */,
-				D3647073E6500A12A4DEF6324C416B2C /* ZDLinkedMap.m in Sources */,
-				262E6C9AFDC323E482217C061F8F96DE /* ZDMutableArray.m in Sources */,
-				593EC1D6BEF1C66AD987700D5BC8DBCF /* ZDMutableDictionary.m in Sources */,
-				AB3309A5FA5B273A17C27DF440D19275 /* ZDOrderedDictionary.m in Sources */,
-				BBB4E62C50E9DDC5A5F7007C678C7680 /* ZDOSLogger.m in Sources */,
-				9684A132E28CF92F1C9A3C4B8D9FE59C /* ZDPermissionHandler.m in Sources */,
-				A8AD6CF61F3B0F50EAEBECD9D994F09A /* ZDPromise.m in Sources */,
-				BAF2E35FF870EB5837FAA75EC2269D0D /* ZDProxy.m in Sources */,
-				25B6D75FF9301CF2821B12057C965255 /* ZDReusePool.m in Sources */,
-				C362F55CB96A4BA57471F190AA250AF4 /* ZDRunloopQueue.m in Sources */,
-				A45E86E13F9BECCA9F21F5EE891879F7 /* ZDRuntimeTool.m in Sources */,
-				1A1DE4A1C36F78700D48514F1D108164 /* ZDSafe.m in Sources */,
-				B24EC82555664E0B4126D11FB9229852 /* ZDTextView.m in Sources */,
-				B5AB1FA1FD27D74DD5D778F5E0697739 /* ZDToolKit-dummy.m in Sources */,
-				2B79E5DA22B12ED8C5D6559BF0661255 /* ZDWatchdog.m in Sources */,
+				B615B664C0DB54756CAFE438AA26E3F0 /* CALayer+ZDUtility.m in Sources */,
+				FB7503460A940184EE58A868CF199C49 /* NSArray+ZDUtility.m in Sources */,
+				41B6BD953277E0B82018EE7048A85950 /* NSData+ZDUtility.m in Sources */,
+				974599D50FAB466C6B5E3B3669E58DBB /* NSDate+ZDUtility.m in Sources */,
+				914751EA453845AC51D39F072F23DA67 /* NSDictionary+ZDUtility.m in Sources */,
+				992A5A723C039827D2D5057F265263BC /* NSInvocation+ZDBlock.m in Sources */,
+				18D5DD5E6DD10DA611EBED0959A0F58E /* NSInvocation+ZDUtility.m in Sources */,
+				AF1374FF95BC2FCF5EACCFE1DF65E3D9 /* NSMutableArray+ZDUtility.m in Sources */,
+				70724FC735D3853837D14CD050279C3A /* NSNotificationCenter+ZDUtility.m in Sources */,
+				6B6F3479EB403F62D6AC38EE05B559B7 /* NSNull+ZDUtility.m in Sources */,
+				E190D3B7342104FD00E23F37B06DB7D7 /* NSObject+ZDBlockKVO.m in Sources */,
+				34F088D4BAF9BED707C0EE5DFB3E2921 /* NSObject+ZDRuntime.m in Sources */,
+				1010E7F1C392E72265DA5014CB097EEB /* NSObject+ZDSimulateKVO.m in Sources */,
+				32383E1EB312CB75A5AF36EE0659A551 /* NSObject+ZDUtility.m in Sources */,
+				FBFCE7CFB289231D226514EBF864F0D2 /* NSString+ZDUtility.m in Sources */,
+				0092F9495A8826EA2446A77568ED7A5C /* NSTimer+ZDUtility.m in Sources */,
+				2743815BBA9A03BD26D0E7D0632321AF /* NSURLSession+ZDUtility.m in Sources */,
+				824C65CB83F6AB9289554F8BF2AEB5D5 /* PKProtocolExtension.m in Sources */,
+				1D38E075A97D4AFAF704743D29A6957F /* UIApplication+ZDUtility.m in Sources */,
+				43F8577117E4D02482276E8EFF652E6B /* UIButton+ZDUtility.m in Sources */,
+				D87E38DD1AE8EA38EB3F9DCF1CAC1280 /* UIColor+ZDUtility.m in Sources */,
+				83823627C910B30D97B5DB8099DB3973 /* UIControl+ZDUtility.m in Sources */,
+				DD8C14A66F05D3D8755C1B1199CE6509 /* UIImage+ZDUtility.m in Sources */,
+				A6B79BBFC4767DA0801EE1D9A49E81ED /* UIImageView+FaceAwareFill.m in Sources */,
+				FC9131504A0871A081B559591B52355E /* UIImageView+ZDGIF.m in Sources */,
+				5A2CF11E1BE2B442209F1EE4B5A5D944 /* UIImageView+ZDUtility.m in Sources */,
+				48B06A544A232F5876D29E496059A64A /* UILabel+ZDUtility.m in Sources */,
+				1DC7A7C104DB108F9A9E8BC51A137481 /* UIResponder+ZDUtility.m in Sources */,
+				EF005A7CA63FEA45BEB157328FB8F2E0 /* UITextView+ZDUtility.m in Sources */,
+				48AFA6BDA34A1D256319326E7EF67C41 /* UIView+AutoFlowLayout.m in Sources */,
+				441AD1DF8E22F477A07AE00DB8352383 /* UIView+AutoLayout.m in Sources */,
+				859BC61C3EE0CC027571DC8D0B4B1304 /* UIView+FDCollapsibleConstraints.m in Sources */,
+				B164AF27544C9468875B380293922A3A /* UIView+ZDBorders.m in Sources */,
+				D88683DCED2BADF38D1C2A5A0EF8A78E /* UIView+ZDCollapsibleConstraints.m in Sources */,
+				D9314D3092E0D79C254E2370C520C07D /* UIView+ZDDraggable.m in Sources */,
+				CA8C58E1B2530DCA0CF8F0D71E2E850E /* UIView+ZDUtility.m in Sources */,
+				7ADFF806173EEE5294AE2D062653F6E4 /* UIViewController+ZDBack.m in Sources */,
+				8FF5ADE8F28D99BE9389ACA3524D6BE1 /* UIViewController+ZDPop.m in Sources */,
+				581AC124289A0E9C8C86E9598238EB82 /* UIViewController+ZDUtility.m in Sources */,
+				E1EB10279095FC994A8A5E3FDBCA8133 /* UIWebView+ZDUtility.m in Sources */,
+				40861A16F30868AAB0C46D3EF1CE36D8 /* WKWebView+ZDUtility.m in Sources */,
+				386A4D3106F4859834DF5DFF8CA686F0 /* ZDActionLabel.m in Sources */,
+				E6A82311E29E187CA2012042471E67E8 /* ZDAlertControllerHelper.m in Sources */,
+				2537F8F4792A8AC33D58DEB061B94BFE /* ZDBackgroundContainerView.m in Sources */,
+				6A1350C5DAAE032D4E98A9747C96D4C2 /* ZDBannerScrollView.m in Sources */,
+				9DC0152B11931428BAAF926FAA8035B1 /* ZDConcurrentOperation.m in Sources */,
+				156AB92DC65051CF03E7EE7ED81E115D /* ZDConsoleUnicode.m in Sources */,
+				7E628B8285A3AE47BF8E6CE185C7F288 /* ZDDispatchQueuePool.m in Sources */,
+				A8EAEFB05208FB608D4EC98303537803 /* ZDDispatchSourceMerge.m in Sources */,
+				38971C4E3D83F3F1FA2173128297AAA4 /* ZDEdgeLabel.m in Sources */,
+				F7A41CCC6958E89BF3341C2C8A56B1DA /* ZDFileManager.m in Sources */,
+				5C4C71442F97C2E38F722132B3126426 /* ZDFunction.m in Sources */,
+				0BACA81C6ECA54A07FC85007196B4779 /* ZDGifImageView.m in Sources */,
+				5BF947E48E41070EF26A1CF8D77E51C4 /* ZDGuardUIKitOnMainThread.m in Sources */,
+				2DC321AC8F75CB04E9AD5EAC1F6C3650 /* ZDIntegrationManager.m in Sources */,
+				A988D1B949301DAC7E8DA9FC6672BBE5 /* ZDInvocationWrapper.m in Sources */,
+				7CE262FD9F2CE51F167545E06C875638 /* ZDLinkedMap.m in Sources */,
+				C7A9BDF83A4A40F891D55783AB853A52 /* ZDMutableArray.m in Sources */,
+				280B5A9A378826114CD7B556990B06B1 /* ZDMutableDictionary.m in Sources */,
+				63222361DA9D019AE4CFC0F1E12C8F88 /* ZDOrderedDictionary.m in Sources */,
+				331E9573F3274FC1635AD3B6F5FE3421 /* ZDOSLogger.m in Sources */,
+				3EB02EFF5E760A42EFB09BF53858F400 /* ZDPermissionHandler.m in Sources */,
+				16FDB39C2CF75C30CD4E59F72147667A /* ZDPromise.m in Sources */,
+				D7AE29E6BFBD03A0AE19D518CD1C98D6 /* ZDProxy.m in Sources */,
+				231F098EF841B6896F38626D233B5D18 /* ZDReusePool.m in Sources */,
+				937059AEAFF2E9F8DA94C333A1BE100B /* ZDRunloopQueue.m in Sources */,
+				764764824F690D2522A0A79C86AABCFC /* ZDRuntimeTool.m in Sources */,
+				EB5031BA0E4E87FB8701119E9254007D /* ZDSafe.m in Sources */,
+				A10FC8AFA21AA791FF38FA333AC59E32 /* ZDTextView.m in Sources */,
+				7C1E2DA9653E55A26A51D31C88A44D98 /* ZDToolKit-dummy.m in Sources */,
+				0C4357B838ACACB15F85FC1D92B90F46 /* ZDWatchdog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		43B4727A6A552AA99EACE2BE64A46BDE /* Debug */ = {
+		0900FE78ED15BCAE89C3266B13C82C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E0EA6BF863BF548A0E07C6D9E3B3330 /* ZDToolKit.debug.xcconfig */;
 			buildSettings = {
@@ -861,7 +861,7 @@
 			};
 			name = Debug;
 		};
-		64D23A2B3E85E125E189E309DD0949A0 /* Release */ = {
+		A6D21FDCF7ABB2423BD99F2AEFC91DAF /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F800669CBC2E1D08017E3EE847F6B1D8 /* ZDToolKit.release.xcconfig */;
 			buildSettings = {
@@ -1017,11 +1017,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA534DFC79A77E0CADF55979A6F7E354 /* Build configuration list for PBXNativeTarget "ZDToolKit" */ = {
+		598887277A5EABC1230626CCF08BB2D3 /* Build configuration list for PBXNativeTarget "ZDToolKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43B4727A6A552AA99EACE2BE64A46BDE /* Debug */,
-				64D23A2B3E85E125E189E309DD0949A0 /* Release */,
+				0900FE78ED15BCAE89C3266B13C82C74 /* Debug */,
+				A6D21FDCF7ABB2423BD99F2AEFC91DAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

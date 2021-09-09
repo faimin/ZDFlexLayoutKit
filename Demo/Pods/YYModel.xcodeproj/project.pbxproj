@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13ACD8AB9F18F75AE3AC558FF41BD5F6 /* NSObject+YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E3DA3C020BAD5A764075A343414D2C2C /* NSObject+YYModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2ED60EBBF98D6078E07247F308AC2CDF /* YYClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 195DB2FED50D6016119599FBF85AA7EA /* YYClassInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		510DC61F93FF2CF684ECF01D69DD5B64 /* YYModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F834A9FBF53EE5085684E0A3359CFC /* YYModel-dummy.m */; };
-		5CE09F40B31B574CDFBA67AAD8DA4BBD /* YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2336BB4F6E2FDD4CC068CD52693E90F7 /* YYModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AB9534DA925A7D75F418378812247ED0 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0EBA82FE5FA7938274774C77EAE1AF /* YYClassInfo.m */; };
-		BE55A2D65307273ADA4958EB52ED9938 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0016372BF585981C806A69482E1F5F91 /* NSObject+YYModel.m */; };
+		03BE2EF19B6234699703B5DE026C60CF /* YYModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F834A9FBF53EE5085684E0A3359CFC /* YYModel-dummy.m */; };
+		13448E9753D6FB78E04FE94096AA7E7C /* YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2336BB4F6E2FDD4CC068CD52693E90F7 /* YYModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2B485C16AC5DB56E4C0DC9664CD3560C /* NSObject+YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E3DA3C020BAD5A764075A343414D2C2C /* NSObject+YYModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		56E5586686263CA0E6086F57F2687434 /* YYClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 195DB2FED50D6016119599FBF85AA7EA /* YYClassInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D84C3495F8427399FBAA7804A066EF5 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0EBA82FE5FA7938274774C77EAE1AF /* YYClassInfo.m */; };
+		B00D51636093BC3513AE1A0430FB832C /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0016372BF585981C806A69482E1F5F91 /* NSObject+YYModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +24,12 @@
 		98F834A9FBF53EE5085684E0A3359CFC /* YYModel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYModel-dummy.m"; sourceTree = "<group>"; };
 		CA3FAEC276118BAC15138A90B652CAB6 /* YYModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYModel.release.xcconfig; sourceTree = "<group>"; };
 		CD0EBA82FE5FA7938274774C77EAE1AF /* YYClassInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYClassInfo.m; path = YYModel/YYClassInfo.m; sourceTree = "<group>"; };
-		CE2A49A24D7C5976DFF21E892F3E0788 /* libYYModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYModel.a; path = libYYModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = YYModel; path = libYYModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3DA3C020BAD5A764075A343414D2C2C /* NSObject+YYModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+YYModel.h"; path = "YYModel/NSObject+YYModel.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		91F8E1C6DA4302E605F55722DD649F2B /* Frameworks */ = {
+		B77D969FD9AFE2F7E06F0DD36A381712 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,10 +58,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3CF429A937F8538D1ED0888E3EB717B1 /* Products */ = {
+		83FA054C8861831893F6F241EDF43998 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A49A24D7C5976DFF21E892F3E0788 /* libYYModel.a */,
+				CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E64D83B3C4E0141832FF3AE1CB7D8 /* Frameworks */,
-				3CF429A937F8538D1ED0888E3EB717B1 /* Products */,
+				83FA054C8861831893F6F241EDF43998 /* Products */,
 				A9677627EE392D26DEF189C3C3F7A2E8 /* YYModel */,
 			);
 			sourceTree = "<group>";
@@ -92,13 +92,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6660FB8204318218A93FB0F3C44E97EB /* Headers */ = {
+		071D6911135DFDD460F6263F2D1351EC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13ACD8AB9F18F75AE3AC558FF41BD5F6 /* NSObject+YYModel.h in Headers */,
-				2ED60EBBF98D6078E07247F308AC2CDF /* YYClassInfo.h in Headers */,
-				5CE09F40B31B574CDFBA67AAD8DA4BBD /* YYModel.h in Headers */,
+				2B485C16AC5DB56E4C0DC9664CD3560C /* NSObject+YYModel.h in Headers */,
+				56E5586686263CA0E6086F57F2687434 /* YYClassInfo.h in Headers */,
+				13448E9753D6FB78E04FE94096AA7E7C /* YYModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,11 +107,11 @@
 /* Begin PBXNativeTarget section */
 		B24F71FDC23D2B2E241DE51DECC7ED5F /* YYModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E29417EB06070436A41A00349FE4848F /* Build configuration list for PBXNativeTarget "YYModel" */;
+			buildConfigurationList = 737F399B0F49C8C4BAB7727D9544CC2F /* Build configuration list for PBXNativeTarget "YYModel" */;
 			buildPhases = (
-				6660FB8204318218A93FB0F3C44E97EB /* Headers */,
-				0AC821F89062781424B70631D97B92ED /* Sources */,
-				91F8E1C6DA4302E605F55722DD649F2B /* Frameworks */,
+				071D6911135DFDD460F6263F2D1351EC /* Headers */,
+				D01CBF03F5C6CD6EE8594F51F1CEAAC7 /* Sources */,
+				B77D969FD9AFE2F7E06F0DD36A381712 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,7 +119,7 @@
 			);
 			name = YYModel;
 			productName = YYModel;
-			productReference = CE2A49A24D7C5976DFF21E892F3E0788 /* libYYModel.a */;
+			productReference = CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -128,19 +128,19 @@
 		4BED0C03B36C5405273F0239D711EB40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 292E5B4AD06C93EB143EEEEDC0BC7E10 /* Build configuration list for PBXProject "YYModel" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = E5E604EE1F9490CEE3CF895752A6BEAF;
-			productRefGroup = 3CF429A937F8538D1ED0888E3EB717B1 /* Products */;
+			productRefGroup = 83FA054C8861831893F6F241EDF43998 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -150,20 +150,20 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0AC821F89062781424B70631D97B92ED /* Sources */ = {
+		D01CBF03F5C6CD6EE8594F51F1CEAAC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE55A2D65307273ADA4958EB52ED9938 /* NSObject+YYModel.m in Sources */,
-				AB9534DA925A7D75F418378812247ED0 /* YYClassInfo.m in Sources */,
-				510DC61F93FF2CF684ECF01D69DD5B64 /* YYModel-dummy.m in Sources */,
+				B00D51636093BC3513AE1A0430FB832C /* NSObject+YYModel.m in Sources */,
+				8D84C3495F8427399FBAA7804A066EF5 /* YYClassInfo.m in Sources */,
+				03BE2EF19B6234699703B5DE026C60CF /* YYModel-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		348D823B45B11EC43FD9EFDB68B14412 /* Debug */ = {
+		1BF8605A6A8640C1CD3FF0CE56868251 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 076F314CA4A084DE4EA7C4668A5B0544 /* YYModel.debug.xcconfig */;
 			buildSettings = {
@@ -186,7 +186,7 @@
 			};
 			name = Debug;
 		};
-		6750FF5BCFAEAC46614F550142490F88 /* Release */ = {
+		B340DF40DA2F6FAB290BDF81B5DEDB74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA3FAEC276118BAC15138A90B652CAB6 /* YYModel.release.xcconfig */;
 			buildSettings = {
@@ -350,11 +350,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E29417EB06070436A41A00349FE4848F /* Build configuration list for PBXNativeTarget "YYModel" */ = {
+		737F399B0F49C8C4BAB7727D9544CC2F /* Build configuration list for PBXNativeTarget "YYModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				348D823B45B11EC43FD9EFDB68B14412 /* Debug */,
-				6750FF5BCFAEAC46614F550142490F88 /* Release */,
+				1BF8605A6A8640C1CD3FF0CE56868251 /* Debug */,
+				B340DF40DA2F6FAB290BDF81B5DEDB74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
