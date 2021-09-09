@@ -70,7 +70,11 @@
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {
-    return objc_getAssociatedObject(self, @selector(flexLayout)) != nil;
+    ZDFlexLayout *flexLayout = objc_getAssociatedObject(self, @selector(flexLayout));
+    if (!flexLayout) {
+        return NO;
+    }
+    return flexLayout.isEnabled;
 }
 
 - (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayout * _Nonnull))block {

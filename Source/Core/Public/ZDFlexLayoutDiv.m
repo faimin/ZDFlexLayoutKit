@@ -16,7 +16,10 @@
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {
-    return _flexLayout != nil;
+    if (!_flexLayout) {
+        return NO;
+    }
+    return _flexLayout.isEnabled;
 }
 
 - (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayout * _Nonnull))block {
