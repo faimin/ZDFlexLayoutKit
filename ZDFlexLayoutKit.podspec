@@ -52,6 +52,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Helper' do |s|
     s.source_files = "Source/Helper/*.{h,m}"
+    s.exclude_files = "Source/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
