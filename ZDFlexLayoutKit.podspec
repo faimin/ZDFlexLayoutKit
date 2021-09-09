@@ -58,6 +58,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'SwiftMaker' do |s|
     s.source_files = "Source/SwiftMaker/*.swift"
+    s.exclude_files = "Source/SwiftMaker/ZDSFlexLayoutChain.swift"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
