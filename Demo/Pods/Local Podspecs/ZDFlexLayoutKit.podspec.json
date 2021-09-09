@@ -59,6 +59,7 @@
     {
       "name": "Helper",
       "source_files": "Source/Helper/*.{h,m}",
+      "exclude_files": "Source/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
