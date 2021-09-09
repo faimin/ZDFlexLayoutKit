@@ -90,13 +90,19 @@ ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, minWidth)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, minHeight)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, maxWidth)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, maxHeight)
-
 ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, aspectRatio)
 
 - (ZDFlexLayoutMaker *(^)(void))markDirty {
     return ^ZDFlexLayoutMaker *(void) {
         [self.flexLayout markDirty];
         [self.flexLayout.view notifyRootNeedsLayout];
+        return self;
+    };
+}
+
+- (ZDFlexLayoutMaker *(^)(BOOL))gone {
+    return ^ZDFlexLayoutMaker *(BOOL gone) {
+        self.flexLayout.view.gone = gone;
         return self;
     };
 }

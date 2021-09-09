@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFlexLayout:(ZDFlexLayout *)flexLayout;
 
 ZD_CHAIN_NORMAL_PROPERTY(BOOL, isEnabled)
-
 ZD_CHAIN_NORMAL_PROPERTY(BOOL, isIncludedInLayout)
 
 ZD_CHAIN_NORMAL_PROPERTY(YGDirection, direction)
@@ -80,10 +79,11 @@ ZD_CHAIN_NORMAL_PROPERTY(YGValue, minWidth)
 ZD_CHAIN_NORMAL_PROPERTY(YGValue, minHeight)
 ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxWidth)
 ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxHeight)
-
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, aspectRatio)
 
 - (ZDFlexLayoutMaker *(^)(void))markDirty;
+
+- (ZDFlexLayoutMaker *(^)(BOOL))gone;
 
 - (ZDFlexLayoutMaker *(^)(NSArray<ZDFlexLayoutView> *))addChildren;
 

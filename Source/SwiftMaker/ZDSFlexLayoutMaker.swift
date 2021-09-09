@@ -401,6 +401,12 @@ public extension ZDSFlexLayoutMaker {
     }
     
     @discardableResult
+    func gone(_ isGone: Bool) -> Self {
+        flexLayout.view.gone = isGone;
+        return self;
+    }
+    
+    @discardableResult
     func addChild(_ child: ZDFlexLayoutView) -> Self {
         flexLayout.view.addChild(child)
         return self
