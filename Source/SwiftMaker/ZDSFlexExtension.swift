@@ -20,6 +20,12 @@ extension Float {
     }
 }
 
+extension Double {
+    public static postfix func %(value: Double) -> YGValue {
+        return YGValue(value: Float(value), unit: .percent)
+    }
+}
+
 extension CGFloat {
     public static postfix func %(value: CGFloat) -> YGValue {
         return YGValue(value: Float(value), unit: .percent)
@@ -37,6 +43,10 @@ extension YGValue: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
     
     public init(_ value: Float) {
         self = YGValue(value: value, unit: .point)
+    }
+    
+    public init(_ value: Double) {
+        self = YGValue(value: Float(value), unit: .point)
     }
     
     public init(_ value: CGFloat) {
