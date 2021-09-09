@@ -34,6 +34,11 @@
         return;
     }
     
+    // make sure to enable flexlayout
+    if (!child.isFlexLayoutEnabled) {
+        child.flexLayout.isEnabled = YES;
+    }
+    
     [self.children removeObject:child];
     [self.children addObject:child];
     child.parent = self;
