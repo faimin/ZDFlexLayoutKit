@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZDFlexLayoutChainProtocol <NSObject>
 /// `flexlayout.isEnabled` will change to `true`
-- (instancetype)zd_makeFlexLayout:(void(NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block;
+- (instancetype)zd_makeFlexLayout:(void(NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block OBJC_SWIFT_UNAVAILABLE("use '.zd.makeFlexLayout()' instead");
 @end
 
 //*************************************************************
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDFlexLayoutDiv (ZDFlexLayoutChain) <ZDFlexLayoutChainProtocol>
 
-+ (instancetype)zd_makeFlexLayout:(void (NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block;
++ (instancetype)zd_makeFlexLayout:(void (NS_NOESCAPE ^)(ZDFlexLayoutMaker *make))block OBJC_SWIFT_UNAVAILABLE("use '.zd.makeFlexLayout()' instead");
 
 @end
 
