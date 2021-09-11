@@ -17,12 +17,12 @@
 }
 
 @interface ZDFlexLayoutMaker ()
-@property (nonatomic, weak) ZDFlexLayout *flexLayout;
+@property (nonatomic, weak) ZDFlexLayoutCore *flexLayout;
 @end
 
 @implementation ZDFlexLayoutMaker
 
-- (instancetype)initWithFlexLayout:(ZDFlexLayout *)flexLayout {
+- (instancetype)initWithFlexLayout:(ZDFlexLayoutCore *)flexLayout {
     if (self = [super init]) {
         flexLayout.isEnabled = YES;
         _flexLayout = flexLayout;

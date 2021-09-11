@@ -11,7 +11,7 @@
 #endif
 
 #import "UIView+ZDFlexLayout.h"
-#import "ZDFlexLayout.h"
+#import "ZDFlexLayoutCore.h"
 #import "ZDFlexLayoutDefine.h"
 #import "ZDFlexLayoutDiv.h"
 #import "ZDFlexLayoutViewProtocol.h"

@@ -23,7 +23,7 @@ extern CGFloat ZDFLFloorPixelValue(CGFloat f);
 YG_EXTERN_C_END
 
 @protocol ZDFlexLayoutViewProtocol;
-@interface ZDFlexLayout : NSObject
+@interface ZDFlexLayoutCore : NSObject
 
 /**
  The view that flexlayout bind.

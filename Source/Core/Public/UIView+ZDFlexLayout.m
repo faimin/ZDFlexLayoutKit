@@ -1,5 +1,5 @@
 //
-//  UIView+ZDFlexLayout.m
+//  UIView+ZDFlexLayoutCore.m
 //  Demo
 //
 //  Created by Zero.D.Saber on 2019/10/10.
@@ -70,23 +70,23 @@
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {
-    ZDFlexLayout *flexLayout = objc_getAssociatedObject(self, @selector(flexLayout));
+    ZDFlexLayoutCore *flexLayout = objc_getAssociatedObject(self, @selector(flexLayout));
     if (!flexLayout) {
         return NO;
     }
     return flexLayout.isEnabled;
 }
 
-- (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayout * _Nonnull))block {
+- (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayoutCore * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
     }
 }
 
-- (ZDFlexLayout *)flexLayout {
-    ZDFlexLayout *layout = objc_getAssociatedObject(self, _cmd);
+- (ZDFlexLayoutCore *)flexLayout {
+    ZDFlexLayoutCore *layout = objc_getAssociatedObject(self, _cmd);
     if (!layout) {
-        layout = [[ZDFlexLayout alloc] initWithView:self];
+        layout = [[ZDFlexLayoutCore alloc] initWithView:self];
         layout.isEnabled = NO;
         objc_setAssociatedObject(self, _cmd, layout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }

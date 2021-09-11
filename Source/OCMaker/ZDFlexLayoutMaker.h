@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZDFlexLayout.h"
+#import "ZDFlexLayoutCore.h"
 #import "ZDFlexLayoutViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (ZDFlexLayoutMaker *(^)(TYPE PROPERTY_NAME))PROPERTY_NAME;
 
 @interface ZDFlexLayoutMaker : NSObject
-
-- (instancetype)initWithFlexLayout:(ZDFlexLayout *)flexLayout;
+     
+- (instancetype)initWithFlexLayout:(ZDFlexLayoutCore *)flexLayout;
 
 ZD_CHAIN_NORMAL_PROPERTY(BOOL, isEnabled)
 ZD_CHAIN_NORMAL_PROPERTY(BOOL, isIncludedInLayout)

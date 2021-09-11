@@ -10,10 +10,10 @@
 #define ZDFlexLayoutKit_h
 
 // Core
-#if __has_include(<ZDFlexLayoutKit/ZDFlexLayout.h>)
+#if __has_include(<ZDFlexLayoutKit/ZDFlexLayoutCore.h>)
 #import <ZDFlexLayoutKit/ZDFlexLayoutDefine.h>
 #import <ZDFlexLayoutKit/ZDFlexLayoutViewProtocol.h>
-#import <ZDFlexLayoutKit/ZDFlexLayout.h>
+#import <ZDFlexLayoutKit/ZDFlexLayoutCore.h>
 #import <ZDFlexLayoutKit/UIView+ZDFlexLayout.h>
 #import <ZDFlexLayoutKit/ZDFlexLayoutDiv.h>
 #endif

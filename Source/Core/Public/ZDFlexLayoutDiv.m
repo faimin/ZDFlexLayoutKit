@@ -22,7 +22,7 @@
     return _flexLayout.isEnabled;
 }
 
-- (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayout * _Nonnull))block {
+- (void)configureFlexLayoutWithBlock:(void (NS_NOESCAPE ^)(ZDFlexLayoutCore * _Nonnull))block {
     if (block) {
         block(self.flexLayout);
     }
@@ -147,9 +147,9 @@
     }
 }
 
-- (ZDFlexLayout *)flexLayout {
+- (ZDFlexLayoutCore *)flexLayout {
     if (!_flexLayout) {
-        _flexLayout = [[ZDFlexLayout alloc] initWithView:self];
+        _flexLayout = [[ZDFlexLayoutCore alloc] initWithView:self];
         _flexLayout.isEnabled = YES;
     }
     return _flexLayout;

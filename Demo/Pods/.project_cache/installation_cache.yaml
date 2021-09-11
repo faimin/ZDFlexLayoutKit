@@ -7,10 +7,10 @@ CACHE_KEYS:
       LookinServer:
         :debug: b622df923e4b573a7ce1cbdb3e640cb1
         :release: b622df923e4b573a7ce1cbdb3e640cb1
-    CHECKSUM: d6874df8b58096c8d463817b6baaa3abc21d31f7
+    CHECKSUM: 743c1681771d0a8dcc38825325a080c3186404a5
     PROJECT_NAME: LookinServer
     SPECS:
-      - LookinServer (1.0.2)
+      - LookinServer (1.0.4)
   Pods-Demo:
     BUILD_SETTINGS_CHECKSUM:
       Debug: bc04d348524eafb83f47053d2b23fc6e
@@ -57,8 +57,8 @@ CACHE_KEYS:
       - "../../Source/Core/Private/ZDFlexLayout+Private.h"
       - "../../Source/Core/Public/UIView+ZDFlexLayout.h"
       - "../../Source/Core/Public/UIView+ZDFlexLayout.m"
-      - "../../Source/Core/Public/ZDFlexLayout.h"
-      - "../../Source/Core/Public/ZDFlexLayout.m"
+      - "../../Source/Core/Public/ZDFlexLayoutCore.h"
+      - "../../Source/Core/Public/ZDFlexLayoutCore.m"
       - "../../Source/Core/Public/ZDFlexLayoutDefine.h"
       - "../../Source/Core/Public/ZDFlexLayoutDiv.h"
       - "../../Source/Core/Public/ZDFlexLayoutDiv.m"

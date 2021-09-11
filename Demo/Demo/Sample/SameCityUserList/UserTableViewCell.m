@@ -244,12 +244,12 @@
  - (void)setupUI2 {
      self.contentView.backgroundColor = ZD_RGB(255, 193, 222);
      
-     [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.paddingHorizontal = YGPointValue(15);
          layout.paddingVertical = YGPointValue(5);
      }];
      
-     [self.containerView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.containerView configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionRow;
          layout.padding = YGPointValue(10);
          layout.alignItems = YGAlignCenter;
@@ -257,14 +257,14 @@
      [self.contentView addChild:self.containerView];
      
      
-     [self.avatarImgView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.avatarImgView configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.width = YGPointValue(80);
          layout.height = YGPointValue(80);
      }];
      [self.containerView addChild:self.avatarImgView];
      
      ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv new];
-     [rightContaienrDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [rightContaienrDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionColumn;
          layout.marginLeft = YGPointValue(10);
          layout.width = YGPointValue(ZD_ScreenWidth() - 115 - 25);
@@ -273,26 +273,26 @@
      
      // 第一行
      ZDFlexLayoutDiv *firstLineDiv = ZDFlexLayoutDiv.new;
-     [firstLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [firstLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionRow;
          layout.justifyContent = YGJustifySpaceBetween;
          layout.alignItems = YGAlignCenter;
      }];
-     [self.nickNameLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.nickNameLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexShrink = 1;
      }];
-     [self.tagLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.tagLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.paddingHorizontal = YGPointValue(5);
          layout.paddingVertical = YGPointValue(2.5);
          layout.marginLeft = YGPointValue(3);
      }];
      ZDFlexLayoutDiv *nameTagDiv = ZDFlexLayoutDiv.new;
-     [nameTagDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [nameTagDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionRow;
          layout.alignItems = YGAlignCenter;
          layout.flexShrink = 1;
      }];
-     [self.locationLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.locationLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.marginLeft = YGPointValue(5);
      }];
      [nameTagDiv addChild:self.nickNameLabel];
@@ -301,22 +301,22 @@
      [firstLineDiv addChild:self.locationLabel];
      
      // 第二行
-     [self.infoLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.infoLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.marginTop = YGPointValue(7);
      }];
      
      // 第三行
      ZDFlexLayoutDiv *thirdLineDiv = ZDFlexLayoutDiv.new;
-     [thirdLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [thirdLineDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionRow;
          layout.justifyContent = YGJustifySpaceBetween;
          layout.alignItems = YGAlignCenter;
          layout.marginTop = YGPointValue(5);
      }];
-     [self.noticeLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.noticeLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexShrink = 1;
      }];
-     [self.chatBtn configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+     [self.chatBtn configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.width = YGPointValue(19);
          layout.height = YGPointValue(18);
      }];

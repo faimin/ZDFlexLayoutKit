@@ -127,14 +127,14 @@ __attribute__((weak)) YGValue YGPercentValue(CGFloat value)
 
 static YGConfigRef globalConfig;
 
-@interface ZDFlexLayout ()
+@interface ZDFlexLayoutCore ()
 
 @property (nonatomic, weak, readwrite) ZDFlexLayoutView view;
 @property (nonatomic, assign, readonly) BOOL isUIView;
 
 @end
 
-@implementation ZDFlexLayout
+@implementation ZDFlexLayoutCore
 
 @synthesize isEnabled = _isEnabled;
 @synthesize isIncludedInLayout = _isIncludedInLayout;
@@ -198,7 +198,7 @@ static YGConfigRef globalConfig;
     NSAssert([NSThread isMainThread], @"This method must be called on the main thread.");
     if (self.isEnabled) {
         for (ZDFlexLayoutView subview in self.view.children) {
-            ZDFlexLayout *const yoga = subview.flexLayout;
+            ZDFlexLayoutCore *const yoga = subview.flexLayout;
             if (yoga.isEnabled && yoga.isIncludedInLayout) {
                 return NO;
             }
@@ -421,7 +421,7 @@ static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayou
 
 static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view)
 {
-    ZDFlexLayout *const yoga = view.flexLayout;
+    ZDFlexLayoutCore *const yoga = view.flexLayout;
     const YGNodeRef node = yoga.node;
 
     // Only leaf nodes should have a measure function
@@ -464,7 +464,7 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
 {
     NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
 
-    const ZDFlexLayout *yoga = view.flexLayout;
+    const ZDFlexLayoutCore *yoga = view.flexLayout;
 
     if (!yoga.isEnabled || !yoga.isIncludedInLayout) {
         return;

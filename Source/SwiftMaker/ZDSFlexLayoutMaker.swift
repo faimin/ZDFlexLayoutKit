@@ -47,9 +47,9 @@ public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
 
 public struct ZDSFlexLayoutMaker {
     
-    private let flexLayout: ZDFlexLayout
+    private let flexLayout: ZDFlexLayoutCore
     
-    public init(_ flexLayout: ZDFlexLayout) {
+    public init(_ flexLayout: ZDFlexLayoutCore) {
         flexLayout.isEnabled = true
         self.flexLayout = flexLayout
     }

@@ -16,11 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ZDFlexLayoutViewProtocol;
 typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 
-@class ZDFlexLayout;
+@class ZDFlexLayoutCore;
 @protocol ZDFlexLayoutViewProtocol <NSObject>
 
 @property (nonatomic, assign, readonly) BOOL isFlexLayoutEnabled;
-@property (nonatomic, strong, readonly) ZDFlexLayout *flexLayout;
+@property (nonatomic, strong, readonly) ZDFlexLayoutCore *flexLayout;
 @property (nonatomic, weak, nullable) ZDFlexLayoutView parent;
 /// real superview
 @property (nonatomic, weak, nullable) UIView *owningView;
@@ -50,7 +50,7 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 
 - (CGSize)sizeThatFits:(CGSize)size;
 
-- (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayout *layout))block;
+- (void)configureFlexLayoutWithBlock:(void(NS_NOESCAPE ^)(ZDFlexLayoutCore *layout))block;
 
 @optional
 - (void)needReApplyLayoutAtNextRunloop;

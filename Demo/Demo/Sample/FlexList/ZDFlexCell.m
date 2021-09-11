@@ -47,17 +47,17 @@
     
     self.titleLabel.flexLayout.isEnabled = YES;
     
-    [self.contentLabel configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [self.contentLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.marginTop = YGPointValue(10);
     }];
     
-    [self.aImageView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [self.aImageView configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.marginTop = YGPointValue(10);
     }];
     
-    [bottomContainerDiv configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [bottomContainerDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
@@ -65,7 +65,7 @@
         layout.marginTop = YGPointValue(10);
     }];
     
-    [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayout * _Nonnull layout) {
+    [self.contentView configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
         layout.isEnabled = YES;
         layout.flexDirection = YGFlexDirectionColumn;
         layout.justifyContent = YGJustifyFlexStart;
