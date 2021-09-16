@@ -5,7 +5,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-#import "ZDFlexLayout+Private.h"
+#import "ZDFlexLayoutCore+Private.h"
 #import <objc/runtime.h>
 #import "ZDCalculateHelper.h"
 

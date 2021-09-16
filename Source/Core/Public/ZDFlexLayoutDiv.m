@@ -8,7 +8,7 @@
 
 #import "ZDFlexLayoutDiv.h"
 #import <objc/runtime.h>
-#import "ZDFlexLayout+Private.h"
+#import "ZDFlexLayoutCore+Private.h"
 
 @implementation ZDFlexLayoutDiv
 @synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView, isRoot = _isRoot, isNeedLayoutChildren = _isNeedLayoutChildren;

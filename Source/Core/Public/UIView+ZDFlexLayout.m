@@ -8,7 +8,7 @@
 
 #import "UIView+ZDFlexLayout.h"
 #import <objc/runtime.h>
-#import "ZDFlexLayout+Private.h"
+#import "ZDFlexLayoutCore+Private.h"
 #import "ZDFlexLayoutDiv.h"
 #import "ZDCalculateHelper.h"
 #import "NSObject+ZDFLDeallocCallback.h"
