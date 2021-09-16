@@ -8,34 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		01661F703C7F8FA3F931E71692CF0B72 /* ZDSFlexLayoutMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AC59DF4CCCCF10461018C6B4E32F6E /* ZDSFlexLayoutMaker.swift */; };
-		0967845D6729BAC521C3928721A20BC4 /* ZDFlexLayoutCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E997E3A05A309B640057935473863D37 /* ZDFlexLayoutCollectionViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		09E2C045A05B0A28460C1D2322120F3B /* ZDCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5906633B82F82333CA44C9A555EC3FF /* ZDCalculateHelper.m */; };
+		09E2C045A05B0A28460C1D2322120F3B /* ZDCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E326942637A527A46594B128A42260C /* ZDCalculateHelper.m */; };
 		11A1D68EDA5A4402E5E2856D4F512234 /* ZDSNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0540A1189380CE5407361131B3FD5C62 /* ZDSNamespace.swift */; };
-		2F004053113758241F3D4E151A7549C5 /* ZDFlexLayoutTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43A1E746779A6ACF30FB8424C5F242 /* ZDFlexLayoutTableViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		14CF2E9850D328CC7CD93A8576571FA3 /* ZDFlexLayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C637D5D710CE1AEA3660C2F179B956 /* ZDFlexLayoutKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		17543A44F9CB8B95279EC103AF506390 /* ZDFlexLayoutCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9B9975AD6BE47BD17FDCA8903C7C44 /* ZDFlexLayoutCore.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1A96AB976177AC7DBE95A3C78DDBF599 /* NSObject+ZDFLDeallocCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = DB838D45D1A9B02C85B3E46E4FF785C6 /* NSObject+ZDFLDeallocCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3571AB1CBCAE7381C156DAC038009E6B /* ZDFlexLayoutCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D6A2A7179DBC9182A2D3610215B077 /* ZDFlexLayoutCore.m */; };
-		36BC9B0012DB37C7F4B162773AE97259 /* ZDFlexLayoutChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8AB9349AB8918BA88E045CC73F02E8 /* ZDFlexLayoutChain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3748FAA86CA23E6F51CB9DCA03F76915 /* ZDFlexLayoutDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = D0215E15D12A754DA1117569D798F54E /* ZDFlexLayoutDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3C7FD5B09911505DBB552AFD2B24F1F2 /* ZDTemplateCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1931FFBE87EBA4936551EEDF011A2E1 /* ZDTemplateCellHandler.m */; };
-		4DD97847E35701A7C4A7507FC2BC1FC0 /* NSObject+ZDFLDeallocCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 61423C55B41BB4649F9D25BCB03FC6BE /* NSObject+ZDFLDeallocCallback.m */; };
+		46EE67948AD4CC6C769D9387DEADE795 /* ZDCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FFCE4042692705B9DE20D613835DE4B3 /* ZDCalculateHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4DD97847E35701A7C4A7507FC2BC1FC0 /* NSObject+ZDFLDeallocCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AAA667D2D78DE5DE49A9CF33868791 /* NSObject+ZDFLDeallocCallback.m */; };
+		5963AE3875A53D0E51D44161A002B7AA /* UIView+ZDFlexLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 27764A1F219E66BD2279A3FAEA7B5C5D /* UIView+ZDFlexLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5BC624DC25281B7063B252E79BE2F43A /* ZDFlexLayoutDiv.m in Sources */ = {isa = PBXBuildFile; fileRef = B40F0553C45500294153D4B6F866EA92 /* ZDFlexLayoutDiv.m */; };
-		5EC53B63BB028192D5E0CE8EC82DAE4C /* NSObject+ZDFLDeallocCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = E8C339386F651389CB1242AC0AAF2C5F /* NSObject+ZDFLDeallocCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5D31082B298B0A9F69A155CA02D21A73 /* ZDFlexLayoutCore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 29284AA02AB4A6E95296CA3D08E3216E /* ZDFlexLayoutCore+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		62C17C5525F7F667006499082BC9EABD /* ZDFlexLayoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F52D3B7A2D449FA54AEF7BBA91A5B08A /* ZDFlexLayoutTableViewCell.m */; };
-		65BFCF5A0022E6502ACC4CB2E5F1E986 /* ZDFlexLayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C637D5D710CE1AEA3660C2F179B956 /* ZDFlexLayoutKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		62FEEBA3A9973295CE4FE732C6B3F368 /* ZDFlexLayoutKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 751CDA59B450288260B5E49B99AA0EFA /* ZDFlexLayoutKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6FEF1681CABAE2EF8DD7C9143780DCEC /* ZDFlexLayoutTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43A1E746779A6ACF30FB8424C5F242 /* ZDFlexLayoutTableViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		80427663A7BE73179F1C27CFCED7C27B /* ZDFlexLayoutDiv.h in Headers */ = {isa = PBXBuildFile; fileRef = A70DBDE5F68EE73A37567F8520CA09E2 /* ZDFlexLayoutDiv.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8190822B17AABE0C5DB410EDBFEB8CFD /* ZDFlexLayoutCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE01A590FEA5F6ACB8E0FDC4EDE25F4F /* ZDFlexLayoutCollectionViewCell.m */; };
+		8795A4FF58CDDEACE3C5A542A7AEA7C7 /* ZDTemplateCellHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = F787024EA6A7073734F0CD1C20E1F0FB /* ZDTemplateCellHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8A6E02E3316ACBF782CA125870D887FD /* ZDSFlexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02E9CEACA5AE794CABA2192D58B2984 /* ZDSFlexExtension.swift */; };
 		951C54F1704C351D70B72F47A1A99957 /* UIView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 085B1ADCF67710FBBE941113C740F834 /* UIView+ZDFlexLayout.m */; };
-		97DBCEF190C610F2F72010E257426CCB /* ZDFlexLayoutDiv.h in Headers */ = {isa = PBXBuildFile; fileRef = A70DBDE5F68EE73A37567F8520CA09E2 /* ZDFlexLayoutDiv.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A98B40920395E6FF8E8F3AAE1F2A9781 /* ZDFlexLayoutMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A78C041DB594704F293C7756D66A757 /* ZDFlexLayoutMaker.m */; };
-		B92D44F2B718BDBF09DD6F015EF75D66 /* UIView+ZDFlexLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 27764A1F219E66BD2279A3FAEA7B5C5D /* UIView+ZDFlexLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CDA3F7EE1D09D30C95233941E7759FA9 /* ZDFlexLayoutKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 751CDA59B450288260B5E49B99AA0EFA /* ZDFlexLayoutKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D21C6632CE6F9688B75EC0906BEECD3E /* ZDFlexLayoutCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9B9975AD6BE47BD17FDCA8903C7C44 /* ZDFlexLayoutCore.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DA059FDDD4665E297C5850D36C1A0847 /* ZDFlexLayoutMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 23BAEC77EEA3852723B560DAEB4E0D40 /* ZDFlexLayoutMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B10C26BAF675A1691001BC57C2A3E82A /* ZDFlexLayoutCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E997E3A05A309B640057935473863D37 /* ZDFlexLayoutCollectionViewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B8F65B720DF901466D3FEF56E9D42EF4 /* ZDFlexLayoutMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 23BAEC77EEA3852723B560DAEB4E0D40 /* ZDFlexLayoutMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BBE316C4D2A8A6349C23CCB29B6E9211 /* ZDFlexLayoutViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C99871778D3E0AC7B09FDB4460D0F2 /* ZDFlexLayoutViewProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D7FA1F4DA6741E49B95DBA6F25F04F30 /* ZDFlexLayoutChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8AB9349AB8918BA88E045CC73F02E8 /* ZDFlexLayoutChain.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E6046443BB1541B9B5F6E6E38B81F569 /* ZDFlexLayoutChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2C4074FB186F5961892622B1BA1053 /* ZDFlexLayoutChain.m */; };
-		E7643AB5A3325300BFE9FCF90578A4AF /* ZDFlexLayoutViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C99871778D3E0AC7B09FDB4460D0F2 /* ZDFlexLayoutViewProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E8F53B6B5AA645616C7C9DEF8BEB75B9 /* ZDFlexLayoutKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 64015C35709604A08529250500D32571 /* ZDFlexLayoutKit-dummy.m */; };
-		F0E863664D7709B3DE40967E74DDDDEF /* ZDCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 179227BB5E6F87861F05C8ADC2837751 /* ZDCalculateHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F63294D4C1B876EC667DA190E0694B92 /* ZDTemplateCellHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = F787024EA6A7073734F0CD1C20E1F0FB /* ZDTemplateCellHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F67A7457D95161A64DF486F26DB964C3 /* ZDFlexLayoutDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = D0215E15D12A754DA1117569D798F54E /* ZDFlexLayoutDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FA87E6F114A921DBD3D1067583A2905B /* ZDFlexLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 181FF7917329BFC3744965B5B105D9CD /* ZDFlexLayout+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,17 +51,15 @@
 /* Begin PBXFileReference section */
 		0540A1189380CE5407361131B3FD5C62 /* ZDSNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSNamespace.swift; path = Source/SwiftMaker/ZDSNamespace.swift; sourceTree = "<group>"; };
 		085B1ADCF67710FBBE941113C740F834 /* UIView+ZDFlexLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDFlexLayout.m"; sourceTree = "<group>"; };
-		179227BB5E6F87861F05C8ADC2837751 /* ZDCalculateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDCalculateHelper.h; sourceTree = "<group>"; };
-		181FF7917329BFC3744965B5B105D9CD /* ZDFlexLayout+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayout+Private.h"; sourceTree = "<group>"; };
 		23BAEC77EEA3852723B560DAEB4E0D40 /* ZDFlexLayoutMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutMaker.h; path = Source/OCMaker/ZDFlexLayoutMaker.h; sourceTree = "<group>"; };
 		27764A1F219E66BD2279A3FAEA7B5C5D /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
+		29284AA02AB4A6E95296CA3D08E3216E /* ZDFlexLayoutCore+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayoutCore+Private.h"; sourceTree = "<group>"; };
 		3D9B9975AD6BE47BD17FDCA8903C7C44 /* ZDFlexLayoutCore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutCore.h; sourceTree = "<group>"; };
 		42D6A2A7179DBC9182A2D3610215B077 /* ZDFlexLayoutCore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutCore.m; sourceTree = "<group>"; };
 		4A2C4074FB186F5961892622B1BA1053 /* ZDFlexLayoutChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutChain.m; path = Source/OCMaker/ZDFlexLayoutChain.m; sourceTree = "<group>"; };
 		4A8AB9349AB8918BA88E045CC73F02E8 /* ZDFlexLayoutChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutChain.h; path = Source/OCMaker/ZDFlexLayoutChain.h; sourceTree = "<group>"; };
 		5A78C041DB594704F293C7756D66A757 /* ZDFlexLayoutMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutMaker.m; path = Source/OCMaker/ZDFlexLayoutMaker.m; sourceTree = "<group>"; };
 		5F2C17C55E5F87D380615E51A74BA479 /* ZDFlexLayoutKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZDFlexLayoutKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		61423C55B41BB4649F9D25BCB03FC6BE /* NSObject+ZDFLDeallocCallback.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDFLDeallocCallback.m"; sourceTree = "<group>"; };
 		61AC59DF4CCCCF10461018C6B4E32F6E /* ZDSFlexLayoutMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSFlexLayoutMaker.swift; path = Source/SwiftMaker/ZDSFlexLayoutMaker.swift; sourceTree = "<group>"; };
 		64015C35709604A08529250500D32571 /* ZDFlexLayoutKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDFlexLayoutKit-dummy.m"; sourceTree = "<group>"; };
 		66C99871778D3E0AC7B09FDB4460D0F2 /* ZDFlexLayoutViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutViewProtocol.h; sourceTree = "<group>"; };
@@ -70,7 +68,7 @@
 		799B3B120B810BB62F05BF0642842C06 /* Yoga */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Yoga; path = Yoga.xcodeproj; sourceTree = "<group>"; };
 		852238678ADE058161B28C6220D56781 /* ZDFlexLayoutKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDFlexLayoutKit.release.xcconfig; sourceTree = "<group>"; };
 		9D28C9E88F0FC2964C8347F4913D055C /* ZDFlexLayoutKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDFlexLayoutKit.debug.xcconfig; sourceTree = "<group>"; };
-		A5906633B82F82333CA44C9A555EC3FF /* ZDCalculateHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
+		9E326942637A527A46594B128A42260C /* ZDCalculateHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
 		A707BC8AE5913C9756844F9B6D6AD5A5 /* ZDFlexLayoutKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZDFlexLayoutKit.modulemap; sourceTree = "<group>"; };
 		A70DBDE5F68EE73A37567F8520CA09E2 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
 		B3AF79D5A215246354F11B8FFA97C08B /* ZDFlexLayoutKit */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = ZDFlexLayoutKit; path = libZDFlexLayoutKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,13 +77,15 @@
 		CF0BE711B83665880C775D7ECADC4DB8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		D0215E15D12A754DA1117569D798F54E /* ZDFlexLayoutDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDefine.h; sourceTree = "<group>"; };
 		D5C637D5D710CE1AEA3660C2F179B956 /* ZDFlexLayoutKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutKit.h; path = Source/Header/ZDFlexLayoutKit.h; sourceTree = "<group>"; };
+		D8AAA667D2D78DE5DE49A9CF33868791 /* NSObject+ZDFLDeallocCallback.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDFLDeallocCallback.m"; sourceTree = "<group>"; };
+		DB838D45D1A9B02C85B3E46E4FF785C6 /* NSObject+ZDFLDeallocCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDFLDeallocCallback.h"; sourceTree = "<group>"; };
 		E02E9CEACA5AE794CABA2192D58B2984 /* ZDSFlexExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSFlexExtension.swift; path = Source/SwiftMaker/ZDSFlexExtension.swift; sourceTree = "<group>"; };
 		E1931FFBE87EBA4936551EEDF011A2E1 /* ZDTemplateCellHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDTemplateCellHandler.m; path = Source/Helper/ZDTemplateCellHandler.m; sourceTree = "<group>"; };
-		E8C339386F651389CB1242AC0AAF2C5F /* NSObject+ZDFLDeallocCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDFLDeallocCallback.h"; sourceTree = "<group>"; };
 		E997E3A05A309B640057935473863D37 /* ZDFlexLayoutCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutCollectionViewCell.h; path = Source/Helper/ZDFlexLayoutCollectionViewCell.h; sourceTree = "<group>"; };
 		F52D3B7A2D449FA54AEF7BBA91A5B08A /* ZDFlexLayoutTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutTableViewCell.m; path = Source/Helper/ZDFlexLayoutTableViewCell.m; sourceTree = "<group>"; };
 		F787024EA6A7073734F0CD1C20E1F0FB /* ZDTemplateCellHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDTemplateCellHandler.h; path = Source/Helper/ZDTemplateCellHandler.h; sourceTree = "<group>"; };
 		FE01A590FEA5F6ACB8E0FDC4EDE25F4F /* ZDFlexLayoutCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutCollectionViewCell.m; path = Source/Helper/ZDFlexLayoutCollectionViewCell.m; sourceTree = "<group>"; };
+		FFCE4042692705B9DE20D613835DE4B3 /* ZDCalculateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDCalculateHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,14 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F49CCEE84DBB352DC404EFBD199B29D /* Private */ = {
+		2D634938267FBD346F25638683D0A9C2 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				E8C339386F651389CB1242AC0AAF2C5F /* NSObject+ZDFLDeallocCallback.h */,
-				61423C55B41BB4649F9D25BCB03FC6BE /* NSObject+ZDFLDeallocCallback.m */,
-				179227BB5E6F87861F05C8ADC2837751 /* ZDCalculateHelper.h */,
-				A5906633B82F82333CA44C9A555EC3FF /* ZDCalculateHelper.m */,
-				181FF7917329BFC3744965B5B105D9CD /* ZDFlexLayout+Private.h */,
+				DB838D45D1A9B02C85B3E46E4FF785C6 /* NSObject+ZDFLDeallocCallback.h */,
+				D8AAA667D2D78DE5DE49A9CF33868791 /* NSObject+ZDFLDeallocCallback.m */,
+				FFCE4042692705B9DE20D613835DE4B3 /* ZDCalculateHelper.h */,
+				9E326942637A527A46594B128A42260C /* ZDCalculateHelper.m */,
+				29284AA02AB4A6E95296CA3D08E3216E /* ZDFlexLayoutCore+Private.h */,
 			);
 			name = Private;
 			path = Source/Core/Private;
@@ -115,7 +115,7 @@
 		3E3717B205A6E5969DEA454103BECBCF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1F49CCEE84DBB352DC404EFBD199B29D /* Private */,
+				2D634938267FBD346F25638683D0A9C2 /* Private */,
 				544D97F59025A06000BB972B15FA81D5 /* Public */,
 			);
 			name = Core;
@@ -253,25 +253,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		04B79032302AEA56F9F94282758C281F /* Headers */ = {
+		53B528FC77C2B9B66C8F368D60696DEC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EC53B63BB028192D5E0CE8EC82DAE4C /* NSObject+ZDFLDeallocCallback.h in Headers */,
-				B92D44F2B718BDBF09DD6F015EF75D66 /* UIView+ZDFlexLayout.h in Headers */,
-				F0E863664D7709B3DE40967E74DDDDEF /* ZDCalculateHelper.h in Headers */,
-				FA87E6F114A921DBD3D1067583A2905B /* ZDFlexLayout+Private.h in Headers */,
-				36BC9B0012DB37C7F4B162773AE97259 /* ZDFlexLayoutChain.h in Headers */,
-				0967845D6729BAC521C3928721A20BC4 /* ZDFlexLayoutCollectionViewCell.h in Headers */,
-				D21C6632CE6F9688B75EC0906BEECD3E /* ZDFlexLayoutCore.h in Headers */,
-				F67A7457D95161A64DF486F26DB964C3 /* ZDFlexLayoutDefine.h in Headers */,
-				97DBCEF190C610F2F72010E257426CCB /* ZDFlexLayoutDiv.h in Headers */,
-				65BFCF5A0022E6502ACC4CB2E5F1E986 /* ZDFlexLayoutKit.h in Headers */,
-				CDA3F7EE1D09D30C95233941E7759FA9 /* ZDFlexLayoutKit-umbrella.h in Headers */,
-				DA059FDDD4665E297C5850D36C1A0847 /* ZDFlexLayoutMaker.h in Headers */,
-				2F004053113758241F3D4E151A7549C5 /* ZDFlexLayoutTableViewCell.h in Headers */,
-				E7643AB5A3325300BFE9FCF90578A4AF /* ZDFlexLayoutViewProtocol.h in Headers */,
-				F63294D4C1B876EC667DA190E0694B92 /* ZDTemplateCellHandler.h in Headers */,
+				1A96AB976177AC7DBE95A3C78DDBF599 /* NSObject+ZDFLDeallocCallback.h in Headers */,
+				5963AE3875A53D0E51D44161A002B7AA /* UIView+ZDFlexLayout.h in Headers */,
+				46EE67948AD4CC6C769D9387DEADE795 /* ZDCalculateHelper.h in Headers */,
+				D7FA1F4DA6741E49B95DBA6F25F04F30 /* ZDFlexLayoutChain.h in Headers */,
+				B10C26BAF675A1691001BC57C2A3E82A /* ZDFlexLayoutCollectionViewCell.h in Headers */,
+				17543A44F9CB8B95279EC103AF506390 /* ZDFlexLayoutCore.h in Headers */,
+				5D31082B298B0A9F69A155CA02D21A73 /* ZDFlexLayoutCore+Private.h in Headers */,
+				3748FAA86CA23E6F51CB9DCA03F76915 /* ZDFlexLayoutDefine.h in Headers */,
+				80427663A7BE73179F1C27CFCED7C27B /* ZDFlexLayoutDiv.h in Headers */,
+				14CF2E9850D328CC7CD93A8576571FA3 /* ZDFlexLayoutKit.h in Headers */,
+				62FEEBA3A9973295CE4FE732C6B3F368 /* ZDFlexLayoutKit-umbrella.h in Headers */,
+				B8F65B720DF901466D3FEF56E9D42EF4 /* ZDFlexLayoutMaker.h in Headers */,
+				6FEF1681CABAE2EF8DD7C9143780DCEC /* ZDFlexLayoutTableViewCell.h in Headers */,
+				BBE316C4D2A8A6349C23CCB29B6E9211 /* ZDFlexLayoutViewProtocol.h in Headers */,
+				8795A4FF58CDDEACE3C5A542A7AEA7C7 /* ZDTemplateCellHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +282,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 463F0E6FC79EF3C7B662B602E672A4CF /* Build configuration list for PBXNativeTarget "ZDFlexLayoutKit" */;
 			buildPhases = (
-				04B79032302AEA56F9F94282758C281F /* Headers */,
+				53B528FC77C2B9B66C8F368D60696DEC /* Headers */,
 				81A78AC4FF151B4B8E81144095508017 /* Sources */,
 				EF4CF9B1D562D6F74D3482DB0586B9A4 /* Frameworks */,
 				3802850D210FE3C8EBCE6A7EC3EFE095 /* Copy generated compatibility header */,

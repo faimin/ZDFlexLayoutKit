@@ -46,7 +46,7 @@ CACHE_KEYS:
       ZDFlexLayoutKit:
         :debug: 309691f0cf6d122b188a9d138ae9f03d
         :release: 309691f0cf6d122b188a9d138ae9f03d
-    CHECKSUM: db08d9290034fbe87a7203a1cf26e7eb9a399864
+    CHECKSUM: ac52802b54629285a30508d3d47bf7b495036134
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -54,7 +54,7 @@ CACHE_KEYS:
       - "../../Source/Core/Private/NSObject+ZDFLDeallocCallback.m"
       - "../../Source/Core/Private/ZDCalculateHelper.h"
       - "../../Source/Core/Private/ZDCalculateHelper.m"
-      - "../../Source/Core/Private/ZDFlexLayout+Private.h"
+      - "../../Source/Core/Private/ZDFlexLayoutCore+Private.h"
       - "../../Source/Core/Public/UIView+ZDFlexLayout.h"
       - "../../Source/Core/Public/UIView+ZDFlexLayout.m"
       - "../../Source/Core/Public/ZDFlexLayoutCore.h"

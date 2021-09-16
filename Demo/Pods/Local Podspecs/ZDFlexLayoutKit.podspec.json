@@ -76,9 +76,6 @@
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
-        ],
-        "ZDFlexLayoutKit/Header": [
-
         ]
       }
     }
