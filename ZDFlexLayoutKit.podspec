@@ -33,33 +33,33 @@ Pod::Spec.new do |spec|
   spec.swift_versions = ['5.1']
   
   spec.subspec 'Header' do |s|
-    s.source_files = "Source/Header/ZDFlexLayoutKit.{h,m}"
+    s.source_files = "Sources/Header/ZDFlexLayoutKit.{h,m}"
   end
   
   spec.subspec 'Core' do |s|
-    s.source_files = "Source/Core/**/*.{h,m}"
-    s.public_header_files = "Source/Core/Public/*.h"
-    s.private_header_files = "Source/Core/Private/*.h"
+    s.source_files = "Sources/Core/**/*.{h,m}"
+    s.public_header_files = "Sources/Core/Public/*.h"
+    s.private_header_files = "Sources/Core/Private/*.h"
     s.dependency 'Yoga'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
   
   spec.subspec 'OCMaker' do |s|
-    s.source_files = "Source/OCMaker/*.{h,m}"
+    s.source_files = "Sources/OCMaker/*.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
   
   spec.subspec 'Helper' do |s|
-    s.source_files = "Source/Helper/*.{h,m}"
-    s.exclude_files = "Source/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}"
+    s.source_files = "Sources/Helper/*.{h,m}"
+    s.exclude_files = "Sources/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}"
     s.dependency 'ZDFlexLayoutKit/Core'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
   
   spec.subspec 'SwiftMaker' do |s|
-    s.source_files = "Source/SwiftMaker/*.swift"
-    s.exclude_files = "Source/SwiftMaker/ZDSFlexLayoutChain.swift"
+    s.source_files = "Sources/SwiftMaker/*.swift"
+    s.exclude_files = "Sources/SwiftMaker/ZDSFlexLayoutChain.swift"
     s.dependency 'ZDFlexLayoutKit/Core'
   end
   

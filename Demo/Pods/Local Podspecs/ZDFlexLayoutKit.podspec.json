@@ -28,13 +28,13 @@
   "subspecs": [
     {
       "name": "Header",
-      "source_files": "Source/Header/ZDFlexLayoutKit.{h,m}"
+      "source_files": "Sources/Header/ZDFlexLayoutKit.{h,m}"
     },
     {
       "name": "Core",
-      "source_files": "Source/Core/**/*.{h,m}",
-      "public_header_files": "Source/Core/Public/*.h",
-      "private_header_files": "Source/Core/Private/*.h",
+      "source_files": "Sources/Core/**/*.{h,m}",
+      "public_header_files": "Sources/Core/Public/*.h",
+      "private_header_files": "Sources/Core/Private/*.h",
       "dependencies": {
         "Yoga": [
 
@@ -46,7 +46,7 @@
     },
     {
       "name": "OCMaker",
-      "source_files": "Source/OCMaker/*.{h,m}",
+      "source_files": "Sources/OCMaker/*.{h,m}",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
@@ -58,8 +58,8 @@
     },
     {
       "name": "Helper",
-      "source_files": "Source/Helper/*.{h,m}",
-      "exclude_files": "Source/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}",
+      "source_files": "Sources/Helper/*.{h,m}",
+      "exclude_files": "Sources/Helper/NSObject+ZDFlexLayoutFrameCache.{h,m}",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
@@ -71,8 +71,8 @@
     },
     {
       "name": "SwiftMaker",
-      "source_files": "Source/SwiftMaker/*.swift",
-      "exclude_files": "Source/SwiftMaker/ZDSFlexLayoutChain.swift",
+      "source_files": "Sources/SwiftMaker/*.swift",
+      "exclude_files": "Sources/SwiftMaker/ZDSFlexLayoutChain.swift",
       "dependencies": {
         "ZDFlexLayoutKit/Core": [
 
