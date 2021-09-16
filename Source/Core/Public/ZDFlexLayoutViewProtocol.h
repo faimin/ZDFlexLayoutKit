@@ -21,9 +21,8 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 
 @property (nonatomic, assign, readonly) BOOL isFlexLayoutEnabled;
 @property (nonatomic, strong, readonly) ZDFlexLayoutCore *flexLayout;
+@property (nonatomic, weak, nullable) UIView *owningView;   ///< real superview
 @property (nonatomic, weak, nullable) ZDFlexLayoutView parent;
-/// real superview
-@property (nonatomic, weak, nullable) UIView *owningView;
 @property (nonatomic, strong) NSMutableOrderedSet<ZDFlexLayoutView> *children;
 @property (nonatomic, assign) CGRect layoutFrame;
 @property (nonatomic, assign) BOOL gone;

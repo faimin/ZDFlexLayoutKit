@@ -11,7 +11,15 @@
 #import "ZDFlexLayoutCore+Private.h"
 
 @implementation ZDFlexLayoutDiv
-@synthesize flexLayout = _flexLayout, layoutFrame = _layoutFrame, parent = _parent, children = _children, owningView = _owningView, isRoot = _isRoot, isNeedLayoutChildren = _isNeedLayoutChildren;
+@synthesize
+flexLayout = _flexLayout,
+owningView = _owningView,
+parent = _parent,
+children = _children,
+layoutFrame = _layoutFrame,
+gone = _gone,
+isRoot = _isRoot,
+isNeedLayoutChildren = _isNeedLayoutChildren;
 
 #pragma mark - ZDFlexLayoutNodeProtocol
 
