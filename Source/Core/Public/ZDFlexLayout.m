@@ -502,6 +502,28 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
             [view needReApplyLayoutAtNextRunloop];
         }
     }
+    
+    ZDResetViewHierarchy(view);
+}
+
+/// lazy set view tree
+static void ZDResetViewHierarchy(ZDFlexLayoutView view)
+{
+    if (!view) {
+        return;
+    }
+    
+    UIView *superView = [view isKindOfClass:UIView.self] ? (UIView *)view : view.owningView;
+    NSCAssert(superView != nil, @"view can't be nil");
+    
+    for (ZDFlexLayoutView child in view.children) {
+        if ([child isKindOfClass:UIView.self]) {
+            [superView addSubview:(UIView *)child];
+        }
+        else {
+            ZDResetViewHierarchy(child);
+        }
+    }
 }
 
 static void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block)

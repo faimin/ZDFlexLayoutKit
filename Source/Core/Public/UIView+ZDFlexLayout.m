@@ -133,15 +133,7 @@
     }
     
     [self.children removeObject:child];
-    
-    if ([child isKindOfClass:UIView.class]) {
-        [(UIView *)child removeFromSuperview];
-    }
-    else {
-        [child.children enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(ZDFlexLayoutView  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [child removeChild:obj];
-        }];
-    }
+
     
     child.parent = nil;
     child.owningView = nil;
@@ -173,18 +165,6 @@
     [self.children insertObject:child atIndex:mapedIndex];
     child.parent = self;
     child.owningView = self;
-    
-    if ([child isKindOfClass:UIView.class]) {
-        [self insertSubview:(UIView *)child atIndex:mapedIndex];
-    }
-    else {
-        for (ZDFlexLayoutView childChild in child.children) {
-            childChild.owningView = self;
-            if ([childChild isKindOfClass:UIView.class]) {
-                [self insertSubview:(UIView *)childChild atIndex:mapedIndex++];
-            }
-        }
-    }
 }
 
 - (void)removeFromParent {
