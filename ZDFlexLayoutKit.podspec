@@ -28,6 +28,7 @@ Pod::Spec.new do |spec|
   spec.module_name = 'ZDFlexLayoutKit'
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
+    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',
     'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) ZDFL=1',
     'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ZDFL',
     #'OTHER_SWIFT_FLAGS' => '$(inherited) ZDFL'
