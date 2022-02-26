@@ -10,7 +10,6 @@
 #import "YogaKitListViewModel.h"
 #import "ZDFlexCell.h"
 #import <ZDFlexLayoutKit/ZDTemplateCellHandler.h>
-#import <ZDToolKit/NSObject+ZDUtility.h>
 
 @interface YogaKitListViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -63,7 +62,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
         TextureModel *model = self.dataSource[indexPath.row];
-        [ZDFlexCell zd_cast:templateCell].model = model;
+        if ([templateCell isKindOfClass:ZDFlexCell.self]) {
+            ((ZDFlexCell *)templateCell).model = model;
+        }
     }];
     
     return height;

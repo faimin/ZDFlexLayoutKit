@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9F1081E1F3D4FEE57DC6424353B41169 /* PBXContainerItemProxy */ = {
+		32D7F83D51AD858930D1D79BB7E672FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 799B3B120B810BB62F05BF0642842C06 /* Yoga.xcodeproj */;
 			proxyType = 1;
@@ -290,7 +290,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D7DC1ECDB82FFAB701D2A0E206D3677C /* PBXTargetDependency */,
+				D2E99066938663F958758B0B57748E46 /* PBXTargetDependency */,
 			);
 			name = ZDFlexLayoutKit;
 			productName = ZDFlexLayoutKit;
@@ -381,15 +381,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D7DC1ECDB82FFAB701D2A0E206D3677C /* PBXTargetDependency */ = {
+		D2E99066938663F958758B0B57748E46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Yoga;
-			targetProxy = 9F1081E1F3D4FEE57DC6424353B41169 /* PBXContainerItemProxy */;
+			targetProxy = 32D7F83D51AD858930D1D79BB7E672FD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		37D8E8668399112FCCB2AD4A8F3E48EE /* Release */ = {
+		2AF76CEB1A8F67C36F0E6AB25704328E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 852238678ADE058161B28C6220D56781 /* ZDFlexLayoutKit.release.xcconfig */;
 			buildSettings = {
@@ -406,12 +406,33 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		31A524DEB9488DD1370C1280EEF15D30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D28C9E88F0FC2964C8347F4913D055C /* ZDFlexLayoutKit.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = ZDFlexLayoutKit;
+				PRODUCT_NAME = ZDFlexLayoutKit;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		9570EE0D2CEEBEFA16C3958F49D60E37 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -474,29 +495,6 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
-		};
-		D28FA268941A3419DAA320C43B916569 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D28C9E88F0FC2964C8347F4913D055C /* ZDFlexLayoutKit.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MODULEMAP_FILE = Headers/Public/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = ZDFlexLayoutKit;
-				PRODUCT_NAME = ZDFlexLayoutKit;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
 		};
 		F8DFC78B17A416C4C3F21D55BCB1FB4E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -570,8 +568,8 @@
 		463F0E6FC79EF3C7B662B602E672A4CF /* Build configuration list for PBXNativeTarget "ZDFlexLayoutKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D28FA268941A3419DAA320C43B916569 /* Debug */,
-				37D8E8668399112FCCB2AD4A8F3E48EE /* Release */,
+				31A524DEB9488DD1370C1280EEF15D30 /* Debug */,
+				2AF76CEB1A8F67C36F0E6AB25704328E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

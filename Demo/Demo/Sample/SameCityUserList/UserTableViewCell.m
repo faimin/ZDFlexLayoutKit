@@ -8,8 +8,8 @@
 
 #import "UserTableViewCell.h"
 #import "ZDFlexLayoutKit.h"
-#import <ZDFunction.h>
-#import <ZDToolKit.h>
+
+extern UIColor *ZD_RandomColor(void);
 
 @interface UserTableViewCell ()
 @property (nonatomic, strong) UIView *containerView;
@@ -40,7 +40,7 @@
 }
 
 - (void)setupUI {
-    self.contentView.backgroundColor = ZD_RGB(255, 193, 222);
+    self.contentView.backgroundColor = [UIColor colorWithRed:1 green:193/255.0 blue:222/255.0 alpha:1];
     
     [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
@@ -59,7 +59,7 @@
     }]];
     
     ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginLeft(YGPointValue(10));
-        make.width(YGPointValue(ZD_ScreenWidth() - 115 - 25));
+        make.width(YGPointValue(UIScreen.mainScreen.bounds.size.width - 115 - 25));
     }];
     [self.containerView addChild:rightContaienrDiv];
     
@@ -175,7 +175,7 @@
     if (!_nickNameLabel) {
         UILabel *node = [[UILabel alloc] init];
         node.font = [UIFont systemFontOfSize:16.0];
-        node.textColor = ZD_RGB(46, 39, 42);
+        node.textColor = [UIColor colorWithRed:46/255.0 green:39/255.0 blue:170/255.0 alpha:1];
         _nickNameLabel = node;
     }
     return _nickNameLabel;
@@ -185,7 +185,7 @@
     if (!_tagLabel) {
         UILabel *node = [UILabel new];
         node.text = @"认证真人";
-        node.backgroundColor = ZD_RGB(218, 102, 250);
+        node.backgroundColor = [UIColor colorWithRed:218/255.0 green:102/255.0 blue:250/255.0 alpha:1];
         node.numberOfLines = 1;
         node.font = [UIFont boldSystemFontOfSize:9];
         node.textColor = UIColor.whiteColor;
@@ -201,7 +201,7 @@
     if (!_locationLabel) {
         UILabel *node = [[UILabel alloc] init];
         node.font = [UIFont systemFontOfSize:12];
-        node.textColor = ZD_RGB(170, 170, 170);
+        node.textColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
         node.textAlignment = NSTextAlignmentRight;
         _locationLabel = node;
     }
@@ -212,7 +212,7 @@
     if (!_infoLabel) {
         UILabel *node = [[UILabel alloc] init];
         node.font = [UIFont systemFontOfSize:12];
-        node.textColor = ZD_RGB(170, 170, 170);
+        node.textColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
         _infoLabel = node;
     }
     return _infoLabel;
@@ -222,7 +222,7 @@
     if (!_noticeLabel) {
         UILabel *node = [[UILabel alloc] init];
         node.font = [UIFont systemFontOfSize:13];
-        node.textColor = ZD_RGB(170, 170, 170);
+        node.textColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
         _noticeLabel = node;
     }
     return _noticeLabel;

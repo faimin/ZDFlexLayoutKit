@@ -7,9 +7,10 @@
 //
 
 #import "ZDFlexCell.h"
-#import <ZDToolKit/ZDFunction.h>
 #import "ZDFlexLayoutKit.h"
 #import "TextureModel.h"
+
+extern UIColor *ZD_RandomColor(void);
 
 @interface ZDFlexCell ()
 @property (nonatomic, strong) UILabel *titleLabel;    ///< 标题

@@ -3,6 +3,8 @@ source 'https://cdn.cocoapods.org/'
 
 platform :ios, '9.0'
 
+#plugin 'cocoapods-mapfile'
+
 #############################################################
 
 install! 'cocoapods',
@@ -33,9 +35,7 @@ target 'Demo' do
 #  supports_swift_versions '>= 4.0', '<= 5.1'
   
   # Pods for Demo
-  pod 'Yoga'
   pod 'YYModel'
-  pod 'ZDToolKit', '~> 0.0.5'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec'#, :subspecs => ['OCMaker', 'Helper']
 

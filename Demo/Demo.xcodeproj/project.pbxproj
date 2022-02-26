@@ -14,6 +14,7 @@
 		FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */; };
 		FA1A54E22355ED3500C80712 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FA1A54E12355ED3500C80712 /* data.json */; };
 		FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E42355ED8100C80712 /* TextureModel.m */; };
+		FA2F9E3827CA87C800BD2836 /* ZDFLFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2F9E3727CA87C800BD2836 /* ZDFLFunction.m */; };
 		FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA617C0B23572AA100477C31 /* ZDFlexCell.m */; };
 		FA843027234F4231000F7E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843026234F4231000F7E35 /* AppDelegate.m */; };
 		FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843029234F4231000F7E35 /* SceneDelegate.m */; };
@@ -62,6 +63,7 @@
 		A6791C08D481EAC0813E5D8F /* Pods-Demo-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B7885ED19FF874EBD3DDC2 /* libPods-Demo-DemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo-DemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		FA10A4A9274E0F5E00BB391B /* libobjc.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.A.dylib; path = ../../../../../../private/tmp/objc.dst/usr/lib/libobjc.A.dylib; sourceTree = "<group>"; };
 		FA1A54D12355E3A400C80712 /* YogaKitListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKitListViewController.h; sourceTree = "<group>"; };
 		FA1A54D22355E3A400C80712 /* YogaKitListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaKitListViewController.m; sourceTree = "<group>"; };
 		FA1A54DD2355ECE300C80712 /* YogaKitListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YogaKitListViewModel.m; sourceTree = "<group>"; };
@@ -69,6 +71,8 @@
 		FA1A54E12355ED3500C80712 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		FA1A54E32355ED8100C80712 /* TextureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureModel.h; sourceTree = "<group>"; };
 		FA1A54E42355ED8100C80712 /* TextureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureModel.m; sourceTree = "<group>"; };
+		FA2F9E3627CA87C800BD2836 /* ZDFLFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFLFunction.h; sourceTree = "<group>"; };
+		FA2F9E3727CA87C800BD2836 /* ZDFLFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFLFunction.m; sourceTree = "<group>"; };
 		FA617C0A23572AA100477C31 /* ZDFlexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexCell.h; sourceTree = "<group>"; };
 		FA617C0B23572AA100477C31 /* ZDFlexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexCell.m; sourceTree = "<group>"; };
 		FA843022234F4231000F7E35 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +155,7 @@
 		71A59C43B97D59C1747E1091 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA10A4A9274E0F5E00BB391B /* libobjc.A.dylib */,
 				FAEF09F62350611C004094B1 /* libc++.tbd */,
 				05D424618F64C867B46E13F2 /* libPods-Demo.a */,
 				C7B7885ED19FF874EBD3DDC2 /* libPods-Demo-DemoUITests.a */,
@@ -209,6 +214,8 @@
 				FA843029234F4231000F7E35 /* SceneDelegate.m */,
 				FA84302B234F4231000F7E35 /* ViewController.h */,
 				FA84302C234F4231000F7E35 /* ViewController.m */,
+				FA2F9E3627CA87C800BD2836 /* ZDFLFunction.h */,
+				FA2F9E3727CA87C800BD2836 /* ZDFLFunction.m */,
 				FACF10A325B70AEC00C91DA3 /* Empty.swift */,
 				FA1A54CD2355E36000C80712 /* Sample */,
 				FA1A54E02355ECFE00C80712 /* Resource */,
@@ -508,6 +515,7 @@
 				FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */,
 				FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */,
 				FAEA4A1C235F12BD00422C35 /* UserTableViewCell.m in Sources */,
+				FA2F9E3827CA87C800BD2836 /* ZDFLFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +688,7 @@
 			baseConfigurationReference = 0289ACDC0CCA00EC5ED4088A /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;
@@ -701,6 +710,7 @@
 			baseConfigurationReference = D5E3E752A741A4E90B93AF97 /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Demo/Info.plist;

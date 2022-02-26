@@ -7,7 +7,6 @@
 //
 
 #import "SameCityUserListController.h"
-#import <ZDToolKit/NSObject+ZDUtility.h>
 #import <ZDFlexLayoutKit/ZDTemplateCellHandler.h>
 #import "SameCityUserListViewModel.h"
 #import "UserTableViewCell.h"
@@ -63,7 +62,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
         UserModel *model = self.dataSource[indexPath.row];
-        [UserTableViewCell zd_cast:templateCell].model = model;
+        if ([templateCell isKindOfClass:UserTableViewCell.self]) {
+            ((UserTableViewCell *)templateCell).model = model;
+        }
     }];
 
     return height;
