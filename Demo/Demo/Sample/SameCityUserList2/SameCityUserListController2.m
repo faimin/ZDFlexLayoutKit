@@ -1,23 +1,21 @@
 //
-//  SameCityUserListController.m
+//  SameCityUserListController2.m
 //  Demo
 //
-//  Created by Zero.D.Saber on 2019/10/22.
-//  Copyright © 2019 Zero.D.Saber. All rights reserved.
+//  Created by Zero.D.Saber on 2022/02/27.
+//  Copyright © 2022 Zero.D.Saber. All rights reserved.
 //
 
-#import "SameCityUserListController.h"
-#import <ZDFlexLayoutKit/ZDTemplateCellHandler.h>
+#import "SameCityUserListController2.h"
 #import "SameCityUserListViewModel.h"
-#import "UserTableViewCell.h"
+#import "UserTableViewCell2.h"
 
-@interface SameCityUserListController ()<UITableViewDataSource, UITableViewDelegate>
+@interface SameCityUserListController2 ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<UserModel *> *dataSource;
-@property (nonatomic, strong) ZDTemplateCellHandler *cellHandler;
 @end
 
-@implementation SameCityUserListController
+@implementation SameCityUserListController2
 
 - (void)dealloc {
     printf("%s\n", __PRETTY_FUNCTION__);
@@ -35,8 +33,8 @@
 }
 
 - (void)setupUI {
-    self.navigationItem.title = @"FlexLayoutListDemo";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"FlexLayoutListDemo2";
+    self.view.backgroundColor = UIColor.purpleColor;
     
     [self.view addSubview:self.tableView];
 }
@@ -53,20 +51,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self reuseIdentifier] forIndexPath:indexPath];
+    UserTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:[self reuseIdentifier] forIndexPath:indexPath];
     cell.model = self.dataSource[indexPath.row];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat height = [self.cellHandler cellHeightWithTableView:tableView reuseIdentifier:[self reuseIdentifier] indexPath:indexPath configuration:^(UITableViewCell * _Nonnull templateCell) {
-        UserModel *model = self.dataSource[indexPath.row];
-        if ([templateCell isKindOfClass:UserTableViewCell.self]) {
-            ((UserTableViewCell *)templateCell).model = model;
-        }
-    }];
-
-    return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +63,7 @@
 #pragma mark -
 
 - (NSString *)reuseIdentifier {
-    NSString *reuseId = NSStringFromClass(UserTableViewCell.class);
+    NSString *reuseId = NSStringFromClass(UserTableViewCell2.class);
     return reuseId;
 }
 
@@ -85,23 +72,17 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        tableView.backgroundColor = [UIColor grayColor];
+        tableView.backgroundColor = [UIColor cyanColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.dataSource = self;
         tableView.delegate = self;
-        tableView.estimatedRowHeight = 0.f;
+        //tableView.estimatedRowHeight = 110;
+        tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.tableFooterView = [UIView new];
-        [tableView registerClass:[UserTableViewCell class] forCellReuseIdentifier:[self reuseIdentifier]];
+        [tableView registerClass:[UserTableViewCell2 class] forCellReuseIdentifier:[self reuseIdentifier]];
         _tableView = tableView;
     }
     return _tableView;
-}
-
-- (ZDTemplateCellHandler *)cellHandler {
-    if (!_cellHandler) {
-        _cellHandler = [ZDTemplateCellHandler new];
-    }
-    return _cellHandler;
 }
 
 @end

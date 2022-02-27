@@ -15,6 +15,8 @@
 		FA1A54E22355ED3500C80712 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FA1A54E12355ED3500C80712 /* data.json */; };
 		FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1A54E42355ED8100C80712 /* TextureModel.m */; };
 		FA2F9E3827CA87C800BD2836 /* ZDFLFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2F9E3727CA87C800BD2836 /* ZDFLFunction.m */; };
+		FA2F9E6027CB29F400BD2836 /* UserTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2F9E5C27CB29F400BD2836 /* UserTableViewCell2.m */; };
+		FA2F9E6127CB29F400BD2836 /* SameCityUserListController2.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2F9E5E27CB29F400BD2836 /* SameCityUserListController2.m */; };
 		FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA617C0B23572AA100477C31 /* ZDFlexCell.m */; };
 		FA843027234F4231000F7E35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843026234F4231000F7E35 /* AppDelegate.m */; };
 		FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843029234F4231000F7E35 /* SceneDelegate.m */; };
@@ -73,6 +75,10 @@
 		FA1A54E42355ED8100C80712 /* TextureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureModel.m; sourceTree = "<group>"; };
 		FA2F9E3627CA87C800BD2836 /* ZDFLFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFLFunction.h; sourceTree = "<group>"; };
 		FA2F9E3727CA87C800BD2836 /* ZDFLFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFLFunction.m; sourceTree = "<group>"; };
+		FA2F9E5C27CB29F400BD2836 /* UserTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell2.m; sourceTree = "<group>"; };
+		FA2F9E5D27CB29F400BD2836 /* SameCityUserListController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameCityUserListController2.h; sourceTree = "<group>"; };
+		FA2F9E5E27CB29F400BD2836 /* SameCityUserListController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameCityUserListController2.m; sourceTree = "<group>"; };
+		FA2F9E5F27CB29F400BD2836 /* UserTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell2.h; sourceTree = "<group>"; };
 		FA617C0A23572AA100477C31 /* ZDFlexCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDFlexCell.h; sourceTree = "<group>"; };
 		FA617C0B23572AA100477C31 /* ZDFlexCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDFlexCell.m; sourceTree = "<group>"; };
 		FA843022234F4231000F7E35 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +173,7 @@
 		FA1A54CD2355E36000C80712 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				FA2F9E5B27CB29F400BD2836 /* SameCityUserList2 */,
 				FAEA4A1D235F363B00422C35 /* FlexList */,
 				FAEA4A10235F0FA100422C35 /* SameCityUserList */,
 				FA90B080237D4CED00DBDB77 /* LayoutDemo */,
@@ -181,6 +188,17 @@
 				FA1A54E12355ED3500C80712 /* data.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		FA2F9E5B27CB29F400BD2836 /* SameCityUserList2 */ = {
+			isa = PBXGroup;
+			children = (
+				FA2F9E5D27CB29F400BD2836 /* SameCityUserListController2.h */,
+				FA2F9E5E27CB29F400BD2836 /* SameCityUserListController2.m */,
+				FA2F9E5F27CB29F400BD2836 /* UserTableViewCell2.h */,
+				FA2F9E5C27CB29F400BD2836 /* UserTableViewCell2.m */,
+			);
+			path = SameCityUserList2;
 			sourceTree = "<group>";
 		};
 		FA843019234F4231000F7E35 = {
@@ -360,7 +378,7 @@
 		FA84301A234F4231000F7E35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = Zero.D.Saber;
 				TargetAttributes = {
 					FA843021234F4231000F7E35 = {
@@ -503,6 +521,7 @@
 				FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */,
 				FA84302D234F4231000F7E35 /* ViewController.m in Sources */,
 				FACF10A425B70AEC00C91DA3 /* Empty.swift in Sources */,
+				FA2F9E6027CB29F400BD2836 /* UserTableViewCell2.m in Sources */,
 				FA843027234F4231000F7E35 /* AppDelegate.m in Sources */,
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
@@ -515,6 +534,7 @@
 				FA1A54E52355ED8100C80712 /* TextureModel.m in Sources */,
 				FA84302A234F4231000F7E35 /* SceneDelegate.m in Sources */,
 				FAEA4A1C235F12BD00422C35 /* UserTableViewCell.m in Sources */,
+				FA2F9E6127CB29F400BD2836 /* SameCityUserListController2.m in Sources */,
 				FA2F9E3827CA87C800BD2836 /* ZDFLFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

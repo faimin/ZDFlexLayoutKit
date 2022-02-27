@@ -7,7 +7,7 @@
 //
 
 #import "NormalLayoutController.h"
-#import <ZDFlexLayoutKit/ZDFlexLayoutKit.h>
+@import ZDFlexLayoutKit;
 
 @interface NormalLayoutController ()
 
@@ -26,7 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    // 从导航栏底部开始布局
+    //self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self normalLayout];
 }
@@ -84,7 +85,7 @@
         }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
             make.position(YGPositionTypeAbsolute);
             make.width(YGPointValue(100)).aspectRatio(1.5);
-            make.top(YGPointValue(50)).right(YGPointValue(50));
+            make.top(YGPointValue(100)).right(YGPointValue(50));
         }];
         [self.view addChild:aView];
         
@@ -95,7 +96,7 @@
         }) zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
             make.position(YGPositionTypeAbsolute);
             make.width(YGPointValue(100)).height(YGPointValue(100));
-            make.top(YGPointValue(50)).left(YGPointValue(50));
+            make.top(YGPointValue(100)).left(YGPointValue(50));
         }];
         [self.view addChild:bView];
     }

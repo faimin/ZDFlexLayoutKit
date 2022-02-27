@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class UserModel;
 @interface UserTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UserModel *model;

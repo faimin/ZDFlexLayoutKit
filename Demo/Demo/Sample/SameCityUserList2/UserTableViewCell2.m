@@ -1,18 +1,17 @@
 //
-//  UserTableViewCell.m
+//  UserTableViewCell2.m
 //  Demo
 //
-//  Created by Zero.D.Saber on 2019/10/22.
-//  Copyright © 2019 Zero.D.Saber. All rights reserved.
+//  Created by Zero.D.Saber on 2022/02/27.
+//  Copyright © 2022 Zero.D.Saber. All rights reserved.
 //
 
-#import "UserTableViewCell.h"
-@import ZDFlexLayoutKit;
+#import "UserTableViewCell2.h"
 #import "UserModel.h"
 
 extern UIColor *ZD_RandomColor(void);
 
-@interface UserTableViewCell ()
+@interface UserTableViewCell2 ()
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UIImageView *avatarImgView;///< 图片
 @property (nonatomic, strong) UILabel *nickNameLabel; ///< 昵称
@@ -26,7 +25,7 @@ extern UIColor *ZD_RandomColor(void);
 
 @end
 
-@implementation UserTableViewCell
+@implementation UserTableViewCell2
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -137,9 +136,6 @@ extern UIColor *ZD_RandomColor(void);
     [self.locationLabel markDirty];
     [self.infoLabel markDirty];
     [self.noticeLabel markDirty];
-    
-    // 计算layout
-    [self.contentView calculateLayoutWithAutoRefresh:YES preservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
 }
 
 - (void)chatAction {
