@@ -10,8 +10,12 @@
 
 @implementation ZDFlexLayoutCollectionViewCell
 
+- (BOOL)autoRefreshLayout {
+    return NO;
+}
+
 - (CGSize)calculateSize {
-    [self.contentView calculateLayoutPreservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+    [self.contentView calculateLayoutWithAutoRefresh:[self autoRefreshLayout] preservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
     return self.contentView.frame.size;
 }
 

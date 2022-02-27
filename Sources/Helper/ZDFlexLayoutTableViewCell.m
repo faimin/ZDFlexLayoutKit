@@ -10,19 +10,12 @@
 
 @implementation ZDFlexLayoutTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (BOOL)autoRefreshLayout {
+    return NO;
 }
 
 - (CGSize)calculateSize {
-    [self.contentView calculateLayoutPreservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+    [self.contentView calculateLayoutWithAutoRefresh:[self autoRefreshLayout] preservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
     return self.contentView.frame.size;
 }
 

@@ -143,6 +143,12 @@ extern UIColor *ZD_RandomColor(void);
     self.firstLineDiv.gone = self.model.flag;
 }
 
+#pragma mark -
+
+- (BOOL)autoRefreshLayout {
+    return YES;
+}
+
 #pragma mark - Property
 
 - (UIView *)containerView {

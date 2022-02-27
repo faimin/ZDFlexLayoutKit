@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDFlexLayoutCollectionViewCell : UICollectionViewCell
 
+/// default is NO
+- (BOOL)autoRefreshLayout;
+
 @end
 
 NS_ASSUME_NONNULL_END
