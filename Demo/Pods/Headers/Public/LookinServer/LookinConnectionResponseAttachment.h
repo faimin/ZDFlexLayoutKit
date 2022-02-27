@@ -1,1 +1,0 @@
-../../../LookinServer/Src/Shared/LookinConnectionResponseAttachment.h
