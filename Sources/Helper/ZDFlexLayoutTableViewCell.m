@@ -37,6 +37,9 @@
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize withHorizontalFittingPriority:(UILayoutPriority)horizontalFittingPriority verticalFittingPriority:(UILayoutPriority)verticalFittingPriority {
     if (self.contentView.isFlexLayoutEnabled) {
+        CGRect willUpdatedFrame = self.contentView.frame;
+        willUpdatedFrame.size = targetSize;
+        self.contentView.frame = willUpdatedFrame;
         return [self calculateSize];
     }
     else {
