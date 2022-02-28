@@ -2,7 +2,7 @@
 
 #### 简介：
 
-扩展`YGLayout`，增加对虚拟视图、异步计算、`UIScrollView`自适应的支持，修复由于精度问题导致文字截断问题。
+扩展`YGLayout`，增加对虚拟视图、异步计算、`UIScrollView`自适应的支持，以及一些其他小问题。
 
 #### 特色：
 
@@ -44,23 +44,23 @@ pod 'ZDFlexLayoutKit', :subspecs => ['OCMaker']
 > Swift
 
 ```swift
-avatarImgView.zds.makeFlexLayout {
+avatarImgView.zd.makeFlexLayout {
     $0.position(.absolute)
     $0.width(100%)
     $0.height(100%)
 }
-gradientView.zds.makeFlexLayout {
+gradientView.zd.makeFlexLayout {
     $0.position(.relative).flexDirection(.column)
     $0.paddingHorizontal(8)
     $0.width(100%)
 }
-titleLabel.zds.makeFlexLayout { (make) in
+titleLabel.zd.makeFlexLayout { (make) in
     make.marginTop(3.5)
     make.width(100%)
     make.flexShrink(1)
 }
 // 虚拟视图
-let userInfoDiv = ZDFlexLayoutDiv.zds.makeFlexLayout { (make) in
+let userInfoDiv = ZDFlexLayoutDiv.zd.makeFlexLayout { (make) in
     make.flexDirection(.row)
     make.alignItems(.center)
     make.marginTop(2.5)
