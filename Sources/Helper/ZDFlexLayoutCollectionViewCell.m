@@ -20,24 +20,19 @@
 }
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize {
+    CGSize autoLayoutSize = [super systemLayoutSizeFittingSize:targetSize];
     if (self.contentView.isFlexLayoutEnabled) {
-        return [self calculateSize];
+        autoLayoutSize = [self calculateSize];
     }
-    else {
-        return [super systemLayoutSizeFittingSize:targetSize];
-    }
+    return autoLayoutSize;
 }
 
 - (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize withHorizontalFittingPriority:(UILayoutPriority)horizontalFittingPriority verticalFittingPriority:(UILayoutPriority)verticalFittingPriority {
+    CGSize autoLayoutSize = [super systemLayoutSizeFittingSize:targetSize withHorizontalFittingPriority:horizontalFittingPriority verticalFittingPriority:verticalFittingPriority];
     if (self.contentView.isFlexLayoutEnabled) {
-        CGRect willUpdatedFrame = self.contentView.frame;
-        willUpdatedFrame.size = targetSize;
-        self.contentView.frame = willUpdatedFrame;
-        return [self calculateSize];
+        autoLayoutSize = [self calculateSize];
     }
-    else {
-        return [super systemLayoutSizeFittingSize:targetSize withHorizontalFittingPriority:horizontalFittingPriority verticalFittingPriority:verticalFittingPriority];
-    }
+    return autoLayoutSize;
 }
 
 @end
