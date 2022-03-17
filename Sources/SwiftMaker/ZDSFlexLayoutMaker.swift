@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - makeFlexLayout
 
-public extension ZDSFlexNamespace where T: ZDFlexLayoutView {
+public extension ZDSFlexNamespace where T: ZDFlexLayoutViewProtocol {
     
     //MARK: - Maker
     
