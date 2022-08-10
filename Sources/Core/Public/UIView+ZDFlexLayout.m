@@ -47,9 +47,7 @@
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
         if (weakSelf.isNeedLayoutChildren) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.flexLayout applyLayoutPreservingOrigin:YES dimensionFlexibility:dimensionFlexibility];
-            });
+            [weakSelf.flexLayout applyLayoutPreservingOrigin:YES dimensionFlexibility:dimensionFlexibility];
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
