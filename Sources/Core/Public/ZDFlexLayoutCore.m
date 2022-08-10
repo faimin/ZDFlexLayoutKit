@@ -334,9 +334,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     //NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
     NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 
-    ZD_Dispatch_sync_on_main_queue(^{
-        YGAttachNodesFromViewHierachy(self.view);
-    });
+    YGAttachNodesFromViewHierachy(self.view);
 
     const YGNodeRef node = self.node;
     YGNodeCalculateLayout(
@@ -371,15 +369,13 @@ static YGSize YGMeasureView(
     // UIKit returns the existing size.
     //
     // See https://github.com/facebook/yoga/issues/606 for more information.
-    ZD_Dispatch_sync_on_main_queue(^{
-        ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
-        if (!view.flexLayout.isUIView || [view.children count] > 0) {
-            sizeThatFits = [view sizeThatFits:(CGSize) {
-                                .width = constrainedWidth,
-                                .height = constrainedHeight,
-                            }];
-        }
-    });
+    ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
+    if (!view.flexLayout.isUIView || [view.children count] > 0) {
+        sizeThatFits = [view sizeThatFits:(CGSize) {
+            .width = constrainedWidth,
+            .height = constrainedHeight,
+        }];
+    }
 
     return (YGSize) {
         .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
@@ -501,15 +497,6 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
         if ([view respondsToSelector:@selector(needReApplyLayoutAtNextRunloop)]) {
             [view needReApplyLayoutAtNextRunloop];
         }
-    }
-}
-
-static void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block)
-{
-    if (NSThread.isMainThread) {
-        block();
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
     }
 }
 

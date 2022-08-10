@@ -35,8 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin
                    dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
-/// 在子线程计算布局（不推荐）
-/// 内部牵扯到锁与线程切换带来的性能损耗，性能并不比同步好;
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin: instead")));
 - (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin
                         dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin:dimensionFlexibility: instead")));
