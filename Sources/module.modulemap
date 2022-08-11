@@ -1,6 +1,0 @@
-framework module ZDFlexLayoutKit {
-  umbrella header "ZDFlexLayoutKit.h"
-
-  export *
-  module * { export * }
-}
