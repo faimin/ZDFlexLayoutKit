@@ -79,11 +79,11 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
                 }
             }];
             CFRunLoopSourceSignal(_runloopSource);
-            //CFRunLoopWakeUp(CFRunLoopGetMain());
+            CFRunLoopWakeUp(CFRunLoopGetMain());
         });
     });
     dispatch_group_notify(_taskGroup, dispatch_get_main_queue(), ^{
-        NSLog(@"计算完成");
+        //NSLog(@"计算完成");
     });
 }
 
@@ -103,7 +103,7 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
         if (allComplete) {
             allComplete();
         }
-        printf("任务组计算完成");
+        //NSLog("任务组计算完成");
     });
 }
 
@@ -125,16 +125,17 @@ static void zd_executeMainThreadAsyncTasks(void) {
     for (dispatch_block_t task in tasks) {
         task();
     }
+    //NSLog(@">>>>>>>> 计算任务执行结束");
 }
 
 static void zd_sourceContextCallBackLog(void *info) {
-    NSLog(@"function name : (%s) ==> will calculate flex layout", __PRETTY_FUNCTION__);
+    //NSLog(@"function name : (%s) ==> will calculate flex layout", __PRETTY_FUNCTION__);
 }
 
 static void zd_initRunloop() {
     CFRunLoopRef runloop = CFRunLoopGetMain();
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, INT_MAX, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-        zd_executeAsyncTasks();
+        //zd_executeAsyncTasks();
         zd_executeMainThreadAsyncTasks();
     });
     CFRunLoopAddObserver(runloop, observer, kCFRunLoopCommonModes);
