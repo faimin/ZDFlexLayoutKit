@@ -2,23 +2,23 @@ PODS:
   - LookinServer (1.0.4)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
-  - ZDFlexLayoutKit (0.1.7):
-    - ZDFlexLayoutKit/Core (= 0.1.7)
-    - ZDFlexLayoutKit/Header (= 0.1.7)
-    - ZDFlexLayoutKit/Helper (= 0.1.7)
-    - ZDFlexLayoutKit/OCMaker (= 0.1.7)
-    - ZDFlexLayoutKit/SwiftMaker (= 0.1.7)
-  - ZDFlexLayoutKit/Core (0.1.7):
+  - ZDFlexLayoutKit (0.2.2):
+    - ZDFlexLayoutKit/Core (= 0.2.2)
+    - ZDFlexLayoutKit/Header (= 0.2.2)
+    - ZDFlexLayoutKit/Helper (= 0.2.2)
+    - ZDFlexLayoutKit/OCMaker (= 0.2.2)
+    - ZDFlexLayoutKit/SwiftMaker (= 0.2.2)
+  - ZDFlexLayoutKit/Core (0.2.2):
     - Yoga
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/Header (0.1.7)
-  - ZDFlexLayoutKit/Helper (0.1.7):
+  - ZDFlexLayoutKit/Header (0.2.2)
+  - ZDFlexLayoutKit/Helper (0.2.2):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/OCMaker (0.1.7):
+  - ZDFlexLayoutKit/OCMaker (0.2.2):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/SwiftMaker (0.1.7):
+  - ZDFlexLayoutKit/SwiftMaker (0.2.2):
     - ZDFlexLayoutKit/Core
 
 DEPENDENCIES:
@@ -40,8 +40,8 @@ SPEC CHECKSUMS:
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: c2eecfdf6df1f29ea51eab558247836a3fd4b0ed
+  ZDFlexLayoutKit: a4da33d5c444680e2af3c982f6ba89b75493d791
 
-PODFILE CHECKSUM: bfef3795e2099f097851a78cf845688cde81113e
+PODFILE CHECKSUM: 93e64ba31ec8bcb14b201165e606dd53a7e9ce19
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
