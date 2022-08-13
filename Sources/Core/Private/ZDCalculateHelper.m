@@ -107,7 +107,7 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
     });
 }
 
-static void zd_executeAsyncTasks(void) {
+__unused static void zd_executeAsyncTasks(void) {
     zd_lock(^{
         // onComplete block
         for (dispatch_block_t task in _asyncTaskQueue) {
