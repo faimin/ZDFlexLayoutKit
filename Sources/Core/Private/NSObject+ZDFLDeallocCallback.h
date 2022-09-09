@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^ZDFL_DisposeBlock)(id realTarget);
+typedef void(^ZDFL_DisposeBlock)(id _Nullable realTarget);
 
 @interface NSObject (ZDFLDeallocCallback)
 

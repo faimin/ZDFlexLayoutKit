@@ -21,7 +21,7 @@
 
 - (void)dealloc {
     if (nil != self.deallocBlock) {
-        self.deallocBlock(self);
+        self.deallocBlock(self.realTarget);
         _deallocBlock = nil;
     }
 }
