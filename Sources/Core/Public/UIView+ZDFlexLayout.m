@@ -43,6 +43,14 @@
         return;
     }
     
+    // prevent multiple additions
+    if (objc_getAssociatedObject(self, _cmd)) {
+        return;
+    }
+    else {
+        objc_setAssociatedObject(self, _cmd, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
     self.isRoot = YES;
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
@@ -51,8 +59,9 @@
             weakSelf.isNeedLayoutChildren = NO;
         }
     };
-    [self zdfl_deallocBlock:^(id  _Nonnull realTarget) {
+    [self zdfl_deallocBlock:^(id  _Nullable realTarget) {
         [ZDCalculateHelper removeAsyncLayoutTask:calculateTask];
+        objc_setAssociatedObject(realTarget, _cmd, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }];
     [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
