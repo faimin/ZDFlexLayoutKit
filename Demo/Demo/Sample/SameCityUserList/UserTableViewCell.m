@@ -28,6 +28,10 @@ extern UIColor *ZD_RandomColor(void);
 
 @implementation UserTableViewCell
 
+- (void)dealloc {
+    //NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
