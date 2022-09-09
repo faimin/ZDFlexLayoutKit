@@ -306,15 +306,19 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 - (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
 {
     self.isEnabled = YES;
-    if (async) {
-        [ZDCalculateHelper asyncCalculateTask:^{
-            [self calculateLayoutWithSize:size];
-        } onComplete:^{
-            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
-        }];
-    } else {
+    
+    __weak typeof(self) weakTarget = self;
+    __auto_type calculateBlock = ^{
+        __strong typeof(weakTarget) self = weakTarget;
         [self calculateLayoutWithSize:size];
         YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+    };
+    
+    if (async) {
+        [ZDCalculateHelper asyncLayoutTask:calculateBlock];
+    }
+    else {
+        calculateBlock();
     }
 }
 
