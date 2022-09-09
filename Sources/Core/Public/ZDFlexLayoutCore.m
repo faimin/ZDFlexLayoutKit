@@ -335,7 +335,7 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
 
 - (CGSize)calculateLayoutWithSize:(CGSize)size
 {
-    //NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
+    NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
     NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 
     YGAttachNodesFromViewHierachy(self.view);
@@ -365,7 +365,7 @@ static YGSize YGMeasureView(
     const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
     const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
-    __block CGSize sizeThatFits = CGSizeZero;
+    CGSize sizeThatFits = CGSizeZero;
 
     // The default implementation of sizeThatFits: returns the existing size of
     // the view. That means that if we want to layout an empty UIView, which

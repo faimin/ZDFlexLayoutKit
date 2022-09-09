@@ -103,7 +103,7 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
         if (allComplete) {
             allComplete();
         }
-        //NSLog("任务组计算完成");
+        //NSLog(@"任务组计算完成");
     });
 }
 
@@ -134,7 +134,7 @@ static void zd_sourceContextCallBackLog(void *info) {
 
 static void zd_initRunloop() {
     CFRunLoopRef runloop = CFRunLoopGetMain();
-    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, INT_MAX, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         //zd_executeAsyncTasks();
         zd_executeMainThreadAsyncTasks();
     });
