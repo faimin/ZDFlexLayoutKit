@@ -29,8 +29,8 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) ZDFL=1',
-    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ZDFL',
+    'GCC_PREPROCESSOR_DEFINITIONS' => 'ZDFL=1',
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ZDFL',
     #'OTHER_SWIFT_FLAGS' => '$(inherited) ZDFL'
   }
   
