@@ -36,6 +36,7 @@ xcuserdata/
 #
 Pods/
 Demo/Pods/
+*/.DS_Store
 
 .rugby/
 Demo/.rugby/

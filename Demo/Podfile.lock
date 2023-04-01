@@ -1,5 +1,7 @@
 PODS:
-  - LookinServer (1.0.4)
+  - LookinServer (1.1.5):
+    - LookinServer/Core (= 1.1.5)
+  - LookinServer/Core (1.1.5)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
   - ZDFlexLayoutKit (0.2.3):
@@ -37,11 +39,11 @@ EXTERNAL SOURCES:
     :path: "../ZDFlexLayoutKit.podspec"
 
 SPEC CHECKSUMS:
-  LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
+  LookinServer: 2893f2bae53cbf3fd49bbe1a8ea1745582ef1317
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: 665d4b3c5c4184689a09440fb1b1e4a0559de94d
+  ZDFlexLayoutKit: c0d024d27d18b047caeaf72a7a83cec51d31b31a
 
-PODFILE CHECKSUM: 93e64ba31ec8bcb14b201165e606dd53a7e9ce19
+PODFILE CHECKSUM: e9b40d8910950cbfb2e92b9e8be1b940ec5194a6
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0
