@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.2.3"
+  spec.version      = "0.2.4"
   spec.summary      = "Flex Layout for iOS"
   spec.description  = <<-DESC
     flex layout for iOS powered by yoga
@@ -32,6 +32,7 @@ Pod::Spec.new do |spec|
     'GCC_PREPROCESSOR_DEFINITIONS' => 'ZDFL=1',
     'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ZDFL',
     #'OTHER_SWIFT_FLAGS' => '$(inherited) ZDFL'
+    #'OTHER_SWIFT_FLAGS' => '-no-verify-emitted-module-interface'
   }
   
   spec.swift_versions = ['5.1']
