@@ -41,7 +41,9 @@ post_install do |installer|
             # fix Xcode 14.3 编译错误
             # https://stackoverflow.com/questions/75900795/cant-run-flutter-app-on-simulator-after-upgrading-xcode-to-14-3-because-of-miss
             target.build_configurations.each do |config|
+              if target.name != 'ZDFlexLayoutKit'
                 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+              end
             end
         end
     end
