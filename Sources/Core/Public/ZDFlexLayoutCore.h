@@ -6,8 +6,14 @@
 */
 // PS: Modify YGLayout
 
-@import UIKit;
-@import yoga;
+#import <UIKit/UIKit.h>
+#if __has_include(<Yoga/Yoga.h>)
+#import <Yoga/Yoga.h>
+#elif __has_include(<yoga/Yoga.h>)
+#import <yoga/Yoga.h>
+#else
+#import "Yoga.h"
+#endif
 #import "ZDFlexLayoutDefine.h"
 
 YG_EXTERN_C_BEGIN
