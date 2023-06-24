@@ -1,0 +1,74 @@
+# Uncomment the next line to define a global platform for your project
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '11.0'
+use_frameworks!
+
+#plugin 'cocoapods-mapfile'
+
+#############################################################
+
+install! 'cocoapods',
+         :generate_multiple_pod_projects => true,
+         :incremental_installation => true,
+         :disable_input_output_paths => true,
+         :preserve_pod_file_structure => true
+
+############################################################
+
+#pre_install do |installer|
+#    dynamic_framework = ['Yoga', 'ZDFlexLayoutKit']
+#    Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+#    installer.pod_targets.each do |pod|
+#      if dynamic_framework.include?(pod.name)
+#        def pod.build_type;
+#          Pod::BuildType.dynamic_framework
+#        end
+#      end
+#    end
+#end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            # fix Xcode14 编译错误
+            # https://github.com/CocoaPods/CocoaPods/issues/8891
+            if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+                  target.build_configurations.each do |config|
+                      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+                  end
+            end
+            # fix Xcode 14.3 编译错误
+            # https://stackoverflow.com/questions/75900795/cant-run-flutter-app-on-simulator-after-upgrading-xcode-to-14-3-because-of-miss
+            target.build_configurations.each do |config|
+              if target.name != 'ZDFlexLayoutKit'
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+              end
+            end
+        end
+    end
+end
+
+############################################################
+
+target 'Demo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  #use_frameworks!
+#  supports_swift_versions '>= 5.1', '< 6.0'
+  
+  # Pods for Demo
+  pod 'YYModel'
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec'#, :subspecs => ['OCMaker', 'Helper']
+
+  target 'DemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'DemoUITests' do
+    # Pods for testing
+  end
+
+end
+
