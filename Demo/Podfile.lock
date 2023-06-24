@@ -11,8 +11,8 @@ PODS:
     - ZDFlexLayoutKit/OCMaker (= 0.2.4)
     - ZDFlexLayoutKit/SwiftMaker (= 0.2.4)
   - ZDFlexLayoutKit/Core (0.2.4):
-    - Yoga
     - ZDFlexLayoutKit/Header
+    - ZDYoga
   - ZDFlexLayoutKit/Header (0.2.4)
   - ZDFlexLayoutKit/Helper (0.2.4):
     - ZDFlexLayoutKit/Core
@@ -22,17 +22,21 @@ PODS:
     - ZDFlexLayoutKit/Header
   - ZDFlexLayoutKit/SwiftMaker (0.2.4):
     - ZDFlexLayoutKit/Core
+  - ZDYoga (2.0.0.1)
 
 DEPENDENCIES:
   - LookinServer
+  - Yoga
   - YYModel
   - ZDFlexLayoutKit (from `../ZDFlexLayoutKit.podspec`)
+  - ZDYoga
 
 SPEC REPOS:
   trunk:
     - LookinServer
     - Yoga
     - YYModel
+    - ZDYoga
 
 EXTERNAL SOURCES:
   ZDFlexLayoutKit:
@@ -42,8 +46,9 @@ SPEC CHECKSUMS:
   LookinServer: 4ce0469b066871525611d009d8d16a7a50c23491
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: 419468b90f9403415e66cbd0f0d1836da8c930d4
+  ZDFlexLayoutKit: 69c7d20168e5ab0d79b6c8d5f545c8e0a37090f4
+  ZDYoga: 6916538d7218a3b48eded989dc86b849c630eb5e
 
-PODFILE CHECKSUM: 3ed5ebfb05d572ab88cef6f8e49fd2c6ff61e8cf
+PODFILE CHECKSUM: b0b422530210b5276a8d2c2bd205876f72a2811f
 
 COCOAPODS: 1.12.1

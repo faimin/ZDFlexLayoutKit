@@ -53,7 +53,7 @@ static void zd_lock(dispatch_block_t callback) {
     }
 }
 
-static dispatch_queue_t zd_calculate_queue() {
+static dispatch_queue_t zd_calculate_queue(void) {
     static dispatch_queue_t calculateQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -132,7 +132,7 @@ static void zd_sourceContextCallBackLog(void *info) {
     //NSLog(@"function name : (%s) ==> will calculate flex layout", __PRETTY_FUNCTION__);
 }
 
-static void zd_initRunloop() {
+static void zd_initRunloop(void) {
     CFRunLoopRef runloop = CFRunLoopGetMain();
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         //zd_executeAsyncTasks();
