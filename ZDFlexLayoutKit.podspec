@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.2.4"
+  spec.version      = "0.3.0"
   spec.summary      = "Flex Layout for iOS"
   spec.description  = <<-DESC
     flex layout for iOS powered by yoga
@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
   spec.author       = { "faimin" => "fuxianchao@gmail.com" }
   spec.requires_arc = true
-  spec.platform     = :ios, "9.0"
+  spec.platform     = :ios, "10.0"
   spec.source       = {
     :git => "https://github.com/faimin/ZDFlexLayoutKit.git",
     :tag => spec.version.to_s
@@ -29,8 +29,8 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) ZDFL=1',
-    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ZDFL',
+    'GCC_PREPROCESSOR_DEFINITIONS' => 'ZDFL=1',
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'ZDFL',
     #'OTHER_SWIFT_FLAGS' => '$(inherited) ZDFL'
     #'OTHER_SWIFT_FLAGS' => '-no-verify-emitted-module-interface'
   }
@@ -45,7 +45,7 @@ Pod::Spec.new do |spec|
     s.source_files = "Sources/Core/**/*.{h,m}"
     s.public_header_files = "Sources/Core/Public/*.h"
     s.private_header_files = "Sources/Core/Private/*.h"
-    s.dependency 'Yoga'
+    s.dependency 'ZDYoga'
     s.dependency 'ZDFlexLayoutKit/Header'
   end
   
