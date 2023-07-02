@@ -161,7 +161,7 @@ public extension ZDSFlexLayoutMaker {
         return self
     }
     
-    //MARK: - Position
+    //MARK: - Absolute Position
     
     @discardableResult
     func left(_ left: YGValue) -> Self {
@@ -346,6 +346,26 @@ public extension ZDSFlexLayoutMaker {
     @discardableResult
     func borderWidth(_ borderWidth: CGFloat) -> Self {
         flexLayout.borderWidth = borderWidth
+        return self
+    }
+    
+    //MARK: - Gap
+    
+    @discardableResult
+    func rowGap(_ gap: CGFloat) -> Self {
+        flexLayout.rowGap = gap
+        return self
+    }
+    
+    @discardableResult
+    func columnGap(_ gap: CGFloat) -> Self {
+        flexLayout.columnGap = gap
+        return self
+    }
+    
+    @discardableResult
+    func allGap(_ gap: CGFloat) -> Self {
+        flexLayout.allGap = gap
         return self
     }
     

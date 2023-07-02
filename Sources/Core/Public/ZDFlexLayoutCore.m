@@ -115,6 +115,22 @@
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Vertical, capitalized_name ## Vertical, capitalized_name, YGEdgeVertical)       \
     YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
+#define YG_GAP_PROPERTY_GETTER(type, lowercased_name, property, gap_type)               \
+    - (type)lowercased_name                                                             \
+    {                                                                                   \
+        return YGNodeStyleGet ## property(self.node, gap_type);                         \
+    }
+
+#define YG_GAP_PROPERTY_SETTER(lowercased_name, capitalized_name, property, gap_type)   \
+    - (void)set ## capitalized_name: (CGFloat)lowercased_name                           \
+    {                                                                                   \
+        YGNodeStyleSet ## property(self.node, gap_type, lowercased_name);               \
+    }
+
+#define YG_GAP_PROPERTY(lowercased_name, capitalized_name, property, gap_type)          \
+    YG_GAP_PROPERTY_GETTER(CGFloat, lowercased_name, property, gap_type)                \
+    YG_GAP_PROPERTY_SETTER(lowercased_name, capitalized_name, property, gap_type)
+
 __attribute__((weak)) YGValue YGPointValue(CGFloat value)
 {
     return (YGValue) { .value = value, .unit = YGUnitPoint };
@@ -258,7 +274,13 @@ YG_VALUE_PROPERTY(minWidth, MinWidth)
 YG_VALUE_PROPERTY(minHeight, MinHeight)
 YG_VALUE_PROPERTY(maxWidth, MaxWidth)
 YG_VALUE_PROPERTY(maxHeight, MaxHeight)
+
+YG_GAP_PROPERTY(rowGap, RowGap, Gap, YGGutterRow)
+YG_GAP_PROPERTY(columnGap, ColumnGap, Gap, YGGutterColumn)
+YG_GAP_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
+
 YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
+
 
 #pragma mark - Layout and Sizing
 

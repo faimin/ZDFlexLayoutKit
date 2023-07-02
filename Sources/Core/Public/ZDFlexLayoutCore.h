@@ -104,6 +104,10 @@ YG_EXTERN_C_END
 @property (nonatomic, readwrite, assign) YGValue maxWidth;
 @property (nonatomic, readwrite, assign) YGValue maxHeight;
 
+@property (nonatomic, readwrite, assign) CGFloat rowGap;
+@property (nonatomic, readwrite, assign) CGFloat columnGap;
+@property (nonatomic, readwrite, assign) CGFloat allGap;
+
 // Yoga specific properties, not compatible with flexbox specification
 @property (nonatomic, readwrite, assign) CGFloat aspectRatio;
 

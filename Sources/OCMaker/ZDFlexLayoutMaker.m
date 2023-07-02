@@ -92,6 +92,10 @@ ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, maxWidth)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(YGValue, maxHeight)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, aspectRatio)
 
+ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, rowGap)
+ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, columnGap)
+ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, allGap)
+
 - (ZDFlexLayoutMaker *(^)(void))markDirty {
     return ^ZDFlexLayoutMaker *(void) {
         [self.flexLayout markDirty];
