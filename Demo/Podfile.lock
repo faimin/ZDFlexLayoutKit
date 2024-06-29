@@ -1,28 +1,28 @@
 PODS:
-  - LookinServer (1.1.7):
-    - LookinServer/Core (= 1.1.7)
-  - LookinServer/Core (1.1.7)
+  - LookinServer (1.2.8):
+    - LookinServer/Core (= 1.2.8)
+  - LookinServer/Core (1.2.8)
   - Yoga (1.14.0)
   - YYModel (1.0.4)
-  - ZDFlexLayoutKit (0.3.1):
-    - ZDFlexLayoutKit/Core (= 0.3.1)
-    - ZDFlexLayoutKit/Header (= 0.3.1)
-    - ZDFlexLayoutKit/Helper (= 0.3.1)
-    - ZDFlexLayoutKit/OCMaker (= 0.3.1)
-    - ZDFlexLayoutKit/SwiftMaker (= 0.3.1)
-  - ZDFlexLayoutKit/Core (0.3.1):
+  - ZDFlexLayoutKit (0.3.2):
+    - ZDFlexLayoutKit/Core (= 0.3.2)
+    - ZDFlexLayoutKit/Header (= 0.3.2)
+    - ZDFlexLayoutKit/Helper (= 0.3.2)
+    - ZDFlexLayoutKit/OCMaker (= 0.3.2)
+    - ZDFlexLayoutKit/SwiftMaker (= 0.3.2)
+  - ZDFlexLayoutKit/Core (0.3.2):
     - ZDFlexLayoutKit/Header
     - ZDYoga
-  - ZDFlexLayoutKit/Header (0.3.1)
-  - ZDFlexLayoutKit/Helper (0.3.1):
+  - ZDFlexLayoutKit/Header (0.3.2)
+  - ZDFlexLayoutKit/Helper (0.3.2):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/OCMaker (0.3.1):
+  - ZDFlexLayoutKit/OCMaker (0.3.2):
     - ZDFlexLayoutKit/Core
     - ZDFlexLayoutKit/Header
-  - ZDFlexLayoutKit/SwiftMaker (0.3.1):
+  - ZDFlexLayoutKit/SwiftMaker (0.3.2):
     - ZDFlexLayoutKit/Core
-  - ZDYoga (2.0.0.1)
+  - ZDYoga (3.1.0.1)
 
 DEPENDENCIES:
   - LookinServer
@@ -43,12 +43,12 @@ EXTERNAL SOURCES:
     :path: "../ZDFlexLayoutKit.podspec"
 
 SPEC CHECKSUMS:
-  LookinServer: 4ce0469b066871525611d009d8d16a7a50c23491
+  LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
-  ZDFlexLayoutKit: 9607bd582a92922c4433383fa58064dd3b0c6ca1
-  ZDYoga: 6916538d7218a3b48eded989dc86b849c630eb5e
+  ZDFlexLayoutKit: e884590fa84a0cc7e605666df32455ec487e0bac
+  ZDYoga: 405bc3df86faf656eba8251d05a8bdb20aeeec3e
 
-PODFILE CHECKSUM: 6c9f05218e6ca5437df11d5aee4298b84c9dffeb
+PODFILE CHECKSUM: b3631f6b23ab8e79fbfa9151a5117544ab777a2f
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

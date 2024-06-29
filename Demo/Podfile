@@ -1,7 +1,9 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://cdn.cocoapods.org/'
 
-platform :ios, '11.0'
+min_version = '10.0'
+
+platform :ios, min_version
 use_frameworks!
 
 #plugin 'cocoapods-mapfile'
@@ -12,7 +14,8 @@ install! 'cocoapods',
          :generate_multiple_pod_projects => true,
          :incremental_installation => true,
          :disable_input_output_paths => true,
-         :preserve_pod_file_structure => true
+         :preserve_pod_file_structure => true,
+         :deterministic_uuids => false
 
 ############################################################
 
@@ -42,7 +45,7 @@ post_install do |installer|
             # https://stackoverflow.com/questions/75900795/cant-run-flutter-app-on-simulator-after-upgrading-xcode-to-14-3-because-of-miss
             target.build_configurations.each do |config|
               if target.name != 'ZDFlexLayoutKit'
-                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = min_version
               end
             end
         end

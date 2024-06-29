@@ -7,10 +7,10 @@
 // PS: Modify YGLayout
 
 #import <UIKit/UIKit.h>
-#if __has_include(<ZDYoga/ZDYoga.h>)
-#import <ZDYoga/ZDYoga.h>
-#elif __has_include("ZDYoga.h")
-#import "ZDYoga.h"
+#if __has_include(<ZDYoga/Yoga.h>)
+#import <ZDYoga/Yoga.h>
+#elif __has_include("Yoga.h")
+#import "Yoga.h"
 #endif
 #import "ZDFlexLayoutDefine.h"
 
