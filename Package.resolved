@@ -1,0 +1,15 @@
+{
+  "originHash" : "d36ac917e7f04b23731d265854603e86a3aa5098056f3ae262a45bcf27500282",
+  "pins" : [
+    {
+      "identity" : "yoga",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/faimin/yoga",
+      "state" : {
+        "branch" : "4e6c2d79c",
+        "revision" : "4e6c2d79c1fc69635c75cb881175d964831998d1"
+      }
+    }
+  ],
+  "version" : 3
+}
