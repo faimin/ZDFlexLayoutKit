@@ -57,12 +57,14 @@ end
 target 'Demo' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-#  supports_swift_versions '>= 5.1', '< 6.0'
+  # supports_swift_versions '>= 5.1', '< 6.0'
+  
+  # ENV['Yoga'] = 'true'
   
   # Pods for Demo
   pod 'YYModel'
   pod 'LookinServer', :configurations => ['Debug']
-  pod 'Yoga'
+  pod 'Yoga', :podspec => '../Yoga.podspec'
   pod 'ZDYoga'
   pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec'#, :subspecs => ['OCMaker', 'Helper']
 
