@@ -18,7 +18,7 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
 
 @interface ZDTemplateCellHandler()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, UITableViewCell *> *templateCellCache;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *cellHeightCache;
+@property (nonatomic, strong) NSCache<NSString *, NSNumber *> *cellHeightCache;
 @end
 
 @implementation ZDTemplateCellHandler
@@ -42,19 +42,27 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
                    reuseIdentifier:(NSString *)reuseCellId
                          indexPath:(NSIndexPath *)indexPath
                      configuration:(void(^)(UITableViewCell *))configurationBlock {
-    if (!(tableView && reuseCellId && indexPath)) return 0.f;
+    if (!(tableView && reuseCellId && indexPath)) {
+        return 0.f;
+    }
     
     CGFloat cellHeight = 0.f;
     NSString *indexPathKey = ZD_IndexPathKey(indexPath);
-    if (self.cellHeightCache[indexPathKey]) {
-        cellHeight = self.cellHeightCache[indexPathKey].floatValue;
+    NSNumber *cachedHeightNum = [self.cellHeightCache objectForKey:indexPathKey];
+    if (cachedHeightNum) {
+        cellHeight = cachedHeightNum.floatValue;
     } else {
         UITableViewCell *cell = [self templateCellWithTableView:tableView reuseIdentifier:reuseCellId];
+        
         [cell prepareForReuse];
-        if (configurationBlock) configurationBlock(cell);
+        
+        if (configurationBlock) {
+            configurationBlock(cell);
+        }
         
         CGFloat realHeight = ceil(CGRectGetHeight(cell.contentView.frame));
-        self.cellHeightCache[indexPathKey] = @(realHeight);
+        [self.cellHeightCache setObject:@(realHeight) forKey:indexPathKey];
+        
         cellHeight = realHeight;
     }
     
@@ -70,9 +78,10 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
     return _templateCellCache;
 }
 
-- (NSMutableDictionary<NSString *, NSNumber *> *)cellHeightCache {
+- (NSCache<NSString *, NSNumber *> *)cellHeightCache {
     if (!_cellHeightCache) {
-        _cellHeightCache = @{}.mutableCopy;
+        _cellHeightCache = [[NSCache alloc] init];
+        _cellHeightCache.name = @"ZDFlexLayoutCellHeightCache";
     }
     return _cellHeightCache;
 }
