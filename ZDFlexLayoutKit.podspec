@@ -45,7 +45,11 @@ Pod::Spec.new do |spec|
     s.source_files = "Sources/Core/**/*.{h,m}"
     s.public_header_files = "Sources/Core/Public/*.h"
     s.private_header_files = "Sources/Core/Private/*.h"
-    s.dependency 'ZDYoga'
+    if ENV['Yoga'] == 'true'
+      s.dependency 'Yoga'
+    else
+      s.dependency 'ZDYoga'
+    end
     s.dependency 'ZDFlexLayoutKit/Header'
   end
   
