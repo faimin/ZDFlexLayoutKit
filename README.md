@@ -33,6 +33,15 @@ pod 'ZDFlexLayoutKit'
 >
 > 如果它被编译为了动态库，其依赖的 `yoga` 也需要以动态库的形式集成，即动态库不能依赖静态库
 
+
+默认使用的是[ZDYoga](https://github.com/faimin/ZDYoga)，如果想使用官方`Yoga`，可以在`Podfile`中添加设置：
+
+```ruby
+ENV['Yoga'] = 'true'
+
+pod 'Yoga', :podspec => './Yoga.podspec'
+```
+
 ## Usage
 
 > Swift
@@ -71,7 +80,7 @@ userInfoDiv.calculateLayout(withAutoRefresh: true, preservingOrigin: false, dime
 
 > Objective-C
 
-```objc
+```objective-c
 [self zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
     make.flexDirection(YGFlexDirectionColumn).flexWrap(YGWrapWrap).alignContent(YGAlignCenter);
 }];
