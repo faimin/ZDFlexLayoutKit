@@ -25,6 +25,7 @@
 
 ```ruby
 pod 'ZDFlexLayoutKit'
+pod 'Yoga', :podspec => 'https://github.com/faimin/ZDFlexLayoutKit/blob/master/Yoga.podspec' # 你也可以指定自己的`Yoga podspec`
 ```
 
 > 从 `0.1.2` 开始支持 `Swift`
@@ -32,15 +33,6 @@ pod 'ZDFlexLayoutKit'
 > 支持编译为静态库，但如果想使用`Literal`字面量特性，需要把这个`repo`编译为`framework`的形式，比如在`podfile`中开启`use_framework!`或者[其他方式](#dynamic_framework_setting)让它以`framework`的形式存在
 >
 > 如果它被编译为了动态库，其依赖的 `yoga` 也需要以动态库的形式集成，即动态库不能依赖静态库
-
-
-默认使用的是[ZDYoga](https://github.com/faimin/ZDYoga)，如果想使用官方`Yoga`，可以在`Podfile`中添加设置：
-
-```ruby
-ENV['Yoga'] = 'true'
-
-pod 'Yoga', :podspec => './Yoga.podspec'
-```
 
 ## Usage
 
