@@ -47,6 +47,7 @@ post_install do |installer|
               if target.name != 'ZDFlexLayoutKit'
                 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = min_version
               end
+              config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
             end
         end
     end
