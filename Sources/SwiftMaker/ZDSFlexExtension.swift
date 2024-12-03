@@ -18,6 +18,12 @@ extension Int {
     }
 }
 
+extension UInt {
+    public static postfix func %(value: UInt) -> YGValue {
+        return YGValue(value: Float(value), unit: .percent)
+    }
+}
+
 extension Float {
     public static postfix func %(value: Float) -> YGValue {
         return YGValue(value: value, unit: .percent)
