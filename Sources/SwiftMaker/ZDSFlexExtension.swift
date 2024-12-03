@@ -5,9 +5,7 @@
 //  Created by Zero.D.Saber on 2020/12/5.
 //
 
-#if canImport(ZDYoga)
-import ZDYoga
-#elseif canImport(yoga)
+#if canImport(yoga)
 import yoga
 #elseif canImport(Yoga)
 import Yoga
