@@ -63,7 +63,7 @@ extern UIColor *ZD_RandomColor(void);
         make.isEnabled(YES);
     }]];
     
-    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginLeft(YGPointValue(10));
+    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
         make.width(YGPointValue(UIScreen.mainScreen.bounds.size.width - 115 - 25));
     }];
     [self.containerView addChild:rightContaienrDiv];
@@ -80,14 +80,14 @@ extern UIColor *ZD_RandomColor(void);
     [self.tagLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.paddingHorizontal(YGPointValue(5)).paddingVertical(YGPointValue(2.5));
-        make.marginLeft(YGPointValue(3));
+        make.marginStart(YGPointValue(3));
     }];
     ZDFlexLayoutDiv *nameTagDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.flexDirection(YGFlexDirectionRow).alignItems(YGAlignCenter).flexShrink(1);
     }];
     [self.locationLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
-        make.marginLeft(YGPointValue(5));
+        make.marginStart(YGPointValue(5));
     }];
     [nameTagDiv addChildren:@[self.nickNameLabel, self.tagLabel]];
     [firstLineDiv addChildren:@[nameTagDiv, self.locationLabel]];
@@ -271,7 +271,7 @@ extern UIColor *ZD_RandomColor(void);
      ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv new];
      [rightContaienrDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.flexDirection = YGFlexDirectionColumn;
-         layout.marginLeft = YGPointValue(10);
+         layout.marginStart = YGPointValue(10);
          layout.width = YGPointValue(ZD_ScreenWidth() - 115 - 25);
      }];
      [self.containerView addChild:rightContaienrDiv];
@@ -289,7 +289,7 @@ extern UIColor *ZD_RandomColor(void);
      [self.tagLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
          layout.paddingHorizontal = YGPointValue(5);
          layout.paddingVertical = YGPointValue(2.5);
-         layout.marginLeft = YGPointValue(3);
+         layout.marginStart = YGPointValue(3);
      }];
      ZDFlexLayoutDiv *nameTagDiv = ZDFlexLayoutDiv.new;
      [nameTagDiv configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
@@ -298,7 +298,7 @@ extern UIColor *ZD_RandomColor(void);
          layout.flexShrink = 1;
      }];
      [self.locationLabel configureFlexLayoutWithBlock:^(ZDFlexLayoutCore * _Nonnull layout) {
-         layout.marginLeft = YGPointValue(5);
+         layout.marginStart = YGPointValue(5);
      }];
      [nameTagDiv addChild:self.nickNameLabel];
      [nameTagDiv addChild:self.tagLabel];

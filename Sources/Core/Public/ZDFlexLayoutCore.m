@@ -360,6 +360,11 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
     NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
     NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 
+    UIView *view = self.view.owningView;
+    if (view && view.traitCollection.layoutDirection != UITraitEnvironmentLayoutDirectionUnspecified) {
+        self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionRTL : YGDirectionLTR;
+    }
+    
     YGAttachNodesFromViewHierachy(self.view);
 
     const YGNodeRef node = self.node;
@@ -367,7 +372,8 @@ YG_PROPERTY(CGFloat, aspectRatio, AspectRatio)
         node,
         size.width,
         size.height,
-        YGNodeStyleGetDirection(node));
+        YGNodeStyleGetDirection(node)
+    );
 
     return (CGSize) {
         .width = YGNodeLayoutGetWidth(node),
