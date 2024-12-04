@@ -135,6 +135,12 @@ public extension ZDSFlexLayoutMaker {
         return self
     }
     
+    @discardableResult
+    func boxSizing(_ boxSizing: YGBoxSizing) -> Self {
+        flexLayout.boxSizing = boxSizing
+        return self
+    }
+    
     //MARK: - Flex
     
     @discardableResult
