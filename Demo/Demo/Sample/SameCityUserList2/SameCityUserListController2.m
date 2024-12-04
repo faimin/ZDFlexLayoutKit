@@ -37,6 +37,9 @@
     self.view.backgroundColor = UIColor.purpleColor;
     
     [self.view addSubview:self.tableView];
+    
+    // set RTL
+    self.view.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
 }
 
 - (void)setupData {
