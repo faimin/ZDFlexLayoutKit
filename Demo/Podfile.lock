@@ -2,7 +2,7 @@ PODS:
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
   - LookinServer/Core (1.2.8)
-  - Yoga (3.2.0)
+  - Yoga (3.2.1)
   - YYModel (1.0.4)
   - ZDFlexLayoutKit (0.3.3):
     - ZDFlexLayoutKit/Core (= 0.3.3)
@@ -42,7 +42,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
-  Yoga: 24c01073193ffc79595c8e1562f1ba7af6e519a5
+  Yoga: 902de13e650d509e1d41d3dbaebb153b0abf9c50
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   ZDFlexLayoutKit: a5b1aedae23f4d25783ffa2a61ddd5b9fabcaff3
 
