@@ -25,7 +25,7 @@
 
 ```ruby
 pod 'ZDFlexLayoutKit'
-pod 'Yoga', :podspec => 'https://github.com/faimin/ZDFlexLayoutKit/blob/master/Yoga.podspec' # 你也可以指定自己的`Yoga podspec`
+pod 'Yoga', :podspec => 'https://raw.githubusercontent.com/faimin/ZDFlexLayoutKit/refs/heads/master/Yoga.podspec' # 你也可以指定自己的`Yoga podspec`
 ```
 
 > 从 `0.1.2` 开始支持 `Swift`
