@@ -21,19 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 计算布局
 /// @param autoRefresh 是否开启runloop自动更新布局（默认false）
 /// @param preserveOrigin 是否保留原来的布局属性
-- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh
-                      preservingOrigin:(BOOL)preserveOrigin;
-- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin;
-
-/// 计算布局
-/// @param autoRefresh 是否开启runloop自动更新布局（默认false）
-/// @param preserveOrigin 是否保留原来的布局属性
 /// @param dimensionFlexibility 横向是flex的还是纵向是flex的
 - (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh
                       preservingOrigin:(BOOL)preserveOrigin
                   dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
-- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin
-                   dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
 @end
 

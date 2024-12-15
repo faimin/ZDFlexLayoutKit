@@ -24,18 +24,6 @@
     [self notifyRootNeedsLayout];
 }
 
-- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin {
-    [self calculateLayoutWithAutoRefresh:NO preservingOrigin:preserveOrigin];
-}
-
-- (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin {
-    [self calculateLayoutWithAutoRefresh:autoRefresh preservingOrigin:preserveOrigin dimensionFlexibility:ZDDimensionFlexibilityFlexibleNone];
-}
-
-- (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
-    [self calculateLayoutWithAutoRefresh:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
-}
-
 - (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
     [self.flexLayout applyLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
     
