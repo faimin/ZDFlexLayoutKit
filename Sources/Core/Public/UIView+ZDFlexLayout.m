@@ -66,14 +66,6 @@
     [ZDCalculateHelper asyncLayoutTask:calculateTask];
 }
 
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin {    
-    [self asyncCalculateLayoutPreservingOrigin:preserveOrigin dimensionFlexibility:0];
-}
-
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
-    [self.flexLayout asyncApplyLayout:YES preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
-}
-
 #pragma mark - ZDFlexLayoutNodeProtocol
 
 - (BOOL)isFlexLayoutEnabled {

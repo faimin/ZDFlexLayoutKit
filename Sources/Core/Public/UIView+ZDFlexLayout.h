@@ -35,10 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)calculateLayoutPreservingOrigin:(BOOL)preserveOrigin
                    dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
 
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin: instead")));
-- (void)asyncCalculateLayoutPreservingOrigin:(BOOL)preserveOrigin
-                        dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility __attribute__((deprecated("use calculateLayoutWithAutoRefresh:preservingOrigin:dimensionFlexibility: instead")));
-
 @end
 
 #pragma mark - UIScrollView
