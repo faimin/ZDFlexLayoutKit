@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 将视图标记为dirty（yoga中仅仅对叶子视图生效），
 /// 同时会把根视图标记为dirty，然后在下一个runloop时刷新
+- (void)markDirtyWithAnimation:(BOOL)animation;
 - (void)markDirty;
 
 /// 计算布局

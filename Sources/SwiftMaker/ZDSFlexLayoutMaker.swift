@@ -420,9 +420,9 @@ public extension ZDSFlexLayoutMaker {
     }
     
     @discardableResult
-    func markDirty() -> Self {
+    func markDirty(animation: Bool = false) -> Self {
         flexLayout.markDirty()
-        flexLayout.view.notifyRootNeedsLayout()
+        flexLayout.view.notifyRootNeedsLayout(withAnimation: animation)
         return self
     }
     

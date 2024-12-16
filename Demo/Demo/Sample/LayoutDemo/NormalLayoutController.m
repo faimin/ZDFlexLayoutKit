@@ -108,7 +108,7 @@
     [self.contentView zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         CGFloat percent = self.contentView.flexLayout.width.value;
         make.width(YGPercentValue(MAX(30, percent - 10)));
-        make.markDirty();
+        make.markDirty(true);
     }];
 }
 

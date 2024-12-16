@@ -86,7 +86,7 @@ ZD_CHAIN_NORMAL_PROPERTY(CGFloat, rowGap);
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, columnGap);
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, allGap);
 
-- (ZDFlexLayoutMaker *(^)(void))markDirty;
+- (ZDFlexLayoutMaker *(^)(BOOL))markDirty;
 
 - (ZDFlexLayoutMaker *(^)(BOOL))gone;
 

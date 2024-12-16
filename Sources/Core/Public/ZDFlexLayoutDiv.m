@@ -19,7 +19,7 @@ children = _children,
 layoutFrame = _layoutFrame,
 gone = _gone,
 isRoot = _isRoot,
-isNeedLayoutChildren = _isNeedLayoutChildren;
+needLayoutVector = _needLayoutVector;
 
 #pragma mark - ZDFlexLayoutNodeProtocol
 
@@ -128,16 +128,17 @@ isNeedLayoutChildren = _isNeedLayoutChildren;
     return CGSizeZero;
 }
 
-- (void)notifyRootNeedsLayout {
-    if (self.isRoot && self.isNeedLayoutChildren) {
+- (void)notifyRootNeedsLayoutWithAnimation:(BOOL)animation {
+    BOOL needLayout = self.needLayoutVector.dx;
+    if (self.isRoot && needLayout) {
         return;
     }
     
-    if (self.isRoot && !self.isNeedLayoutChildren) {
-        self.isNeedLayoutChildren = YES;
+    if (self.isRoot && !needLayout) {
+        self.needLayoutVector = CGVectorMake(1, animation);
     }
-    else if (self.parent) {
-        [self.parent notifyRootNeedsLayout];
+    else if (!self.isRoot && self.parent) {
+        [self.parent notifyRootNeedsLayoutWithAnimation:animation];
     }
 }
 
@@ -174,7 +175,7 @@ isNeedLayoutChildren = _isNeedLayoutChildren;
     self.flexLayout.isIncludedInLayout = !gone;
     [self setView:self hidden:gone];
     objc_setAssociatedObject(self, @selector(gone), @(gone), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self notifyRootNeedsLayout];
+    [self notifyRootNeedsLayoutWithAnimation:NO];
 }
 
 - (BOOL)gone {

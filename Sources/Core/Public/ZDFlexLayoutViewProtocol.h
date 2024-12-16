@@ -31,9 +31,9 @@ typedef id<ZDFlexLayoutViewProtocol> ZDFlexLayoutView;
 /// mark the view as root which to calculate frame
 @property (nonatomic, assign) BOOL isRoot;
 /// mark the rootView need relayout
-@property (nonatomic, assign) BOOL isNeedLayoutChildren;
+@property (nonatomic, assign) CGVector needLayoutVector;
 
-- (void)notifyRootNeedsLayout;
+- (void)notifyRootNeedsLayoutWithAnimation:(BOOL)animation;
 //==========================================
 
 //==========================================

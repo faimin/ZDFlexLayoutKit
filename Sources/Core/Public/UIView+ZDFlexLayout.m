@@ -20,8 +20,12 @@
 @implementation UIView (ZDFlexLayout)
 
 - (void)markDirty {
+    [self markDirtyWithAnimation:NO];
+}
+
+- (void)markDirtyWithAnimation:(BOOL)animation {
     [self.flexLayout markDirty];
-    [self notifyRootNeedsLayout];
+    [self notifyRootNeedsLayoutWithAnimation:animation];
 }
 
 - (void)calculateLayoutWithAutoRefresh:(BOOL)autoRefresh preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
@@ -42,9 +46,19 @@
     self.isRoot = YES;
     __weak typeof(self) weakSelf = self;
     dispatch_block_t calculateTask = ^{
-        if (weakSelf.isNeedLayoutChildren) {
-            [weakSelf.flexLayout applyLayoutPreservingOrigin:YES dimensionFlexibility:dimensionFlexibility];
-            weakSelf.isNeedLayoutChildren = NO;
+        if (weakSelf.needLayoutVector.dx != 0) {
+            BOOL isAnimation = weakSelf.needLayoutVector.dy != 0;
+            if (isAnimation) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [weakSelf.flexLayout applyLayoutPreservingOrigin:YES dimensionFlexibility:dimensionFlexibility];
+                } completion:^(BOOL finished) {
+                    weakSelf.needLayoutVector = CGVectorMake(0, 0);
+                }];
+            }
+            else {
+                [weakSelf.flexLayout applyLayoutPreservingOrigin:YES dimensionFlexibility:dimensionFlexibility];
+                weakSelf.needLayoutVector = CGVectorMake(0, 0);
+            }
         }
     };
     [self zdfl_deallocBlock:^(id  _Nullable realTarget) {
@@ -180,16 +194,17 @@
     }
 }
 
-- (void)notifyRootNeedsLayout {
-    if (self.isRoot && self.isNeedLayoutChildren) {
+- (void)notifyRootNeedsLayoutWithAnimation:(BOOL)animation {
+    BOOL needLayout = self.needLayoutVector.dx;
+    if (self.isRoot && needLayout) {
         return;
     }
     
-    if (self.isRoot && !self.isNeedLayoutChildren) {
-        self.isNeedLayoutChildren = YES;
+    if (self.isRoot && !needLayout) {
+        self.needLayoutVector = CGVectorMake(1, animation);
     }
     else if (!self.isRoot && self.parent) {
-        [self.parent notifyRootNeedsLayout];
+        [self.parent notifyRootNeedsLayoutWithAnimation:animation];
     }
 }
 
@@ -261,7 +276,7 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
     self.flexLayout.isIncludedInLayout = !gone;
     self.hidden = gone;
     objc_setAssociatedObject(self, @selector(gone), @(gone), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self markDirty];
+    [self markDirtyWithAnimation:NO];
 }
 
 - (BOOL)gone {
@@ -276,12 +291,22 @@ static CGRect ZD_UpdateFrameIfSuperViewIsDiv(ZDFlexLayoutView div, CGRect origin
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setIsNeedLayoutChildren:(BOOL)isNeedLayoutChildren {
-    objc_setAssociatedObject(self, @selector(isNeedLayoutChildren), @(isNeedLayoutChildren), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//- (void)setIsNeedLayoutChildren:(BOOL)isNeedLayoutChildren {
+//    objc_setAssociatedObject(self, @selector(isNeedLayoutChildren), @(isNeedLayoutChildren), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (BOOL)isNeedLayoutChildren {
+//    return [objc_getAssociatedObject(self, _cmd) boolValue];
+//}
+
+- (void)setNeedLayoutVector:(CGVector)needLayoutVector {
+    objc_setAssociatedObject(self, @selector(needLayoutVector), [NSValue valueWithCGVector:needLayoutVector], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isNeedLayoutChildren {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+- (CGVector)needLayoutVector {
+    NSValue *value = objc_getAssociatedObject(self, _cmd);
+    CGVector vector = [value CGVectorValue];
+    return vector;
 }
 
 @end

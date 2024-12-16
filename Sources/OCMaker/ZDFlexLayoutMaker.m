@@ -97,10 +97,10 @@ ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, rowGap)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, columnGap)
 ZD_CHAIN_NORMAL_PROPERTY_IMP(CGFloat, allGap)
 
-- (ZDFlexLayoutMaker *(^)(void))markDirty {
-    return ^ZDFlexLayoutMaker *(void) {
+- (ZDFlexLayoutMaker *(^)(BOOL))markDirty {
+    return ^ZDFlexLayoutMaker *(BOOL isAnimation) {
         [self.flexLayout markDirty];
-        [self.flexLayout.view notifyRootNeedsLayout];
+        [self.flexLayout.view notifyRootNeedsLayoutWithAnimation:isAnimation];
         return self;
     };
 }
