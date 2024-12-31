@@ -111,6 +111,8 @@
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Bottom, capitalized_name ## Bottom, capitalized_name, YGEdgeBottom)             \
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Start, capitalized_name ## Start, capitalized_name, YGEdgeStart)                \
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## End, capitalized_name ## End, capitalized_name, YGEdgeEnd)                      \
+    YG_VALUE_EDGE_PROPERTY(lowercased_name ## Leading, capitalized_name ## Leading, capitalized_name, YGEdgeStart)            \
+    YG_VALUE_EDGE_PROPERTY(lowercased_name ## Trailing, capitalized_name ## Trailing, capitalized_name, YGEdgeEnd)            \
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Horizontal, capitalized_name ## Horizontal, capitalized_name, YGEdgeHorizontal) \
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Vertical, capitalized_name ## Vertical, capitalized_name, YGEdgeVertical)       \
     YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
@@ -257,6 +259,8 @@ YG_VALUE_EDGE_PROPERTY(right, Right, Position, YGEdgeRight)
 YG_VALUE_EDGE_PROPERTY(bottom, Bottom, Position, YGEdgeBottom)
 YG_VALUE_EDGE_PROPERTY(start, Start, Position, YGEdgeStart)
 YG_VALUE_EDGE_PROPERTY(end, End, Position, YGEdgeEnd)
+YG_VALUE_EDGE_PROPERTY(leading, Leading, Position, YGEdgeStart)
+YG_VALUE_EDGE_PROPERTY(trailing, Trailing, Position, YGEdgeEnd)
 YG_VALUE_EDGES_PROPERTIES(margin, Margin)
 YG_VALUE_EDGES_PROPERTIES(padding, Padding)
 

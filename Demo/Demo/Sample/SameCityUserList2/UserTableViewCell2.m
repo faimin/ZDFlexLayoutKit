@@ -62,7 +62,7 @@ extern UIColor *ZD_RandomColor(void);
         make.isEnabled(YES);
     }]];
     
-    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
+    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginLeading(YGPointValue(10));
         make.width(YGPointValue(CGRectGetWidth(UIScreen.mainScreen.bounds) - 115 - 25));
     }];
     [self.containerView addChild:rightContaienrDiv];
@@ -79,14 +79,14 @@ extern UIColor *ZD_RandomColor(void);
     [self.tagLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
         make.paddingHorizontal(YGPointValue(5)).paddingVertical(YGPointValue(2.5));
-        make.marginStart(YGPointValue(3));
+        make.marginLeading(YGPointValue(3));
     }];
     ZDFlexLayoutDiv *nameTagDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.flexDirection(YGFlexDirectionRow).alignItems(YGAlignCenter).flexShrink(1);
     }];
     [self.locationLabel zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
         make.isEnabled(YES);
-        make.marginStart(YGPointValue(5));
+        make.marginLeading(YGPointValue(5));
     }];
     [nameTagDiv addChildren:@[self.nickNameLabel, self.tagLabel]];
     [firstLineDiv addChildren:@[nameTagDiv, self.locationLabel]];

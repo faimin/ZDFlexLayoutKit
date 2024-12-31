@@ -78,6 +78,8 @@ YG_EXTERN_C_END
 @property (nonatomic, readwrite, assign) YGValue marginBottom;
 @property (nonatomic, readwrite, assign) YGValue marginStart;
 @property (nonatomic, readwrite, assign) YGValue marginEnd;
+@property (nonatomic, readwrite, assign) YGValue marginLeading;
+@property (nonatomic, readwrite, assign) YGValue marginTrailing;
 @property (nonatomic, readwrite, assign) YGValue marginHorizontal;
 @property (nonatomic, readwrite, assign) YGValue marginVertical;
 @property (nonatomic, readwrite, assign) YGValue margin;
@@ -88,6 +90,8 @@ YG_EXTERN_C_END
 @property (nonatomic, readwrite, assign) YGValue paddingBottom;
 @property (nonatomic, readwrite, assign) YGValue paddingStart;
 @property (nonatomic, readwrite, assign) YGValue paddingEnd;
+@property (nonatomic, readwrite, assign) YGValue paddingLeading;
+@property (nonatomic, readwrite, assign) YGValue paddingTrailing;
 @property (nonatomic, readwrite, assign) YGValue paddingHorizontal;
 @property (nonatomic, readwrite, assign) YGValue paddingVertical;
 @property (nonatomic, readwrite, assign) YGValue padding;
