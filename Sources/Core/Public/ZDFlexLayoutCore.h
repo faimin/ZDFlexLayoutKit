@@ -7,7 +7,9 @@
 // PS: Modify YGLayout
 
 #import <UIKit/UIKit.h>
-#if __has_include(<yoga/Yoga.h>)
+#if __has_include(<ZDYoga/Yoga.h>)
+#import <ZDYoga/Yoga.h>
+#elif __has_include(<yoga/Yoga.h>)
 #import <yoga/Yoga.h>
 #elif __has_include(<Yoga/Yoga.h>)
 #import <Yoga/Yoga.h>
