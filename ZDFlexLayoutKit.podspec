@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint ZDFlexLayout.podspec' to ensure this is a
+#  Be sure to run `pod spec lint ZDFlexLayoutKit.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.3.3"
+  spec.version      = "0.4.0"
   spec.summary      = "Flex Layout for iOS"
   spec.description  = <<-DESC
     flex layout for iOS powered by yoga
