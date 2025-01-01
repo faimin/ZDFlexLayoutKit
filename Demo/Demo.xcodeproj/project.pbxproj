@@ -767,8 +767,6 @@
 					"\"YYModel\"",
 					"-framework",
 					"\"ZDFlexLayoutKit\"",
-					"-framework",
-					"\"yoga\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.flex;
 				PRODUCT_NAME = "$(TARGET_NAME)";

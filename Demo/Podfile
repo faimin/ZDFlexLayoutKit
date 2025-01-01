@@ -65,8 +65,8 @@ target 'Demo' do
   # Pods for Demo
   pod 'YYModel'
   pod 'LookinServer', :configurations => ['Debug']
-  #pod 'Yoga', :podspec => '../Yoga.podspec'
-  pod 'ZDYoga', :path => '~/Documents/Dev/Fork/ZDYoga/ZDYoga.podspec'
+  pod 'Yoga', :podspec => '../Yoga.podspec'
+  pod 'ZDYoga', '~> 3.2.1.1'
   pod 'ZDFlexLayoutKit', :path => '../ZDFlexLayoutKit.podspec'#, :subspecs => ['OCMaker', 'Helper']
 
   target 'DemoTests' do

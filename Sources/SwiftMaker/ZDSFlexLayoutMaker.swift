@@ -358,19 +358,19 @@ public extension ZDSFlexLayoutMaker {
     //MARK: - Gap
     
     @discardableResult
-    func rowGap(_ gap: CGFloat) -> Self {
+    func rowGap(_ gap: YGValue) -> Self {
         flexLayout.rowGap = gap
         return self
     }
     
     @discardableResult
-    func columnGap(_ gap: CGFloat) -> Self {
+    func columnGap(_ gap: YGValue) -> Self {
         flexLayout.columnGap = gap
         return self
     }
     
     @discardableResult
-    func allGap(_ gap: CGFloat) -> Self {
+    func allGap(_ gap: YGValue) -> Self {
         flexLayout.allGap = gap
         return self
     }

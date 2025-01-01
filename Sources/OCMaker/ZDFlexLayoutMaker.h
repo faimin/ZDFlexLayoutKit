@@ -82,9 +82,9 @@ ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxWidth)
 ZD_CHAIN_NORMAL_PROPERTY(YGValue, maxHeight)
 ZD_CHAIN_NORMAL_PROPERTY(CGFloat, aspectRatio)
 
-ZD_CHAIN_NORMAL_PROPERTY(CGFloat, rowGap);
-ZD_CHAIN_NORMAL_PROPERTY(CGFloat, columnGap);
-ZD_CHAIN_NORMAL_PROPERTY(CGFloat, allGap);
+ZD_CHAIN_NORMAL_PROPERTY(YGValue, rowGap);
+ZD_CHAIN_NORMAL_PROPERTY(YGValue, columnGap);
+ZD_CHAIN_NORMAL_PROPERTY(YGValue, allGap);
 
 - (ZDFlexLayoutMaker *(^)(void))markDirty;
 
