@@ -1,11 +1,9 @@
+## 0.4.0
 
+1. `Yoga`更新到`0.3.2.1`
+2. [Yoga 3.2.0 CHANGELOG](https://github.com/facebook/yoga/releases/tag/v3.2.0)
+3. 同步支持`YGBoxSizing`、`Gap`
 
 ## 0.3.3 
 
-1. 支持 ZDYoga、Yoga切换。通过环境变量 `ENV['Yoga'] = 'true'`来切换。
-   
-## 0.3.4
-
-1. `Yoga`升级到`0.3.2`，`Yoga`依赖改为官方版本，不再使用`ZDYoga`。
-2. [Yoga 3.2.0 CHANGELOG](https://github.com/facebook/yoga/releases/tag/v3.2.0)
-3. 同步支持`YGBoxSizing`
+1. 支持 ZDYoga、Yoga 通过环境变量 `ENV['Yoga'] = 'true'`进行切换。
