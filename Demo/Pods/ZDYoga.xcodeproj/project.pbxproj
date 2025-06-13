@@ -1,0 +1,1016 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		82F710000006A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F71000000690 /* Foundation.framework */; };
+		82F710000006B0 /* AbsoluteLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000000D0 /* AbsoluteLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000006C0 /* Baseline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000100 /* Baseline.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000006D0 /* Cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000130 /* Cache.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000006E0 /* CalculateLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000150 /* CalculateLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000006F0 /* FlexLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000180 /* FlexLine.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000700 /* PixelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000001A0 /* PixelGrid.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000710 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000001F0 /* Config.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000720 /* AssertFatal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000220 /* AssertFatal.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000730 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000240 /* Log.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000740 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000003C0 /* event.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000750 /* LayoutResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000410 /* LayoutResults.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000760 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000430 /* Node.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000770 /* YGConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000004F0 /* YGConfig.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000780 /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000510 /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F71000000790 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000540 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000007A0 /* YGNodeLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000560 /* YGNodeLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000007B0 /* YGNodeStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000000580 /* YGNodeStyle.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000007C0 /* YGPixelGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000005A0 /* YGPixelGrid.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000007D0 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82F710000005C0 /* YGValue.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++20 -fPIC -fno-objc-arc"; }; };
+		82F710000007E0 /* AbsoluteLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000000E0 /* AbsoluteLayout.h */; };
+		82F71000000800 /* AbsoluteLayout.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000000E0 /* AbsoluteLayout.h */; };
+		82F71000000810 /* Align.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000000F0 /* Align.h */; };
+		82F71000000820 /* Align.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000000F0 /* Align.h */; };
+		82F71000000830 /* Baseline.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000110 /* Baseline.h */; };
+		82F71000000840 /* Baseline.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000110 /* Baseline.h */; };
+		82F71000000850 /* BoundAxis.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000120 /* BoundAxis.h */; };
+		82F71000000860 /* BoundAxis.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000120 /* BoundAxis.h */; };
+		82F71000000870 /* Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000140 /* Cache.h */; };
+		82F71000000880 /* Cache.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000140 /* Cache.h */; };
+		82F71000000890 /* CalculateLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000160 /* CalculateLayout.h */; };
+		82F710000008A0 /* CalculateLayout.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000160 /* CalculateLayout.h */; };
+		82F710000008B0 /* FlexDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000170 /* FlexDirection.h */; };
+		82F710000008C0 /* FlexDirection.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000170 /* FlexDirection.h */; };
+		82F710000008D0 /* FlexLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000190 /* FlexLine.h */; };
+		82F710000008E0 /* FlexLine.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000190 /* FlexLine.h */; };
+		82F710000008F0 /* PixelGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001B0 /* PixelGrid.h */; };
+		82F71000000900 /* PixelGrid.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001B0 /* PixelGrid.h */; };
+		82F71000000910 /* SizingMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001C0 /* SizingMode.h */; };
+		82F71000000920 /* SizingMode.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001C0 /* SizingMode.h */; };
+		82F71000000930 /* TrailingPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001D0 /* TrailingPosition.h */; };
+		82F71000000940 /* TrailingPosition.h in Copy algorithm Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000001D0 /* TrailingPosition.h */; };
+		82F71000000950 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000200 /* Config.h */; };
+		82F71000000970 /* Config.h in Copy config Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000200 /* Config.h */; };
+		82F71000000980 /* AssertFatal.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000230 /* AssertFatal.h */; };
+		82F710000009A0 /* AssertFatal.h in Copy debug Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000230 /* AssertFatal.h */; };
+		82F710000009B0 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000250 /* Log.h */; };
+		82F710000009C0 /* Log.h in Copy debug Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000250 /* Log.h */; };
+		82F710000009D0 /* Align.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000270 /* Align.h */; };
+		82F710000009F0 /* Align.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000270 /* Align.h */; };
+		82F71000000A00 /* BoxSizing.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000280 /* BoxSizing.h */; };
+		82F71000000A10 /* BoxSizing.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000280 /* BoxSizing.h */; };
+		82F71000000A20 /* Dimension.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000290 /* Dimension.h */; };
+		82F71000000A30 /* Dimension.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000290 /* Dimension.h */; };
+		82F71000000A40 /* Direction.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002A0 /* Direction.h */; };
+		82F71000000A50 /* Direction.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002A0 /* Direction.h */; };
+		82F71000000A60 /* Display.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002B0 /* Display.h */; };
+		82F71000000A70 /* Display.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002B0 /* Display.h */; };
+		82F71000000A80 /* Edge.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002C0 /* Edge.h */; };
+		82F71000000A90 /* Edge.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002C0 /* Edge.h */; };
+		82F71000000AA0 /* Errata.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002D0 /* Errata.h */; };
+		82F71000000AB0 /* Errata.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002D0 /* Errata.h */; };
+		82F71000000AC0 /* ExperimentalFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002E0 /* ExperimentalFeature.h */; };
+		82F71000000AD0 /* ExperimentalFeature.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002E0 /* ExperimentalFeature.h */; };
+		82F71000000AE0 /* FlexDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002F0 /* FlexDirection.h */; };
+		82F71000000AF0 /* FlexDirection.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000002F0 /* FlexDirection.h */; };
+		82F71000000B00 /* Gutter.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000300 /* Gutter.h */; };
+		82F71000000B10 /* Gutter.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000300 /* Gutter.h */; };
+		82F71000000B20 /* Justify.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000310 /* Justify.h */; };
+		82F71000000B30 /* Justify.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000310 /* Justify.h */; };
+		82F71000000B40 /* LogLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000320 /* LogLevel.h */; };
+		82F71000000B50 /* LogLevel.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000320 /* LogLevel.h */; };
+		82F71000000B60 /* MeasureMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000330 /* MeasureMode.h */; };
+		82F71000000B70 /* MeasureMode.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000330 /* MeasureMode.h */; };
+		82F71000000B80 /* NodeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000340 /* NodeType.h */; };
+		82F71000000B90 /* NodeType.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000340 /* NodeType.h */; };
+		82F71000000BA0 /* Overflow.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000350 /* Overflow.h */; };
+		82F71000000BB0 /* Overflow.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000350 /* Overflow.h */; };
+		82F71000000BC0 /* PhysicalEdge.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000360 /* PhysicalEdge.h */; };
+		82F71000000BD0 /* PhysicalEdge.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000360 /* PhysicalEdge.h */; };
+		82F71000000BE0 /* PositionType.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000370 /* PositionType.h */; };
+		82F71000000BF0 /* PositionType.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000370 /* PositionType.h */; };
+		82F71000000C00 /* Unit.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000380 /* Unit.h */; };
+		82F71000000C10 /* Unit.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000380 /* Unit.h */; };
+		82F71000000C20 /* Wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000390 /* Wrap.h */; };
+		82F71000000C30 /* Wrap.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000390 /* Wrap.h */; };
+		82F71000000C40 /* YogaEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003A0 /* YogaEnums.h */; };
+		82F71000000C50 /* YogaEnums.h in Copy enums Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003A0 /* YogaEnums.h */; };
+		82F71000000C60 /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003D0 /* event.h */; };
+		82F71000000C80 /* event.h in Copy event Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003D0 /* event.h */; };
+		82F71000000C90 /* CachedMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003F0 /* CachedMeasurement.h */; };
+		82F71000000CB0 /* CachedMeasurement.h in Copy node Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000003F0 /* CachedMeasurement.h */; };
+		82F71000000CC0 /* LayoutableChildren.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000400 /* LayoutableChildren.h */; };
+		82F71000000CD0 /* LayoutableChildren.h in Copy node Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000400 /* LayoutableChildren.h */; };
+		82F71000000CE0 /* LayoutResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000420 /* LayoutResults.h */; };
+		82F71000000CF0 /* LayoutResults.h in Copy node Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000420 /* LayoutResults.h */; };
+		82F71000000D00 /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000440 /* Node.h */; };
+		82F71000000D10 /* Node.h in Copy node Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000440 /* Node.h */; };
+		82F71000000D20 /* Comparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000460 /* Comparison.h */; };
+		82F71000000D40 /* Comparison.h in Copy numeric Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000460 /* Comparison.h */; };
+		82F71000000D50 /* FloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000470 /* FloatOptional.h */; };
+		82F71000000D60 /* FloatOptional.h in Copy numeric Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000470 /* FloatOptional.h */; };
+		82F71000000D70 /* SmallValueBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000490 /* SmallValueBuffer.h */; };
+		82F71000000D90 /* SmallValueBuffer.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000490 /* SmallValueBuffer.h */; };
+		82F71000000DA0 /* Style.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004A0 /* Style.h */; };
+		82F71000000DB0 /* Style.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004A0 /* Style.h */; };
+		82F71000000DC0 /* StyleLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004B0 /* StyleLength.h */; };
+		82F71000000DD0 /* StyleLength.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004B0 /* StyleLength.h */; };
+		82F71000000DE0 /* StyleSizeLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004C0 /* StyleSizeLength.h */; };
+		82F71000000DF0 /* StyleSizeLength.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004C0 /* StyleSizeLength.h */; };
+		82F71000000E00 /* StyleValueHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004D0 /* StyleValueHandle.h */; };
+		82F71000000E10 /* StyleValueHandle.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004D0 /* StyleValueHandle.h */; };
+		82F71000000E20 /* StyleValuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004E0 /* StyleValuePool.h */; };
+		82F71000000E30 /* StyleValuePool.h in Copy style Private Headers */ = {isa = PBXBuildFile; fileRef = 82F710000004E0 /* StyleValuePool.h */; };
+		82F71000000E40 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000500 /* YGConfig.h */; };
+		82F71000000E60 /* YGConfig.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000500 /* YGConfig.h */; };
+		82F71000000E70 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000520 /* YGEnums.h */; };
+		82F71000000E80 /* YGEnums.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000520 /* YGEnums.h */; };
+		82F71000000E90 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000530 /* YGMacros.h */; };
+		82F71000000EA0 /* YGMacros.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000530 /* YGMacros.h */; };
+		82F71000000EB0 /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000550 /* YGNode.h */; };
+		82F71000000EC0 /* YGNode.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000550 /* YGNode.h */; };
+		82F71000000ED0 /* YGNodeLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000570 /* YGNodeLayout.h */; };
+		82F71000000EE0 /* YGNodeLayout.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000570 /* YGNodeLayout.h */; };
+		82F71000000EF0 /* YGNodeStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000590 /* YGNodeStyle.h */; };
+		82F71000000F00 /* YGNodeStyle.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000590 /* YGNodeStyle.h */; };
+		82F71000000F10 /* YGPixelGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005B0 /* YGPixelGrid.h */; };
+		82F71000000F20 /* YGPixelGrid.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005B0 /* YGPixelGrid.h */; };
+		82F71000000F30 /* YGValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005D0 /* YGValue.h */; };
+		82F71000000F40 /* YGValue.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005D0 /* YGValue.h */; };
+		82F71000000F50 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005E0 /* Yoga.h */; };
+		82F71000000F60 /* Yoga.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 82F710000005E0 /* Yoga.h */; };
+		82F71000000FC0 /* ZDYoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F71000000FB0 /* ZDYoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82F71000001010 /* ZDYoga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F71000001000 /* ZDYoga-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82F710000007F0 /* Copy algorithm Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/algorithm";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000800 /* AbsoluteLayout.h in Copy algorithm Private Headers */,
+				82F71000000820 /* Align.h in Copy algorithm Private Headers */,
+				82F71000000840 /* Baseline.h in Copy algorithm Private Headers */,
+				82F71000000860 /* BoundAxis.h in Copy algorithm Private Headers */,
+				82F71000000880 /* Cache.h in Copy algorithm Private Headers */,
+				82F710000008A0 /* CalculateLayout.h in Copy algorithm Private Headers */,
+				82F710000008C0 /* FlexDirection.h in Copy algorithm Private Headers */,
+				82F710000008E0 /* FlexLine.h in Copy algorithm Private Headers */,
+				82F71000000900 /* PixelGrid.h in Copy algorithm Private Headers */,
+				82F71000000920 /* SizingMode.h in Copy algorithm Private Headers */,
+				82F71000000940 /* TrailingPosition.h in Copy algorithm Private Headers */,
+			);
+			name = "Copy algorithm Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000960 /* Copy config Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/config";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000970 /* Config.h in Copy config Private Headers */,
+			);
+			name = "Copy config Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000990 /* Copy debug Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/debug";
+			dstSubfolderSpec = 16;
+			files = (
+				82F710000009A0 /* AssertFatal.h in Copy debug Private Headers */,
+				82F710000009C0 /* Log.h in Copy debug Private Headers */,
+			);
+			name = "Copy debug Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F710000009E0 /* Copy enums Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/enums";
+			dstSubfolderSpec = 16;
+			files = (
+				82F710000009F0 /* Align.h in Copy enums Private Headers */,
+				82F71000000A10 /* BoxSizing.h in Copy enums Private Headers */,
+				82F71000000A30 /* Dimension.h in Copy enums Private Headers */,
+				82F71000000A50 /* Direction.h in Copy enums Private Headers */,
+				82F71000000A70 /* Display.h in Copy enums Private Headers */,
+				82F71000000A90 /* Edge.h in Copy enums Private Headers */,
+				82F71000000AB0 /* Errata.h in Copy enums Private Headers */,
+				82F71000000AD0 /* ExperimentalFeature.h in Copy enums Private Headers */,
+				82F71000000AF0 /* FlexDirection.h in Copy enums Private Headers */,
+				82F71000000B10 /* Gutter.h in Copy enums Private Headers */,
+				82F71000000B30 /* Justify.h in Copy enums Private Headers */,
+				82F71000000B50 /* LogLevel.h in Copy enums Private Headers */,
+				82F71000000B70 /* MeasureMode.h in Copy enums Private Headers */,
+				82F71000000B90 /* NodeType.h in Copy enums Private Headers */,
+				82F71000000BB0 /* Overflow.h in Copy enums Private Headers */,
+				82F71000000BD0 /* PhysicalEdge.h in Copy enums Private Headers */,
+				82F71000000BF0 /* PositionType.h in Copy enums Private Headers */,
+				82F71000000C10 /* Unit.h in Copy enums Private Headers */,
+				82F71000000C30 /* Wrap.h in Copy enums Private Headers */,
+				82F71000000C50 /* YogaEnums.h in Copy enums Private Headers */,
+			);
+			name = "Copy enums Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000C70 /* Copy event Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/event";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000C80 /* event.h in Copy event Private Headers */,
+			);
+			name = "Copy event Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000CA0 /* Copy node Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/node";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000CB0 /* CachedMeasurement.h in Copy node Private Headers */,
+				82F71000000CD0 /* LayoutableChildren.h in Copy node Private Headers */,
+				82F71000000CF0 /* LayoutResults.h in Copy node Private Headers */,
+				82F71000000D10 /* Node.h in Copy node Private Headers */,
+			);
+			name = "Copy node Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000D30 /* Copy numeric Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/numeric";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000D40 /* Comparison.h in Copy numeric Private Headers */,
+				82F71000000D60 /* FloatOptional.h in Copy numeric Private Headers */,
+			);
+			name = "Copy numeric Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000D80 /* Copy style Private Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PRIVATE_HEADERS_FOLDER_PATH)/style";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000D90 /* SmallValueBuffer.h in Copy style Private Headers */,
+				82F71000000DB0 /* Style.h in Copy style Private Headers */,
+				82F71000000DD0 /* StyleLength.h in Copy style Private Headers */,
+				82F71000000DF0 /* StyleSizeLength.h in Copy style Private Headers */,
+				82F71000000E10 /* StyleValueHandle.h in Copy style Private Headers */,
+				82F71000000E30 /* StyleValuePool.h in Copy style Private Headers */,
+			);
+			name = "Copy style Private Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82F71000000E50 /* Copy . Public Headers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PUBLIC_HEADERS_FOLDER_PATH)/.";
+			dstSubfolderSpec = 16;
+			files = (
+				82F71000000E60 /* YGConfig.h in Copy . Public Headers */,
+				82F71000000E80 /* YGEnums.h in Copy . Public Headers */,
+				82F71000000EA0 /* YGMacros.h in Copy . Public Headers */,
+				82F71000000EC0 /* YGNode.h in Copy . Public Headers */,
+				82F71000000EE0 /* YGNodeLayout.h in Copy . Public Headers */,
+				82F71000000F00 /* YGNodeStyle.h in Copy . Public Headers */,
+				82F71000000F20 /* YGPixelGrid.h in Copy . Public Headers */,
+				82F71000000F40 /* YGValue.h in Copy . Public Headers */,
+				82F71000000F60 /* Yoga.h in Copy . Public Headers */,
+			);
+			name = "Copy . Public Headers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		82F710000000D0 /* AbsoluteLayout.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = AbsoluteLayout.cpp; sourceTree = "<group>"; };
+		82F710000000E0 /* AbsoluteLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AbsoluteLayout.h; sourceTree = "<group>"; };
+		82F710000000F0 /* Align.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Align.h; sourceTree = "<group>"; };
+		82F71000000100 /* Baseline.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = Baseline.cpp; sourceTree = "<group>"; };
+		82F71000000110 /* Baseline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Baseline.h; sourceTree = "<group>"; };
+		82F71000000120 /* BoundAxis.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BoundAxis.h; sourceTree = "<group>"; };
+		82F71000000130 /* Cache.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = Cache.cpp; sourceTree = "<group>"; };
+		82F71000000140 /* Cache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		82F71000000150 /* CalculateLayout.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = CalculateLayout.cpp; sourceTree = "<group>"; };
+		82F71000000160 /* CalculateLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CalculateLayout.h; sourceTree = "<group>"; };
+		82F71000000170 /* FlexDirection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FlexDirection.h; sourceTree = "<group>"; };
+		82F71000000180 /* FlexLine.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = FlexLine.cpp; sourceTree = "<group>"; };
+		82F71000000190 /* FlexLine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FlexLine.h; sourceTree = "<group>"; };
+		82F710000001A0 /* PixelGrid.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = PixelGrid.cpp; sourceTree = "<group>"; };
+		82F710000001B0 /* PixelGrid.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PixelGrid.h; sourceTree = "<group>"; };
+		82F710000001C0 /* SizingMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SizingMode.h; sourceTree = "<group>"; };
+		82F710000001D0 /* TrailingPosition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TrailingPosition.h; sourceTree = "<group>"; };
+		82F710000001F0 /* Config.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
+		82F71000000200 /* Config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		82F71000000220 /* AssertFatal.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = AssertFatal.cpp; sourceTree = "<group>"; };
+		82F71000000230 /* AssertFatal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AssertFatal.h; sourceTree = "<group>"; };
+		82F71000000240 /* Log.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		82F71000000250 /* Log.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		82F71000000270 /* Align.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Align.h; sourceTree = "<group>"; };
+		82F71000000280 /* BoxSizing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BoxSizing.h; sourceTree = "<group>"; };
+		82F71000000290 /* Dimension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Dimension.h; sourceTree = "<group>"; };
+		82F710000002A0 /* Direction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Direction.h; sourceTree = "<group>"; };
+		82F710000002B0 /* Display.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		82F710000002C0 /* Edge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
+		82F710000002D0 /* Errata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Errata.h; sourceTree = "<group>"; };
+		82F710000002E0 /* ExperimentalFeature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ExperimentalFeature.h; sourceTree = "<group>"; };
+		82F710000002F0 /* FlexDirection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FlexDirection.h; sourceTree = "<group>"; };
+		82F71000000300 /* Gutter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Gutter.h; sourceTree = "<group>"; };
+		82F71000000310 /* Justify.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Justify.h; sourceTree = "<group>"; };
+		82F71000000320 /* LogLevel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LogLevel.h; sourceTree = "<group>"; };
+		82F71000000330 /* MeasureMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MeasureMode.h; sourceTree = "<group>"; };
+		82F71000000340 /* NodeType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NodeType.h; sourceTree = "<group>"; };
+		82F71000000350 /* Overflow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Overflow.h; sourceTree = "<group>"; };
+		82F71000000360 /* PhysicalEdge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhysicalEdge.h; sourceTree = "<group>"; };
+		82F71000000370 /* PositionType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PositionType.h; sourceTree = "<group>"; };
+		82F71000000380 /* Unit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		82F71000000390 /* Wrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Wrap.h; sourceTree = "<group>"; };
+		82F710000003A0 /* YogaEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YogaEnums.h; sourceTree = "<group>"; };
+		82F710000003C0 /* event.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
+		82F710000003D0 /* event.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		82F710000003F0 /* CachedMeasurement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CachedMeasurement.h; sourceTree = "<group>"; };
+		82F71000000400 /* LayoutableChildren.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LayoutableChildren.h; sourceTree = "<group>"; };
+		82F71000000410 /* LayoutResults.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutResults.cpp; sourceTree = "<group>"; };
+		82F71000000420 /* LayoutResults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LayoutResults.h; sourceTree = "<group>"; };
+		82F71000000430 /* Node.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		82F71000000440 /* Node.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		82F71000000460 /* Comparison.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Comparison.h; sourceTree = "<group>"; };
+		82F71000000470 /* FloatOptional.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FloatOptional.h; sourceTree = "<group>"; };
+		82F71000000490 /* SmallValueBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SmallValueBuffer.h; sourceTree = "<group>"; };
+		82F710000004A0 /* Style.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Style.h; sourceTree = "<group>"; };
+		82F710000004B0 /* StyleLength.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StyleLength.h; sourceTree = "<group>"; };
+		82F710000004C0 /* StyleSizeLength.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StyleSizeLength.h; sourceTree = "<group>"; };
+		82F710000004D0 /* StyleValueHandle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StyleValueHandle.h; sourceTree = "<group>"; };
+		82F710000004E0 /* StyleValuePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = StyleValuePool.h; sourceTree = "<group>"; };
+		82F710000004F0 /* YGConfig.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGConfig.cpp; path = ZDYoga/YGConfig.cpp; sourceTree = "<group>"; };
+		82F71000000500 /* YGConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGConfig.h; path = ZDYoga/YGConfig.h; sourceTree = "<group>"; };
+		82F71000000510 /* YGEnums.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGEnums.cpp; path = ZDYoga/YGEnums.cpp; sourceTree = "<group>"; };
+		82F71000000520 /* YGEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGEnums.h; path = ZDYoga/YGEnums.h; sourceTree = "<group>"; };
+		82F71000000530 /* YGMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGMacros.h; path = ZDYoga/YGMacros.h; sourceTree = "<group>"; };
+		82F71000000540 /* YGNode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGNode.cpp; path = ZDYoga/YGNode.cpp; sourceTree = "<group>"; };
+		82F71000000550 /* YGNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNode.h; path = ZDYoga/YGNode.h; sourceTree = "<group>"; };
+		82F71000000560 /* YGNodeLayout.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGNodeLayout.cpp; path = ZDYoga/YGNodeLayout.cpp; sourceTree = "<group>"; };
+		82F71000000570 /* YGNodeLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNodeLayout.h; path = ZDYoga/YGNodeLayout.h; sourceTree = "<group>"; };
+		82F71000000580 /* YGNodeStyle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGNodeStyle.cpp; path = ZDYoga/YGNodeStyle.cpp; sourceTree = "<group>"; };
+		82F71000000590 /* YGNodeStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNodeStyle.h; path = ZDYoga/YGNodeStyle.h; sourceTree = "<group>"; };
+		82F710000005A0 /* YGPixelGrid.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGPixelGrid.cpp; path = ZDYoga/YGPixelGrid.cpp; sourceTree = "<group>"; };
+		82F710000005B0 /* YGPixelGrid.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGPixelGrid.h; path = ZDYoga/YGPixelGrid.h; sourceTree = "<group>"; };
+		82F710000005C0 /* YGValue.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGValue.cpp; path = ZDYoga/YGValue.cpp; sourceTree = "<group>"; };
+		82F710000005D0 /* YGValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGValue.h; path = ZDYoga/YGValue.h; sourceTree = "<group>"; };
+		82F710000005E0 /* Yoga.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Yoga.h; path = ZDYoga/Yoga.h; sourceTree = "<group>"; };
+		82F71000000690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		82F71000000F80 /* ZDYoga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDYoga.debug.xcconfig; sourceTree = "<group>"; };
+		82F71000000F90 /* ZDYoga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDYoga.release.xcconfig; sourceTree = "<group>"; };
+		82F71000000FA0 /* ZDYoga.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZDYoga.modulemap; sourceTree = "<group>"; };
+		82F71000000FB0 /* ZDYoga-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDYoga-umbrella.h"; sourceTree = "<group>"; };
+		82F71000000FD0 /* ZDYoga-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZDYoga-Info.plist"; sourceTree = "<group>"; };
+		82F71000000FF0 /* ZDYoga-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDYoga-prefix.pch"; sourceTree = "<group>"; };
+		82F71000001000 /* ZDYoga-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDYoga-dummy.m"; sourceTree = "<group>"; };
+		A148150B5C6F975A0DC203C218C669FC /* ZDYoga */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZDYoga; path = ZDYoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82F71000000660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82F710000006A0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		82F71000000010 = {
+			isa = PBXGroup;
+			children = (
+				82F71000000060 /* Frameworks */,
+				82F71000000020 /* Products */,
+				82F710000000B0 /* ZDYoga */,
+			);
+			sourceTree = "<group>";
+		};
+		82F71000000020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A148150B5C6F975A0DC203C218C669FC /* ZDYoga */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82F71000000060 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000680 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82F710000000B0 /* ZDYoga */ = {
+			isa = PBXGroup;
+			children = (
+				82F710000004F0 /* YGConfig.cpp */,
+				82F71000000500 /* YGConfig.h */,
+				82F71000000510 /* YGEnums.cpp */,
+				82F71000000520 /* YGEnums.h */,
+				82F71000000530 /* YGMacros.h */,
+				82F71000000540 /* YGNode.cpp */,
+				82F71000000550 /* YGNode.h */,
+				82F71000000560 /* YGNodeLayout.cpp */,
+				82F71000000570 /* YGNodeLayout.h */,
+				82F71000000580 /* YGNodeStyle.cpp */,
+				82F71000000590 /* YGNodeStyle.h */,
+				82F710000005A0 /* YGPixelGrid.cpp */,
+				82F710000005B0 /* YGPixelGrid.h */,
+				82F710000005C0 /* YGValue.cpp */,
+				82F710000005D0 /* YGValue.h */,
+				82F710000005E0 /* Yoga.h */,
+				82F710000000C0 /* algorithm */,
+				82F710000001E0 /* config */,
+				82F71000000210 /* debug */,
+				82F71000000260 /* enums */,
+				82F710000003B0 /* event */,
+				82F710000003E0 /* node */,
+				82F71000000450 /* numeric */,
+				82F71000000480 /* style */,
+				82F71000000F70 /* Support Files */,
+			);
+			name = ZDYoga;
+			path = ZDYoga;
+			sourceTree = "<group>";
+		};
+		82F710000000C0 /* algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				82F710000000D0 /* AbsoluteLayout.cpp */,
+				82F710000000E0 /* AbsoluteLayout.h */,
+				82F710000000F0 /* Align.h */,
+				82F71000000100 /* Baseline.cpp */,
+				82F71000000110 /* Baseline.h */,
+				82F71000000120 /* BoundAxis.h */,
+				82F71000000130 /* Cache.cpp */,
+				82F71000000140 /* Cache.h */,
+				82F71000000150 /* CalculateLayout.cpp */,
+				82F71000000160 /* CalculateLayout.h */,
+				82F71000000170 /* FlexDirection.h */,
+				82F71000000180 /* FlexLine.cpp */,
+				82F71000000190 /* FlexLine.h */,
+				82F710000001A0 /* PixelGrid.cpp */,
+				82F710000001B0 /* PixelGrid.h */,
+				82F710000001C0 /* SizingMode.h */,
+				82F710000001D0 /* TrailingPosition.h */,
+			);
+			name = algorithm;
+			path = ZDYoga/algorithm;
+			sourceTree = "<group>";
+		};
+		82F710000001E0 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				82F710000001F0 /* Config.cpp */,
+				82F71000000200 /* Config.h */,
+			);
+			name = config;
+			path = ZDYoga/config;
+			sourceTree = "<group>";
+		};
+		82F71000000210 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000220 /* AssertFatal.cpp */,
+				82F71000000230 /* AssertFatal.h */,
+				82F71000000240 /* Log.cpp */,
+				82F71000000250 /* Log.h */,
+			);
+			name = debug;
+			path = ZDYoga/debug;
+			sourceTree = "<group>";
+		};
+		82F71000000260 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000270 /* Align.h */,
+				82F71000000280 /* BoxSizing.h */,
+				82F71000000290 /* Dimension.h */,
+				82F710000002A0 /* Direction.h */,
+				82F710000002B0 /* Display.h */,
+				82F710000002C0 /* Edge.h */,
+				82F710000002D0 /* Errata.h */,
+				82F710000002E0 /* ExperimentalFeature.h */,
+				82F710000002F0 /* FlexDirection.h */,
+				82F71000000300 /* Gutter.h */,
+				82F71000000310 /* Justify.h */,
+				82F71000000320 /* LogLevel.h */,
+				82F71000000330 /* MeasureMode.h */,
+				82F71000000340 /* NodeType.h */,
+				82F71000000350 /* Overflow.h */,
+				82F71000000360 /* PhysicalEdge.h */,
+				82F71000000370 /* PositionType.h */,
+				82F71000000380 /* Unit.h */,
+				82F71000000390 /* Wrap.h */,
+				82F710000003A0 /* YogaEnums.h */,
+			);
+			name = enums;
+			path = ZDYoga/enums;
+			sourceTree = "<group>";
+		};
+		82F710000003B0 /* event */ = {
+			isa = PBXGroup;
+			children = (
+				82F710000003C0 /* event.cpp */,
+				82F710000003D0 /* event.h */,
+			);
+			name = event;
+			path = ZDYoga/event;
+			sourceTree = "<group>";
+		};
+		82F710000003E0 /* node */ = {
+			isa = PBXGroup;
+			children = (
+				82F710000003F0 /* CachedMeasurement.h */,
+				82F71000000400 /* LayoutableChildren.h */,
+				82F71000000410 /* LayoutResults.cpp */,
+				82F71000000420 /* LayoutResults.h */,
+				82F71000000430 /* Node.cpp */,
+				82F71000000440 /* Node.h */,
+			);
+			name = node;
+			path = ZDYoga/node;
+			sourceTree = "<group>";
+		};
+		82F71000000450 /* numeric */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000460 /* Comparison.h */,
+				82F71000000470 /* FloatOptional.h */,
+			);
+			name = numeric;
+			path = ZDYoga/numeric;
+			sourceTree = "<group>";
+		};
+		82F71000000480 /* style */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000490 /* SmallValueBuffer.h */,
+				82F710000004A0 /* Style.h */,
+				82F710000004B0 /* StyleLength.h */,
+				82F710000004C0 /* StyleSizeLength.h */,
+				82F710000004D0 /* StyleValueHandle.h */,
+				82F710000004E0 /* StyleValuePool.h */,
+			);
+			name = style;
+			path = ZDYoga/style;
+			sourceTree = "<group>";
+		};
+		82F71000000680 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000690 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		82F71000000F70 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				82F71000000FA0 /* ZDYoga.modulemap */,
+				82F71000001000 /* ZDYoga-dummy.m */,
+				82F71000000FD0 /* ZDYoga-Info.plist */,
+				82F71000000FF0 /* ZDYoga-prefix.pch */,
+				82F71000000FB0 /* ZDYoga-umbrella.h */,
+				82F71000000F80 /* ZDYoga.debug.xcconfig */,
+				82F71000000F90 /* ZDYoga.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ZDYoga";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		82F71000000640 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82F710000007E0 /* AbsoluteLayout.h in Headers */,
+				82F71000000810 /* Align.h in Headers */,
+				82F710000009D0 /* Align.h in Headers */,
+				82F71000000980 /* AssertFatal.h in Headers */,
+				82F71000000830 /* Baseline.h in Headers */,
+				82F71000000850 /* BoundAxis.h in Headers */,
+				82F71000000A00 /* BoxSizing.h in Headers */,
+				82F71000000870 /* Cache.h in Headers */,
+				82F71000000C90 /* CachedMeasurement.h in Headers */,
+				82F71000000890 /* CalculateLayout.h in Headers */,
+				82F71000000D20 /* Comparison.h in Headers */,
+				82F71000000950 /* Config.h in Headers */,
+				82F71000000A20 /* Dimension.h in Headers */,
+				82F71000000A40 /* Direction.h in Headers */,
+				82F71000000A60 /* Display.h in Headers */,
+				82F71000000A80 /* Edge.h in Headers */,
+				82F71000000AA0 /* Errata.h in Headers */,
+				82F71000000C60 /* event.h in Headers */,
+				82F71000000AC0 /* ExperimentalFeature.h in Headers */,
+				82F710000008B0 /* FlexDirection.h in Headers */,
+				82F71000000AE0 /* FlexDirection.h in Headers */,
+				82F710000008D0 /* FlexLine.h in Headers */,
+				82F71000000D50 /* FloatOptional.h in Headers */,
+				82F71000000B00 /* Gutter.h in Headers */,
+				82F71000000B20 /* Justify.h in Headers */,
+				82F71000000CC0 /* LayoutableChildren.h in Headers */,
+				82F71000000CE0 /* LayoutResults.h in Headers */,
+				82F710000009B0 /* Log.h in Headers */,
+				82F71000000B40 /* LogLevel.h in Headers */,
+				82F71000000B60 /* MeasureMode.h in Headers */,
+				82F71000000D00 /* Node.h in Headers */,
+				82F71000000B80 /* NodeType.h in Headers */,
+				82F71000000BA0 /* Overflow.h in Headers */,
+				82F71000000BC0 /* PhysicalEdge.h in Headers */,
+				82F710000008F0 /* PixelGrid.h in Headers */,
+				82F71000000BE0 /* PositionType.h in Headers */,
+				82F71000000910 /* SizingMode.h in Headers */,
+				82F71000000D70 /* SmallValueBuffer.h in Headers */,
+				82F71000000DA0 /* Style.h in Headers */,
+				82F71000000DC0 /* StyleLength.h in Headers */,
+				82F71000000DE0 /* StyleSizeLength.h in Headers */,
+				82F71000000E00 /* StyleValueHandle.h in Headers */,
+				82F71000000E20 /* StyleValuePool.h in Headers */,
+				82F71000000930 /* TrailingPosition.h in Headers */,
+				82F71000000C00 /* Unit.h in Headers */,
+				82F71000000C20 /* Wrap.h in Headers */,
+				82F71000000E40 /* YGConfig.h in Headers */,
+				82F71000000E70 /* YGEnums.h in Headers */,
+				82F71000000E90 /* YGMacros.h in Headers */,
+				82F71000000EB0 /* YGNode.h in Headers */,
+				82F71000000ED0 /* YGNodeLayout.h in Headers */,
+				82F71000000EF0 /* YGNodeStyle.h in Headers */,
+				82F71000000F10 /* YGPixelGrid.h in Headers */,
+				82F71000000F30 /* YGValue.h in Headers */,
+				82F71000000F50 /* Yoga.h in Headers */,
+				82F71000000C40 /* YogaEnums.h in Headers */,
+				82F71000000FC0 /* ZDYoga-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		24D33B5485FB3CEA2F2D29E7F23FE05D /* ZDYoga */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82F71000000600 /* Build configuration list for PBXNativeTarget "ZDYoga" */;
+			buildPhases = (
+				82F71000000640 /* Headers */,
+				82F71000000960 /* Copy config Private Headers */,
+				82F710000007F0 /* Copy algorithm Private Headers */,
+				82F71000000990 /* Copy debug Private Headers */,
+				82F71000000C70 /* Copy event Private Headers */,
+				82F710000009E0 /* Copy enums Private Headers */,
+				82F71000000CA0 /* Copy node Private Headers */,
+				82F71000000D30 /* Copy numeric Private Headers */,
+				82F71000000D80 /* Copy style Private Headers */,
+				82F71000000E50 /* Copy . Public Headers */,
+				82F71000000650 /* Sources */,
+				82F71000000660 /* Frameworks */,
+				82F71000000670 /* Resources */,
+				82F71000000FE0 /* Create Symlinks to Header Folders */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZDYoga;
+			productName = ZDYoga;
+			productReference = A148150B5C6F975A0DC203C218C669FC /* ZDYoga */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82F71000000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 82F71000000030 /* Build configuration list for PBXProject "ZDYoga" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 82F71000000010;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 82F71000000020 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24D33B5485FB3CEA2F2D29E7F23FE05D /* ZDYoga */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82F71000000670 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		82F71000000FE0 /* Create Symlinks to Header Folders */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Create Symlinks to Header Folders";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$CONFIGURATION_BUILD_DIR/$WRAPPER_NAME\" || exit 1\nif [ ! -d Versions ]; then\n  # Not a versioned framework, so no need to do anything\n  exit 0\nfi\n\npublic_path=\"${PUBLIC_HEADERS_FOLDER_PATH#$CONTENTS_FOLDER_PATH/}\"\nif [ ! -f \"$public_path\" ]; then\n  ln -fs \"${PUBLIC_HEADERS_FOLDER_PATH#$WRAPPER_NAME/}\" \"$public_path\"\nfi\n\nprivate_path=\"${PRIVATE_HEADERS_FOLDER_PATH#$CONTENTS_FOLDER_PATH/}\"\nif [ ! -f \"$private_path\" ]; then\n  ln -fs \"${PRIVATE_HEADERS_FOLDER_PATH#$WRAPPER_NAME/}\" \"$private_path\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82F71000000650 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82F710000006B0 /* AbsoluteLayout.cpp in Sources */,
+				82F71000000720 /* AssertFatal.cpp in Sources */,
+				82F710000006C0 /* Baseline.cpp in Sources */,
+				82F710000006D0 /* Cache.cpp in Sources */,
+				82F710000006E0 /* CalculateLayout.cpp in Sources */,
+				82F71000000710 /* Config.cpp in Sources */,
+				82F71000000740 /* event.cpp in Sources */,
+				82F710000006F0 /* FlexLine.cpp in Sources */,
+				82F71000000750 /* LayoutResults.cpp in Sources */,
+				82F71000000730 /* Log.cpp in Sources */,
+				82F71000000760 /* Node.cpp in Sources */,
+				82F71000000700 /* PixelGrid.cpp in Sources */,
+				82F71000000770 /* YGConfig.cpp in Sources */,
+				82F71000000780 /* YGEnums.cpp in Sources */,
+				82F71000000790 /* YGNode.cpp in Sources */,
+				82F710000007A0 /* YGNodeLayout.cpp in Sources */,
+				82F710000007B0 /* YGNodeStyle.cpp in Sources */,
+				82F710000007C0 /* YGPixelGrid.cpp in Sources */,
+				82F710000007D0 /* YGValue.cpp in Sources */,
+				82F71000001010 /* ZDYoga-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		82F71000000040 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		82F71000000050 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		82F71000000610 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82F71000000F90 /* ZDYoga.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ZDYoga/ZDYoga-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ZDYoga/ZDYoga-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ZDYoga/ZDYoga.modulemap";
+				PRODUCT_MODULE_NAME = ZDYoga;
+				PRODUCT_NAME = ZDYoga;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		82F71000000620 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82F71000000F80 /* ZDYoga.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ZDYoga/ZDYoga-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ZDYoga/ZDYoga-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ZDYoga/ZDYoga.modulemap";
+				PRODUCT_MODULE_NAME = ZDYoga;
+				PRODUCT_NAME = ZDYoga;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82F71000000030 /* Build configuration list for PBXProject "ZDYoga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82F71000000040 /* Debug */,
+				82F71000000050 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82F71000000600 /* Build configuration list for PBXNativeTarget "ZDYoga" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82F71000000620 /* Debug */,
+				82F71000000610 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 82F71000000000 /* Project object */;
+}

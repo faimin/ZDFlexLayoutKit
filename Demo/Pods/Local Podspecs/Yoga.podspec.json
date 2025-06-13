@@ -1,0 +1,46 @@
+{
+  "name": "Yoga",
+  "version": "3.2.1",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "homepage": "https://yogalayout.dev/",
+  "documentation_url": "https://yogalayout.dev/docs",
+  "summary": "An embeddable and performant flexbox layout engine with bindings for multiple languages",
+  "authors": {
+    "Meta Open Source": "opensource@meta.com"
+  },
+  "source": {
+    "git": "https://github.com/facebook/yoga.git",
+    "tag": "v3.2.1"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "module_name": "yoga",
+  "requires_arc": false,
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "HEADER_SEARCH_PATHS": "\"$(PODS_TARGET_SRCROOT)\""
+  },
+  "compiler_flags": [
+    "-fno-omit-frame-pointer",
+    "-fexceptions",
+    "-Wall",
+    "-Werror",
+    "-std=c++20",
+    "-fPIC"
+  ],
+  "swift_versions": "5.1",
+  "source_files": "yoga/**/*.{h,cpp}",
+  "header_mappings_dir": "yoga",
+  "public_header_files": "yoga/*.h",
+  "private_header_files": [
+
+  ],
+  "preserve_paths": [
+    "yoga/**/*.h"
+  ],
+  "swift_version": "5.1"
+}

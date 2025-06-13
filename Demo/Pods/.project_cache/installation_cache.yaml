@@ -1,0 +1,118 @@
+BUILD_CONFIGURATIONS:
+  Debug: :debug
+  Release: :release
+CACHE_KEYS:
+  LookinServer:
+    BUILD_SETTINGS_CHECKSUM:
+      LookinServer:
+        :debug: 4e1587461b09b86d7c733270255e4e97
+        :release: 4e1587461b09b86d7c733270255e4e97
+    CHECKSUM: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
+    PROJECT_NAME: LookinServer
+    SPECS:
+      - LookinServer (1.2.8)
+      - LookinServer/Core (1.2.8)
+  Pods-Demo:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 9206dd793f9bfaec002e4bac75a7469b
+      Release: 9c0ed64bc78376c0e5205a116feaaccd
+  Pods-Demo-DemoUITests:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 4463aa4b50df19d95a1ee35dfe16e89c
+      Release: f14fc68ff2f8443c633a2d2dfd915801
+  Pods-DemoTests:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 1e219c15df89dfe72dea4e1d1f704f30
+      Release: eaa8ec7dbd281deac2845a95af2009de
+  Yoga:
+    BUILD_SETTINGS_CHECKSUM:
+      Yoga:
+        :debug: f5d3279ae5883e3911ea52dd9830cc45
+        :release: f5d3279ae5883e3911ea52dd9830cc45
+    CHECKSUM: 902de13e650d509e1d41d3dbaebb153b0abf9c50
+    PROJECT_NAME: Yoga
+    SPECS:
+      - Yoga (3.2.1)
+  YYModel:
+    BUILD_SETTINGS_CHECKSUM:
+      YYModel:
+        :debug: 6fabab19407782ff80ef91415d69de37
+        :release: 6fabab19407782ff80ef91415d69de37
+    CHECKSUM: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+    PROJECT_NAME: YYModel
+    SPECS:
+      - YYModel (1.0.4)
+  ZDFlexLayoutKit:
+    BUILD_SETTINGS_CHECKSUM:
+      ZDFlexLayoutKit:
+        :debug: 3048a995488d452dd75e17a1d1f87a86
+        :release: 3048a995488d452dd75e17a1d1f87a86
+    CHECKSUM: 8fd3b42172a11a69cd6e051f892158da6fc871db
+    FILES:
+      - "../../LICENSE"
+      - "../../README.md"
+      - "../../Sources/Core/Private/NSObject+ZDFLDeallocCallback.h"
+      - "../../Sources/Core/Private/NSObject+ZDFLDeallocCallback.m"
+      - "../../Sources/Core/Private/ZDCalculateHelper.h"
+      - "../../Sources/Core/Private/ZDCalculateHelper.m"
+      - "../../Sources/Core/Private/ZDFlexLayoutCore+Private.h"
+      - "../../Sources/Core/Public/UIView+ZDFlexLayout.h"
+      - "../../Sources/Core/Public/UIView+ZDFlexLayout.m"
+      - "../../Sources/Core/Public/ZDFlexLayoutCore.h"
+      - "../../Sources/Core/Public/ZDFlexLayoutCore.m"
+      - "../../Sources/Core/Public/ZDFlexLayoutDefine.h"
+      - "../../Sources/Core/Public/ZDFlexLayoutDiv.h"
+      - "../../Sources/Core/Public/ZDFlexLayoutDiv.m"
+      - "../../Sources/Core/Public/ZDFlexLayoutViewProtocol.h"
+      - "../../Sources/Header/ZDFlexLayoutKit.h"
+      - "../../Sources/Helper/ZDFlexLayoutCollectionViewCell.h"
+      - "../../Sources/Helper/ZDFlexLayoutCollectionViewCell.m"
+      - "../../Sources/Helper/ZDFlexLayoutTableViewCell.h"
+      - "../../Sources/Helper/ZDFlexLayoutTableViewCell.m"
+      - "../../Sources/Helper/ZDTemplateCellHandler.h"
+      - "../../Sources/Helper/ZDTemplateCellHandler.m"
+      - "../../Sources/OCMaker/ZDFlexLayoutChain.h"
+      - "../../Sources/OCMaker/ZDFlexLayoutChain.m"
+      - "../../Sources/OCMaker/ZDFlexLayoutMaker.h"
+      - "../../Sources/OCMaker/ZDFlexLayoutMaker.m"
+      - "../../Sources/SwiftMaker/ZDSFlexExtension.swift"
+      - "../../Sources/SwiftMaker/ZDSFlexLayoutMaker.swift"
+      - "../../Sources/SwiftMaker/ZDSNamespace.swift"
+    PROJECT_NAME: ZDFlexLayoutKit
+    RESOURCES:
+      []
+    SPECS:
+      - ZDFlexLayoutKit (0.4.0)
+      - ZDFlexLayoutKit/Core (0.4.0)
+      - ZDFlexLayoutKit/Header (0.4.0)
+      - ZDFlexLayoutKit/Helper (0.4.0)
+      - ZDFlexLayoutKit/OCMaker (0.4.0)
+      - ZDFlexLayoutKit/SwiftMaker (0.4.0)
+  ZDYoga:
+    BUILD_SETTINGS_CHECKSUM:
+      ZDYoga:
+        :debug: 30587ae51e12163f2b69a68149a86669
+        :release: 30587ae51e12163f2b69a68149a86669
+    CHECKSUM: c3f021b9d7ea792c7367e8761e441a22f1cd416f
+    PROJECT_NAME: ZDYoga
+    SPECS:
+      - ZDYoga (3.2.1.1)
+INSTALLATION_OPTIONS:
+  clean: true
+  deduplicate_targets: true
+  deterministic_uuids: false
+  disable_input_output_paths: true
+  generate_multiple_pod_projects: true
+  incremental_installation: true
+  integrate_targets: true
+  lock_pod_sources: true
+  parallel_pod_download_thread_pool_size: 40
+  parallel_pod_downloads: false
+  preserve_pod_file_structure: true
+  share_schemes_for_development_pods: false
+  skip_pods_project_generation: false
+  warn_for_multiple_pod_sources: true
+  warn_for_unused_master_specs_repo: true
+OBJECT_VERSION: 54
+PLUGINS:
+  {}

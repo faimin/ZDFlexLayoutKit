@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8B9C22000003B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9C22000003A0 /* Foundation.framework */; };
+		8B9C22000003C0 /* NSObject+ZDFLDeallocCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000000F0 /* NSObject+ZDFLDeallocCallback.m */; };
+		8B9C22000003D0 /* ZDCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000110 /* ZDCalculateHelper.m */; };
+		8B9C22000003E0 /* UIView+ZDFlexLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000150 /* UIView+ZDFlexLayout.m */; };
+		8B9C22000003F0 /* ZDFlexLayoutCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000170 /* ZDFlexLayoutCore.m */; };
+		8B9C2200000400 /* ZDFlexLayoutDiv.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000001A0 /* ZDFlexLayoutDiv.m */; };
+		8B9C2200000410 /* NSObject+ZDFLDeallocCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C22000000E0 /* NSObject+ZDFLDeallocCallback.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8B9C2200000420 /* ZDCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000100 /* ZDCalculateHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8B9C2200000430 /* ZDFlexLayoutCore+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000120 /* ZDFlexLayoutCore+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8B9C2200000440 /* UIView+ZDFlexLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000140 /* UIView+ZDFlexLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000450 /* ZDFlexLayoutCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000160 /* ZDFlexLayoutCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000460 /* ZDFlexLayoutDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000180 /* ZDFlexLayoutDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000470 /* ZDFlexLayoutDiv.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000190 /* ZDFlexLayoutDiv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000480 /* ZDFlexLayoutViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C22000001B0 /* ZDFlexLayoutViewProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000490 /* ZDFlexLayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C22000001D0 /* ZDFlexLayoutKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C22000004A0 /* ZDFlexLayoutCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000200 /* ZDFlexLayoutCollectionViewCell.m */; };
+		8B9C22000004B0 /* ZDFlexLayoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000220 /* ZDFlexLayoutTableViewCell.m */; };
+		8B9C22000004C0 /* ZDTemplateCellHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000240 /* ZDTemplateCellHandler.m */; };
+		8B9C22000004D0 /* ZDFlexLayoutCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C22000001F0 /* ZDFlexLayoutCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C22000004E0 /* ZDFlexLayoutTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000210 /* ZDFlexLayoutTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C22000004F0 /* ZDTemplateCellHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000230 /* ZDTemplateCellHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000500 /* ZDFlexLayoutChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000270 /* ZDFlexLayoutChain.m */; };
+		8B9C2200000510 /* ZDFlexLayoutMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C2200000290 /* ZDFlexLayoutMaker.m */; };
+		8B9C2200000520 /* ZDFlexLayoutChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000260 /* ZDFlexLayoutChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000530 /* ZDFlexLayoutMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C2200000280 /* ZDFlexLayoutMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C2200000540 /* ZDSFlexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000002B0 /* ZDSFlexExtension.swift */; };
+		8B9C2200000550 /* ZDSFlexLayoutMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000002C0 /* ZDSFlexLayoutMaker.swift */; };
+		8B9C2200000560 /* ZDSNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000002D0 /* ZDSNamespace.swift */; };
+		8B9C22000005C0 /* ZDFlexLayoutKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B9C22000005B0 /* ZDFlexLayoutKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B9C22000005F0 /* ZDFlexLayoutKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C22000005E0 /* ZDFlexLayoutKit-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B9C2200000610 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B9C2200000600 /* ZDYoga.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 24D33B5485FB3CEA2F2D29E7F23FE05D;
+			remoteInfo = ZDYoga;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8B9C22000000E0 /* NSObject+ZDFLDeallocCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDFLDeallocCallback.h"; sourceTree = "<group>"; };
+		8B9C22000000F0 /* NSObject+ZDFLDeallocCallback.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDFLDeallocCallback.m"; sourceTree = "<group>"; };
+		8B9C2200000100 /* ZDCalculateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDCalculateHelper.h; sourceTree = "<group>"; };
+		8B9C2200000110 /* ZDCalculateHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDCalculateHelper.m; sourceTree = "<group>"; };
+		8B9C2200000120 /* ZDFlexLayoutCore+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayoutCore+Private.h"; sourceTree = "<group>"; };
+		8B9C2200000140 /* UIView+ZDFlexLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDFlexLayout.h"; sourceTree = "<group>"; };
+		8B9C2200000150 /* UIView+ZDFlexLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDFlexLayout.m"; sourceTree = "<group>"; };
+		8B9C2200000160 /* ZDFlexLayoutCore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutCore.h; sourceTree = "<group>"; };
+		8B9C2200000170 /* ZDFlexLayoutCore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutCore.m; sourceTree = "<group>"; };
+		8B9C2200000180 /* ZDFlexLayoutDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDefine.h; sourceTree = "<group>"; };
+		8B9C2200000190 /* ZDFlexLayoutDiv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutDiv.h; sourceTree = "<group>"; };
+		8B9C22000001A0 /* ZDFlexLayoutDiv.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDFlexLayoutDiv.m; sourceTree = "<group>"; };
+		8B9C22000001B0 /* ZDFlexLayoutViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDFlexLayoutViewProtocol.h; sourceTree = "<group>"; };
+		8B9C22000001D0 /* ZDFlexLayoutKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutKit.h; path = Sources/Header/ZDFlexLayoutKit.h; sourceTree = "<group>"; };
+		8B9C22000001F0 /* ZDFlexLayoutCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutCollectionViewCell.h; path = Sources/Helper/ZDFlexLayoutCollectionViewCell.h; sourceTree = "<group>"; };
+		8B9C2200000200 /* ZDFlexLayoutCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutCollectionViewCell.m; path = Sources/Helper/ZDFlexLayoutCollectionViewCell.m; sourceTree = "<group>"; };
+		8B9C2200000210 /* ZDFlexLayoutTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutTableViewCell.h; path = Sources/Helper/ZDFlexLayoutTableViewCell.h; sourceTree = "<group>"; };
+		8B9C2200000220 /* ZDFlexLayoutTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutTableViewCell.m; path = Sources/Helper/ZDFlexLayoutTableViewCell.m; sourceTree = "<group>"; };
+		8B9C2200000230 /* ZDTemplateCellHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDTemplateCellHandler.h; path = Sources/Helper/ZDTemplateCellHandler.h; sourceTree = "<group>"; };
+		8B9C2200000240 /* ZDTemplateCellHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDTemplateCellHandler.m; path = Sources/Helper/ZDTemplateCellHandler.m; sourceTree = "<group>"; };
+		8B9C2200000260 /* ZDFlexLayoutChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutChain.h; path = Sources/OCMaker/ZDFlexLayoutChain.h; sourceTree = "<group>"; };
+		8B9C2200000270 /* ZDFlexLayoutChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutChain.m; path = Sources/OCMaker/ZDFlexLayoutChain.m; sourceTree = "<group>"; };
+		8B9C2200000280 /* ZDFlexLayoutMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFlexLayoutMaker.h; path = Sources/OCMaker/ZDFlexLayoutMaker.h; sourceTree = "<group>"; };
+		8B9C2200000290 /* ZDFlexLayoutMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFlexLayoutMaker.m; path = Sources/OCMaker/ZDFlexLayoutMaker.m; sourceTree = "<group>"; };
+		8B9C22000002B0 /* ZDSFlexExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSFlexExtension.swift; path = Sources/SwiftMaker/ZDSFlexExtension.swift; sourceTree = "<group>"; };
+		8B9C22000002C0 /* ZDSFlexLayoutMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSFlexLayoutMaker.swift; path = Sources/SwiftMaker/ZDSFlexLayoutMaker.swift; sourceTree = "<group>"; };
+		8B9C22000002D0 /* ZDSNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZDSNamespace.swift; path = Sources/SwiftMaker/ZDSNamespace.swift; sourceTree = "<group>"; };
+		8B9C22000002F0 /* ZDFlexLayoutKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZDFlexLayoutKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8B9C22000003A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8B9C2200000580 /* ZDFlexLayoutKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDFlexLayoutKit.debug.xcconfig; sourceTree = "<group>"; };
+		8B9C2200000590 /* ZDFlexLayoutKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDFlexLayoutKit.release.xcconfig; sourceTree = "<group>"; };
+		8B9C22000005A0 /* ZDFlexLayoutKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZDFlexLayoutKit.modulemap; sourceTree = "<group>"; };
+		8B9C22000005B0 /* ZDFlexLayoutKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDFlexLayoutKit-umbrella.h"; sourceTree = "<group>"; };
+		8B9C22000005D0 /* ZDFlexLayoutKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZDFlexLayoutKit-Info.plist"; sourceTree = "<group>"; };
+		8B9C22000005E0 /* ZDFlexLayoutKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDFlexLayoutKit-dummy.m"; sourceTree = "<group>"; };
+		8B9C2200000600 /* ZDYoga */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZDYoga; path = ZDYoga.xcodeproj; sourceTree = "<group>"; };
+		B3AF79D5A215246354F11B8FFA97C08B /* ZDFlexLayoutKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZDFlexLayoutKit; path = ZDFlexLayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8B9C2200000370 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B9C22000003B0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8B9C2200000010 = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000000A0 /* Dependencies */,
+				8B9C2200000060 /* Frameworks */,
+				8B9C2200000020 /* Products */,
+				8B9C22000000B0 /* ZDFlexLayoutKit */,
+			);
+			sourceTree = "<group>";
+		};
+		8B9C2200000020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3AF79D5A215246354F11B8FFA97C08B /* ZDFlexLayoutKit */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B9C2200000060 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C2200000390 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B9C22000000A0 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C2200000600 /* ZDYoga */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		8B9C22000000B0 /* ZDFlexLayoutKit */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000000C0 /* Core */,
+				8B9C22000001C0 /* Header */,
+				8B9C22000001E0 /* Helper */,
+				8B9C2200000250 /* OCMaker */,
+				8B9C22000002E0 /* Pod */,
+				8B9C2200000570 /* Support Files */,
+				8B9C22000002A0 /* SwiftMaker */,
+			);
+			name = ZDFlexLayoutKit;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		8B9C22000000C0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000000D0 /* Private */,
+				8B9C2200000130 /* Public */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		8B9C22000000D0 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000000E0 /* NSObject+ZDFLDeallocCallback.h */,
+				8B9C22000000F0 /* NSObject+ZDFLDeallocCallback.m */,
+				8B9C2200000100 /* ZDCalculateHelper.h */,
+				8B9C2200000110 /* ZDCalculateHelper.m */,
+				8B9C2200000120 /* ZDFlexLayoutCore+Private.h */,
+			);
+			name = Private;
+			path = Sources/Core/Private;
+			sourceTree = "<group>";
+		};
+		8B9C2200000130 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C2200000140 /* UIView+ZDFlexLayout.h */,
+				8B9C2200000150 /* UIView+ZDFlexLayout.m */,
+				8B9C2200000160 /* ZDFlexLayoutCore.h */,
+				8B9C2200000170 /* ZDFlexLayoutCore.m */,
+				8B9C2200000180 /* ZDFlexLayoutDefine.h */,
+				8B9C2200000190 /* ZDFlexLayoutDiv.h */,
+				8B9C22000001A0 /* ZDFlexLayoutDiv.m */,
+				8B9C22000001B0 /* ZDFlexLayoutViewProtocol.h */,
+			);
+			name = Public;
+			path = Sources/Core/Public;
+			sourceTree = "<group>";
+		};
+		8B9C22000001C0 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000001D0 /* ZDFlexLayoutKit.h */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		8B9C22000001E0 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000001F0 /* ZDFlexLayoutCollectionViewCell.h */,
+				8B9C2200000200 /* ZDFlexLayoutCollectionViewCell.m */,
+				8B9C2200000210 /* ZDFlexLayoutTableViewCell.h */,
+				8B9C2200000220 /* ZDFlexLayoutTableViewCell.m */,
+				8B9C2200000230 /* ZDTemplateCellHandler.h */,
+				8B9C2200000240 /* ZDTemplateCellHandler.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		8B9C2200000250 /* OCMaker */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C2200000260 /* ZDFlexLayoutChain.h */,
+				8B9C2200000270 /* ZDFlexLayoutChain.m */,
+				8B9C2200000280 /* ZDFlexLayoutMaker.h */,
+				8B9C2200000290 /* ZDFlexLayoutMaker.m */,
+			);
+			name = OCMaker;
+			sourceTree = "<group>";
+		};
+		8B9C22000002A0 /* SwiftMaker */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000002B0 /* ZDSFlexExtension.swift */,
+				8B9C22000002C0 /* ZDSFlexLayoutMaker.swift */,
+				8B9C22000002D0 /* ZDSNamespace.swift */,
+			);
+			name = SwiftMaker;
+			sourceTree = "<group>";
+		};
+		8B9C22000002E0 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000002F0 /* ZDFlexLayoutKit.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		8B9C2200000390 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000003A0 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		8B9C2200000570 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8B9C22000005A0 /* ZDFlexLayoutKit.modulemap */,
+				8B9C22000005E0 /* ZDFlexLayoutKit-dummy.m */,
+				8B9C22000005D0 /* ZDFlexLayoutKit-Info.plist */,
+				8B9C22000005B0 /* ZDFlexLayoutKit-umbrella.h */,
+				8B9C2200000580 /* ZDFlexLayoutKit.debug.xcconfig */,
+				8B9C2200000590 /* ZDFlexLayoutKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Demo/Pods/Target Support Files/ZDFlexLayoutKit";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8B9C2200000350 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B9C2200000410 /* NSObject+ZDFLDeallocCallback.h in Headers */,
+				8B9C2200000440 /* UIView+ZDFlexLayout.h in Headers */,
+				8B9C2200000420 /* ZDCalculateHelper.h in Headers */,
+				8B9C2200000520 /* ZDFlexLayoutChain.h in Headers */,
+				8B9C22000004D0 /* ZDFlexLayoutCollectionViewCell.h in Headers */,
+				8B9C2200000450 /* ZDFlexLayoutCore.h in Headers */,
+				8B9C2200000430 /* ZDFlexLayoutCore+Private.h in Headers */,
+				8B9C2200000460 /* ZDFlexLayoutDefine.h in Headers */,
+				8B9C2200000470 /* ZDFlexLayoutDiv.h in Headers */,
+				8B9C2200000490 /* ZDFlexLayoutKit.h in Headers */,
+				8B9C22000005C0 /* ZDFlexLayoutKit-umbrella.h in Headers */,
+				8B9C2200000530 /* ZDFlexLayoutMaker.h in Headers */,
+				8B9C22000004E0 /* ZDFlexLayoutTableViewCell.h in Headers */,
+				8B9C2200000480 /* ZDFlexLayoutViewProtocol.h in Headers */,
+				8B9C22000004F0 /* ZDTemplateCellHandler.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DC0718FA84D3DBA2088D0AD2B6D93986 /* ZDFlexLayoutKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B9C2200000310 /* Build configuration list for PBXNativeTarget "ZDFlexLayoutKit" */;
+			buildPhases = (
+				8B9C2200000350 /* Headers */,
+				8B9C2200000360 /* Sources */,
+				8B9C2200000370 /* Frameworks */,
+				8B9C2200000380 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B9C2200000620 /* PBXTargetDependency */,
+			);
+			name = ZDFlexLayoutKit;
+			productName = ZDFlexLayoutKit;
+			productReference = B3AF79D5A215246354F11B8FFA97C08B /* ZDFlexLayoutKit */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B9C2200000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 8B9C2200000030 /* Build configuration list for PBXProject "ZDFlexLayoutKit" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8B9C2200000010;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8B9C2200000020 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProjectRef = 8B9C2200000600 /* ZDYoga */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				DC0718FA84D3DBA2088D0AD2B6D93986 /* ZDFlexLayoutKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8B9C2200000380 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B9C2200000360 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B9C22000003C0 /* NSObject+ZDFLDeallocCallback.m in Sources */,
+				8B9C22000003E0 /* UIView+ZDFlexLayout.m in Sources */,
+				8B9C22000003D0 /* ZDCalculateHelper.m in Sources */,
+				8B9C2200000500 /* ZDFlexLayoutChain.m in Sources */,
+				8B9C22000004A0 /* ZDFlexLayoutCollectionViewCell.m in Sources */,
+				8B9C22000003F0 /* ZDFlexLayoutCore.m in Sources */,
+				8B9C2200000400 /* ZDFlexLayoutDiv.m in Sources */,
+				8B9C22000005F0 /* ZDFlexLayoutKit-dummy.m in Sources */,
+				8B9C2200000510 /* ZDFlexLayoutMaker.m in Sources */,
+				8B9C22000004B0 /* ZDFlexLayoutTableViewCell.m in Sources */,
+				8B9C2200000540 /* ZDSFlexExtension.swift in Sources */,
+				8B9C2200000550 /* ZDSFlexLayoutMaker.swift in Sources */,
+				8B9C2200000560 /* ZDSNamespace.swift in Sources */,
+				8B9C22000004C0 /* ZDTemplateCellHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B9C2200000620 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZDYoga;
+			targetProxy = 8B9C2200000610 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8B9C2200000040 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8B9C2200000050 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		8B9C2200000320 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B9C2200000590 /* ZDFlexLayoutKit.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ZDFlexLayoutKit/ZDFlexLayoutKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap";
+				PRODUCT_MODULE_NAME = ZDFlexLayoutKit;
+				PRODUCT_NAME = ZDFlexLayoutKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8B9C2200000330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B9C2200000580 /* ZDFlexLayoutKit.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ZDFlexLayoutKit/ZDFlexLayoutKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ZDFlexLayoutKit/ZDFlexLayoutKit.modulemap";
+				PRODUCT_MODULE_NAME = ZDFlexLayoutKit;
+				PRODUCT_NAME = ZDFlexLayoutKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8B9C2200000030 /* Build configuration list for PBXProject "ZDFlexLayoutKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9C2200000040 /* Debug */,
+				8B9C2200000050 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B9C2200000310 /* Build configuration list for PBXNativeTarget "ZDFlexLayoutKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9C2200000330 /* Debug */,
+				8B9C2200000320 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8B9C2200000000 /* Project object */;
+}
