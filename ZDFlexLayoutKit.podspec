@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.4.0"
+  spec.version      = "0.4.1"
   spec.summary      = "Flex Layout for iOS"
   spec.description  = <<-DESC
     flex layout for iOS powered by yoga
