@@ -36,6 +36,10 @@ Pod::Spec.new do |spec|
   }
   
   spec.swift_versions = ['5.1']
+
+  spec.resource_bundles = {
+    'ZDFlexLayoutKit_Privacy' => ['Sources/Resource/PrivacyInfo.xcprivacy'],
+  }
   
   spec.subspec 'Header' do |s|
     s.source_files = "Sources/Header/ZDFlexLayoutKit.{h,m}"
