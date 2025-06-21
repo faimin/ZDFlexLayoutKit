@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "ZDFlexLayoutKit"
-  spec.version      = "0.4.0"
+  spec.version      = "0.4.1"
   spec.summary      = "Flex Layout for iOS"
   spec.description  = <<-DESC
     flex layout for iOS powered by yoga
@@ -35,7 +35,11 @@ Pod::Spec.new do |spec|
     #'OTHER_SWIFT_FLAGS' => '-no-verify-emitted-module-interface'
   }
   
-  spec.swift_versions = ['5.1']
+  spec.swift_versions = ['6.0']
+
+  spec.resource_bundles = {
+    'ZDFlexLayoutKit_Privacy' => ['Sources/Resource/PrivacyInfo.xcprivacy'],
+  }
   
   spec.subspec 'Header' do |s|
     s.source_files = "Sources/Header/ZDFlexLayoutKit.{h,m}"
