@@ -35,7 +35,7 @@ Pod::Spec.new do |spec|
     #'OTHER_SWIFT_FLAGS' => '-no-verify-emitted-module-interface'
   }
   
-  spec.swift_versions = ['5.1']
+  spec.swift_versions = ['6.0']
 
   spec.resource_bundles = {
     'ZDFlexLayoutKit_Privacy' => ['Sources/Resource/PrivacyInfo.xcprivacy'],
