@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(ZDFlexLayoutObjC)
+import ZDFlexLayoutObjC
+#endif
 
 //MARK: - makeFlexLayout
 
