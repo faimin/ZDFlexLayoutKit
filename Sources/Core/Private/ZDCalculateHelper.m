@@ -19,11 +19,11 @@ static void zd_init(void) {
     if (!_asyncTaskQueue) {
         _asyncTaskQueue = [[NSMutableOrderedSet alloc] init];
     }
-    
+
     if (!_asyncMainThreadQueue) {
         _asyncMainThreadQueue = [NSMutableOrderedSet orderedSet];
     }
-    
+
     if (!_taskGroup) {
         _taskGroup = dispatch_group_create();
     }
@@ -33,7 +33,7 @@ static void zd_lock(dispatch_block_t callback) {
     if (!callback) {
         return;
     }
-    
+
     if (@available(iOS 10.0, *)) {
         static os_unfair_lock lock = OS_UNFAIR_LOCK_INIT;
         os_unfair_lock_lock(&lock);
@@ -46,7 +46,7 @@ static void zd_lock(dispatch_block_t callback) {
         dispatch_once(&onceToken, ^{
             lock = dispatch_semaphore_create(1);
         });
-        
+
         dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
         callback();
         dispatch_semaphore_signal(lock);
@@ -64,13 +64,13 @@ static dispatch_queue_t zd_calculate_queue(void) {
 
 __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCallback(dispatch_block_t task, dispatch_block_t complete) {
     if (task == nil) return;
-    
+
     zd_init();
-    
+
     dispatch_group_enter(_taskGroup);
     dispatch_async(zd_calculate_queue(), ^{
         task();
-                
+
         zd_lock(^{
             [_asyncTaskQueue addObject:^{
                 dispatch_group_leave(_taskGroup);
@@ -89,9 +89,9 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
 
 __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCallback(NSArray<dispatch_block_t> *tasks, dispatch_block_t allComplete) {
     if (tasks == nil || tasks.count == 0) return;
-    
+
     zd_init();
-    
+
     dispatch_group_enter(_taskGroup);
     dispatch_async(zd_calculate_queue(), ^{
         for (dispatch_block_t task in tasks) {
@@ -107,7 +107,7 @@ __attribute__((__overloadable__)) static void zd_addAsyncTaskBlockWithCompleteCa
     });
 }
 
-__unused static void zd_executeAsyncTasks(void) {
+static void zd_executeAsyncTasks(void) {
     zd_lock(^{
         // onComplete block
         for (dispatch_block_t task in _asyncTaskQueue) {
@@ -135,12 +135,12 @@ static void zd_sourceContextCallBackLog(void *info) {
 static void zd_initRunloop(void) {
     CFRunLoopRef runloop = CFRunLoopGetMain();
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting | kCFRunLoopExit, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-        //zd_executeAsyncTasks();
+        zd_executeAsyncTasks();
         zd_executeMainThreadAsyncTasks();
     });
     CFRunLoopAddObserver(runloop, observer, kCFRunLoopCommonModes);
     CFRelease(observer);
-    
+
     CFRunLoopSourceContext *sourceContext = calloc(1, sizeof(CFRunLoopSourceContext));
     sourceContext->perform = zd_sourceContextCallBackLog;
     _runloopSource = CFRunLoopSourceCreate(CFAllocatorGetDefault(), 0, sourceContext);
@@ -153,7 +153,7 @@ static void zd_autoLayoutWhenIdle(dispatch_block_t layoutTask) {
     if (!layoutTask) {
         return;
     }
-    
+
     zd_init();
     [_asyncMainThreadQueue addObject:layoutTask];
 }

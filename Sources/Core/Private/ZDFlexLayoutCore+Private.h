@@ -14,4 +14,10 @@
 
 - (instancetype)initWithView:(ZDFlexLayoutView)view;
 
+/// Must be called on main thread — reads UIView.traitCollection
+- (void)updateLayoutDirectionIfNeeded;
+
+/// Calculate layout with optional async mode (pre-measures leaf nodes, skips measure func)
+- (CGSize)calculateLayoutWithSize:(CGSize)size asyncMode:(BOOL)asyncMode;
+
 @end

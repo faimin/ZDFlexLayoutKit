@@ -195,7 +195,6 @@ static YGConfigRef globalConfig;
 
 - (BOOL)isLeaf
 {
-    NSAssert([NSThread isMainThread], @"This method must be called on the main thread.");
     if (self.isEnabled) {
         for (ZDFlexLayoutView subview in self.view.children) {
             ZDFlexLayoutCore *const yoga = subview.flexLayout;
@@ -314,16 +313,43 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
     self.isEnabled = YES;
     
     __weak typeof(self) weakTarget = self;
-    __auto_type calculateBlock = ^{
-        __strong typeof(weakTarget) self = weakTarget;
-        [self calculateLayoutWithSize:size];
-        YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
-    };
     
     if (async) {
-        [ZDCalculateHelper asyncLayoutTask:calculateBlock];
+        // === Async path: main-thread pre-measure → background calculation → main-thread apply ===
+        
+        // Step 1 (main thread): Update layout direction from traitCollection,
+        // then pre-measure leaf nodes and attach Yoga tree.
+        // This ensures no UIKit-dependent code runs during background calculation.
+        [self updateLayoutDirectionIfNeeded];
+        YGAttachNodesFromViewHierachy(self.view, YES /* asyncMode */);
+        
+        // Step 2 (background thread): Pure numeric Yoga calculation.
+        // No measure function callbacks → no UIKit → safe for background.
+        [ZDCalculateHelper asyncCalculateTask:^{
+            __strong typeof(weakTarget) self = weakTarget;
+            if (!self) return;
+            
+            const YGNodeRef node = self.node;
+            YGNodeCalculateLayout(
+                node,
+                size.width,
+                size.height,
+                YGNodeStyleGetDirection(node)
+            );
+        } onComplete:^{
+            // Step 3 (main thread): Apply calculated frames to views.
+            __strong typeof(weakTarget) self = weakTarget;
+            if (!self) return;
+            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+        }];
     }
     else {
+        // Sync path: everything on current thread (must be main thread)
+        __auto_type calculateBlock = ^{
+            __strong typeof(weakTarget) self = weakTarget;
+            [self calculateLayoutWithSize:size];
+            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+        };
         calculateBlock();
     }
 }
@@ -339,17 +365,25 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
     return [self calculateLayoutWithSize:constrainedSize];
 }
 
-- (CGSize)calculateLayoutWithSize:(CGSize)size
+- (void)updateLayoutDirectionIfNeeded
 {
-    NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
-    NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
-
+    // Must be called on main thread — accesses UIView.traitCollection
     UIView *view = self.view.owningView;
     if (view && view.traitCollection.layoutDirection != UITraitEnvironmentLayoutDirectionUnspecified) {
         self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionRTL : YGDirectionLTR;
     }
-    
-    YGAttachNodesFromViewHierachy(self.view);
+}
+
+- (CGSize)calculateLayoutWithSize:(CGSize)size
+{
+    return [self calculateLayoutWithSize:size asyncMode:NO];
+}
+
+- (CGSize)calculateLayoutWithSize:(CGSize)size asyncMode:(BOOL)asyncMode
+{
+    NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
+
+    YGAttachNodesFromViewHierachy(self.view, asyncMode);
 
     const YGNodeRef node = self.node;
     YGNodeCalculateLayout(
@@ -366,6 +400,88 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 }
 
 #pragma mark - Private
+
+// Thread-safe text measurement using NSAttributedString boundingRect (no UIKit dependency)
+static CGSize YGMeasureLabelText(UILabel *label, CGSize constrainedSize) {
+    NSAttributedString *attributedText = label.attributedText;
+    if (attributedText.length > 0) {
+        CGRect rect = [attributedText boundingRectWithSize:constrainedSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                   context:nil];
+        return CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
+    }
+
+    NSString *text = label.text;
+    if (text.length > 0) {
+        CGRect rect = [text boundingRectWithSize:constrainedSize
+                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:label.font ? @{NSFontAttributeName: label.font} : nil
+                                         context:nil];
+        return CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
+    }
+
+    return CGSizeZero;
+}
+
+// Pre-measure a leaf node and set its size as fixed width/height on the Yoga node.
+// This allows us to skip setting YGMeasureFunc and run Yoga calculation on a background thread.
+// Returns YES if the node was fully pre-measured (no measure func needed).
+static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
+    YGValue nodeWidth = YGNodeStyleGetWidth(node);
+    YGValue nodeHeight = YGNodeStyleGetHeight(node);
+
+    BOOL hasExplicitWidth = (nodeWidth.unit == YGUnitPoint && !YGFloatIsUndefined(nodeWidth.value));
+    BOOL hasExplicitHeight = (nodeHeight.unit == YGUnitPoint && !YGFloatIsUndefined(nodeHeight.value));
+
+    if (hasExplicitWidth && hasExplicitHeight) {
+        return YES; // Already fully constrained, no measure func needed
+    }
+
+    if (!view.flexLayout.isUIView) {
+        // ZDFlexLayoutDiv — sizeThatFits returns CGSizeZero, thread-safe
+        // Keep the measure function for these; they don't call UIKit
+        return NO;
+    }
+
+    UIView *uiView = (UIView *)view;
+    CGSize measuredSize = CGSizeZero;
+
+    if ([uiView isKindOfClass:[UILabel class]]) {
+        CGSize constrainedSize = CGSizeMake(
+            hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX,
+            hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX
+        );
+        measuredSize = YGMeasureLabelText((UILabel *)uiView, constrainedSize);
+    } else if ([uiView isKindOfClass:[UIImageView class]]) {
+        UIImage *image = ((UIImageView *)uiView).image;
+        if (image) {
+            measuredSize = image.size;
+        }
+    } else {
+        // For other UIView leaf nodes (plain UIView, custom views, etc.):
+        // sizeThatFits: requires main thread.
+        // If neither width nor height is set, we must call sizeThatFits: on main thread.
+        // If at least one dimension is set, we can skip measurement.
+        if (!hasExplicitWidth && !hasExplicitHeight) {
+            // Must measure on main thread — keep measure func
+            return NO;
+        }
+        // At least one dimension is explicit — store what we have
+        measuredSize = CGSizeMake(
+            hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX,
+            hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX
+        );
+    }
+
+    if (!hasExplicitWidth && measuredSize.width > 0 && measuredSize.width < CGFLOAT_MAX) {
+        YGNodeStyleSetWidth(node, measuredSize.width);
+    }
+    if (!hasExplicitHeight && measuredSize.height > 0 && measuredSize.height < CGFLOAT_MAX) {
+        YGNodeStyleSetHeight(node, measuredSize.height);
+    }
+
+    return YES;
+}
 
 static YGSize YGMeasureView(
   YGNodeConstRef node,
@@ -431,7 +547,7 @@ static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayou
     return YES;
 }
 
-static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view)
+static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyncMode)
 {
     ZDFlexLayoutCore *const yoga = view.flexLayout;
     const YGNodeRef node = yoga.node;
@@ -439,7 +555,25 @@ static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view)
     // Only leaf nodes should have a measure function
     if (yoga.isLeaf) {
         YGRemoveAllChildren(node);
-        YGNodeSetMeasureFunc(node, YGMeasureView);
+
+        if (asyncMode) {
+            // In async mode, try to pre-measure the leaf node and set fixed sizes.
+            // If fully pre-measured, skip setting YGMeasureFunc so Yoga won't
+            // call back into UIKit during background calculation.
+            if (YGPreMeasureLeafNode(node, view)) {
+                YGNodeSetMeasureFunc(node, NULL);
+            } else if (!yoga.isUIView) {
+                // Non-UIView (ZDFlexLayoutDiv): sizeThatFits returns CGSizeZero, thread-safe
+                YGNodeSetMeasureFunc(node, YGMeasureView);
+            } else {
+                // UIView leaf that couldn't be pre-measured (no explicit size, not UILabel/UIImageView).
+                // Setting YGMeasureFunc would call sizeThatFits: on background thread → unsafe.
+                // Instead, leave measure func unset and let Yoga use default sizing.
+                YGNodeSetMeasureFunc(node, NULL);
+            }
+        } else {
+            YGNodeSetMeasureFunc(node, YGMeasureView);
+        }
     } else {
         YGNodeSetMeasureFunc(node, NULL);
 
@@ -458,7 +592,7 @@ static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view)
         }
 
         for (ZDFlexLayoutView const subview in subviewsToInclude) {
-            YGAttachNodesFromViewHierachy(subview);
+            YGAttachNodesFromViewHierachy(subview, asyncMode);
         }
     }
 }
