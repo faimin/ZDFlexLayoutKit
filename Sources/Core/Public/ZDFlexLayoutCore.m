@@ -310,47 +310,84 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 
 - (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
 {
-    self.isEnabled = YES;
-    
-    __weak typeof(self) weakTarget = self;
-    
-    if (async) {
-        // === Async path: main-thread pre-measure → background calculation → main-thread apply ===
-        
-        // Step 1 (main thread): Update layout direction from traitCollection,
-        // then pre-measure leaf nodes and attach Yoga tree.
-        // This ensures no UIKit-dependent code runs during background calculation.
-        [self updateLayoutDirectionIfNeeded];
-        YGAttachNodesFromViewHierachy(self.view, YES /* asyncMode */);
-        
-        // Step 2 (background thread): Pure numeric Yoga calculation.
-        // No measure function callbacks → no UIKit → safe for background.
-        [ZDCalculateHelper asyncCalculateTask:^{
-            __strong typeof(weakTarget) self = weakTarget;
-            if (!self) return;
-            
-            const YGNodeRef node = self.node;
-            YGNodeCalculateLayout(
-                node,
-                size.width,
-                size.height,
-                YGNodeStyleGetDirection(node)
-            );
-        } onComplete:^{
-            // Step 3 (main thread): Apply calculated frames to views.
-            __strong typeof(weakTarget) self = weakTarget;
-            if (!self) return;
-            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
-        }];
+    ZDFlexLayoutAsyncMode asyncMode = async ? ZDFlexLayoutAsyncModeRunloopIdle : ZDFlexLayoutAsyncModeSync;
+    [self applyLayoutWithAsyncMode:asyncMode preservingOrigin:preserveOrigin constraintSize:size];
+}
+
+#pragma mark - Async Mode API
+
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+                preservingOrigin:(BOOL)preserveOrigin
+            dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
+{
+    CGSize size = self.view.layoutFrame.size;
+    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
+        size.width = YGUndefined;
     }
-    else {
-        // Sync path: everything on current thread (must be main thread)
-        __auto_type calculateBlock = ^{
-            __strong typeof(weakTarget) self = weakTarget;
-            [self calculateLayoutWithSize:size];
-            YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
-        };
-        calculateBlock();
+    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
+        size.height = YGUndefined;
+    }
+    [self applyLayoutWithAsyncMode:asyncMode preservingOrigin:preserveOrigin constraintSize:size];
+}
+
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+                preservingOrigin:(BOOL)preserveOrigin
+                  constraintSize:(CGSize)size
+{
+    self.isEnabled = YES;
+
+    __weak typeof(self) weakTarget = self;
+
+
+    switch (asyncMode) {
+        case ZDFlexLayoutAsyncModeBackgroundThread: {
+            // Phase 1 (main thread): update direction, pre-measure leaf nodes, attach Yoga tree.
+            // Pre-measured leaf nodes have fixed sizes set, so YGMeasureFunc is skipped.
+            // This ensures no UIKit code runs during the background calculation phase.
+            [self updateLayoutDirectionIfNeeded];
+            YGAttachNodesFromViewHierachy(self.view, YES /* asyncMode */);
+
+            // Phase 2 (background thread): pure numeric Yoga calculation, no UIKit callbacks.
+            [ZDCalculateHelper asyncCalculateTask:^{
+                __strong typeof(weakTarget) self = weakTarget;
+                if (!self) return;
+
+                const YGNodeRef node = self.node;
+                YGNodeCalculateLayout(
+                    node,
+                    size.width,
+                    size.height,
+                    YGNodeStyleGetDirection(node)
+                );
+            } onComplete:^{
+                // Phase 3 (main thread): apply calculated frames to views.
+                __strong typeof(weakTarget) self = weakTarget;
+                if (!self) return;
+                YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+            }];
+            break;
+        }
+        case ZDFlexLayoutAsyncModeRunloopIdle: {
+            // Runloop idle: defer whole calculation+apply to main runloop idle time.
+            __auto_type calculateBlock = ^{
+                __strong typeof(weakTarget) self = weakTarget;
+                [self calculateLayoutWithSize:size];
+                YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+            };
+            [ZDCalculateHelper asyncLayoutTask:calculateBlock];
+            break;
+        }
+        case ZDFlexLayoutAsyncModeSync:
+        default: {
+            // Sync: calculate and apply immediately on the calling thread.
+            __auto_type calculateBlock = ^{
+                __strong typeof(weakTarget) self = weakTarget;
+                [self calculateLayoutWithSize:size];
+                YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+            };
+            calculateBlock();
+            break;
+        }
     }
 }
 
