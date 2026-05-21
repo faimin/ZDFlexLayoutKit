@@ -1,3 +1,11 @@
+## 0.5.0
+
+1. 新增 `ZDFlexLayoutAsyncMode` 枚举，支持三种布局计算模式：同步、RunLoop Idle、后台线程
+2. 后台线程模式采用"缓存侧表"方案：主线程预测量 → 后台纯数值计算 → 主线程刷新，不污染 YGNode style
+3. 新增 `applyLayoutWithAsyncMode:preservingOrigin:dimensionFlexibility:` 统一异步布局 API
+4. 新增 `useLegacyPreMeasure` 属性，可切换回旧版预测量实现作为备用
+5. 修复 RunLoop Idle 模式下 weakSelf 未做 nil 判断的问题
+
 ## 0.4.0
 
 1. `Yoga`更新到`0.3.2.1`

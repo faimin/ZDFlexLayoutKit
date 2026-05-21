@@ -117,6 +117,13 @@ YG_EXTERN_C_END
 @property (nonatomic, readwrite, assign) YGValue allGap;
 
 /**
+ When YES, background thread async mode uses the legacy pre-measure approach
+ that sets explicit width/height on YGNode style directly.
+ When NO (default), uses a cache side table approach that does not mutate YGNode style.
+ */
+@property (nonatomic, assign) BOOL useLegacyPreMeasure;
+
+/**
  Get the resolved direction of this node. This won't be YGDirectionInherit
  */
 @property (nonatomic, readonly, assign) YGDirection resolvedDirection;
