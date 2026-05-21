@@ -28,6 +28,7 @@
 		FA843042234F4234000F7E35 /* DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843041234F4234000F7E35 /* DemoTests.m */; };
 		FA84304D234F4234000F7E35 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84304C234F4234000F7E35 /* DemoUITests.m */; };
 		FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */; };
+		FA90B0A0237D4D2600DBDB77 /* AsyncLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */; };
 		FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */; };
 		FACF10A425B70AEC00C91DA3 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF10A325B70AEC00C91DA3 /* Empty.swift */; };
 		FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEA4A0E235F0F6000422C35 /* same_city_users.json */; };
@@ -100,6 +101,8 @@
 		FA84304E234F4234000F7E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA90B081237D4D2600DBDB77 /* NormalLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalLayoutController.h; sourceTree = "<group>"; };
 		FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalLayoutController.m; sourceTree = "<group>"; };
+		FA90B09E237D4D2600DBDB77 /* AsyncLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncLayoutController.h; sourceTree = "<group>"; };
+		FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncLayoutController.m; sourceTree = "<group>"; };
 		FA90B084237D4D3E00DBDB77 /* ScrollViewLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewLayoutController.h; sourceTree = "<group>"; };
 		FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewLayoutController.m; sourceTree = "<group>"; };
 		FACF10A325B70AEC00C91DA3 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */,
 				FA90B084237D4D3E00DBDB77 /* ScrollViewLayoutController.h */,
 				FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */,
+				FA90B09E237D4D2600DBDB77 /* AsyncLayoutController.h */,
+				FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */,
 			);
 			path = LayoutDemo;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */,
 				FAEA4A16235F0FF600422C35 /* SameCityUserListViewModel.m in Sources */,
 				FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */,
+				FA90B0A0237D4D2600DBDB77 /* AsyncLayoutController.m in Sources */,
 				FAEA4A19235F104A00422C35 /* UserModel.m in Sources */,
 				FA617C0C23572AA100477C31 /* ZDFlexCell.m in Sources */,
 				FA1A54DF2355ECE400C80712 /* YogaKitListViewModel.m in Sources */,
