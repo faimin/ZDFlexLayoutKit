@@ -430,80 +430,72 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 }
 
 #pragma mark - Measure Cache Side Table
-// 缓存侧表：用于后台线程布局计算时存储预测量结果。
-// 写入发生在主线程(Phase 1)，读取发生在后台线程(Phase 2)，清除发生在主线程(Phase 3)。
-// GCD dispatch 提供 memory barrier，无需额外加锁。
+// 缓存侧表：主线程写入(Phase 1) → 后台线程只读(Phase 2) → 主线程清除(Phase 3)。
+// key: NSValue(pointer:YGNodeRef), value: NSValue(CGSize) 或 NSTextStorage(文本节点)
 
-static CFMutableDictionaryRef _zd_measureCache = NULL;
+static NSMutableDictionary *_zd_measureCache = nil;
 
 static void ZDMeasureCacheCreate(void) {
-	if (_zd_measureCache) {
-		CFDictionaryRemoveAllValues(_zd_measureCache);
-		return;
-	}
-	_zd_measureCache = CFDictionaryCreateMutable(
-												 kCFAllocatorDefault, 0, NULL, NULL
-												 );
+    if (_zd_measureCache) {
+        [_zd_measureCache removeAllObjects];
+    } else {
+        _zd_measureCache = [NSMutableDictionary dictionary];
+    }
 }
 
-static void ZDMeasureCacheSet(YGNodeRef node, CGSize size) {
-	if (!_zd_measureCache) return;
-	CGSize *existing = (CGSize *)CFDictionaryGetValue(_zd_measureCache, node);
-	if (existing) {
-		*existing = size;
-	} else {
-		CGSize *entry = (CGSize *)malloc(sizeof(CGSize));
-		*entry = size;
-		CFDictionarySetValue(_zd_measureCache, node, entry);
-	}
+static NSValue *ZDNodeKey(YGNodeConstRef node) {
+    return [NSValue valueWithPointer:node];
 }
 
-static BOOL ZDMeasureCacheGet(YGNodeConstRef node, CGSize *outSize) {
-	if (!_zd_measureCache) return NO;
-	CGSize *entry = (CGSize *)CFDictionaryGetValue(_zd_measureCache, node);
-	if (!entry) return NO;
-	*outSize = *entry;
-	return YES;
+static void ZDMeasureCacheSetSize(YGNodeRef node, CGSize size) {
+    if (!_zd_measureCache) return;
+    _zd_measureCache[ZDNodeKey(node)] = [NSValue valueWithCGSize:size];
+}
+
+static void ZDMeasureCacheSetTextStorage(YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines) {
+    if (!_zd_measureCache || !textStorage) return;
+    _zd_measureCache[ZDNodeKey(node)] = @{@"storage": textStorage, @"lines": @(numberOfLines)};
 }
 
 static void ZDMeasureCacheClear(void) {
-	if (!_zd_measureCache) return;
-	CFIndex count = CFDictionaryGetCount(_zd_measureCache);
-	if (count > 0) {
-		const void **values = (const void **)malloc(sizeof(void *) * (size_t)count);
-		CFDictionaryGetKeysAndValues(_zd_measureCache, NULL, values);
-		for (CFIndex i = 0; i < count; i++) {
-			free((void *)values[i]);
-		}
-		free(values);
-	}
-	CFDictionaryRemoveAllValues(_zd_measureCache);
+    [_zd_measureCache removeAllObjects];
+}
+
+/// 使用 TextKit 测量文本（线程安全），借鉴 React Native 的实现方式。
+/// 支持 NSTextStorage 直接传入（后台线程），或从 UILabel 提取文本信息（主线程）。
+static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize) {
+    if (!textStorage || textStorage.length == 0) return CGSizeZero;
+
+    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:constraintSize];
+    textContainer.lineFragmentPadding = 0;
+    textContainer.maximumNumberOfLines = numberOfLines;
+    textContainer.lineBreakMode = NSLineBreakByWordWrapping;
+
+    [layoutManager addTextContainer:textContainer];
+    [textStorage addLayoutManager:layoutManager];
+    [layoutManager ensureLayoutForTextContainer:textContainer];
+
+    CGRect usedRect = [layoutManager usedRectForTextContainer:textContainer];
+    [textStorage removeLayoutManager:layoutManager];
+
+    return CGSizeMake(ceil(usedRect.size.width), ceil(usedRect.size.height));
+}
+
+/// 从 UILabel 构造 NSTextStorage（主线程调用，捕获文本快照）
+static NSTextStorage *ZDTextStorageFromLabel(UILabel *label) {
+    NSAttributedString *attrText = label.attributedText;
+    if (attrText.length > 0) {
+        return [[NSTextStorage alloc] initWithAttributedString:attrText];
+    }
+    if (label.text.length > 0) {
+        NSDictionary *attrs = label.font ? @{NSFontAttributeName: label.font} : @{};
+        return [[NSTextStorage alloc] initWithString:label.text attributes:attrs];
+    }
+    return nil;
 }
 
 #pragma mark - Private
-
-// Thread-safe text measurement using NSAttributedString boundingRect (no UIKit dependency)
-static CGSize YGMeasureLabelText(UILabel *label, CGSize constrainedSize) {
-	
-	NSAttributedString *attributedText = label.attributedText;
-	if (attributedText.length > 0) {
-		CGRect rect = [attributedText boundingRectWithSize:constrainedSize
-												   options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-												   context:nil];
-		return CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
-	}
-	
-	NSString *text = label.text;
-	if (text.length > 0) {
-		CGRect rect = [text boundingRectWithSize:constrainedSize
-										 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-									  attributes:label.font ? @{NSFontAttributeName: label.font} : nil
-										 context:nil];
-		return CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
-	}
-	
-	return CGSizeZero;
-}
 
 // Pre-measure a leaf node and set its size as fixed width/height on the Yoga node.
 // This allows us to skip setting YGMeasureFunc and run Yoga calculation on a background thread.
@@ -530,11 +522,13 @@ static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
 	CGSize measuredSize = CGSizeZero;
 	
 	if ([uiView isKindOfClass:[UILabel class]]) {
+		UILabel *label = (UILabel *)uiView;
 		CGSize constrainedSize = (CGSize){
 			hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX,
 			hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX
 		};
-		measuredSize = YGMeasureLabelText((UILabel *)uiView, constrainedSize);
+		NSTextStorage *ts = ZDTextStorageFromLabel(label);
+		measuredSize = ZDMeasureText(ts, label.numberOfLines, constrainedSize);
 	} else if ([uiView isKindOfClass:[UIImageView class]]) {
 		UIImage *image = ((UIImageView *)uiView).image;
 		if (image) {
@@ -616,27 +610,34 @@ static CGFloat YGSanitizeMeasurement(
 }
 
 /// 后台线程安全的 measure 函数。
-/// 从缓存侧表读取主线程预测量的尺寸，结合 Yoga 的 measureMode 约束返回最终值。
-/// 不访问任何 UIKit API，可安全在任意线程调用。
+/// 文本节点使用 TextKit 在 Yoga 提供的真实约束下测量；非文本节点返回预存的固定尺寸。
 static YGSize YGCachedMeasureView(
-	YGNodeConstRef node,
-	float width,
-	YGMeasureMode widthMode,
-	float height,
-	YGMeasureMode heightMode
+    YGNodeConstRef node,
+    float width,
+    YGMeasureMode widthMode,
+    float height,
+    YGMeasureMode heightMode
 ) {
-	CGSize cachedSize = CGSizeZero;
-	if (!ZDMeasureCacheGet(node, &cachedSize)) {
-		return (YGSize){ .width = 0, .height = 0 };
-	}
-	
-	const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
-	const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
-	
-	return (YGSize) {
-		.width = YGSanitizeMeasurement(constrainedWidth, cachedSize.width, widthMode),
-		.height = YGSanitizeMeasurement(constrainedHeight, cachedSize.height, heightMode),
-	};
+    const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
+    const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
+
+    id cached = _zd_measureCache[ZDNodeKey(node)];
+    if (!cached) return (YGSize){ .width = 0, .height = 0 };
+
+    CGSize measuredSize;
+    if ([cached isKindOfClass:[NSDictionary class]]) {
+        NSTextStorage *textStorage = cached[@"storage"];
+        NSInteger numberOfLines = [cached[@"lines"] integerValue];
+        CGSize constraint = CGSizeMake(constrainedWidth, constrainedHeight);
+        measuredSize = ZDMeasureText(textStorage, numberOfLines, constraint);
+    } else {
+        measuredSize = [(NSValue *)cached CGSizeValue];
+    }
+
+    return (YGSize) {
+        .width = YGSanitizeMeasurement(constrainedWidth, measuredSize.width, widthMode),
+        .height = YGSanitizeMeasurement(constrainedHeight, measuredSize.height, heightMode),
+    };
 }
 
 static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view);
@@ -732,21 +733,29 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view) {
 		CGSize constrainedSize = CGSizeMake(constraintW, constraintH);
 		CGSize measuredSize = CGSizeZero;
 		
-		if (!yoga.isUIView) {
+		if (![view isKindOfClass:[UIView class]]) {
 			measuredSize = [view sizeThatFits:constrainedSize];
+			ZDMeasureCacheSetSize(node, measuredSize);
 		} else {
 			UIView *uiView = (UIView *)view;
 			if ([uiView isKindOfClass:[UILabel class]]) {
-				measuredSize = YGMeasureLabelText((UILabel *)uiView, constrainedSize);
+				// 文本节点：捕获 NSTextStorage 供后台 TextKit 测量
+				UILabel *label = (UILabel *)uiView;
+				NSTextStorage *textStorage = ZDTextStorageFromLabel(label);
+				if (textStorage) {
+					ZDMeasureCacheSetTextStorage(node, textStorage, label.numberOfLines);
+				} else {
+					ZDMeasureCacheSetSize(node, CGSizeZero);
+				}
 			} else if ([uiView isKindOfClass:[UIImageView class]]) {
 				UIImage *image = ((UIImageView *)uiView).image;
 				measuredSize = image ? image.size : CGSizeZero;
+				ZDMeasureCacheSetSize(node, measuredSize);
 			} else {
 				measuredSize = [uiView sizeThatFits:constrainedSize];
+				ZDMeasureCacheSetSize(node, measuredSize);
 			}
 		}
-		
-		ZDMeasureCacheSet(node, measuredSize);
 		YGNodeSetMeasureFunc(node, YGCachedMeasureView);
 	} else {
 		YGNodeSetMeasureFunc(node, NULL);

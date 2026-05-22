@@ -5,6 +5,8 @@
 3. 新增 `applyLayoutWithAsyncMode:preservingOrigin:dimensionFlexibility:` 统一异步布局 API
 4. 新增 `useLegacyPreMeasure` 属性，可切换回旧版预测量实现作为备用
 5. 修复 RunLoop Idle 模式下 weakSelf 未做 nil 判断的问题
+6. 文本测量统一使用 TextKit（`NSTextStorage + NSLayoutManager + NSTextContainer`），支持多行文本在后台线程正确计算高度
+7. 修复 `isUIView`（`isMemberOfClass:`）导致 UILabel 等子类走错测量分支的问题
 
 ## 0.4.0
 

@@ -35,8 +35,8 @@
 
 采用"主线程预测量 + 缓存侧表 + 线程安全 measure func"三阶段方案，借鉴 ReactNative 的设计思路：
 
-1. **Phase 1（主线程）**：遍历叶子节点，调用 `sizeThatFits:` 等 UIKit API 获取固有尺寸，结果存入缓存侧表（不修改 YGNode style）
-2. **Phase 2（后台线程）**：纯数值 Yoga 计算，measure 回调从缓存读取预测量结果，不访问 UIKit
+1. **Phase 1（主线程）**：遍历叶子节点，捕获测量所需信息存入缓存侧表（文本节点捕获 `NSTextStorage`，其他节点调用 `sizeThatFits:`），不修改 YGNode style
+2. **Phase 2（后台线程）**：Yoga 计算，文本节点使用 TextKit（`NSLayoutManager + NSTextContainer`）在 Yoga 提供的真实宽度约束下测量，其他节点返回预存尺寸
 3. **Phase 3（主线程）**：应用 frame、恢复 measure 函数、清除缓存
 
 ### 使用示例

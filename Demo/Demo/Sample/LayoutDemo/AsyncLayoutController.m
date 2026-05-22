@@ -34,7 +34,7 @@
     self.modeSegment = [[UISegmentedControl alloc] initWithItems:@[@"Sync", @"RunLoop Idle", @"Background Thread"]];
     self.modeSegment.selectedSegmentIndex = 0;
     [self.modeSegment addTarget:self action:@selector(modeChanged:) forControlEvents:UIControlEventValueChanged];
-    self.modeSegment.frame = CGRectMake(20, 100, self.view.bounds.size.width - 40, 36);
+    self.modeSegment.frame = CGRectMake(20, 120, self.view.bounds.size.width - 40, 36);
     [self.view addSubview:self.modeSegment];
 }
 
