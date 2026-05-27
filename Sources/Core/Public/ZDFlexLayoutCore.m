@@ -461,23 +461,59 @@ static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node) {
     return view.flexLayout.asyncMeasureCache;
 }
 
+/// Thread-local TextKit component pool to avoid allocating
+/// NSLayoutManager + NSTextContainer for every text measurement.
+/// Stored in NSThread.threadDictionary so each background thread reuses its
+/// own NSLayoutManager/NSTextContainer pair without conflicts.
+@interface _ZDFLTextKitPool : NSObject
+@property (nonatomic, strong, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic, strong, readonly) NSTextContainer *textContainer;
+@end
+@implementation _ZDFLTextKitPool
+- (void)dealloc {
+    [_layoutManager removeTextContainerAtIndex:0];
+}
+- (instancetype)init {
+    if (self = [super init]) {
+        _layoutManager = [[NSLayoutManager alloc] init];
+        _textContainer = [[NSTextContainer alloc] initWithSize:CGSizeZero];
+        _textContainer.lineFragmentPadding = 0;
+        _textContainer.lineBreakMode = NSLineBreakByWordWrapping;
+        [_layoutManager addTextContainer:_textContainer];
+    }
+    return self;
+}
+@end
+
+static _ZDFLTextKitPool *_ZDTextKitPool(void) {
+    NSString *key = @"ZDFL.TextKitPool";
+    NSThread *thread = [NSThread currentThread];
+    _ZDFLTextKitPool *pool = thread.threadDictionary[key];
+    if (!pool) {
+        pool = [[_ZDFLTextKitPool alloc] init];
+        thread.threadDictionary[key] = pool;
+    }
+    return pool;
+}
+
 /// 使用 TextKit 测量文本（线程安全），借鉴 React Native 的实现方式。
 /// 支持 NSTextStorage 直接传入（后台线程），或从 UILabel 提取文本信息（主线程）。
+/// Uses per-thread NSLayoutManager + NSTextContainer pool to avoid repeated allocations.
 static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize) {
     if (!textStorage || textStorage.length == 0) return CGSizeZero;
 
-    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:constraintSize];
-    textContainer.lineFragmentPadding = 0;
+    _ZDFLTextKitPool *pool = _ZDTextKitPool();
+    NSTextContainer *textContainer = pool.textContainer;
+    textContainer.size = constraintSize;
     textContainer.maximumNumberOfLines = numberOfLines;
-    textContainer.lineBreakMode = NSLineBreakByWordWrapping;
 
-    [layoutManager addTextContainer:textContainer];
-    [textStorage addLayoutManager:layoutManager];
-    [layoutManager ensureLayoutForTextContainer:textContainer];
+    // addLayoutManager resets the layout manager's glyph tree implicitly,
+    // so no explicit invalidateLayout is needed before ensure.
+    [textStorage addLayoutManager:pool.layoutManager];
+    [pool.layoutManager ensureLayoutForTextContainer:textContainer];
 
-    CGRect usedRect = [layoutManager usedRectForTextContainer:textContainer];
-    [textStorage removeLayoutManager:layoutManager];
+    CGRect usedRect = [pool.layoutManager usedRectForTextContainer:textContainer];
+    [textStorage removeLayoutManager:pool.layoutManager];
 
     return CGSizeMake(ceil(usedRect.size.width), ceil(usedRect.size.height));
 }
