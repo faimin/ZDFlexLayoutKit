@@ -432,6 +432,8 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 	};
 }
 
+@end
+
 #pragma mark - Measure Cache Per-Pass
 // Each async layout pass gets its own cache on the root ZDFlexLayoutCore.
 // This eliminates race conditions between concurrent async layouts of different roots.
@@ -890,8 +892,6 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
 		}
 	}
 }
-
-@end
 
 //-------------------------- Function ------------------------
 #pragma mark -
