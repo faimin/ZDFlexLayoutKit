@@ -130,6 +130,9 @@ static YGConfigRef globalConfig;
 @property (nonatomic, weak, readwrite) ZDFlexLayoutView view;
 @property (nonatomic, assign, readonly) BOOL isUIView;
 
+/// Per-pass measure cache, safe for concurrent async layouts of different roots.
+@property (nonatomic, strong) NSMutableDictionary *asyncMeasureCache;
+
 @end
 
 @implementation ZDFlexLayoutCore
@@ -347,9 +350,9 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 					YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 				}];
 			} else {
-				// Phase 1 (main thread): pre-measure all leaves, store in cache side table
-				ZDMeasureCacheCreate();
-				YGPreMeasureAndCacheLeafNodes(self.view);
+				// Phase 1 (main thread): pre-measure all leaves, store in per-pass cache
+				self.asyncMeasureCache = [NSMutableDictionary dictionary];
+				YGPreMeasureAndCacheLeafNodes(self.view, self.asyncMeasureCache);
 				
 				// Phase 2 (background thread): pure numeric Yoga calculation
 				[ZDCalculateHelper asyncCalculateTask:^{
@@ -363,7 +366,7 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 					if (!self) return;
 					YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
 					YGRestoreMeasureFuncs(self.view);
-					ZDMeasureCacheClear();
+					self.asyncMeasureCache = nil;
 				}];
 			}
 			break;
@@ -429,36 +432,33 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 	};
 }
 
-#pragma mark - Measure Cache Side Table
-// 缓存侧表：主线程写入(Phase 1) → 后台线程只读(Phase 2) → 主线程清除(Phase 3)。
-// key: NSValue(pointer:YGNodeRef), value: NSValue(CGSize) 或 NSTextStorage(文本节点)
-
-static NSMutableDictionary *_zd_measureCache = nil;
-
-static void ZDMeasureCacheCreate(void) {
-    if (_zd_measureCache) {
-        [_zd_measureCache removeAllObjects];
-    } else {
-        _zd_measureCache = [NSMutableDictionary dictionary];
-    }
-}
+#pragma mark - Measure Cache Per-Pass
+// Each async layout pass gets its own cache on the root ZDFlexLayoutCore.
+// This eliminates race conditions between concurrent async layouts of different roots.
+// key: NSValue(pointer:YGNodeRef), value: NSValue(CGSize) or text-storage-dictionary
 
 static NSValue *ZDNodeKey(YGNodeConstRef node) {
     return [NSValue valueWithPointer:node];
 }
 
-static void ZDMeasureCacheSetSize(YGNodeRef node, CGSize size) {
-    if (!_zd_measureCache) return;
-    _zd_measureCache[ZDNodeKey(node)] = [NSValue valueWithCGSize:size];
+static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size) {
+    if (!cache) return;
+    cache[ZDNodeKey(node)] = [NSValue valueWithCGSize:size];
 }
 
-static void ZDMeasureCacheSetTextStorage(YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines) {
-    if (!_zd_measureCache || !textStorage) return;
-    _zd_measureCache[ZDNodeKey(node)] = @{@"storage": textStorage, @"lines": @(numberOfLines)};
+static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines) {
+    if (!cache || !textStorage) return;
+    cache[ZDNodeKey(node)] = @{@"storage": textStorage, @"lines": @(numberOfLines)};
 }
 
-static void ZDMeasureCacheClear(void) {
-    [_zd_measureCache removeAllObjects];
+/// Finds the async measure cache by walking up the view tree to the root, then
+/// reading root.flexLayout.asyncMeasureCache. Thread-safe since the cache
+/// is written once on main thread before dispatching to background.
+static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node) {
+    ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
+    if (!view) return nil;
+    while (view.parent) { view = view.parent; }
+    return view.flexLayout.asyncMeasureCache;
 }
 
 /// 使用 TextKit 测量文本（线程安全），借鉴 React Native 的实现方式。
@@ -611,6 +611,8 @@ static CGFloat YGSanitizeMeasurement(
 
 /// 后台线程安全的 measure 函数。
 /// 文本节点使用 TextKit 在 Yoga 提供的真实约束下测量；非文本节点返回预存的固定尺寸。
+/// 通过节点上下文找到当前布局的根视图，从根视图的 per-pass cache 读取数据，
+/// 避免多次并发异步布局之间的竞态条件。
 static YGSize YGCachedMeasureView(
     YGNodeConstRef node,
     float width,
@@ -621,7 +623,10 @@ static YGSize YGCachedMeasureView(
     const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
     const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
-    id cached = _zd_measureCache[ZDNodeKey(node)];
+    NSMutableDictionary *cache = ZDGetCurrentAsyncCache(node);
+    if (!cache) return (YGSize){ .width = 0, .height = 0 };
+
+    id cached = cache[ZDNodeKey(node)];
     if (!cached) return (YGSize){ .width = 0, .height = 0 };
 
     CGSize measuredSize;
@@ -640,7 +645,7 @@ static YGSize YGCachedMeasureView(
     };
 }
 
-static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view);
+static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache);
 
 static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews) {
 	
@@ -710,7 +715,7 @@ static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyn
 /// 主线程递归遍历视图树，预测量所有叶子节点的固有尺寸并存入缓存侧表。
 /// 每个叶子节点设置 YGCachedMeasureView 作为 measure 函数，确保后台计算时不回调 UIKit。
 /// 不修改 YGNode 的 style 属性（width/height），避免污染后续布局。
-static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view) {
+static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache) {
 	
 	ZDFlexLayoutCore *const yoga = view.flexLayout;
 	const YGNodeRef node = yoga.node;
@@ -735,7 +740,7 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view) {
 		
 		if (![view isKindOfClass:[UIView class]]) {
 			measuredSize = [view sizeThatFits:constrainedSize];
-			ZDMeasureCacheSetSize(node, measuredSize);
+			ZDMeasureCacheSetSize(cache, node, measuredSize);
 		} else {
 			UIView *uiView = (UIView *)view;
 			if ([uiView isKindOfClass:[UILabel class]]) {
@@ -743,17 +748,17 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view) {
 				UILabel *label = (UILabel *)uiView;
 				NSTextStorage *textStorage = ZDTextStorageFromLabel(label);
 				if (textStorage) {
-					ZDMeasureCacheSetTextStorage(node, textStorage, label.numberOfLines);
+					ZDMeasureCacheSetTextStorage(cache, node, textStorage, label.numberOfLines);
 				} else {
-					ZDMeasureCacheSetSize(node, CGSizeZero);
+					ZDMeasureCacheSetSize(cache, node, CGSizeZero);
 				}
 			} else if ([uiView isKindOfClass:[UIImageView class]]) {
 				UIImage *image = ((UIImageView *)uiView).image;
 				measuredSize = image ? image.size : CGSizeZero;
-				ZDMeasureCacheSetSize(node, measuredSize);
+				ZDMeasureCacheSetSize(cache, node, measuredSize);
 			} else {
 				measuredSize = [uiView sizeThatFits:constrainedSize];
-				ZDMeasureCacheSetSize(node, measuredSize);
+				ZDMeasureCacheSetSize(cache, node, measuredSize);
 			}
 		}
 		YGNodeSetMeasureFunc(node, YGCachedMeasureView);
@@ -775,7 +780,7 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view) {
 		}
 		
 		for (ZDFlexLayoutView const subview in subviewsToInclude) {
-			YGPreMeasureAndCacheLeafNodes(subview);
+			YGPreMeasureAndCacheLeafNodes(subview, cache);
 		}
 	}
 }
