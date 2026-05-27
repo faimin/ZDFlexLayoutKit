@@ -125,6 +125,27 @@ __attribute__((weak)) YGValue YGPercentValue(CGFloat value) {
 
 static YGConfigRef globalConfig;
 
+// --- Static function forward declarations ---
+@class _ZDFLTextKitPool;
+
+static NSValue *ZDNodeKey(YGNodeConstRef node);
+static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size);
+static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines);
+static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node);
+static _ZDFLTextKitPool *_ZDTextKitPool(void);
+static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize);
+static NSTextStorage *ZDTextStorageFromLabel(UILabel *label);
+static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view);
+static CGFloat YGSanitizeMeasurement(CGFloat constrainedSize, CGFloat measuredSize, YGMeasureMode measureMode);
+static YGSize YGMeasureView(YGNodeConstRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode);
+static YGSize YGCachedMeasureView(YGNodeConstRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode);
+static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews);
+static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyncMode);
+static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache);
+static void YGRestoreMeasureFuncs(ZDFlexLayoutView const view);
+static void YGRemoveAllChildren(const YGNodeRef node);
+static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin);
+
 @interface ZDFlexLayoutCore ()
 
 @property (nonatomic, weak, readwrite) ZDFlexLayoutView view;
@@ -598,6 +619,23 @@ static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
 	return YES;
 }
 
+static CGFloat YGSanitizeMeasurement(
+    CGFloat constrainedSize,
+    CGFloat measuredSize,
+    YGMeasureMode measureMode
+) {
+    CGFloat result;
+    if (measureMode == YGMeasureModeExactly) {
+        result = constrainedSize;
+    } else if (measureMode == YGMeasureModeAtMost) {
+        result = MIN(constrainedSize, measuredSize);
+    } else {
+        result = measuredSize;
+    }
+    
+    return result;
+}
+
 static YGSize YGMeasureView(
 	YGNodeConstRef node,
 	float width,
@@ -628,23 +666,6 @@ static YGSize YGMeasureView(
 		.width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
 		.height = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode),
 	};
-}
-
-static CGFloat YGSanitizeMeasurement(
-	CGFloat constrainedSize,
-	CGFloat measuredSize,
-	YGMeasureMode measureMode
-) {
-	CGFloat result;
-	if (measureMode == YGMeasureModeExactly) {
-		result = constrainedSize;
-	} else if (measureMode == YGMeasureModeAtMost) {
-		result = MIN(constrainedSize, measuredSize);
-	} else {
-		result = measuredSize;
-	}
-	
-	return result;
 }
 
 /// 后台线程安全的 measure 函数。
@@ -682,8 +703,6 @@ static YGSize YGCachedMeasureView(
         .height = YGSanitizeMeasurement(constrainedHeight, measuredSize.height, heightMode),
     };
 }
-
-static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache);
 
 static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews) {
 	
