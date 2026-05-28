@@ -131,6 +131,7 @@ static YGConfigRef globalConfig;
 static NSValue *ZDNodeKey(YGNodeConstRef node);
 static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size);
 static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines);
+static void ZDSetThreadAsyncCache(NSMutableDictionary *cache);
 static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node);
 static _ZDFLTextKitPool *_ZDTextKitPool(void);
 static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize);
@@ -143,7 +144,6 @@ static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayou
 static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyncMode);
 static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache);
 static void YGRestoreMeasureFuncs(ZDFlexLayoutView const view);
-static void YGRemoveAllChildren(const YGNodeRef node);
 static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin);
 
 @interface ZDFlexLayoutCore ()
@@ -374,13 +374,16 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 				// Phase 1 (main thread): pre-measure all leaves, store in per-pass cache
 				self.asyncMeasureCache = [NSMutableDictionary dictionary];
 				YGPreMeasureAndCacheLeafNodes(self.view, self.asyncMeasureCache);
-				
+
+				NSMutableDictionary *cache = self.asyncMeasureCache;
 				// Phase 2 (background thread): pure numeric Yoga calculation
 				[ZDCalculateHelper asyncCalculateTask:^{
 					__strong typeof(weakTarget) self = weakTarget;
 					if (!self) return;
+					ZDSetThreadAsyncCache(cache);
 					const YGNodeRef node = self.node;
 					YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
+					ZDSetThreadAsyncCache(nil);
 				} onComplete:^{
 					// Phase 3 (main thread): apply frames, restore measure funcs, clear cache
 					__strong typeof(weakTarget) self = weakTarget;
@@ -423,10 +426,9 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 }
 
 - (void)updateLayoutDirectionIfNeeded {
-	// Must be called on main thread — accesses UIView.traitCollection
 	UIView *view = self.view.owningView;
 	if (view && view.traitCollection.layoutDirection != UITraitEnvironmentLayoutDirectionUnspecified) {
-		self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionRTL : YGDirectionLTR;
+		self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionLTR : YGDirectionRTL;
 	}
 }
 
@@ -455,10 +457,7 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 
 @end
 
-#pragma mark - Measure Cache Per-Pass
-// Each async layout pass gets its own cache on the root ZDFlexLayoutCore.
-// This eliminates race conditions between concurrent async layouts of different roots.
-// key: NSValue(pointer:YGNodeRef), value: NSValue(CGSize) or text-storage-dictionary
+#pragma mark - Measure Cache
 
 static NSValue *ZDNodeKey(YGNodeConstRef node) {
     return [NSValue valueWithPointer:node];
@@ -474,28 +473,24 @@ static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef n
     cache[ZDNodeKey(node)] = @{@"storage": textStorage, @"lines": @(numberOfLines)};
 }
 
-/// Finds the async measure cache by walking up the view tree to the root, then
-/// reading root.flexLayout.asyncMeasureCache. Thread-safe since the cache
-/// is written once on main thread before dispatching to background.
-static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node) {
-    ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
-    if (!view) return nil;
-    while (view.parent) { view = view.parent; }
-    return view.flexLayout.asyncMeasureCache;
+static NSString *const kZDAsyncCacheThreadKey = @"ZDFL.AsyncMeasureCache";
+
+static void ZDSetThreadAsyncCache(NSMutableDictionary *cache) {
+    [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey] = cache;
 }
 
-/// Thread-local TextKit component pool to avoid allocating
-/// NSLayoutManager + NSTextContainer for every text measurement.
-/// Stored in NSThread.threadDictionary so each background thread reuses its
-/// own NSLayoutManager/NSTextContainer pair without conflicts.
+static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node) {
+    (void)node;
+    return [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey];
+}
+
+#pragma mark - Text Measurement (TextKit)
+
 @interface _ZDFLTextKitPool : NSObject
 @property (nonatomic, strong, readonly) NSLayoutManager *layoutManager;
 @property (nonatomic, strong, readonly) NSTextContainer *textContainer;
 @end
 @implementation _ZDFLTextKitPool
-- (void)dealloc {
-    [_layoutManager removeTextContainerAtIndex:0];
-}
 - (instancetype)init {
     if (self = [super init]) {
         _layoutManager = [[NSLayoutManager alloc] init];
@@ -570,11 +565,7 @@ static NSTextStorage *ZDTextStorageFromLabel(UILabel *label) {
     return nil;
 }
 
-#pragma mark - Private
-
-// Pre-measure a leaf node and set its size as fixed width/height on the Yoga node.
-// This allows us to skip setting YGMeasureFunc and run Yoga calculation on a background thread.
-// Returns YES if the node was fully pre-measured (no measure func needed).
+#pragma mark - Legacy Pre-Measure (useLegacyPreMeasure)
 static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
 	
 	YGValue nodeWidth = YGNodeStyleGetWidth(node);
@@ -587,7 +578,7 @@ static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
 		return YES; // Already fully constrained, no measure func needed
 	}
 	
-	if (!view.flexLayout.isUIView) {
+	if (![view isKindOfClass:[UIView class]]) {
 		// ZDFlexLayoutDiv — sizeThatFits returns CGSizeZero, thread-safe
 		// Keep the measure function for these; they don't call UIKit
 		return NO;
@@ -634,6 +625,8 @@ static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
 	
 	return YES;
 }
+
+#pragma mark - Yoga Measure Functions
 
 static CGFloat YGSanitizeMeasurement(
     CGFloat constrainedSize,
@@ -720,8 +713,10 @@ static YGSize YGCachedMeasureView(
     };
 }
 
+#pragma mark - Tree Walkers
+
 static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews) {
-	
+
 	if (YGNodeGetChildCount(node) != subviews.count) {
 		return NO;
 	}
@@ -742,7 +737,7 @@ static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyn
 	
 	// Only leaf nodes should have a measure function
 	if (yoga.isLeaf) {
-		YGRemoveAllChildren(node);
+		YGNodeRemoveAllChildren(node);
 		
 		if (asyncMode) {
 			// In async mode, try to pre-measure the leaf node and set fixed sizes.
@@ -773,7 +768,7 @@ static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyn
 		}
 		
 		if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
-			YGRemoveAllChildren(node);
+			YGNodeRemoveAllChildren(node);
 			for (int i = 0; i < subviewsToInclude.count; i++) {
 				YGNodeInsertChild(node, subviewsToInclude[i].flexLayout.node, i);
 			}
@@ -794,7 +789,7 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutable
 	const YGNodeRef node = yoga.node;
 
 	if (yoga.isLeaf) {
-		YGRemoveAllChildren(node);
+		YGNodeRemoveAllChildren(node);
 
 		YGValue nodeWidth = YGNodeStyleGetWidth(node);
 		YGValue nodeHeight = YGNodeStyleGetHeight(node);
@@ -846,7 +841,7 @@ static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutable
 		}
 		
 		if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
-			YGRemoveAllChildren(node);
+			YGNodeRemoveAllChildren(node);
 			for (int i = 0; i < subviewsToInclude.count; i++) {
 				YGNodeInsertChild(node, subviewsToInclude[i].flexLayout.node, i);
 			}
@@ -876,14 +871,7 @@ static void YGRestoreMeasureFuncs(ZDFlexLayoutView const view) {
 	}
 }
 
-static void YGRemoveAllChildren(const YGNodeRef node) {
-	
-	if (node == NULL) {
-		return;
-	}
-	
-	YGNodeRemoveAllChildren(node);
-}
+#pragma mark - Layout Application
 
 static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin) {
 	NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
@@ -928,8 +916,7 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
 	}
 }
 
-//-------------------------- Function ------------------------
-#pragma mark -
+#pragma mark - Pixel Utilities
 
 CGFloat ZDFLScreenScale(void) {
 	static CGFloat scale = 0.0;
