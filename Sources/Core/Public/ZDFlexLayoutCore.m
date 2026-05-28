@@ -542,13 +542,29 @@ static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines,
 }
 
 /// 从 UILabel 构造 NSTextStorage（主线程调用，捕获文本快照）
+/// 需要将段落样式的 lineBreakMode 强制设为 WordWrapping，否则 TextKit
+/// 会遵循 UILabel 默认的 TruncatingTail 导致不换行、只计算单行高度。
 static NSTextStorage *ZDTextStorageFromLabel(UILabel *label) {
     NSAttributedString *attrText = label.attributedText;
     if (attrText.length > 0) {
-        return [[NSTextStorage alloc] initWithAttributedString:attrText];
+        NSMutableAttributedString *mutable = [attrText mutableCopy];
+        [mutable enumerateAttribute:NSParagraphStyleAttributeName
+                            inRange:NSMakeRange(0, mutable.length)
+                            options:0
+                         usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop) {
+            NSMutableParagraphStyle *newStyle = style ? [style mutableCopy] : [[NSMutableParagraphStyle alloc] init];
+            newStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            [mutable addAttribute:NSParagraphStyleAttributeName value:newStyle range:range];
+        }];
+        return [[NSTextStorage alloc] initWithAttributedString:mutable];
     }
     if (label.text.length > 0) {
-        NSDictionary *attrs = label.font ? @{NSFontAttributeName: label.font} : @{};
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attrs = @{
+            NSFontAttributeName: label.font ?: [UIFont systemFontOfSize:17],
+            NSParagraphStyleAttributeName: paraStyle,
+        };
         return [[NSTextStorage alloc] initWithString:label.text attributes:attrs];
     }
     return nil;
