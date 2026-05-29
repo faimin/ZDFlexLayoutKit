@@ -132,7 +132,7 @@ static NSValue *ZDNodeKey(YGNodeConstRef node);
 static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size);
 static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines);
 static void ZDSetThreadAsyncCache(NSMutableDictionary *cache);
-static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node);
+static NSMutableDictionary *ZDGetCurrentAsyncCache(void);
 static _ZDFLTextKitPool *_ZDTextKitPool(void);
 static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize);
 static NSTextStorage *ZDTextStorageFromLabel(UILabel *label);
@@ -479,8 +479,7 @@ static void ZDSetThreadAsyncCache(NSMutableDictionary *cache) {
     [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey] = cache;
 }
 
-static NSMutableDictionary *ZDGetCurrentAsyncCache(YGNodeConstRef node) {
-    (void)node;
+static NSMutableDictionary *ZDGetCurrentAsyncCache(void) {
     return [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey];
 }
 
@@ -556,6 +555,7 @@ static NSTextStorage *ZDTextStorageFromLabel(UILabel *label) {
     if (label.text.length > 0) {
         NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
         paraStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paraStyle.alignment = label.textAlignment;
         NSDictionary *attrs = @{
             NSFontAttributeName: label.font ?: [UIFont systemFontOfSize:17],
             NSParagraphStyleAttributeName: paraStyle,
@@ -691,7 +691,7 @@ static YGSize YGCachedMeasureView(
     const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
     const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
-    NSMutableDictionary *cache = ZDGetCurrentAsyncCache(node);
+    NSMutableDictionary *cache = ZDGetCurrentAsyncCache();
     if (!cache) return (YGSize){ .width = 0, .height = 0 };
 
     id cached = cache[ZDNodeKey(node)];
