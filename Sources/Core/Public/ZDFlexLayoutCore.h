@@ -117,6 +117,13 @@ YG_EXTERN_C_END
 @property (nonatomic, readwrite, assign) YGValue allGap;
 
 /**
+ When YES, background thread async mode uses the legacy pre-measure approach
+ that sets explicit width/height on YGNode style directly.
+ When NO (default), uses a cache side table approach that does not mutate YGNode style.
+ */
+@property (nonatomic, assign) BOOL useLegacyPreMeasure;
+
+/**
  Get the resolved direction of this node. This won't be YGDirectionInherit
  */
 @property (nonatomic, readonly, assign) YGDirection resolvedDirection;
@@ -166,6 +173,23 @@ YG_EXTERN_C_END
 - (void)asyncApplyLayout:(BOOL)async
         preservingOrigin:(BOOL)preserveOrigin
           constraintSize:(CGSize)size;
+
+/**
+ Perform a layout calculation with the given async mode.
+ @param asyncMode Choose between sync, runloop idle, or background thread calculation.
+ @param preserveOrigin Whether to preserve the current origin.
+ @param dimensionFlexibility Which dimensions are flexible.
+ */
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+                preservingOrigin:(BOOL)preserveOrigin
+            dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility;
+
+/**
+ Perform a layout calculation with the given async mode and a specific constraint size.
+ */
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+                preservingOrigin:(BOOL)preserveOrigin
+                  constraintSize:(CGSize)size;
 
 /**
   Returns the size of the view based on provided constraints. Pass NaN for an unconstrained dimension.

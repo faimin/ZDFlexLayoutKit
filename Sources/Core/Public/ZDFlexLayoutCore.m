@@ -115,22 +115,44 @@
     YG_VALUE_EDGE_PROPERTY(lowercased_name ## Vertical, capitalized_name ## Vertical, capitalized_name, YGEdgeVertical)       \
     YG_VALUE_EDGE_PROPERTY(lowercased_name, capitalized_name, capitalized_name, YGEdgeAll)
 
-__attribute__((weak)) YGValue YGPointValue(CGFloat value)
-{
+__attribute__((weak)) YGValue YGPointValue(CGFloat value) {
     return (YGValue) { .value = value, .unit = YGUnitPoint };
 }
 
-__attribute__((weak)) YGValue YGPercentValue(CGFloat value)
-{
-    return (YGValue) { .value = value, .unit = YGUnitPercent };
+__attribute__((weak)) YGValue YGPercentValue(CGFloat value) {
+	return (YGValue) { .value = value, .unit = YGUnitPercent };
 }
 
 static YGConfigRef globalConfig;
+
+// --- Static function forward declarations ---
+@class _ZDFLTextKitPool;
+
+static NSValue *ZDNodeKey(YGNodeConstRef node);
+static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size);
+static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines);
+static void ZDSetThreadAsyncCache(NSMutableDictionary *cache);
+static NSMutableDictionary *ZDGetCurrentAsyncCache(void);
+static _ZDFLTextKitPool *_ZDTextKitPool(void);
+static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize);
+static NSTextStorage *ZDTextStorageFromLabel(UILabel *label);
+static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view);
+static CGFloat YGSanitizeMeasurement(CGFloat constrainedSize, CGFloat measuredSize, YGMeasureMode measureMode);
+static YGSize YGMeasureView(YGNodeConstRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode);
+static YGSize YGCachedMeasureView(YGNodeConstRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode);
+static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews);
+static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyncMode);
+static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache);
+static void YGRestoreMeasureFuncs(ZDFlexLayoutView const view);
+static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin);
 
 @interface ZDFlexLayoutCore ()
 
 @property (nonatomic, weak, readwrite) ZDFlexLayoutView view;
 @property (nonatomic, assign, readonly) BOOL isUIView;
+
+/// Per-pass measure cache, safe for concurrent async layouts of different roots.
+@property (nonatomic, strong) NSMutableDictionary *asyncMeasureCache;
 
 @end
 
@@ -140,84 +162,75 @@ static YGConfigRef globalConfig;
 @synthesize isIncludedInLayout = _isIncludedInLayout;
 @synthesize node = _node;
 
-+ (void)initialize
-{
-    globalConfig = YGConfigNew();
-    YGConfigSetExperimentalFeatureEnabled(globalConfig, YGExperimentalFeatureWebFlexBasis, true);
-    YGConfigSetPointScaleFactor(globalConfig, [UIScreen mainScreen].scale);
++ (void)initialize {
+	globalConfig = YGConfigNew();
+	YGConfigSetExperimentalFeatureEnabled(globalConfig, YGExperimentalFeatureWebFlexBasis, true);
+	YGConfigSetPointScaleFactor(globalConfig, [UIScreen mainScreen].scale);
 }
 
-- (instancetype)initWithView:(ZDFlexLayoutView)view
-{
-    if (self = [super init]) {
-        _view = view;
-        _node = YGNodeNewWithConfig(globalConfig);
-        YGNodeSetContext(_node, (__bridge void *)view);
-        _isEnabled = NO;
-        _isIncludedInLayout = YES;
-        _isUIView = [view isMemberOfClass:[UIView class]];
-    }
-
-    return self;
+- (instancetype)initWithView:(ZDFlexLayoutView)view {
+	if (self = [super init]) {
+		_view = view;
+		_node = YGNodeNewWithConfig(globalConfig);
+		YGNodeSetContext(_node, (__bridge void *)view);
+		_isEnabled = NO;
+		_isIncludedInLayout = YES;
+		_isUIView = [view isMemberOfClass:[UIView class]];
+	}
+	
+	return self;
 }
 
-- (void)dealloc
-{
-    YGNodeFree(self.node);
+- (void)dealloc {
+	YGNodeFree(self.node);
 }
 
-- (BOOL)isDirty
-{
-    return YGNodeIsDirty(self.node);
+- (BOOL)isDirty {
+	return YGNodeIsDirty(self.node);
 }
 
-- (void)markDirty
-{
-    if (self.isDirty || !self.isLeaf) {
-        return;
-    }
-
-    // Yoga is not happy if we try to mark a node as "dirty" before we have set
-    // the measure function. Since we already know that this is a leaf,
-    // this *should* be fine. Forgive me Hack Gods.
-    const YGNodeRef node = self.node;
-    if (!YGNodeHasMeasureFunc(node)) {
-        YGNodeSetMeasureFunc(node, YGMeasureView);
-    }
-
-    YGNodeMarkDirty(node);
+- (void)markDirty {
+	
+	if (self.isDirty || !self.isLeaf) {
+		return;
+	}
+	
+	// Yoga is not happy if we try to mark a node as "dirty" before we have set
+	// the measure function. Since we already know that this is a leaf,
+	// this *should* be fine. Forgive me Hack Gods.
+	const YGNodeRef node = self.node;
+	if (!YGNodeHasMeasureFunc(node)) {
+		YGNodeSetMeasureFunc(node, YGMeasureView);
+	}
+	
+	YGNodeMarkDirty(node);
 }
 
-- (NSUInteger)numberOfChildren
-{
-    return YGNodeGetChildCount(self.node);
+- (NSUInteger)numberOfChildren {
+	return YGNodeGetChildCount(self.node);
 }
 
-- (BOOL)isLeaf
-{
-    NSAssert([NSThread isMainThread], @"This method must be called on the main thread.");
-    if (self.isEnabled) {
-        for (ZDFlexLayoutView subview in self.view.children) {
-            ZDFlexLayoutCore *const yoga = subview.flexLayout;
-            if (yoga.isEnabled && yoga.isIncludedInLayout) {
-                return NO;
-            }
-        }
-    }
-
-    return YES;
+- (BOOL)isLeaf {
+	if (self.isEnabled) {
+		for (ZDFlexLayoutView subview in self.view.children) {
+			ZDFlexLayoutCore *const yoga = subview.flexLayout;
+			if (yoga.isEnabled && yoga.isIncludedInLayout) {
+				return NO;
+			}
+		}
+	}
+	
+	return YES;
 }
 
 #pragma mark - Style
 
-- (YGPositionType)position
-{
-    return YGNodeStyleGetPositionType(self.node);
+- (YGPositionType)position {
+	return YGNodeStyleGetPositionType(self.node);
 }
 
-- (void)setPosition:(YGPositionType)position
-{
-    YGNodeStyleSetPositionType(self.node, position);
+- (void)setPosition:(YGPositionType)position {
+	YGNodeStyleSetPositionType(self.node, position);
 }
 
 YG_PROPERTY(YGDirection, direction, Direction)
@@ -268,142 +281,358 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 
 #pragma mark - Layout and Sizing
 
-- (YGDirection)resolvedDirection
-{
-    return YGNodeLayoutGetDirection(self.node);
+- (YGDirection)resolvedDirection {
+	
+	return YGNodeLayoutGetDirection(self.node);
 }
 
 #pragma mark - Sync
 
-- (void)applyLayout
-{
-    [self applyLayoutPreservingOrigin:NO];
+- (void)applyLayout {
+	
+	[self applyLayoutPreservingOrigin:NO];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin
-{
-    [self asyncApplyLayout:NO preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin {
+	
+	[self asyncApplyLayout:NO preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
-- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
-{
-    [self asyncApplyLayout:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
+- (void)applyLayoutPreservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
+	
+	[self asyncApplyLayout:NO preservingOrigin:preserveOrigin dimensionFlexibility:dimensionFlexibility];
 }
 
 #pragma mark - Async
 
-- (void)asyncApplyLayoutPreservingOrigin:(BOOL)preserveOrigin
-{
-    [self asyncApplyLayout:YES preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
+- (void)asyncApplyLayoutPreservingOrigin:(BOOL)preserveOrigin {
+	
+	[self asyncApplyLayout:YES preservingOrigin:preserveOrigin constraintSize:self.view.layoutFrame.size];
 }
 
-- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility
-{
-    CGSize size = self.view.layoutFrame.size;
-    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
-        size.width = YGUndefined;
-    }
-    if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
-        size.height = YGUndefined;
-    }
-    [self asyncApplyLayout:async preservingOrigin:preserveOrigin constraintSize:size];
+- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
+	
+	CGSize size = self.view.layoutFrame.size;
+	if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
+		size.width = YGUndefined;
+	}
+	if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
+		size.height = YGUndefined;
+	}
+	[self asyncApplyLayout:async preservingOrigin:preserveOrigin constraintSize:size];
 }
 
-- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size
-{
-    self.isEnabled = YES;
-    
-    __weak typeof(self) weakTarget = self;
-    __auto_type calculateBlock = ^{
-        __strong typeof(weakTarget) self = weakTarget;
-        [self calculateLayoutWithSize:size];
-        YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
-    };
-    
-    if (async) {
-        [ZDCalculateHelper asyncLayoutTask:calculateBlock];
-    }
-    else {
-        calculateBlock();
-    }
+- (void)asyncApplyLayout:(BOOL)async preservingOrigin:(BOOL)preserveOrigin constraintSize:(CGSize)size {
+	
+	ZDFlexLayoutAsyncMode asyncMode = async ? ZDFlexLayoutAsyncModeRunloopIdle : ZDFlexLayoutAsyncModeSync;
+	[self applyLayoutWithAsyncMode:asyncMode preservingOrigin:preserveOrigin constraintSize:size];
+}
+
+#pragma mark - Async Mode API
+
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+				preservingOrigin:(BOOL)preserveOrigin
+			dimensionFlexibility:(ZDDimensionFlexibility)dimensionFlexibility {
+	
+	CGSize size = self.view.layoutFrame.size;
+	if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleWidth) {
+		size.width = YGUndefined;
+	}
+	if (dimensionFlexibility & ZDDimensionFlexibilityFlexibleHeight) {
+		size.height = YGUndefined;
+	}
+	[self applyLayoutWithAsyncMode:asyncMode preservingOrigin:preserveOrigin constraintSize:size];
+}
+
+- (void)applyLayoutWithAsyncMode:(ZDFlexLayoutAsyncMode)asyncMode
+				preservingOrigin:(BOOL)preserveOrigin
+				  constraintSize:(CGSize)size {
+	
+	self.isEnabled = YES;
+	
+	switch (asyncMode) {
+		case ZDFlexLayoutAsyncModeBackgroundThread: {
+			[self updateLayoutDirectionIfNeeded];
+			
+			__weak typeof(self) weakTarget = self;
+			
+			if (self.useLegacyPreMeasure) {
+				// Legacy path: pre-measure by mutating YGNode style directly
+				YGAttachNodesFromViewHierachy(self.view, YES);
+				
+				[ZDCalculateHelper asyncCalculateTask:^{
+					__strong typeof(weakTarget) self = weakTarget;
+					if (!self) return;
+					const YGNodeRef node = self.node;
+					YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
+				} onComplete:^{
+					__strong typeof(weakTarget) self = weakTarget;
+					if (!self) return;
+					YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+				}];
+			} else {
+				// Phase 1 (main thread): pre-measure all leaves, store in per-pass cache
+				self.asyncMeasureCache = [NSMutableDictionary dictionary];
+				YGPreMeasureAndCacheLeafNodes(self.view, self.asyncMeasureCache);
+
+				NSMutableDictionary *cache = self.asyncMeasureCache;
+				// Phase 2 (background thread): pure numeric Yoga calculation
+				[ZDCalculateHelper asyncCalculateTask:^{
+					__strong typeof(weakTarget) self = weakTarget;
+					if (!self) return;
+					ZDSetThreadAsyncCache(cache);
+					const YGNodeRef node = self.node;
+					YGNodeCalculateLayout(node, size.width, size.height, YGNodeStyleGetDirection(node));
+					ZDSetThreadAsyncCache(nil);
+				} onComplete:^{
+					// Phase 3 (main thread): apply frames, restore measure funcs, clear cache
+					__strong typeof(weakTarget) self = weakTarget;
+					if (!self) return;
+					YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+					YGRestoreMeasureFuncs(self.view);
+					self.asyncMeasureCache = nil;
+				}];
+			}
+			break;
+		}
+		case ZDFlexLayoutAsyncModeRunloopIdle: {
+			__weak typeof(self) weakTarget = self;
+			__auto_type calculateBlock = ^{
+				__strong typeof(weakTarget) self = weakTarget;
+				if (!self) return;
+				[self calculateLayoutWithSize:size];
+				YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+			};
+			[ZDCalculateHelper asyncLayoutTask:calculateBlock];
+			break;
+		}
+		case ZDFlexLayoutAsyncModeSync:
+		default: {
+			[self calculateLayoutWithSize:size];
+			YGApplyLayoutToViewHierarchy(self.view, preserveOrigin);
+			break;
+		}
+	}
 }
 
 #pragma mark -
 
-- (CGSize)intrinsicSize
-{
-    const CGSize constrainedSize = {
-        .width  = YGUndefined,
-        .height = YGUndefined,
-    };
-    return [self calculateLayoutWithSize:constrainedSize];
+- (CGSize)intrinsicSize {
+	const CGSize constrainedSize = {
+		.width  = YGUndefined,
+		.height = YGUndefined,
+	};
+	return [self calculateLayoutWithSize:constrainedSize];
 }
 
-- (CGSize)calculateLayoutWithSize:(CGSize)size
-{
-    NSAssert([NSThread isMainThread], @"Yoga calculation must be done on main.");
-    NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
+- (void)updateLayoutDirectionIfNeeded {
+	UIView *view = self.view.owningView;
+	if (view && view.traitCollection.layoutDirection != UITraitEnvironmentLayoutDirectionUnspecified) {
+		self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionLTR : YGDirectionRTL;
+	}
+}
 
-    UIView *view = self.view.owningView;
-    if (view && view.traitCollection.layoutDirection != UITraitEnvironmentLayoutDirectionUnspecified) {
-        self.direction = view.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionLeftToRight ? YGDirectionRTL : YGDirectionLTR;
+- (CGSize)calculateLayoutWithSize:(CGSize)size {
+	return [self calculateLayoutWithSize:size asyncMode:NO];
+}
+
+- (CGSize)calculateLayoutWithSize:(CGSize)size asyncMode:(BOOL)asyncMode {
+	NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
+	
+	YGAttachNodesFromViewHierachy(self.view, asyncMode);
+	
+	const YGNodeRef node = self.node;
+	YGNodeCalculateLayout(
+						  node,
+						  size.width,
+						  size.height,
+						  YGNodeStyleGetDirection(node)
+						  );
+	
+	return (CGSize) {
+		.width = YGNodeLayoutGetWidth(node),
+		.height = YGNodeLayoutGetHeight(node),
+	};
+}
+
+@end
+
+#pragma mark - Measure Cache
+
+static NSValue *ZDNodeKey(YGNodeConstRef node) {
+    return [NSValue valueWithPointer:node];
+}
+
+static void ZDMeasureCacheSetSize(NSMutableDictionary *cache, YGNodeRef node, CGSize size) {
+    if (!cache) return;
+    cache[ZDNodeKey(node)] = [NSValue valueWithCGSize:size];
+}
+
+static void ZDMeasureCacheSetTextStorage(NSMutableDictionary *cache, YGNodeRef node, NSTextStorage *textStorage, NSInteger numberOfLines) {
+    if (!cache || !textStorage) return;
+    cache[ZDNodeKey(node)] = @{@"storage": textStorage, @"lines": @(numberOfLines)};
+}
+
+static NSString *const kZDAsyncCacheThreadKey = @"ZDFL.AsyncMeasureCache";
+
+static void ZDSetThreadAsyncCache(NSMutableDictionary *cache) {
+    [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey] = cache;
+}
+
+static NSMutableDictionary *ZDGetCurrentAsyncCache(void) {
+    return [NSThread currentThread].threadDictionary[kZDAsyncCacheThreadKey];
+}
+
+#pragma mark - Text Measurement (TextKit)
+
+@interface _ZDFLTextKitPool : NSObject
+@property (nonatomic, strong, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic, strong, readonly) NSTextContainer *textContainer;
+@end
+@implementation _ZDFLTextKitPool
+- (instancetype)init {
+    if (self = [super init]) {
+        _layoutManager = [[NSLayoutManager alloc] init];
+        _textContainer = [[NSTextContainer alloc] initWithSize:CGSizeZero];
+        _textContainer.lineFragmentPadding = 0;
+        _textContainer.lineBreakMode = NSLineBreakByWordWrapping;
+        [_layoutManager addTextContainer:_textContainer];
     }
-    
-    YGAttachNodesFromViewHierachy(self.view);
+    return self;
+}
+@end
 
-    const YGNodeRef node = self.node;
-    YGNodeCalculateLayout(
-        node,
-        size.width,
-        size.height,
-        YGNodeStyleGetDirection(node)
-    );
-
-    return (CGSize) {
-        .width = YGNodeLayoutGetWidth(node),
-        .height = YGNodeLayoutGetHeight(node),
-    };
+static _ZDFLTextKitPool *_ZDTextKitPool(void) {
+    NSString *key = @"ZDFL.TextKitPool";
+    NSThread *thread = [NSThread currentThread];
+    _ZDFLTextKitPool *pool = thread.threadDictionary[key];
+    if (!pool) {
+        pool = [[_ZDFLTextKitPool alloc] init];
+        thread.threadDictionary[key] = pool;
+    }
+    return pool;
 }
 
-#pragma mark - Private
+/// 使用 TextKit 测量文本（线程安全），借鉴 React Native 的实现方式。
+/// 支持 NSTextStorage 直接传入（后台线程），或从 UILabel 提取文本信息（主线程）。
+/// Uses per-thread NSLayoutManager + NSTextContainer pool to avoid repeated allocations.
+static CGSize ZDMeasureText(NSTextStorage *textStorage, NSInteger numberOfLines, CGSize constraintSize) {
+    if (!textStorage || textStorage.length == 0) return CGSizeZero;
 
-static YGSize YGMeasureView(
-  YGNodeConstRef node,
-  float width,
-  YGMeasureMode widthMode,
-  float height,
-  YGMeasureMode heightMode)
-{
-    const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
-    const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
+    _ZDFLTextKitPool *pool = _ZDTextKitPool();
+    NSTextContainer *textContainer = pool.textContainer;
+    textContainer.size = constraintSize;
+    textContainer.maximumNumberOfLines = numberOfLines;
 
-    CGSize sizeThatFits = CGSizeZero;
+    // addLayoutManager resets the layout manager's glyph tree implicitly,
+    // so no explicit invalidateLayout is needed before ensure.
+    [textStorage addLayoutManager:pool.layoutManager];
+    [pool.layoutManager ensureLayoutForTextContainer:textContainer];
 
-    // The default implementation of sizeThatFits: returns the existing size of
-    // the view. That means that if we want to layout an empty UIView, which
-    // already has got a frame set, its measured size should be CGSizeZero, but
-    // UIKit returns the existing size.
-    //
-    // See https://github.com/facebook/yoga/issues/606 for more information.
-    ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
-    if (!view.flexLayout.isUIView || [view.children count] > 0) {
-        sizeThatFits = [view sizeThatFits:(CGSize) {
-            .width = constrainedWidth,
-            .height = constrainedHeight,
+    CGRect usedRect = [pool.layoutManager usedRectForTextContainer:textContainer];
+    [textStorage removeLayoutManager:pool.layoutManager];
+
+    return CGSizeMake(ceil(usedRect.size.width), ceil(usedRect.size.height));
+}
+
+/// 从 UILabel 构造 NSTextStorage（主线程调用，捕获文本快照）
+/// 需要将段落样式的 lineBreakMode 强制设为 WordWrapping，否则 TextKit
+/// 会遵循 UILabel 默认的 TruncatingTail 导致不换行、只计算单行高度。
+static NSTextStorage *ZDTextStorageFromLabel(UILabel *label) {
+    NSAttributedString *attrText = label.attributedText;
+    if (attrText.length > 0) {
+        NSMutableAttributedString *mutable = [attrText mutableCopy];
+        [mutable enumerateAttribute:NSParagraphStyleAttributeName
+                            inRange:NSMakeRange(0, mutable.length)
+                            options:0
+                         usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop) {
+            NSMutableParagraphStyle *newStyle = style ? [style mutableCopy] : [[NSMutableParagraphStyle alloc] init];
+            newStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            [mutable addAttribute:NSParagraphStyleAttributeName value:newStyle range:range];
         }];
+        return [[NSTextStorage alloc] initWithAttributedString:mutable];
     }
-
-    return (YGSize) {
-        .width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
-        .height = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode),
-    };
+    if (label.text.length > 0) {
+        NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+        paraStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paraStyle.alignment = label.textAlignment;
+        NSDictionary *attrs = @{
+            NSFontAttributeName: label.font ?: [UIFont systemFontOfSize:17],
+            NSParagraphStyleAttributeName: paraStyle,
+        };
+        return [[NSTextStorage alloc] initWithString:label.text attributes:attrs];
+    }
+    return nil;
 }
+
+#pragma mark - Legacy Pre-Measure (useLegacyPreMeasure)
+static BOOL YGPreMeasureLeafNode(YGNodeRef node, ZDFlexLayoutView view) {
+	
+	YGValue nodeWidth = YGNodeStyleGetWidth(node);
+	YGValue nodeHeight = YGNodeStyleGetHeight(node);
+	
+	BOOL hasExplicitWidth = (nodeWidth.unit == YGUnitPoint && !YGFloatIsUndefined(nodeWidth.value));
+	BOOL hasExplicitHeight = (nodeHeight.unit == YGUnitPoint && !YGFloatIsUndefined(nodeHeight.value));
+	
+	if (hasExplicitWidth && hasExplicitHeight) {
+		return YES; // Already fully constrained, no measure func needed
+	}
+	
+	if (![view isKindOfClass:[UIView class]]) {
+		// ZDFlexLayoutDiv — sizeThatFits returns CGSizeZero, thread-safe
+		// Keep the measure function for these; they don't call UIKit
+		return NO;
+	}
+	
+	UIView *uiView = (UIView *)view;
+	CGSize measuredSize = CGSizeZero;
+	
+	if ([uiView isKindOfClass:[UILabel class]]) {
+		UILabel *label = (UILabel *)uiView;
+		CGSize constrainedSize = (CGSize){
+			hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX,
+			hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX
+		};
+		NSTextStorage *ts = ZDTextStorageFromLabel(label);
+		measuredSize = ZDMeasureText(ts, label.numberOfLines, constrainedSize);
+	} else if ([uiView isKindOfClass:[UIImageView class]]) {
+		UIImage *image = ((UIImageView *)uiView).image;
+		if (image) {
+			measuredSize = image.size;
+		}
+	} else {
+		// For other UIView leaf nodes (plain UIView, custom views, etc.):
+		// sizeThatFits: requires main thread.
+		// If neither width nor height is set, we must call sizeThatFits: on main thread.
+		// If at least one dimension is set, we can skip measurement.
+		if (!hasExplicitWidth && !hasExplicitHeight) {
+			// Must measure on main thread — keep measure func
+			return NO;
+		}
+		// At least one dimension is explicit — store what we have
+		measuredSize = CGSizeMake(
+								  hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX,
+								  hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX
+								  );
+	}
+	
+	if (!hasExplicitWidth && measuredSize.width > 0 && measuredSize.width < CGFLOAT_MAX) {
+		YGNodeStyleSetWidth(node, measuredSize.width);
+	}
+	if (!hasExplicitHeight && measuredSize.height > 0 && measuredSize.height < CGFLOAT_MAX) {
+		YGNodeStyleSetHeight(node, measuredSize.height);
+	}
+	
+	return YES;
+}
+
+#pragma mark - Yoga Measure Functions
 
 static CGFloat YGSanitizeMeasurement(
-  CGFloat constrainedSize,
-  CGFloat measuredSize,
-  YGMeasureMode measureMode)
-{
+    CGFloat constrainedSize,
+    CGFloat measuredSize,
+    YGMeasureMode measureMode
+) {
     CGFloat result;
     if (measureMode == YGMeasureModeExactly) {
         result = constrainedSize;
@@ -412,141 +641,305 @@ static CGFloat YGSanitizeMeasurement(
     } else {
         result = measuredSize;
     }
-
+    
     return result;
 }
 
-static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews)
-{
-    if (YGNodeGetChildCount(node) != subviews.count) {
-        return NO;
-    }
-
-    for (int i = 0; i < subviews.count; i++) {
-        if (YGNodeGetChild(node, i) != subviews[i].flexLayout.node) {
-            return NO;
-        }
-    }
-
-    return YES;
+static YGSize YGMeasureView(
+	YGNodeConstRef node,
+	float width,
+	YGMeasureMode widthMode,
+	float height,
+	YGMeasureMode heightMode
+) {
+	const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
+	const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
+	
+	CGSize sizeThatFits = CGSizeZero;
+	
+	// The default implementation of sizeThatFits: returns the existing size of
+	// the view. That means that if we want to layout an empty UIView, which
+	// already has got a frame set, its measured size should be CGSizeZero, but
+	// UIKit returns the existing size.
+	//
+	// See https://github.com/facebook/yoga/issues/606 for more information.
+	ZDFlexLayoutView view = (__bridge ZDFlexLayoutView)YGNodeGetContext(node);
+	if (!view.flexLayout.isUIView || [view.children count] > 0) {
+		sizeThatFits = [view sizeThatFits:(CGSize) {
+			.width = constrainedWidth,
+			.height = constrainedHeight,
+		}];
+	}
+	
+	return (YGSize) {
+		.width = YGSanitizeMeasurement(constrainedWidth, sizeThatFits.width, widthMode),
+		.height = YGSanitizeMeasurement(constrainedHeight, sizeThatFits.height, heightMode),
+	};
 }
 
-static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view)
-{
-    ZDFlexLayoutCore *const yoga = view.flexLayout;
-    const YGNodeRef node = yoga.node;
+/// 后台线程安全的 measure 函数。
+/// 文本节点使用 TextKit 在 Yoga 提供的真实约束下测量；非文本节点返回预存的固定尺寸。
+/// 通过节点上下文找到当前布局的根视图，从根视图的 per-pass cache 读取数据，
+/// 避免多次并发异步布局之间的竞态条件。
+static YGSize YGCachedMeasureView(
+    YGNodeConstRef node,
+    float width,
+    YGMeasureMode widthMode,
+    float height,
+    YGMeasureMode heightMode
+) {
+    const CGFloat constrainedWidth = (widthMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : width;
+    const CGFloat constrainedHeight = (heightMode == YGMeasureModeUndefined) ? CGFLOAT_MAX : height;
 
-    // Only leaf nodes should have a measure function
-    if (yoga.isLeaf) {
-        YGRemoveAllChildren(node);
-        YGNodeSetMeasureFunc(node, YGMeasureView);
+    NSMutableDictionary *cache = ZDGetCurrentAsyncCache();
+    if (!cache) return (YGSize){ .width = 0, .height = 0 };
+
+    id cached = cache[ZDNodeKey(node)];
+    if (!cached) return (YGSize){ .width = 0, .height = 0 };
+
+    CGSize measuredSize;
+    if ([cached isKindOfClass:[NSDictionary class]]) {
+        NSTextStorage *textStorage = cached[@"storage"];
+        NSInteger numberOfLines = [cached[@"lines"] integerValue];
+        CGSize constraint = CGSizeMake(constrainedWidth, constrainedHeight);
+        measuredSize = ZDMeasureText(textStorage, numberOfLines, constraint);
     } else {
-        YGNodeSetMeasureFunc(node, NULL);
-
-        NSMutableArray<ZDFlexLayoutView> *subviewsToInclude = [[NSMutableArray alloc] initWithCapacity:view.children.count];
-        for (ZDFlexLayoutView subview in view.children) {
-            if (subview.flexLayout.isEnabled && subview.flexLayout.isIncludedInLayout) {
-                [subviewsToInclude addObject:subview];
-            }
-        }
-
-        if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
-            YGRemoveAllChildren(node);
-            for (int i = 0; i < subviewsToInclude.count; i++) {
-                YGNodeInsertChild(node, subviewsToInclude[i].flexLayout.node, i);
-            }
-        }
-
-        for (ZDFlexLayoutView const subview in subviewsToInclude) {
-            YGAttachNodesFromViewHierachy(subview);
-        }
-    }
-}
-
-static void YGRemoveAllChildren(const YGNodeRef node)
-{
-    if (node == NULL) {
-        return;
+        measuredSize = [(NSValue *)cached CGSizeValue];
     }
 
-    YGNodeRemoveAllChildren(node);
-}
-
-static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin)
-{
-    NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
-
-    const ZDFlexLayoutCore *yoga = view.flexLayout;
-
-    if (!yoga.isEnabled || !yoga.isIncludedInLayout) {
-        return;
-    }
-
-    YGNodeRef node = yoga.node;
-    const CGPoint topLeft = {
-        YGNodeLayoutGetLeft(node),
-        YGNodeLayoutGetTop(node),
+    return (YGSize) {
+        .width = YGSanitizeMeasurement(constrainedWidth, measuredSize.width, widthMode),
+        .height = YGSanitizeMeasurement(constrainedHeight, measuredSize.height, heightMode),
     };
-
-    const CGPoint bottomRight = {
-        topLeft.x + YGNodeLayoutGetWidth(node),
-        topLeft.y + YGNodeLayoutGetHeight(node),
-    };
-
-    const CGPoint origin = preserveOrigin ? view.layoutFrame.origin : CGPointZero;
-    view.layoutFrame = (CGRect) {
-        .origin = {
-            .x = ZDFLRoundPixelValue(topLeft.x + origin.x),
-            .y = ZDFLRoundPixelValue(topLeft.y + origin.y),
-        },
-        .size = {
-            .width  = ZDFLRoundPixelValue(bottomRight.x) - ZDFLRoundPixelValue(topLeft.x),
-            .height = ZDFLRoundPixelValue(bottomRight.y) - ZDFLRoundPixelValue(topLeft.y),
-        },
-    };
-
-    if (!yoga.isLeaf) {
-        for (NSUInteger i = 0; i < view.children.count; i++) {
-            YGApplyLayoutToViewHierarchy(view.children[i], NO);
-        }
-
-        if ([view respondsToSelector:@selector(needReApplyLayoutAtNextRunloop)]) {
-            [view needReApplyLayoutAtNextRunloop];
-        }
-    }
 }
 
-@end
+#pragma mark - Tree Walkers
 
-//-------------------------- Function ------------------------
-#pragma mark -
+static BOOL YGNodeHasExactSameChildren(const YGNodeRef node, NSArray<ZDFlexLayoutView> *subviews) {
 
-CGFloat ZDFLScreenScale(void)
-{
-    static CGFloat scale = 0.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), YES, 0);
-        scale = CGContextGetCTM(UIGraphicsGetCurrentContext()).a;
-        UIGraphicsEndImageContext();
-    });
-    return scale;
+	if (YGNodeGetChildCount(node) != subviews.count) {
+		return NO;
+	}
+	
+	for (int i = 0; i < subviews.count; i++) {
+		if (YGNodeGetChild(node, i) != subviews[i].flexLayout.node) {
+			return NO;
+		}
+	}
+	
+	return YES;
 }
 
-CGFloat ZDFLRoundPixelValue(CGFloat value)
-{
-    CGFloat scale = ZDFLScreenScale();
-    return roundf(value * scale) / scale;
+static void YGAttachNodesFromViewHierachy(ZDFlexLayoutView const view, BOOL asyncMode) {
+	
+	ZDFlexLayoutCore *const yoga = view.flexLayout;
+	const YGNodeRef node = yoga.node;
+	
+	// Only leaf nodes should have a measure function
+	if (yoga.isLeaf) {
+		YGNodeRemoveAllChildren(node);
+		
+		if (asyncMode) {
+			// In async mode, try to pre-measure the leaf node and set fixed sizes.
+			// If fully pre-measured, skip setting YGMeasureFunc so Yoga won't
+			// call back into UIKit during background calculation.
+			if (YGPreMeasureLeafNode(node, view)) {
+				YGNodeSetMeasureFunc(node, NULL);
+			} else if (!yoga.isUIView) {
+				// Non-UIView (ZDFlexLayoutDiv): sizeThatFits returns CGSizeZero, thread-safe
+				YGNodeSetMeasureFunc(node, YGMeasureView);
+			} else {
+				// UIView leaf that couldn't be pre-measured (no explicit size, not UILabel/UIImageView).
+				// Setting YGMeasureFunc would call sizeThatFits: on background thread → unsafe.
+				// Instead, leave measure func unset and let Yoga use default sizing.
+				YGNodeSetMeasureFunc(node, NULL);
+			}
+		} else {
+			YGNodeSetMeasureFunc(node, YGMeasureView);
+		}
+	} else {
+		YGNodeSetMeasureFunc(node, NULL);
+		
+		NSMutableArray<ZDFlexLayoutView> *subviewsToInclude = [[NSMutableArray alloc] initWithCapacity:view.children.count];
+		for (ZDFlexLayoutView subview in view.children) {
+			if (subview.flexLayout.isEnabled && subview.flexLayout.isIncludedInLayout) {
+				[subviewsToInclude addObject:subview];
+			}
+		}
+		
+		if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
+			YGNodeRemoveAllChildren(node);
+			for (int i = 0; i < subviewsToInclude.count; i++) {
+				YGNodeInsertChild(node, subviewsToInclude[i].flexLayout.node, i);
+			}
+		}
+		
+		for (ZDFlexLayoutView const subview in subviewsToInclude) {
+			YGAttachNodesFromViewHierachy(subview, asyncMode);
+		}
+	}
 }
 
-CGFloat ZDFLCeilPixelValue(CGFloat value)
-{
-    CGFloat scale = ZDFLScreenScale();
-    return ceil((value - FLT_EPSILON) * scale) / scale;
+/// 主线程递归遍历视图树，预测量所有叶子节点的固有尺寸并存入缓存侧表。
+/// 每个叶子节点设置 YGCachedMeasureView 作为 measure 函数，确保后台计算时不回调 UIKit。
+/// 不修改 YGNode 的 style 属性（width/height），避免污染后续布局。
+static void YGPreMeasureAndCacheLeafNodes(ZDFlexLayoutView const view, NSMutableDictionary *cache) {
+	
+	ZDFlexLayoutCore *const yoga = view.flexLayout;
+	const YGNodeRef node = yoga.node;
+
+	if (yoga.isLeaf) {
+		YGNodeRemoveAllChildren(node);
+
+		YGValue nodeWidth = YGNodeStyleGetWidth(node);
+		YGValue nodeHeight = YGNodeStyleGetHeight(node);
+		BOOL hasExplicitWidth = (nodeWidth.unit == YGUnitPoint && !YGFloatIsUndefined(nodeWidth.value));
+		BOOL hasExplicitHeight = (nodeHeight.unit == YGUnitPoint && !YGFloatIsUndefined(nodeHeight.value));
+		
+		if (hasExplicitWidth && hasExplicitHeight) {
+			YGNodeSetMeasureFunc(node, NULL);
+			return;
+		}
+		
+		CGFloat constraintW = hasExplicitWidth ? nodeWidth.value : CGFLOAT_MAX;
+		CGFloat constraintH = hasExplicitHeight ? nodeHeight.value : CGFLOAT_MAX;
+		CGSize constrainedSize = CGSizeMake(constraintW, constraintH);
+		CGSize measuredSize = CGSizeZero;
+		
+		if (![view isKindOfClass:[UIView class]]) {
+			measuredSize = [view sizeThatFits:constrainedSize];
+			ZDMeasureCacheSetSize(cache, node, measuredSize);
+		} else {
+			UIView *uiView = (UIView *)view;
+			if ([uiView isKindOfClass:[UILabel class]]) {
+				// 文本节点：捕获 NSTextStorage 供后台 TextKit 测量
+				UILabel *label = (UILabel *)uiView;
+				NSTextStorage *textStorage = ZDTextStorageFromLabel(label);
+				if (textStorage) {
+					ZDMeasureCacheSetTextStorage(cache, node, textStorage, label.numberOfLines);
+				} else {
+					ZDMeasureCacheSetSize(cache, node, CGSizeZero);
+				}
+			} else if ([uiView isKindOfClass:[UIImageView class]]) {
+				UIImage *image = ((UIImageView *)uiView).image;
+				measuredSize = image ? image.size : CGSizeZero;
+				ZDMeasureCacheSetSize(cache, node, measuredSize);
+			} else {
+				measuredSize = [uiView sizeThatFits:constrainedSize];
+				ZDMeasureCacheSetSize(cache, node, measuredSize);
+			}
+		}
+		YGNodeSetMeasureFunc(node, YGCachedMeasureView);
+	} else {
+		YGNodeSetMeasureFunc(node, NULL);
+		
+		NSMutableArray<ZDFlexLayoutView> *subviewsToInclude = [[NSMutableArray alloc] initWithCapacity:view.children.count];
+		for (ZDFlexLayoutView subview in view.children) {
+			if (subview.flexLayout.isEnabled && subview.flexLayout.isIncludedInLayout) {
+				[subviewsToInclude addObject:subview];
+			}
+		}
+		
+		if (!YGNodeHasExactSameChildren(node, subviewsToInclude)) {
+			YGNodeRemoveAllChildren(node);
+			for (int i = 0; i < subviewsToInclude.count; i++) {
+				YGNodeInsertChild(node, subviewsToInclude[i].flexLayout.node, i);
+			}
+		}
+		
+		for (ZDFlexLayoutView const subview in subviewsToInclude) {
+			YGPreMeasureAndCacheLeafNodes(subview, cache);
+		}
+	}
 }
 
-CGFloat ZDFLFloorPixelValue(CGFloat f)
-{
-    CGFloat scale = ZDFLScreenScale();
-    return floor((f + FLT_EPSILON) * scale) / scale;
+/// 后台布局完成后恢复所有叶子节点的 measure 函数为标准的 YGMeasureView，
+/// 确保后续同步布局能正常调用 sizeThatFits: 进行测量。
+static void YGRestoreMeasureFuncs(ZDFlexLayoutView const view) {
+	
+	ZDFlexLayoutCore *const yoga = view.flexLayout;
+	const YGNodeRef node = yoga.node;
+	
+	if (yoga.isLeaf) {
+		YGNodeSetMeasureFunc(node, YGMeasureView);
+	} else {
+		for (ZDFlexLayoutView subview in view.children) {
+			if (subview.flexLayout.isEnabled && subview.flexLayout.isIncludedInLayout) {
+				YGRestoreMeasureFuncs(subview);
+			}
+		}
+	}
+}
+
+#pragma mark - Layout Application
+
+static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOrigin) {
+	NSCAssert([NSThread isMainThread], @"Framesetting should only be done on the main thread.");
+	
+	const ZDFlexLayoutCore *yoga = view.flexLayout;
+	
+	if (!yoga.isEnabled || !yoga.isIncludedInLayout) {
+		return;
+	}
+	
+	YGNodeRef node = yoga.node;
+	const CGPoint topLeft = {
+		YGNodeLayoutGetLeft(node),
+		YGNodeLayoutGetTop(node),
+	};
+	
+	const CGPoint bottomRight = {
+		topLeft.x + YGNodeLayoutGetWidth(node),
+		topLeft.y + YGNodeLayoutGetHeight(node),
+	};
+	
+	const CGPoint origin = preserveOrigin ? view.layoutFrame.origin : CGPointZero;
+	view.layoutFrame = (CGRect) {
+		.origin = {
+			.x = ZDFLRoundPixelValue(topLeft.x + origin.x),
+			.y = ZDFLRoundPixelValue(topLeft.y + origin.y),
+		},
+		.size = {
+			.width  = ZDFLRoundPixelValue(bottomRight.x) - ZDFLRoundPixelValue(topLeft.x),
+			.height = ZDFLRoundPixelValue(bottomRight.y) - ZDFLRoundPixelValue(topLeft.y),
+		},
+	};
+	
+	if (!yoga.isLeaf) {
+		for (NSUInteger i = 0; i < view.children.count; i++) {
+			YGApplyLayoutToViewHierarchy(view.children[i], NO);
+		}
+		
+		if ([view respondsToSelector:@selector(needReApplyLayoutAtNextRunloop)]) {
+			[view needReApplyLayoutAtNextRunloop];
+		}
+	}
+}
+
+#pragma mark - Pixel Utilities
+
+CGFloat ZDFLScreenScale(void) {
+	static CGFloat scale = 0.0;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), YES, 0);
+		scale = CGContextGetCTM(UIGraphicsGetCurrentContext()).a;
+		UIGraphicsEndImageContext();
+	});
+	return scale;
+}
+
+CGFloat ZDFLRoundPixelValue(CGFloat value) {
+	CGFloat scale = ZDFLScreenScale();
+	return roundf(value * scale) / scale;
+}
+
+CGFloat ZDFLCeilPixelValue(CGFloat value) {
+	CGFloat scale = ZDFLScreenScale();
+	return ceil((value - FLT_EPSILON) * scale) / scale;
+}
+
+CGFloat ZDFLFloorPixelValue(CGFloat f) {
+	CGFloat scale = ZDFLScreenScale();
+	return floor((f + FLT_EPSILON) * scale) / scale;
 }

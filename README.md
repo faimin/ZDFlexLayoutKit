@@ -10,7 +10,7 @@
 
 + 链式调用
 
-+ 异步计算
++ 异步计算（支持多种模式）
 
 + 自动更新布局
 
@@ -20,6 +20,45 @@
 
 
 > PS：开启自动更新布局后，在布局发生改变需要更新时需要手动调用 `markDirty` ，`gone` 不需要调用 `markDirty` ，它内部会自己处理
+
+## Async Layout
+
+支持三种异步布局模式，通过 `ZDFlexLayoutAsyncMode` 枚举控制：
+
+| 模式 | 说明 |
+|------|------|
+| `ZDFlexLayoutAsyncModeSync` | 同步计算并刷新（默认） |
+| `ZDFlexLayoutAsyncModeRunloopIdle` | 延迟到主线程 RunLoop 空闲时计算并刷新 |
+| `ZDFlexLayoutAsyncModeBackgroundThread` | 后台线程计算，主线程刷新 |
+
+### 后台线程模式原理
+
+采用"主线程预测量 + 缓存侧表 + 线程安全 measure func"三阶段方案，借鉴 ReactNative 的设计思路：
+
+1. **Phase 1（主线程）**：遍历叶子节点，捕获测量所需信息存入缓存侧表（文本节点捕获 `NSTextStorage`，其他节点调用 `sizeThatFits:`），不修改 YGNode style
+2. **Phase 2（后台线程）**：Yoga 计算，文本节点使用 TextKit（`NSLayoutManager + NSTextContainer`）在 Yoga 提供的真实宽度约束下测量，其他节点返回预存尺寸
+3. **Phase 3（主线程）**：应用 frame、恢复 measure 函数、清除缓存
+
+### 使用示例
+
+```objc
+// 后台线程异步计算
+[view.flexLayout applyLayoutWithAsyncMode:ZDFlexLayoutAsyncModeBackgroundThread
+                         preservingOrigin:YES
+                     dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+
+// RunLoop 空闲时计算
+[view.flexLayout applyLayoutWithAsyncMode:ZDFlexLayoutAsyncModeRunloopIdle
+                         preservingOrigin:YES
+                     dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+
+// 同步计算（等同于 applyLayoutPreservingOrigin:）
+[view.flexLayout applyLayoutWithAsyncMode:ZDFlexLayoutAsyncModeSync
+                         preservingOrigin:YES
+                     dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+```
+
+> 可通过设置 `flexLayout.useLegacyPreMeasure = YES` 切换到旧版预测量实现（直接修改 YGNode style），作为备用方案。
 
 ## Install
 
