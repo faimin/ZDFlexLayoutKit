@@ -29,8 +29,8 @@
 		FA843042234F4234000F7E36 /* AsyncLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA843041234F4234000F7E36 /* AsyncLayoutTests.m */; };
 		FA84304D234F4234000F7E35 /* DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84304C234F4234000F7E35 /* DemoUITests.m */; };
 		FA90B083237D4D2600DBDB77 /* NormalLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */; };
-		FA90B0A0237D4D2600DBDB77 /* AsyncLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */; };
 		FA90B086237D4D3E00DBDB77 /* ScrollViewLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */; };
+		FA90B0A0237D4D2600DBDB77 /* AsyncLayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */; };
 		FACF10A425B70AEC00C91DA3 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF10A325B70AEC00C91DA3 /* Empty.swift */; };
 		FAEA4A0F235F0F6000422C35 /* same_city_users.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEA4A0E235F0F6000422C35 /* same_city_users.json */; };
 		FAEA4A13235F0FD400422C35 /* SameCityUserListController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEA4A12235F0FD400422C35 /* SameCityUserListController.m */; };
@@ -103,10 +103,10 @@
 		FA84304E234F4234000F7E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA90B081237D4D2600DBDB77 /* NormalLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalLayoutController.h; sourceTree = "<group>"; };
 		FA90B082237D4D2600DBDB77 /* NormalLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalLayoutController.m; sourceTree = "<group>"; };
-		FA90B09E237D4D2600DBDB77 /* AsyncLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncLayoutController.h; sourceTree = "<group>"; };
-		FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncLayoutController.m; sourceTree = "<group>"; };
 		FA90B084237D4D3E00DBDB77 /* ScrollViewLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewLayoutController.h; sourceTree = "<group>"; };
 		FA90B085237D4D3E00DBDB77 /* ScrollViewLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewLayoutController.m; sourceTree = "<group>"; };
+		FA90B09E237D4D2600DBDB77 /* AsyncLayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncLayoutController.h; sourceTree = "<group>"; };
+		FA90B09F237D4D2600DBDB77 /* AsyncLayoutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncLayoutController.m; sourceTree = "<group>"; };
 		FACF10A325B70AEC00C91DA3 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		FAEA4A0E235F0F6000422C35 /* same_city_users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = same_city_users.json; sourceTree = "<group>"; };
 		FAEA4A11235F0FD400422C35 /* SameCityUserListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameCityUserListController.h; sourceTree = "<group>"; };
@@ -756,7 +756,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -799,7 +799,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_MODULE_VERIFIER = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -822,7 +822,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -843,7 +843,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -863,7 +863,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -883,7 +883,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

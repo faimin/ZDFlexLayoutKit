@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://cdn.cocoapods.org/'
 
-min_version = '10.0'
+min_version = '15.0'
 
 platform :ios, min_version
 use_frameworks!

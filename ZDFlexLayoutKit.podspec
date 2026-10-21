@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
   spec.author       = { "faimin" => "fuxianchao@gmail.com" }
   spec.requires_arc = true
-  spec.platform     = :ios, "10.0"
+  spec.platform     = :ios, "15.0"
   spec.source       = {
     :git => "https://github.com/faimin/ZDFlexLayoutKit.git",
     :tag => spec.version.to_s
