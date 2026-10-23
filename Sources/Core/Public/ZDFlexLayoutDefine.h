@@ -24,4 +24,14 @@ typedef NS_OPTIONS(NSInteger, ZDDimensionFlexibility) {
 #define YGDimensionFlexibilityFlexibleHeight (ZDDimensionFlexibilityFlexibleHeight)
 #define YGDimensionFlexibilityFlexibleAll (ZDDimensionFlexibilityFlexibleAll)
 
+/// Async execution mode for layout calculation
+typedef NS_ENUM(NSInteger, ZDFlexLayoutAsyncMode) {
+    /// Calculate and apply layout synchronously on the calling thread.
+    ZDFlexLayoutAsyncModeSync = 0,
+    /// Defer layout calculation to the main runloop idle time.
+    ZDFlexLayoutAsyncModeRunloopIdle,
+    /// Calculate layout on a background thread, then apply frames on the main thread.
+    ZDFlexLayoutAsyncModeBackgroundThread,
+};
+
 #endif /* ZDFlexLayoutDefine_h */
