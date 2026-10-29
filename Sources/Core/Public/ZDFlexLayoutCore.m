@@ -165,7 +165,11 @@ static void YGApplyLayoutToViewHierarchy(ZDFlexLayoutView view, BOOL preserveOri
 + (void)initialize {
 	globalConfig = YGConfigNew();
 	YGConfigSetExperimentalFeatureEnabled(globalConfig, YGExperimentalFeatureWebFlexBasis, true);
-	YGConfigSetPointScaleFactor(globalConfig, [UIScreen mainScreen].scale);
+	CGFloat scale = UITraitCollection.currentTraitCollection.displayScale;
+	if (scale <= 0) {
+		scale = UIScreen.mainScreen.scale;
+	}
+	YGConfigSetPointScaleFactor(globalConfig, scale);
 }
 
 - (instancetype)initWithView:(ZDFlexLayoutView)view {
@@ -436,9 +440,27 @@ YG_VALUE_EDGE_PROPERTY(allGap, AllGap, Gap, YGGutterAll)
 	return [self calculateLayoutWithSize:size asyncMode:NO];
 }
 
+- (void)updatePointScaleFactorIfNeeded {
+	UIView *anchor = nil;
+	if ([self.view isKindOfClass:UIView.class]) {
+		anchor = (UIView *)self.view;
+	} else {
+		anchor = self.view.owningView;
+	}
+	CGFloat scale = anchor.traitCollection.displayScale;
+	if (scale <= 0) {
+		scale = UITraitCollection.currentTraitCollection.displayScale;
+	}
+	if (scale <= 0) {
+		scale = UIScreen.mainScreen.scale;
+	}
+	YGConfigSetPointScaleFactor(globalConfig, scale);
+}
+
 - (CGSize)calculateLayoutWithSize:(CGSize)size asyncMode:(BOOL)asyncMode {
 	NSAssert(self.isEnabled, @"Yoga is not enabled for this view.");
 	
+	[self updatePointScaleFactorIfNeeded];
 	YGAttachNodesFromViewHierachy(self.view, asyncMode);
 	
 	const YGNodeRef node = self.node;

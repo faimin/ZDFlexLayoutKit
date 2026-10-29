@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIView *idleContainer;
 @property (nonatomic, strong) UIView *asyncContainer;
 @property (nonatomic, strong) UISegmentedControl *modeSegment;
+@property (nonatomic, assign) ZDFlexLayoutAsyncMode currentMode;
+@property (nonatomic, assign) CGSize lastLayoutSize;
 
 @end
 
@@ -23,9 +25,27 @@
     [super viewDidLoad];
     self.title = @"Async Layout Demo";
     self.view.backgroundColor = UIColor.whiteColor;
+    self.currentMode = ZDFlexLayoutAsyncModeSync;
 
     [self setupModeSelector];
-    [self buildLayoutWithMode:ZDFlexLayoutAsyncModeSync];
+    [self buildLayoutWithMode:self.currentMode];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGSize size = self.view.bounds.size;
+    if (CGSizeEqualToSize(size, self.lastLayoutSize)) {
+        return;
+    }
+    BOOL hadSize = self.lastLayoutSize.width > 0 && self.lastLayoutSize.height > 0;
+    self.lastLayoutSize = size;
+    [self layoutChrome];
+    if (hadSize) {
+        [self clearLayout];
+        [self buildLayoutWithMode:self.currentMode];
+    } else if (self.syncContainer || self.idleContainer || self.asyncContainer) {
+        [self layoutActiveContainer];
+    }
 }
 
 #pragma mark - Mode Selector
@@ -34,20 +54,26 @@
     self.modeSegment = [[UISegmentedControl alloc] initWithItems:@[@"Sync", @"RunLoop Idle", @"Background Thread"]];
     self.modeSegment.selectedSegmentIndex = 0;
     [self.modeSegment addTarget:self action:@selector(modeChanged:) forControlEvents:UIControlEventValueChanged];
-    self.modeSegment.frame = CGRectMake(20, 120, self.view.bounds.size.width - 40, 36);
     [self.view addSubview:self.modeSegment];
+}
+
+- (void)layoutChrome {
+    CGFloat top = self.view.safeAreaInsets.top + 12;
+    CGFloat leading = self.view.safeAreaInsets.left + 20;
+    CGFloat trailing = self.view.safeAreaInsets.right + 20;
+    CGFloat width = CGRectGetWidth(self.view.bounds) - leading - trailing;
+    self.modeSegment.frame = CGRectMake(leading, top, width, 36);
 }
 
 - (void)modeChanged:(UISegmentedControl *)sender {
     [self clearLayout];
-    ZDFlexLayoutAsyncMode mode;
     switch (sender.selectedSegmentIndex) {
-        case 0: mode = ZDFlexLayoutAsyncModeSync; break;
-        case 1: mode = ZDFlexLayoutAsyncModeRunloopIdle; break;
-        case 2: mode = ZDFlexLayoutAsyncModeBackgroundThread; break;
-        default: mode = ZDFlexLayoutAsyncModeSync; break;
+        case 0: self.currentMode = ZDFlexLayoutAsyncModeSync; break;
+        case 1: self.currentMode = ZDFlexLayoutAsyncModeRunloopIdle; break;
+        case 2: self.currentMode = ZDFlexLayoutAsyncModeBackgroundThread; break;
+        default: self.currentMode = ZDFlexLayoutAsyncModeSync; break;
     }
-    [self buildLayoutWithMode:mode];
+    [self buildLayoutWithMode:self.currentMode];
 }
 
 #pragma mark - Layout Construction
@@ -61,8 +87,31 @@
     self.asyncContainer = nil;
 }
 
+- (CGRect)containerFrame {
+    CGFloat top = CGRectGetMaxY(self.modeSegment.frame) + 12;
+    CGFloat leading = self.view.safeAreaInsets.left;
+    CGFloat trailing = self.view.safeAreaInsets.right;
+    CGFloat bottom = self.view.safeAreaInsets.bottom;
+    return CGRectMake(leading,
+                      top,
+                      CGRectGetWidth(self.view.bounds) - leading - trailing,
+                      CGRectGetHeight(self.view.bounds) - top - bottom);
+}
+
+- (void)layoutActiveContainer {
+    UIView *container = self.syncContainer ?: self.idleContainer ?: self.asyncContainer;
+    if (!container) {
+        return;
+    }
+    container.frame = [self containerFrame];
+    [container.flexLayout applyLayoutWithAsyncMode:ZDFlexLayoutAsyncModeSync
+                                  preservingOrigin:YES
+                              dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];
+}
+
 - (void)buildLayoutWithMode:(ZDFlexLayoutAsyncMode)mode {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 160, self.view.bounds.size.width, self.view.bounds.size.height - 160)];
+    [self layoutChrome];
+    UIView *container = [[UIView alloc] initWithFrame:[self containerFrame]];
     container.backgroundColor = UIColor.systemGroupedBackgroundColor;
     [self.view addSubview:container];
 

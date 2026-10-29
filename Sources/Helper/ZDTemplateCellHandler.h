@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDTemplateCellHandler : NSObject
 
+/// Clears cached row heights. Also happens automatically when table width changes.
+- (void)invalidateHeightCache;
+
 - (CGFloat)cellHeightWithTableView:(UITableView *)tableView
                    reuseIdentifier:(NSString *)reuseCellId
                          indexPath:(NSIndexPath *)indexPath

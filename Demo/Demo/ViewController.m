@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "AsyncLayoutController.h"
-//#import <ZDFlexLayoutKit/ZDFlexLayoutKit.h>
 @import ZDFlexLayoutKit;
 
 @interface ViewController ()
+
+@property (nonatomic, strong) UIButton *asyncBtn;
 
 @end
 
@@ -21,14 +22,22 @@
     [super viewDidLoad];
 
     UIButton *asyncBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    asyncBtn.frame = CGRectMake(43, 430, 343, 50);
-    asyncBtn.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    asyncBtn.translatesAutoresizingMaskIntoConstraints = NO;
     asyncBtn.backgroundColor = UIColor.systemGreenColor;
     asyncBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [asyncBtn setTitle:@"AsyncLayout" forState:UIControlStateNormal];
     [asyncBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [asyncBtn addTarget:self action:@selector(pushAsyncLayout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:asyncBtn];
+    self.asyncBtn = asyncBtn;
+
+    UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
+    [NSLayoutConstraint activateConstraints:@[
+        [asyncBtn.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor constant:20],
+        [asyncBtn.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor constant:-20],
+        [asyncBtn.bottomAnchor constraintEqualToAnchor:guide.bottomAnchor constant:-40],
+        [asyncBtn.heightAnchor constraintEqualToConstant:50],
+    ]];
 }
 
 - (void)pushAsyncLayout {

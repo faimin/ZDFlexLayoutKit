@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
 @property (nonatomic, strong) ZDTemplateCellHandler *cellHandler;
+@property (nonatomic, assign) CGFloat lastTableWidth;
 @end
 
 @implementation YogaKitListViewController
@@ -27,6 +28,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+    CGFloat width = CGRectGetWidth(self.tableView.bounds);
+    if (fabs(width - self.lastTableWidth) <= 0.5) {
+        return;
+    }
+    BOOL hadWidth = self.lastTableWidth > 0;
+    self.lastTableWidth = width;
+    if (hadWidth) {
+        [self.cellHandler invalidateHeightCache];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)setup {
@@ -86,6 +102,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         tableView.backgroundColor = [UIColor whiteColor];
         tableView.dataSource = self;
         tableView.delegate = self;

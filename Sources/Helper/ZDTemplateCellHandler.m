@@ -8,6 +8,7 @@
 
 #import "ZDTemplateCellHandler.h"
 #import "UIView+ZDFlexLayout.h"
+#import "ZDFlexLayoutCore.h"
 
 static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
     NSUInteger section = indexPath.section;
@@ -19,9 +20,15 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
 @interface ZDTemplateCellHandler()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, UITableViewCell *> *templateCellCache;
 @property (nonatomic, strong) NSCache<NSString *, NSNumber *> *cellHeightCache;
+@property (nonatomic, assign) CGFloat cachedTableWidth;
 @end
 
 @implementation ZDTemplateCellHandler
+
+- (void)invalidateHeightCache {
+    [self.cellHeightCache removeAllObjects];
+    self.cachedTableWidth = 0;
+}
 
 #pragma mark - Template Cell
 
@@ -46,6 +53,15 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
         return 0.f;
     }
     
+    CGFloat tableWidth = CGRectGetWidth(tableView.bounds);
+    if (tableWidth <= 0) {
+        tableWidth = CGRectGetWidth(tableView.frame);
+    }
+    if (fabs(tableWidth - self.cachedTableWidth) > 0.5) {
+        [self.cellHeightCache removeAllObjects];
+        self.cachedTableWidth = tableWidth;
+    }
+    
     CGFloat cellHeight = 0.f;
     NSString *indexPathKey = ZD_IndexPathKey(indexPath);
     NSNumber *cachedHeightNum = [self.cellHeightCache objectForKey:indexPathKey];
@@ -55,6 +71,16 @@ static NSString *ZD_IndexPathKey(NSIndexPath *indexPath) {
         UITableViewCell *cell = [self templateCellWithTableView:tableView reuseIdentifier:reuseCellId];
         
         [cell prepareForReuse];
+        
+        if (tableWidth > 0) {
+            CGRect cellBounds = cell.bounds;
+            cellBounds.size.width = tableWidth;
+            cell.bounds = cellBounds;
+            cell.contentView.frame = CGRectMake(0, 0, tableWidth, CGRectGetHeight(cell.contentView.bounds));
+            if (cell.contentView.isFlexLayoutEnabled) {
+                cell.contentView.flexLayout.width = YGPointValue(tableWidth);
+            }
+        }
         
         if (configurationBlock) {
             configurationBlock(cell);

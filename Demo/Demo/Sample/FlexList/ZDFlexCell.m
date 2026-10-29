@@ -72,8 +72,17 @@ extern UIColor *ZD_RandomColor(void);
         layout.justifyContent = YGJustifyFlexStart;
         layout.paddingHorizontal = YGPointValue(15);
         layout.paddingVertical = YGPointValue(10);
-        layout.width = YGPointValue(UIScreen.mainScreen.bounds.size.width);
     }];
+}
+
+- (void)updateContentWidthIfNeeded {
+    CGFloat width = CGRectGetWidth(self.contentView.bounds);
+    if (width <= 0) {
+        width = CGRectGetWidth(self.bounds);
+    }
+    if (width > 0) {
+        self.contentView.flexLayout.width = YGPointValue(width);
+    }
 }
 
 - (void)setModel:(TextureModel *)model {
@@ -89,6 +98,8 @@ extern UIColor *ZD_RandomColor(void);
     // 根据数据改变layout
     self.contentLabel.flexLayout.marginTop = YGPointValue((model.title.length == 0 || model.content.length == 0) ? 0 : 10);
     self.aImageView.flexLayout.isIncludedInLayout = model.imageName.length > 0;
+    
+    [self updateContentWidthIfNeeded];
     
     // 计算layout
     [self.contentView.flexLayout applyLayoutPreservingOrigin:NO dimensionFlexibility:ZDDimensionFlexibilityFlexibleHeight];

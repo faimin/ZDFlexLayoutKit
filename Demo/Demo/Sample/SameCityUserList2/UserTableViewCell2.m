@@ -62,8 +62,9 @@ extern UIColor *ZD_RandomColor(void);
         make.isEnabled(YES);
     }]];
     
-    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
-        make.width(YGPointValue(CGRectGetWidth(UIScreen.mainScreen.bounds) - 115 - 25));
+    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
+        make.flexGrow(1).flexShrink(1);
     }];
     [self.containerView addChild:rightContaienrDiv];
     

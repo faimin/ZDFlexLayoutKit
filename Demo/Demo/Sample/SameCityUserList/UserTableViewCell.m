@@ -63,8 +63,9 @@ extern UIColor *ZD_RandomColor(void);
         make.isEnabled(YES);
     }]];
     
-    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
-        make.width(YGPointValue(UIScreen.mainScreen.bounds.size.width - 115 - 25));
+    ZDFlexLayoutDiv *rightContaienrDiv = [ZDFlexLayoutDiv zd_makeFlexLayout:^(ZDFlexLayoutMaker * _Nonnull make) {
+        make.flexDirection(YGFlexDirectionColumn).marginStart(YGPointValue(10));
+        make.flexGrow(1).flexShrink(1);
     }];
     [self.containerView addChild:rightContaienrDiv];
     
@@ -141,6 +142,14 @@ extern UIColor *ZD_RandomColor(void);
     [self.locationLabel markDirty];
     [self.infoLabel markDirty];
     [self.noticeLabel markDirty];
+    
+    CGFloat width = CGRectGetWidth(self.contentView.bounds);
+    if (width <= 0) {
+        width = CGRectGetWidth(self.bounds);
+    }
+    if (width > 0) {
+        self.contentView.flexLayout.width = YGPointValue(width);
+    }
     
     // 计算layout
     [self.contentView calculateLayoutWithAutoRefresh:YES preservingOrigin:NO dimensionFlexibility:YGDimensionFlexibilityFlexibleHeight];
